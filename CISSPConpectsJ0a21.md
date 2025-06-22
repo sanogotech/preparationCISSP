@@ -271,3 +271,196 @@ Le CISSP teste moins la mémorisation que **la capacité à prendre des décisio
 
 * Ces modèles **guident la conception sûre** des systèmes
 * Il faut **savoir les comparer et les choisir selon le besoin**
+
+Voici la suite du programme **CISSP – Un jour, un concept**, avec les **Jours 6 à 10**, détaillés 5 fois plus selon ta demande : concepts, objectifs, exemples, tableaux, erreurs classiques, bonnes pratiques CISSP.
+
+---
+
+## 📦 **Jour 6 – Sécurité des actifs informationnels**
+
+### 🎯 Objectifs :
+
+* Comprendre le **cycle de vie des actifs** informationnels.
+* Mettre en place la **classification des données** (publique, interne, confidentielle, top secret).
+* Appliquer les bonnes pratiques de **gestion, stockage, protection, destruction** des actifs.
+
+### 📘 Concepts clés :
+
+| Terme                | Définition                                      | Exemple                                      |
+| -------------------- | ----------------------------------------------- | -------------------------------------------- |
+| Actif informationnel | Tout ce qui a de la valeur informationnelle     | Données clients, base de code, serveurs      |
+| Classification       | Catégorisation selon la sensibilité             | Top secret > Confidentiel > Interne > Public |
+| Propriétaire (owner) | Définit la classification et les règles d'accès | DSI ou métier                                |
+| Gardien (custodian)  | Applique les règles définies                    | Admins système                               |
+| Utilisateur (user)   | Accède selon les droits définis                 | Employé classique                            |
+
+### 🔁 Cycle de vie :
+
+1. Création / Acquisition
+2. Classification
+3. Utilisation / Traitement
+4. Archivage / Stockage
+5. Élimination sécurisée
+
+### 🧪 Cas pratiques :
+
+* Un disque dur avec données clients doit être **détruit physiquement** ou effacé via des outils certifiés (ex: DBAN).
+* Une clé USB contenant des secrets commerciaux ne peut pas être **classée "publique"**.
+
+### ⚠️ Erreurs classiques :
+
+* Utilisateur classant les données sans validation du propriétaire.
+* Données sensibles envoyées sans chiffrement.
+
+### ✅ Bonnes pratiques CISSP :
+
+* Le **propriétaire définit la classification**, pas le service IT.
+* Les **procédures de destruction** doivent être documentées et suivies.
+
+---
+
+## 🛂 **Jour 7 – Contrôle d’accès et authentification**
+
+### 🎯 Objectifs :
+
+* Comprendre les **modèles de contrôle d’accès** (DAC, MAC, RBAC, ABAC).
+* Maîtriser les **facteurs d’authentification** (SFA, MFA).
+* Appliquer la **séparation des privilèges** et la gestion du **moindre privilège**.
+
+### 📘 Modèles d’accès :
+
+| Modèle              | Description                                  | Cas d’usage                      |
+| ------------------- | -------------------------------------------- | -------------------------------- |
+| DAC (Discretionary) | Le propriétaire contrôle les accès           | Fichiers partagés sous Windows   |
+| MAC (Mandatory)     | Système basé sur des labels de sécurité      | Armée, documents classifiés      |
+| RBAC                | Accès basé sur les rôles métier              | ERP, CRM                         |
+| ABAC                | Accès basé sur attributs (heure, lieu, etc.) | Contrôle dynamique dans le cloud |
+
+### 🔑 Types d’authentification :
+
+* **Quelque chose que je sais** : mot de passe
+* **Quelque chose que j’ai** : carte, token, téléphone
+* **Quelque chose que je suis** : biométrie
+
+### 🧪 Cas pratiques :
+
+* Utiliser une carte à puce + empreinte digitale pour accéder à un système critique.
+* Appliquer un **timeout automatique** après 10 minutes d’inactivité.
+
+### 🧠 Mindset CISSP :
+
+* “Un utilisateur ne doit jamais avoir plus de droits que nécessaire.”
+* Le **moindre privilège** s’applique même aux administrateurs (utilisation de comptes séparés).
+
+---
+
+## 🧱 **Jour 8 – Architecture et Design sécurisé**
+
+### 🎯 Objectifs :
+
+* Intégrer les **principes de sécurité** dès la conception (Security by Design).
+* Comprendre les **modèles d’architecture** et les **zones de confiance**.
+* Appliquer la **séparation des responsabilités** et la **défense en profondeur**.
+
+### 📘 Principes fondamentaux :
+
+| Principe                  | Description                                          | Exemple                           |
+| ------------------------- | ---------------------------------------------------- | --------------------------------- |
+| Séparation des privilèges | Diviser les rôles critiques                          | Dev ≠ Déploiement ≠ Exploitation  |
+| Défense en profondeur     | Plusieurs couches de protection                      | Pare-feu + WAF + authentification |
+| Minimisation              | Réduction de surface d’attaque                       | Supprimer services inutiles       |
+| Contrôle par défaut       | Refuser tout ce qui n’est pas explicitement autorisé | Pare-feu par défaut : tout bloqué |
+
+### 🏗️ Zones typiques d’architecture :
+
+* DMZ : zone publique filtrée (web, API, proxy)
+* LAN sécurisé : systèmes internes critiques
+* Zone admin : accès restreint aux super utilisateurs
+
+### 🧪 Cas pratiques :
+
+* Dans un SI bancaire, interdire l’accès direct des clients aux bases de données.
+* Séparer les bases de données des serveurs web dans des **zones réseau distinctes**.
+
+### ⚠️ Erreurs classiques :
+
+* Utilisation du même compte admin pour tous les environnements.
+* Pas d’isolation entre environnement de test et production.
+
+---
+
+## 🌐 **Jour 9 – Sécurité des réseaux**
+
+### 🎯 Objectifs :
+
+* Comprendre les **protocoles réseau** de base (TCP/IP, ARP, DNS…).
+* Identifier les **vulnérabilités réseau** (MITM, spoofing, sniffing).
+* Mettre en place des **mécanismes de défense** (IDS/IPS, VLAN, NAT…).
+
+### 📘 Concepts essentiels :
+
+| Élément | Description                      | Risques associés             |
+| ------- | -------------------------------- | ---------------------------- |
+| ARP     | Résolution d’adresse IP vers MAC | Spoofing, redirection        |
+| DNS     | Résolution de noms               | Poisoning, cache spoofing    |
+| NAT     | Masque les IP internes           | Sécurité par obscurcissement |
+| VLAN    | Segmentation logique             | Séparation des flux métiers  |
+
+### 🛡️ Dispositifs de protection :
+
+* **Firewall** : filtrage des flux
+* **IDS/IPS** : détection/prévention d’intrusion
+* **VPN** : tunnel sécurisé
+* **Segmentation réseau** : limite les déplacements latéraux
+
+### 🧪 Cas pratiques :
+
+* Utiliser un firewall de nouvelle génération (NGFW) avec inspection TLS.
+* Isoler les terminaux de paiement du réseau invité.
+
+### ⚠️ Erreurs classiques :
+
+* Tous les flux sortants autorisés sans restriction.
+* Accès RDP ouvert sur Internet sans protection.
+
+---
+
+## 🚪 **Jour 10 – Protocoles, Ports et Sécurité Réseau**
+
+### 🎯 Objectifs :
+
+* Connaître les **protocoles sensibles** (FTP, Telnet, RDP…).
+* Identifier les **ports à risque** et les alternatives chiffrées.
+* Prendre des **décisions de sécurité pragmatiques** : bloquer, encapsuler, surveiller.
+
+### 📘 Port et protocole – Tableaux de synthèse :
+
+| Port | Protocole | Risque                   | Alternative sécurisée       |
+| ---- | --------- | ------------------------ | --------------------------- |
+| 21   | FTP       | Données en clair         | SFTP (22)                   |
+| 23   | Telnet    | Accès en clair           | SSH                         |
+| 80   | HTTP      | Pas de chiffrement       | HTTPS (443)                 |
+| 3389 | RDP       | Surface d’attaque élevée | VPN + Bastion               |
+| 161  | SNMP v2   | Faible sécurité          | SNMPv3 ou restreindre accès |
+
+### 🧪 Cas pratiques :
+
+* Interdire les connexions FTP sauf en SFTP via bastion.
+* Restreindre SNMP à une IP de supervision interne.
+
+### 🚦 Règles CISSP de classification :
+
+| Type             | Exemple                 | Action                   |
+| ---------------- | ----------------------- | ------------------------ |
+| 🔴 À interdire   | FTP, Telnet, POP3       | Bloquer                  |
+| 🟡 À surveiller  | DNS, RDP, SMB           | Filtrage, journalisation |
+| 🟢 À privilégier | HTTPS, SFTP, SSH, LDAPS | Encourager               |
+
+### 🧠 Réflexes CISSP :
+
+* “Chaque port est une **porte d’entrée**. À toi de décider si elle est **ouverte, fermée ou blindée**.”
+* La **sécurité pragmatique** = ne pas bloquer tout, mais bloquer **intelligemment**.
+
+---
+
+
