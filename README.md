@@ -2,13 +2,10 @@
 
 CISSP: Couverture large des 8 domaines sécurité (y compris architecture, gestion, etc.)
 
-
-## Ton profil d’architecte logiciel et pratique  DevSecOps/IAM/SSO, security by design avec  la  certification ISO 27001 Foundation.
+# 🚀 **Roadmap ISC² + autres certifications clés pour architecte logiciel DevSecOps / IAM SSO / ISO 27001**
 
 Voici ta roadmap ISC² bien mise en valeur avec émojis, couleurs et mise en forme claire et dynamique pour un **architecte logiciel DevSecOps / IAM SSO / Security by Design / ISO 27001 Foundation** :
 
-
-# 🚀 **Roadmap ISC² + autres certifications clés pour architecte logiciel DevSecOps / IAM SSO / ISO 27001**
 
 | 🎯 **Niveau**                                     | 📜 **Certification**                                   | 💡 **Pourquoi c’est pertinent pour toi**                           | ⚠️ **Prérequis / Remarques**                                |
 | ------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------ | ----------------------------------------------------------- |
