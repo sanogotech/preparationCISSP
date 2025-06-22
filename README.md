@@ -7,83 +7,87 @@ CISSP: Couverture large des 8 domaines sécurité (y compris architecture, gesti
 
 Voici ta roadmap ISC² bien mise en valeur avec émojis, couleurs et mise en forme claire et dynamique pour un **architecte logiciel DevSecOps / IAM SSO / Security by Design / ISO 27001 Foundation** :
 
----
 
-# 🚀 **Roadmap ISC² recommandée**
+# 🚀 **Roadmap ISC² + autres certifications clés pour architecte logiciel DevSecOps / IAM SSO / ISO 27001**
 
-*Pour architecte logiciel DevSecOps, IAM/SSO, Security by Design, ISO 27001 Foundation*
-
-| 🎯 **Niveau**                  | 📜 **Certification ISC²**                                                               | 💡 **Pourquoi c’est pertinent pour toi**                                            | ⚠️ **Prérequis / Remarques**                              |
-| ------------------------------ | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| 🔰 **Base**                    | **SSCP**                                                                                | Consolider les bases opérationnelles en sécurité, IAM, contrôle d’accès, réseaux    | Même si tu es architecte, SSCP valide la pratique terrain |
-| 📘 **Fondation**               | **ISO 27001 Lead Implementer / Lead Auditor** *(si non certifié au-delà du Foundation)* | Approfondir la gestion de la sécurité selon la norme ISO 27001                      | Complémentaire ISC², essentiel pour management sécurité   |
-| ⚙️ **Intermédiaire**           | **CISSP**                                                                               | Couverture large des 8 domaines sécurité (architecture, gestion, etc.)              | Expérience 5 ans dans 2 domaines CISSP nécessaire         |
-| 🏛️ **Expertises spécifiques** | **CISSP-ISSAP** (Architecture)                                                          | Spécialisation en architecture sécurisée, alignée à ta fonction                     | CISSP obligatoire pour ISSAP                              |
-|                                | **CCSP** (Cloud Security)                                                               | Pour la sécurité des environnements cloud, très lié à DevSecOps & IAM dans le cloud | Très pertinent en environnement cloud                     |
-|                                | **CSSLP** (Secure Software Lifecycle)                                                   | Renforce la sécurité dans le cycle de développement logiciel                        | Idéal en Security by Design et DevSecOps                  |
-| 🔐 **Compléments IAM / SSO**   | Certifications IAM spécifiques (ex: Certified Identity and Access Manager – CIAM)       | Approfondir IAM & SSO avec une certification reconnue                               | À envisager en parallèle                                  |
-
----
-
-# 📅 **Parcours conseillé**
-
-### 1️⃣ Valider/Consolider tes bases avec **SSCP**
-
-🔹 Même avec ISO 27001 Foundation, SSCP t’apporte une base technique solide systèmes, réseaux, IAM.
-🔹 Intègre la vision opérationnelle sécurité.
-
-### 2️⃣ Passer au **CISSP**
-
-🔹 Certification incontournable pour architecte sécurité expert.
-🔹 Valide connaissance approfondie des 8 domaines, incluant gouvernance, risques, architecture.
-🔹 Passeport vers les spécialisations.
-
-### 3️⃣ Spécialisation Architecture avec **CISSP-ISSAP**
-
-🔹 Adapté à ton rôle d’architecte logiciel.
-🔹 Apprends à concevoir des architectures sécurisées, maîtriser la modélisation des risques, intégrer security by design.
-
-### 4️⃣ Approfondissement avec **CCSP** et **CSSLP**
-
-🔹 CCSP : sécurité cloud, très lié à DevSecOps, IAM, SSO.
-🔹 CSSLP : sécurité intégrée dans le cycle dev logiciel, incontournable pour DevSecOps.
-
-### 5️⃣ Compléments IAM / SSO
-
-🔹 ISC² ne couvre pas IAM/SSO en profondeur.
-🔹 Choisis des certifications spécialisées IAM (CIAM, CISA, Okta, ForgeRock, etc.).
+| 🎯 **Niveau**                                     | 📜 **Certification**                                   | 💡 **Pourquoi c’est pertinent pour toi**                           | ⚠️ **Prérequis / Remarques**                                |
+| ------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------ | ----------------------------------------------------------- |
+| 🔰 **Base ISC²**                                  | **SSCP**                                               | Bases solides en sécurité opérationnelle, IAM, contrôles d’accès   | Validation terrain importante                               |
+| 🛡️ **Fondation ISO**                             | **ISO 27001 Lead Implementer / Auditor**               | Maîtrise la gouvernance sécurité selon norme ISO 27001             | Complémentaire ISC²                                         |
+| ⚙️ **Intermédiaire ISC²**                         | **CISSP**                                              | Couverture complète des 8 domaines sécurité, architecture comprise | Expérience 5 ans, passage obligatoire avant spécialisations |
+| 🏛️ **Expertises ISC²**                           | **CISSP-ISSAP** (Architecture)                         | Spécialisation architecture SI sécurisée                           | CISSP obligatoire                                           |
+|                                                   | **CCSP** (Cloud Security)                              | Sécurité cloud liée à DevSecOps et IAM/SSO                         |                                                             |
+|                                                   | **CSSLP** (Secure Software Lifecycle)                  | Sécurité du cycle de développement logiciel (Security by Design)   |                                                             |
+| 🔐 **Compléments IAM/SSO**                        | Certifications IAM dédiées (ex: CIAM, Okta, ForgeRock) | Approfondir IAM et SSO                                             | Hors ISC²                                                   |
+| 🕵️ **Sécurité offensive / hacking éthique**      | **CEH (Certified Ethical Hacker)**                     | Comprendre techniques de hacking pour mieux sécuriser              | Fondamentaux sécurité recommandés                           |
+| 🔍 **Tests d’intrusion avancés**                  | **OSCP (Offensive Security Certified Professional)**   | Pentesting pratique avancé, exploitation de failles                | Compétences techniques solides nécessaires                  |
+| 🧩 **Gestion incidents / Forensics**              | **GCFA (GIAC Certified Forensic Analyst)**             | Analyse d’incidents et investigation forensic                      | Expérience en analyse sécurité recommandée                  |
+| 🛠️ **Gestion vulnérabilités / Patch management** | **CompTIA Security+**                                  | Bases solides en sécurité IT, gestion des vulnérabilités           | Très accessible, bon point de départ                        |
 
 ---
 
-# ⏳ **Planning d’étude estimé**
+# 📅 **Parcours conseillé avec CEH et autres**
 
-| Étape             | Objectif                         | Durée estimée   | Ressources recommandées                          |
-| ----------------- | -------------------------------- | --------------- | ------------------------------------------------ |
-| 🔰 SSCP           | Bases techniques opérationnelles | 2-3 mois        | Official SSCP Guide, Cybrary, ISC²               |
-| ⚙️ CISSP          | Maitrise globale sécurité SI     | 4-6 mois        | Official CISSP CBK, (ISC)² training, Boson exams |
-| 🏛️ CISSP-ISSAP   | Architecture sécurité avancée    | 2-3 mois        | ISC² ISSAP official guide, formations            |
-| ☁️ CCSP / CSSLP   | Cloud Security & DevSecOps       | 3-4 mois chacun | ISC² materials, Cloud Academy, Pluralsight       |
-| 🔐 IAM spécialisé | Maîtrise IAM / SSO               | Variable        | Certifications IAM, trainings fournisseurs       |
+### 1️⃣ SSCP → CISSP (socle ISC²)
+
+### 2️⃣ Spécialisations CISSP : ISSAP (Architecture), CCSP (Cloud), CSSLP (DevSecOps)
+
+### 3️⃣ IAM / SSO : Certifications spécialisées (CIAM, Okta...)
+
+### 4️⃣ Sécurité offensive et tests :
+
+* **CEH** pour connaître techniques de hacking, identification des failles
+* **OSCP** pour tests d’intrusion pratiques avancés
+
+### 5️⃣ Analyse d’incidents & Forensics :
+
+* **GCFA** pour investigations et gestion incidents
+
+### 6️⃣ Bases complémentaires :
+
+* **Security+** pour renforcer les fondamentaux sécurité IT
+
+---
+
+# 💡 **Pourquoi intégrer ces certifications ?**
+
+| Certification | Valeur ajoutée pour toi                           | Exemple d’usage                 | Outils associés         |
+| ------------- | ------------------------------------------------- | ------------------------------- | ----------------------- |
+| CEH           | Comprendre techniques hacking pour mieux défendre | Audit sécurité interne          | Kali Linux, Metasploit  |
+| OSCP          | Tests d’intrusion réalistes, exploitation failles | Pentest API et infra réseau     | Kali, Burp Suite, Nmap  |
+| GCFA          | Analyse approfondie d’incidents, forensic         | Réponse à incident cyberattaque | EnCase, FTK, Volatility |
+| Security+     | Bases solides IT sécurité, gestion vulnérabilités | Administration sécurité réseau  | Wireshark, Nessus       |
 
 ---
 
-# 📝 **En résumé**
+# ⏳ **Durées estimées d’étude**
 
-* ✅ Tu es déjà bien positionné avec **ISO 27001 Foundation**
-* 🏆 **CISSP** est la pierre angulaire pour un architecte sécurité
-* 🏛️ **ISSAP** pour approfondir l’architecture SI sécurisée
-* ☁️ **CCSP** et **CSSLP** pour DevSecOps, cloud et sécurité du cycle dev
-* 🔐 **IAM/SSO** : compléter avec certifications spécialisées hors ISC²
+| Certification | Durée approximative | Difficulté             | Ressources                            |
+| ------------- | ------------------- | ---------------------- | ------------------------------------- |
+| CEH           | 3-4 mois            | Intermédiaire          | EC-Council official, Cybrary, Udemy   |
+| OSCP          | 4-6 mois            | Avancé                 | Offensive Security labs, Hack The Box |
+| GCFA          | 3-4 mois            | Avancé                 | GIAC training, SANS courses           |
+| Security+     | 2-3 mois            | Débutant-Intermédiaire | CompTIA official, Pluralsight         |
+
+---
+
+# 📝 **Résumé final**
+
+* Tu es déjà solide avec ISO 27001 Foundation et profil architecte
+* CISSP + ISSAP + CCSP + CSSLP : cœur de compétences sécurité architecte DevSecOps/IAM
+* CEH + OSCP : connaissance offensive indispensable pour une vision complète sécurité
+* GCFA : gestion d’incidents & forensic pour la réactivité face aux attaques
+* Security+ : excellent socle technique complémentaire
 
 ---
 
-💬 Veux-tu que je t’aide à construire un **plan de formation détaillé** avec planning, ressources précises et conseils d’étude adaptés ?
-Ou une **comparaison détaillée CISSP-ISSAP / CCSP / CSSLP** selon ton contexte DevSecOps / IAM ?
+💬 **Veux-tu que je t’aide à intégrer ces certifications dans un planning d’étude détaillé avec ressources précises ?**
+Ou une comparaison approfondie des certifications hacking / forensic / gestion incidents ?
 
-Je peux aussi t’aider à préparer un plan d’étude ISO 27001 avancé (Lead Implementer / Auditor) si tu veux.
-
+Je peux aussi te fournir des fiches synthétiques + quiz pour ces certifications si tu veux.
 
 ---
+
 
 # 🌟 **CISSP : Détail des 8 domaines clés**
 
