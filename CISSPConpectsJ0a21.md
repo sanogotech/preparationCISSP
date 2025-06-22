@@ -854,5 +854,503 @@ Le CISSP teste moins la mémorisation que **la capacité à prendre des décisio
 ---
 
 
+## 🎯 **Jour 21 – Révision finale et mindset CISSP**
+
+### Objectifs :
+
+* Consolider les connaissances clés des 20 premiers jours.
+* Adopter les **réflexes attendus** lors de l’examen et en pratique professionnelle.
+* Simuler des cas pratiques pour appliquer les concepts appris.
+
+### Concepts clés :
+
+* Importance de la **lecture attentive des questions** : analyser le contexte, ne pas se précipiter.
+* Penser **en termes de risque, probabilité, impact, contrôle**.
+* **Balance entre sécurité et opérationnel** : ne pas tomber dans le blocage total.
+* Exemples de pièges courants dans les QCM CISSP.
+
+### Exercices pratiques :
+
+* Analyser un scénario d’attaque réseau et proposer la réponse la plus adaptée.
+* Identifier les failles dans une politique de sécurité donnée.
+* Prioriser les actions selon une échelle de risque.
+
+---
+
+## 🔐 **Jour 22 – Sécurité des applications web**
+
+### Objectifs :
+
+* Comprendre les vulnérabilités les plus fréquentes (OWASP Top 10).
+* Appliquer les bonnes pratiques pour sécuriser les API et les applications web.
+* Mettre en place des contrôles adaptés (WAF, validation côté serveur).
+
+### Concepts clés :
+
+| Vulnérabilité              | Description                                            | Exemple                                | Contrôle recommandé                 |
+| -------------------------- | ------------------------------------------------------ | -------------------------------------- | ----------------------------------- |
+| Injection SQL              | Entrées non filtrées permettant d’exécuter du code SQL | `' OR '1'='1'` dans un formulaire      | Utiliser requêtes paramétrées       |
+| Cross-Site Scripting (XSS) | Injection de scripts malveillants dans les pages web   | Script malveillant dans un commentaire | Encodage HTML, CSP                  |
+| Broken Authentication      | Faible gestion des sessions et mots de passe           | Session hijacking                      | MFA, gestion sécurisée des sessions |
+
+### Bonnes pratiques :
+
+* Valider toutes les entrées utilisateurs.
+* Mettre à jour régulièrement frameworks et librairies.
+* Utiliser HTTPS partout.
+
+---
+
+## 🗄️ **Jour 23 – Sécurité des bases de données**
+
+### Objectifs :
+
+* Protéger les données sensibles stockées en bases.
+* Gérer les accès et appliquer le chiffrement adapté.
+* Mettre en place des journaux d’audit pour détecter les accès anormaux.
+
+### Concepts clés :
+
+| Contrôle                                   | Description                                | Outils / Exemples                   |
+| ------------------------------------------ | ------------------------------------------ | ----------------------------------- |
+| Contrôle d’accès basé sur les rôles (RBAC) | Accès limité selon rôle                    | Oracle RBAC, SQL Server permissions |
+| Chiffrement des données au repos           | Crypter les fichiers ou colonnes sensibles | Transparent Data Encryption (TDE)   |
+| Journalisation                             | Traçabilité des requêtes critiques         | Audit Oracle, SQL Server Audit      |
+
+### Cas pratiques :
+
+* Interdire les comptes “sa” ou “root” en accès direct.
+* Appliquer chiffrement au niveau colonne pour les données personnelles.
+
+---
+
+## 📱 **Jour 24 – Sécurité mobile et IoT**
+
+### Objectifs :
+
+* Identifier les risques liés aux terminaux mobiles et objets connectés.
+* Mettre en place des politiques BYOD et contrôles spécifiques.
+* Sécuriser les communications IoT.
+
+### Concepts clés :
+
+* Menaces mobiles : malwares, perte d’appareil, sniffing Wi-Fi.
+* Sécurisation via MDM (Mobile Device Management).
+* Protocoles IoT sécurisés : MQTT avec TLS, DTLS.
+
+### Bonnes pratiques :
+
+* Chiffrement obligatoire des données mobiles.
+* Mise à jour régulière des firmwares IoT.
+* Segmentation réseau dédiée pour IoT.
+
+---
+
+## 🔄 **Jour 25 – Gestion des vulnérabilités**
+
+### Objectifs :
+
+* Mettre en place un processus complet de gestion des vulnérabilités.
+* Prioriser les correctifs selon les risques.
+* Automatiser les scans et intégrer la gestion dans le cycle de vie.
+
+### Concepts clés :
+
+| Étape        | Description                             |
+| ------------ | --------------------------------------- |
+| Découverte   | Identifier les systèmes et versions     |
+| Analyse      | Évaluer la criticité des vulnérabilités |
+| Correction   | Appliquer les patchs ou contournements  |
+| Vérification | S’assurer de la correction effective    |
+| Rapport      | Documenter et communiquer l’état        |
+
+### Outils courants :
+
+* Nessus, OpenVAS, Qualys pour le scan.
+* Systèmes de gestion de tickets pour le suivi.
+
+### Cas pratiques :
+
+* Scanner hebdomadaire automatisé.
+* Correction rapide des vulnérabilités critiques (ex: vulnérabilité RCE).
+
+---
+
+
+## 🖥️ **Jour 26 – Sécurité des environnements virtualisés**
+
+### 🎯 Objectifs :
+
+* Comprendre les spécificités et risques liés à la virtualisation.
+* Appliquer les bonnes pratiques pour sécuriser hyperviseurs et machines virtuelles.
+* Gérer isolation, migration et contrôles d’accès dans les environnements virtualisés.
+
+### Concepts clés :
+
+| Aspect            | Description                                 | Bonnes pratiques                                   |
+| ----------------- | ------------------------------------------- | -------------------------------------------------- |
+| Hyperviseur       | Plateforme d’exécution des VM               | Mise à jour régulière, minimalisme                 |
+| Isolation         | Séparer les VM pour éviter la contamination | Network segmentation, VLAN, sandboxing             |
+| Migration à chaud | Transfert VM en fonctionnement              | Chiffrement du trafic et contrôle d’accès          |
+| Snapshots         | Sauvegardes d’état VM                       | Contrôle d’intégrité, protection contre altération |
+
+### Cas pratiques :
+
+* VM compromise peut attaquer d’autres VM → renforcer isolation.
+* Patcher régulièrement l’hyperviseur pour éviter vulnérabilités.
+
+---
+
+## ⚙️ **Jour 27 – Sécurité des systèmes industriels (SCADA/ICS)**
+
+### 🎯 Objectifs :
+
+* Identifier les particularités des systèmes industriels.
+* Appliquer les mesures de sécurité adaptées aux contraintes des ICS/SCADA.
+* Gérer les accès, segmenter le réseau industriel.
+
+### Concepts clés :
+
+| Spécificité                                    | Impact sécurité                   | Mesures adaptées                     |
+| ---------------------------------------------- | --------------------------------- | ------------------------------------ |
+| Systèmes critiques et temps réel               | Haute disponibilité exigée        | Plan de continuité dédié, redondance |
+| Protocoles propriétaires souvent non sécurisés | Vecteurs d’attaques               | Filtrage, isolation réseau           |
+| Accès souvent physique et local                | Limitation géographique des accès | Contrôle d’accès physique strict     |
+
+### Bonnes pratiques :
+
+* Utiliser des **firewalls industriels** spécifiques.
+* Mettre en place une **segmentation stricte OT/IT**.
+* Formation spécifique des opérateurs.
+
+---
+
+## 🔄 **Jour 28 – Sécurité dans DevOps et intégration continue**
+
+### 🎯 Objectifs :
+
+* Intégrer la sécurité dans les pipelines CI/CD.
+* Automatiser les tests de sécurité dès le développement.
+* Gérer les secrets et accès dans les outils DevOps.
+
+### Concepts clés :
+
+| Domaine                | Exemples de bonnes pratiques                 |
+| ---------------------- | -------------------------------------------- |
+| Intégration continue   | Analyse statique du code (SAST)              |
+| Livraison continue     | Tests de sécurité automatisés (DAST)         |
+| Infrastructure as Code | Validation de templates (Terraform, Ansible) |
+| Gestion des secrets    | Stockage sécurisé (Vault, KMS)               |
+
+### Cas pratiques :
+
+* Injection de clés d’API dans un repo public → fuite de données.
+* Pipeline CI/CD sans tests sécurité → déploiement d’une vulnérabilité.
+
+---
+
+## 🔍 **Jour 29 – Analyse de logs et forensic**
+
+### 🎯 Objectifs :
+
+* Collecter et analyser les logs pour détecter les incidents.
+* Comprendre les bases du forensic numérique.
+* Préserver l’intégrité des preuves en cas d’enquête.
+
+### Concepts clés :
+
+| Phase         | Description                                        | Outils / Techniques            |
+| ------------- | -------------------------------------------------- | ------------------------------ |
+| Collecte      | Centraliser les logs                               | Syslog, ELK, SIEM              |
+| Analyse       | Identifier anomalies, indicateurs de compromission | Splunk, Graylog                |
+| Préservation  | Protéger intégrité, chaîne de custodie             | Hashing, duplication bit à bit |
+| Investigation | Reconstituer événements                            | Timeline, récupération données |
+
+### Bonnes pratiques :
+
+* Centralisation obligatoire des logs critiques.
+* Formation des analystes forensic.
+* Respect strict de la chaîne de custodie pour les preuves.
+
+---
+
+## 🔐 **Jour 30 – Gestion des identités fédérées**
+
+### 🎯 Objectifs :
+
+* Comprendre les mécanismes d’authentification fédérée.
+* Mettre en place SAML, OAuth, OpenID Connect pour sécuriser les accès inter-domaines.
+* Gérer les risques liés à la fédération d’identité.
+
+### Concepts clés :
+
+| Technologie    | Usage                                        | Particularités                   |
+| -------------- | -------------------------------------------- | -------------------------------- |
+| SAML           | Authentification unique pour les entreprises | XML-based, utilisé en entreprise |
+| OAuth 2.0      | Autorisation déléguée pour API               | Tokens d’accès temporaires       |
+| OpenID Connect | Authentification basée sur OAuth 2.0         | Léger, RESTful                   |
+
+### Cas pratiques :
+
+* Mise en place SSO entre plusieurs applications internes.
+* OAuth mal configuré → tokens exposés, risques d’usurpation.
+
+---
+
+
+## 📡 **Jour 31 – Sécurité des réseaux sans fil**
+
+### 🎯 Objectifs :
+
+* Comprendre les vulnérabilités spécifiques aux réseaux Wi-Fi.
+* Appliquer les protocoles et mécanismes de sécurité modernes (WPA3).
+* Gérer les accès, authentifications et détections d’intrusion sans fil.
+
+### Concepts clés :
+
+| Protocole | Description                                 | Niveau de sécurité   |
+| --------- | ------------------------------------------- | -------------------- |
+| WEP       | Obsolète, vulnérable                        | ❌ À ne plus utiliser |
+| WPA       | Amélioration de WEP, mais encore vulnérable | ⚠️                   |
+| WPA2      | Standard actuel, sécurisation via AES       | ✅ Standard de fait   |
+| WPA3      | Nouvelle norme, protections renforcées      | ✅ Recommandé         |
+
+### Menaces courantes :
+
+* Attaques de type **Evil Twin** (point d’accès malveillant).
+* **Sniffing** des communications non chiffrées.
+* **Déni de service** ciblé sur le Wi-Fi.
+
+### Bonnes pratiques :
+
+* Utiliser uniquement WPA2/WPA3 avec chiffrement AES.
+* Activer le filtrage MAC et SSID caché (avec prudence).
+* Mettre en place une segmentation réseau dédiée au Wi-Fi invité.
+
+---
+
+## 🖥️ **Jour 32 – Sécurité des endpoints**
+
+### 🎯 Objectifs :
+
+* Protéger postes de travail, laptops et mobiles contre les malwares.
+* Mettre en œuvre antivirus, EDR (Endpoint Detection and Response) et politiques BYOD.
+* Gérer la mise à jour et le contrôle des applications.
+
+### Concepts clés :
+
+| Technologie            | Description                                              |
+| ---------------------- | -------------------------------------------------------- |
+| Antivirus/Anti-malware | Détection signatures, heuristiques                       |
+| EDR                    | Surveillance comportementale avancée                     |
+| Politique BYOD         | Contrôle des appareils personnels utilisés en entreprise |
+| Patch management       | Mise à jour régulière des systèmes et applications       |
+
+### Bonnes pratiques :
+
+* Centraliser la gestion des outils de sécurité endpoint.
+* Former les utilisateurs aux risques et bonnes pratiques.
+* Appliquer le principe du moindre privilège sur les postes.
+
+---
+
+## 🔑 **Jour 33 – Gestion des clés cryptographiques**
+
+### 🎯 Objectifs :
+
+* Comprendre la gestion sécurisée des clés dans une infrastructure cryptographique.
+* Mettre en place des systèmes de stockage, rotation, destruction et audit des clés.
+* Utiliser les HSM (Hardware Security Modules) pour protéger les clés.
+
+### Concepts clés :
+
+| Aspect            | Description                                              |
+| ----------------- | -------------------------------------------------------- |
+| Stockage sécurisé | Clés stockées dans des HSM ou modules logiciels protégés |
+| Rotation          | Changement périodique des clés pour limiter l’exposition |
+| Archivage         | Sauvegarde des clés pour récupération et audits          |
+| Révocation        | Suppression immédiate des clés compromises               |
+
+### Cas pratiques :
+
+* Clé privée exposée → compromission totale de la confidentialité.
+* Rotation annuelle des clés API dans les systèmes critiques.
+
+---
+
+## 📧 **Jour 34 – Sécurité des emails**
+
+### 🎯 Objectifs :
+
+* Protéger les échanges email contre le phishing, spoofing et interception.
+* Mettre en œuvre SPF, DKIM, DMARC pour authentifier les emails.
+* Appliquer le chiffrement des emails (S/MIME, PGP).
+
+### Concepts clés :
+
+| Mécanisme                                   | Fonction                                               | Résultat                                  |
+| ------------------------------------------- | ------------------------------------------------------ | ----------------------------------------- |
+| SPF (Sender Policy Framework)               | Liste des serveurs autorisés à envoyer pour un domaine | Réduit le spoofing                        |
+| DKIM (DomainKeys Identified Mail)           | Signature numérique des emails                         | Garantit l’intégrité et provenance        |
+| DMARC (Domain-based Message Authentication) | Politique de traitement des emails non conformes       | Améliore la protection anti-phishing      |
+| S/MIME, PGP                                 | Chiffrement des emails                                 | Confidentialité et intégrité des messages |
+
+### Bonnes pratiques :
+
+* Mettre en place des filtres anti-spam et anti-phishing.
+* Former les utilisateurs à la reconnaissance des emails suspects.
+* Utiliser le chiffrement pour les échanges sensibles.
+
+---
+
+## ☁️ **Jour 35 – Sécurité des infrastructures cloud avancée**
+
+### 🎯 Objectifs :
+
+* Comprendre les outils avancés pour sécuriser les environnements cloud.
+* Appliquer la microsegmentation, CSPM (Cloud Security Posture Management) et CASB (Cloud Access Security Broker).
+* Gérer les risques liés aux configurations erronées et aux accès non autorisés.
+
+### Concepts clés :
+
+| Outil / Technique | Description                                                                |
+| ----------------- | -------------------------------------------------------------------------- |
+| Microsegmentation | Découpage fin des réseaux virtuels pour limiter la surface d’attaque       |
+| CSPM              | Surveillance continue des configurations cloud pour conformité et sécurité |
+| CASB              | Contrôle des accès et politiques de sécurité entre utilisateurs et cloud   |
+
+### Cas pratiques :
+
+* Mauvaise configuration d’un bucket S3 → fuite de données publiques.
+* Mise en place d’un CASB pour monitorer l’usage des applications SaaS.
+
+---
+
+
+## 📊 **Jour 36 – Analyse de risques avancée**
+
+### 🎯 Objectifs :
+
+* Maîtriser les méthodes qualitatives et quantitatives d’analyse de risques.
+* Appliquer des modèles tels que OCTAVE, FAIR, et NIST pour évaluer les risques de façon structurée.
+* Prioriser les actions de sécurité selon les résultats d’analyse.
+
+### Concepts clés :
+
+| Méthode              | Description                                                                              | Avantages                                       |
+| -------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Analyse qualitative  | Évaluation basée sur des échelles de probabilité et d’impact (ex : faible, moyen, élevé) | Rapide, adaptée aux petites structures          |
+| Analyse quantitative | Utilisation de données chiffrées pour calculs (ex : coût, fréquence)                     | Plus précise, nécessite des données fiables     |
+| OCTAVE               | Approche orientée organisation                                                           | Implique la participation des parties prenantes |
+| FAIR                 | Modèle économique de risque basé sur perte probable                                      | Mesure financière du risque                     |
+
+### Cas pratiques :
+
+* Évaluer le risque d’une attaque Ransomware sur un parc informatique.
+* Prioriser les correctifs selon l’impact financier attendu.
+
+---
+
+## 🏭 **Jour 37 – Sécurité des réseaux industriels (OT/ICS)**
+
+### 🎯 Objectifs :
+
+* Comprendre les spécificités des réseaux opérationnels industriels.
+* Mettre en œuvre des contrôles adaptés aux contraintes des ICS et SCADA.
+* Séparer clairement les réseaux IT classiques des réseaux industriels.
+
+### Concepts clés :
+
+| Particularité                                  | Impact                                   | Mesures                        |
+| ---------------------------------------------- | ---------------------------------------- | ------------------------------ |
+| Disponibilité critique                         | Priorité sur uptime et sécurité physique | Plan de secours, redondance    |
+| Protocoles propriétaires souvent non sécurisés | Vulnérabilités spécifiques               | Filtrage, surveillance réseau  |
+| Maintenance sur site souvent nécessaire        | Risques d’erreurs humaines               | Formation, procédures strictes |
+
+### Bonnes pratiques :
+
+* Utiliser des firewalls industriels dédiés.
+* Mettre en place une DMZ entre IT et OT.
+* Surveillance active des anomalies.
+
+---
+
+## 🏛️ **Jour 38 – Gouvernance et audit SSI**
+
+### 🎯 Objectifs :
+
+* Établir une gouvernance solide pour la sécurité de l’information.
+* Comprendre les processus d’audit et conformité.
+* Utiliser les résultats d’audit pour améliorer la posture de sécurité.
+
+### Concepts clés :
+
+| Élément                                                      | Description                                        |
+| ------------------------------------------------------------ | -------------------------------------------------- |
+| SMSI (Système de Management de la Sécurité de l’Information) | Structure organisée pour gérer la sécurité         |
+| Audit interne / externe                                      | Vérification du respect des politiques et normes   |
+| KPIs sécurité                                                | Indicateurs de performance pour suivre la sécurité |
+| Reporting au comité de direction                             | Communication claire sur les risques et actions    |
+
+### Cas pratiques :
+
+* Réaliser un audit ISO 27001.
+* Élaborer un plan d’action suite à un audit.
+
+---
+
+## 👥 **Jour 39 – Gestion des ressources humaines en sécurité**
+
+### 🎯 Objectifs :
+
+* Sensibiliser les collaborateurs aux risques de sécurité.
+* Gérer les risques liés aux ressources humaines : recrutement, départs, comportements.
+* Mettre en place des politiques de formation et sanctions.
+
+### Concepts clés :
+
+| Domaine                  | Bonnes pratiques                                            |
+| ------------------------ | ----------------------------------------------------------- |
+| Recrutement              | Vérifications des antécédents, clauses de confidentialité   |
+| Formation continue       | Sessions régulières de sensibilisation à la sécurité        |
+| Gestion des accès        | Mise à jour rapide lors des départs ou changements de poste |
+| Sanctions disciplinaires | En cas de non-respect des politiques de sécurité            |
+
+### Cas pratiques :
+
+* Campagne annuelle de sensibilisation phishing.
+* Gestion d’un départ d’employé avec suppression immédiate des accès.
+
+---
+
+## 📚 **Jour 40 – Préparation à l’examen CISSP**
+
+### 🎯 Objectifs :
+
+* Adopter les meilleures stratégies de préparation et gestion du temps.
+* Identifier les ressources, supports et méthodes de révision efficaces.
+* Se préparer mentalement à l’examen (durée, questions, stress).
+
+### Conseils pratiques :
+
+| Aspect                | Recommandation                                                           |
+| --------------------- | ------------------------------------------------------------------------ |
+| Gestion du temps      | 3,5 heures pour 100 à 150 questions, ne pas rester bloqué trop longtemps |
+| Lecture des questions | Lire attentivement, chercher la réponse la plus complète et raisonnable  |
+| Révision              | Répéter les concepts clés, pratiquer avec des QCM et cas pratiques       |
+| Mindset               | Être calme, méthodique, prêt à raisonner en termes de risques            |
+
+### Ressources recommandées :
+
+* Official (ISC)² CISSP Study Guide
+* Tests blancs et simulateurs en ligne
+* Groupes d’étude et forums spécialisés
+
+---
+
+
+
+
+
 
 
