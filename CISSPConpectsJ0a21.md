@@ -296,8 +296,6 @@ Le CISSP teste moins la mémorisation que **la capacité à prendre des décisio
 * Ces modèles **guident la conception sûre** des systèmes
 * Il faut **savoir les comparer et les choisir selon le besoin**
 
-Voici la suite du programme **CISSP – Un jour, un concept**, avec les **Jours 6 à 10**, détaillés 5 fois plus selon ta demande : concepts, objectifs, exemples, tableaux, erreurs classiques, bonnes pratiques CISSP.
-
 ---
 
 ## 📦 **Jour 6 – Sécurité des actifs informationnels**
@@ -486,9 +484,7 @@ Voici la suite du programme **CISSP – Un jour, un concept**, avec les **Jours 
 * La **sécurité pragmatique** = ne pas bloquer tout, mais bloquer **intelligemment**.
 
 ---
-Voici la suite détaillée du programme **CISSP – Un jour, un concept** pour les **Jours 11 à 15**, dans le même format approfondi : concepts, objectifs, exemples pratiques, tableaux, erreurs fréquentes, et bonnes pratiques CISSP.
 
----
 
 ## 🔍 **Jour 11 – Ports : risques et alternatives**
 
@@ -671,6 +667,189 @@ Voici la suite détaillée du programme **CISSP – Un jour, un concept** pour l
 
 * **“Ce qui n’est pas journalisé n’a pas existé.”**
 * Penser à la **conservation légale des logs** (1 à 5 ans selon contexte juridique).
+
+---
+
+
+## 🔐 **Jour 16 – Cryptographie**
+
+### 🎯 Objectifs :
+
+* Comprendre les **principes fondamentaux de la cryptographie**.
+* Distinguer les types de chiffrement : **symétrique**, **asymétrique**, **hachage**.
+* Appliquer la **cryptographie aux usages réels** (authentification, intégrité, confidentialité).
+
+### 📘 Types de cryptographie :
+
+| Type                            | Description                        | Usage                                |
+| ------------------------------- | ---------------------------------- | ------------------------------------ |
+| Chiffrement symétrique          | Même clé pour chiffrer/déchiffrer  | AES, 3DES – Données à grande vitesse |
+| Chiffrement asymétrique         | Clé publique/privée                | RSA, ECC – SSL/TLS, signatures       |
+| Hachage                         | Résumé non réversible              | SHA-2, SHA-3 – Intégrité             |
+| MAC / HMAC                      | Hachage + clé secrète              | Intégrité + authenticité             |
+| PKI (Public Key Infrastructure) | Système de gestion des certificats | SSL/TLS, emails signés               |
+
+### 🔐 Fonctions à connaître :
+
+| Fonction         | Objectif               |
+| ---------------- | ---------------------- |
+| Confidentialité  | Chiffrement (AES, RSA) |
+| Intégrité        | Hachage (SHA-256)      |
+| Non-répudiation  | Signature numérique    |
+| Authentification | Certificats, OTP, HMAC |
+
+### 🧪 Cas pratiques :
+
+* Données bancaires stockées en clair → ❌
+* Utiliser TLS avec certificats auto-signés → ⚠️ risque de MITM
+* Mail signé et chiffré via GPG → ✅
+
+### 🧠 Réflexes CISSP :
+
+* Ne **jamais développer son propre algorithme** de chiffrement.
+* Utiliser des **algorithmes reconnus et testés** (AES-256, SHA-2, RSA ≥ 2048 bits).
+
+---
+
+## ☁️ **Jour 17 – Sécurité des fournisseurs et du Cloud**
+
+### 🎯 Objectifs :
+
+* Gérer les **risques liés aux tiers (sous-traitants, prestataires)**.
+* Comprendre les **modèles cloud (IaaS, PaaS, SaaS)** et les responsabilités associées.
+* Intégrer la sécurité dans les **SLA, contrats, audits fournisseurs**.
+
+### 📘 Concepts clés :
+
+| Élément                     | Description                                                |
+| --------------------------- | ---------------------------------------------------------- |
+| Due Diligence               | Vérification préalable de la sécurité du fournisseur       |
+| SLA                         | Contrat de niveau de service, inclut exigences de sécurité |
+| Cloud Act                   | Loi américaine impactant la confidentialité des données    |
+| Partage des responsabilités | Cloud ≠ transfert total de responsabilité                  |
+
+### ☁️ Modèles Cloud :
+
+| Modèle | Fournisseur gère      | Client gère          |
+| ------ | --------------------- | -------------------- |
+| SaaS   | Tout (app, OS, infra) | Données, accès       |
+| PaaS   | OS, middleware, DB    | Code, logique métier |
+| IaaS   | Infra (VM, réseau)    | OS, apps, données    |
+
+### 🧪 Cas pratiques :
+
+* Utiliser une plateforme SaaS sans vérifier l’hébergement des données → ⚠️ non-conformité RGPD
+* Absence de clause de réversibilité → données non récupérables à la fin du contrat
+
+### 🧠 Réflexes CISSP :
+
+* **Auditer les fournisseurs critiques** régulièrement.
+* Inclure des **clauses de sécurité, auditabilité, réversibilité** dans les contrats.
+
+---
+
+## 🔁 **Jour 18 – Continuité d’activité (BCP/DRP)**
+
+### 🎯 Objectifs :
+
+* Préparer la **résilience du système d'information** face aux catastrophes.
+* Élaborer un **plan de continuité (BCP)** et un **plan de reprise d’activité (DRP)**.
+* Maîtriser les notions **RTO**, **RPO**, **exercices de test**.
+
+### 📘 Concepts clés :
+
+| Terme                          | Définition                               |
+| ------------------------------ | ---------------------------------------- |
+| BIA (Business Impact Analysis) | Analyse des impacts d’une interruption   |
+| RTO (Recovery Time Objective)  | Délai max pour restaurer un service      |
+| RPO (Recovery Point Objective) | Perte de données acceptable (durée)      |
+| BCP (Business Continuity Plan) | Maintien minimal des fonctions critiques |
+| DRP (Disaster Recovery Plan)   | Retour à la normale de l’IT              |
+
+### 💡 Types de sites de secours :
+
+| Type       | Caractéristique               |
+| ---------- | ----------------------------- |
+| Site chaud | Prêt à l’emploi en temps réel |
+| Site tiède | Partiellement prêt            |
+| Site froid | Vide, à activer manuellement  |
+
+### 🧪 Cas pratiques :
+
+* Entreprise sans sauvegarde hors site → ❌
+* DRP non testé depuis 5 ans → ⚠️ document inutile
+
+### 🧠 Réflexes CISSP :
+
+* **Tester régulièrement** les plans BCP/DRP (au moins 1x/an).
+* Prévoir une **chaîne de communication** claire en cas de crise.
+
+---
+
+## 🚨 **Jour 19 – Gestion des incidents de sécurité**
+
+### 🎯 Objectifs :
+
+* Mettre en place une **stratégie complète de réponse aux incidents**.
+* Structurer les étapes : détection, analyse, containment, éradication, rétablissement, retour d’expérience.
+* Former les équipes à la **réaction rapide et coordonnée**.
+
+### 📘 Phases d’un plan de réponse :
+
+| Étape           | Objectif               | Exemple               |
+| --------------- | ---------------------- | --------------------- |
+| Identification  | Détecter l’incident    | Alertes SIEM, logs    |
+| Containment     | Empêcher propagation   | Isoler un serveur     |
+| Eradication     | Supprimer cause racine | Supprimer malware     |
+| Récupération    | Reprise des services   | Restaurer sauvegarde  |
+| Leçons apprises | Amélioration continue  | Post-mortem documenté |
+
+### 🔍 Outils & moyens :
+
+* Playbooks IR (incident response)
+* SIEM (Splunk, QRadar)
+* EDR (CrowdStrike, SentinelOne)
+* Communication de crise
+
+### 🧪 Cas pratiques :
+
+* Virus détecté sur un poste → isolez immédiatement, bloquez le réseau, analysez les logs.
+* Vol de données détecté après 2 mois → ❌ incident mal monitoré.
+
+### 🧠 Réflexes CISSP :
+
+* Avoir un **plan IR documenté et testé**.
+* En cas d’incident, **communiquer vite et clairement** (DSI, DPO, juridique, PR).
+
+---
+
+## ⚖️ **Jour 20 – Conformité et législation**
+
+### 🎯 Objectifs :
+
+* Maîtriser les grandes **lois et standards internationaux** (RGPD, ISO 27001, HIPAA…).
+* Évaluer les **risques juridiques**, assurer la **traçabilité**, respecter la **vie privée**.
+* Intégrer la conformité dans la **gouvernance SSI**.
+
+### 📘 Principaux textes & normes :
+
+| Référence      | Domaine            | Exemples d'exigences             |
+| -------------- | ------------------ | -------------------------------- |
+| RGPD (EU)      | Vie privée         | Consentement, droit à l’oubli    |
+| ISO/IEC 27001  | Sécurité de l’info | SMSI, contrôle, audit            |
+| NIST SP 800-53 | Sécurité US        | Contrôles détaillés SSI          |
+| PCI-DSS        | Paiement           | Chiffrement des données de carte |
+| SOX            | Finances US        | Intégrité et audit des systèmes  |
+
+### 🧪 Cas pratiques :
+
+* Collecte de données personnelles sans finalité → ⚠️ non-conformité RGPD.
+* Absence de journalisation sur accès admin → ❌ non-respect SOX / ISO 27001.
+
+### 🧠 Réflexes CISSP :
+
+* La **conformité ≠ sécurité** mais elles sont **complémentaires**.
+* Il faut **prouver** la conformité : documenter, tracer, archiver.
 
 ---
 
