@@ -1,6 +1,6 @@
-# 🛡️ **CISSP – Un jour, un concept (J0 → J21)**
+# 🛡️ **CISSP – Un jour, un concept (J0 → J40)**
 
-## 🧠 Maîtriser les fondations de la sécurité des systèmes d'information en 21 jours
+## 🧠 Maîtriser les fondations de la sécurité des systèmes d'information en 40 jours
 
 ---
 
@@ -22,7 +22,8 @@ Chaque jour aborde un **concept-clé**, **concret**, et **utile en entreprise**,
 
 ---
 
-### 📅 **Plan de formation : Jour par jour**
+
+### 📅 **Plan de formation détaillé : CISSP – Un jour, un concept (J0 à J40)**
 
 | **Jour** | **Thème du jour**                             | **Objectif principal**                                                        |
 | -------- | --------------------------------------------- | ----------------------------------------------------------------------------- |
@@ -37,7 +38,7 @@ Chaque jour aborde un **concept-clé**, **concret**, et **utile en entreprise**,
 | **J8**   | Architecture et design sécurisé               | Intégrer la sécurité dès la conception : modèles, principes, couches          |
 | **J9**   | Sécurité des réseaux                          | Protocoles, segmentation, IDS/IPS, VPN, pare-feux                             |
 | **J10**  | Protocoles, ports et sécurité réseau          | Analyser les flux, détecter les services risqués, chiffrer les communications |
-| **J11**  | 🔍 Ports : risques et alternatives            | Identifier services vulnérables et proposer des alternatives sécurisées       |
+| **J11**  | Ports : risques et alternatives               | Identifier services vulnérables et proposer des alternatives sécurisées       |
 | **J12**  | Sécurité des systèmes                         | Durcissement (hardening), patching, gestion de configuration                  |
 | **J13**  | Gestion des identités et des accès (IAM)      | IAM, SSO, MFA, provisioning, gestion des comptes                              |
 | **J14**  | Développement sécurisé (SDLC)                 | Intégrer la sécurité dans le cycle de développement logiciel                  |
@@ -48,6 +49,29 @@ Chaque jour aborde un **concept-clé**, **concret**, et **utile en entreprise**,
 | **J19**  | Gestion des incidents                         | Détecter, analyser, répondre, contenir et apprendre d’un incident             |
 | **J20**  | Conformité et législation                     | Lois, régulations (GDPR, ISO, NIST…), vie privée, éthique                     |
 | **J21**  | Révision finale et mindset CISSP              | Réflexes attendus, pièges à éviter, simulation de cas pratiques               |
+| **J22**  | Sécurité des applications web                 | Vulnérabilités courantes, injections, XSS, sécurisation des API               |
+| **J23**  | Sécurité des bases de données                 | Contrôles d’accès, chiffrement, sauvegarde, audit                             |
+| **J24**  | Sécurité mobile et IoT                        | Menaces spécifiques, contrôle d’accès, mises à jour                           |
+| **J25**  | Gestion des vulnérabilités                    | Processus de scan, gestion des patchs, priorisation                           |
+| **J26**  | Sécurité des environnements virtualisés       | Hyperviseurs, isolation, risques spécifiques                                  |
+| **J27**  | Sécurité des systèmes industriels (SCADA/ICS) | Spécificités, risques, mesures adaptées                                       |
+| **J28**  | Sécurité dans DevOps et intégration continue  | Automatisation sécurisée, tests, gestion des secrets                          |
+| **J29**  | Analyse de logs et forensic                   | Collecte, analyse, préservation des preuves                                   |
+| **J30**  | Gestion des identités fédérées                | SAML, OAuth, OpenID Connect, gestion des accès inter-domaines                 |
+| **J31**  | Sécurité des réseaux sans fil                 | Protocoles (WPA3), attaques, sécurisation                                     |
+| **J32**  | Sécurité des endpoints                        | Antivirus, EDR, politiques BYOD                                               |
+| **J33**  | Gestion des clés cryptographiques             | Stockage, rotation, PKI, HSM                                                  |
+| **J34**  | Sécurité des emails                           | SPF, DKIM, DMARC, chiffrement                                                 |
+| **J35**  | Sécurité des infrastructures cloud avancée    | Microsegmentation, CSPM, CASB                                                 |
+| **J36**  | Analyse de risques avancée                    | Méthodes qualitatives et quantitatives                                        |
+| **J37**  | Sécurité des réseaux industriels              | Protocoles propriétaires, risques, défense                                    |
+| **J38**  | Gouvernance et audit SSI                      | Processus, normes, reporting                                                  |
+| **J39**  | Gestion des ressources humaines en sécurité   | Sensibilisation, recrutement, gestion des incidents internes                  |
+| **J40**  | Préparation à l’examen CISSP                  | Conseils pratiques, gestion du temps, révision des concepts clés              |
+
+---
+
+Veux-tu que je développe certains de ces jours en détail, comme pour les premiers, ou que je prépare un document complet avec tous ces jours détaillés ?
 
 ---
 
@@ -462,5 +486,194 @@ Voici la suite du programme **CISSP – Un jour, un concept**, avec les **Jours 
 * La **sécurité pragmatique** = ne pas bloquer tout, mais bloquer **intelligemment**.
 
 ---
+Voici la suite détaillée du programme **CISSP – Un jour, un concept** pour les **Jours 11 à 15**, dans le même format approfondi : concepts, objectifs, exemples pratiques, tableaux, erreurs fréquentes, et bonnes pratiques CISSP.
+
+---
+
+## 🔍 **Jour 11 – Ports : risques et alternatives**
+
+### 🎯 Objectifs :
+
+* Identifier les ports et services à **haut risque**.
+* Proposer des **alternatives sécurisées** (chiffrées, encapsulées).
+* Apprendre à lire un **tableau de flux réseau** et à détecter des failles flagrantes.
+
+### 📘 Concepts clés :
+
+| Port    | Protocole  | Risques                                     | Alternatives recommandées     |
+| ------- | ---------- | ------------------------------------------- | ----------------------------- |
+| 21      | FTP        | Données en clair                            | ✅ SFTP (port 22)              |
+| 23      | Telnet     | Contrôle distant sans chiffrement           | ✅ SSH                         |
+| 3389    | RDP        | Attaque par force brute / prise de contrôle | Encapsuler via VPN ou Bastion |
+| 161/162 | SNMP v1/v2 | Données réseau sensibles accessibles        | ✅ SNMPv3 + restriction IP     |
+| 389     | LDAP       | En clair                                    | ✅ LDAPS (port 636)            |
+
+### 🧪 Cas pratiques :
+
+* **RDP exposé publiquement** sur un serveur → ⚠️ à encapsuler dans un VPN + authentification forte.
+* **FTP actif pour transfert de fichiers** → ✅ remplacer par SFTP ou FTPS.
+
+### 🛡️ Règles CISSP :
+
+| Statut        | Ports/Protocoles             | Action                         |
+| ------------- | ---------------------------- | ------------------------------ |
+| 🔴 Interdits  | FTP, Telnet, POP3, LDAP, VNC | À **bloquer** ou remplacer     |
+| 🟡 Surveillés | DNS, SMB, SNMP, RDP          | À **restreindre, journaliser** |
+| 🟢 Sûrs       | HTTPS, SFTP, SSH, LDAPS      | À **favoriser**                |
+
+### 🧠 Mindset CISSP :
+
+* “Chaque port = une **porte d’entrée** potentielle.”
+* Ne pas se contenter d’une **liste statique** de ports → **analyser le flux, le contexte, le besoin métier.**
+
+---
+
+## 🛠️ **Jour 12 – Sécurité des systèmes**
+
+### 🎯 Objectifs :
+
+* Appliquer les **techniques de durcissement (hardening)** des systèmes.
+* Gérer les **mises à jour** (patching), désactiver les services inutiles.
+* Connaître les outils de **gestion de configuration** et de journalisation.
+
+### 📘 Techniques de durcissement :
+
+| Action                          | Description                        | Outil/Exemple               |
+| ------------------------------- | ---------------------------------- | --------------------------- |
+| Supprimer les services inutiles | Réduire la surface d’attaque       | `systemctl disable service` |
+| Appliquer les correctifs        | Fermer les vulnérabilités connues  | WSUS, yum/apt               |
+| Renforcer les mots de passe     | Politique de complexité + rotation | AD Group Policy             |
+| Désactiver les comptes inactifs | Éviter abus et compromission       | Script d’audit automatisé   |
+| Activer la journalisation       | Suivi des événements critiques     | Syslog, Event Viewer, ELK   |
+
+### 🧪 Cas pratiques :
+
+* Audit d’un serveur Linux → 12 services actifs inutiles dont Telnet.
+* Politique de patching mensuel non respectée → vulnérabilités critiques connues non corrigées.
+
+### ⚠️ Erreurs fréquentes :
+
+* Utiliser des comptes "admin" partagés entre plusieurs personnes.
+* Laisser les systèmes critiques sans mise à jour automatique.
+
+### ✅ Réflexes CISSP :
+
+* Appliquer les **CIS Benchmarks** pour durcir les systèmes.
+* Documenter toutes les **modifications système** pour assurer la traçabilité.
+
+---
+
+## 🧾 **Jour 13 – Gestion des identités et des accès (IAM)**
+
+### 🎯 Objectifs :
+
+* Comprendre l’**IAM (Identity and Access Management)**.
+* Mettre en place le **provisionnement, la révocation**, le **MFA**, le **SSO**.
+* Implémenter le principe du **moindre privilège** et **l’audit des accès**.
+
+### 📘 Processus IAM :
+
+| Étape                  | Description                                          |
+| ---------------------- | ---------------------------------------------------- |
+| Provisionnement        | Création d’un compte avec les droits appropriés      |
+| Révision               | Audit périodique des droits                          |
+| Révocation             | Suppression immédiate des accès en cas de départ     |
+| Authentification forte | Combinaison de plusieurs facteurs                    |
+| SSO (Single Sign-On)   | Connexion unique centralisée (Kerberos, SAML, OAuth) |
+
+### 🔐 Authentification :
+
+| Méthode        | Exemple                           |
+| -------------- | --------------------------------- |
+| SFA            | Mot de passe                      |
+| MFA            | Mot de passe + SMS                |
+| Biométrique    | Empreinte, reconnaissance faciale |
+| Token matériel | Clé Yubikey, smartcard            |
+
+### 🧪 Cas pratiques :
+
+* Employé ayant changé de poste conserve ses droits d’admin → ⚠️ violation du moindre privilège.
+* Compte utilisateur désactivé 3 semaines après départ → exposition aux risques internes.
+
+### 🧠 Bonnes pratiques CISSP :
+
+* Mise en place d’un **IAM centralisé** avec audit automatisé.
+* Appliquer des **revues d’accès trimestrielles**.
+
+---
+
+## 💻 **Jour 14 – Développement sécurisé (SDLC)**
+
+### 🎯 Objectifs :
+
+* Intégrer la sécurité dans toutes les étapes du **cycle de vie du développement logiciel (SDLC)**.
+* Appliquer les principes **OWASP**, le **test de sécurité** automatisé, et les revues de code.
+* Comprendre les rôles DevSecOps, CI/CD sécurisés.
+
+### 📘 Étapes du SDLC sécurisé :
+
+| Étape               | Action de sécurité                        |
+| ------------------- | ----------------------------------------- |
+| Analyse des besoins | Intégration des exigences de sécurité     |
+| Design              | Architecture avec séparation des droits   |
+| Développement       | Revue de code, outils SAST/DAST           |
+| Test                | Tests de vulnérabilité, fuzzing           |
+| Déploiement         | Hardened containers, contrôle CI/CD       |
+| Maintenance         | Corrections de bugs, gestion des versions |
+
+### 🔧 Outils utiles :
+
+* **OWASP ZAP**, **Burp Suite** → tests d’intrusion automatisés
+* **SonarQube**, **Checkmarx** → analyse de code
+* **GitHub Actions**, **GitLab CI** → pipelines sécurisés
+
+### 🧪 Cas pratiques :
+
+* Inclusion de mots de passe en dur dans le code → ⚠️ risque de fuite.
+* Application web sans protection contre les injections → ✅ corriger via ORM ou requêtes préparées.
+
+### 🧠 Réflexes CISSP :
+
+* Appliquer les **10 vulnérabilités OWASP Top 10**.
+* Sécurité = composante **native** du développement, pas un ajout en fin de chaîne.
+
+---
+
+## 📊 **Jour 15 – Tests, audit et surveillance**
+
+### 🎯 Objectifs :
+
+* Mettre en œuvre des **tests de sécurité réguliers** (scan, audit, pentest).
+* Définir une **stratégie de journalisation** et de surveillance active.
+* Savoir répondre aux incidents détectés (détection → analyse → réponse).
+
+### 📘 Types de tests :
+
+| Type                   | Objectif                                        | Outils                 |
+| ---------------------- | ----------------------------------------------- | ---------------------- |
+| Scan de vulnérabilités | Identifier failles connues                      | Nessus, Qualys         |
+| Audit de configuration | Vérifier conformité                             | Lynis, CIS-CAT         |
+| Pentest                | Tester l’efficacité des protections             | Kali Linux, Metasploit |
+| Test de journalisation | Vérifier l’intégrité et l’exhaustivité des logs | ELK, Splunk            |
+
+### 🔍 Surveillance continue :
+
+* IDS / IPS (Snort, Suricata)
+* SIEM (Splunk, Wazuh, ArcSight)
+* Journalisation critique : accès admin, changements système, échecs de connexion
+
+### 🧪 Cas pratiques :
+
+* Alertes ignorées car mal configurées → attaque non détectée.
+* Absence de centralisation des logs → impossible de reconstituer un incident.
+
+### 🧠 Réflexes CISSP :
+
+* **“Ce qui n’est pas journalisé n’a pas existé.”**
+* Penser à la **conservation légale des logs** (1 à 5 ans selon contexte juridique).
+
+---
+
+
 
 
