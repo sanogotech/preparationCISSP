@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Préparation CISSP — Portail</title>
+<style>
+:root{--navy:#1E2761;--deep:#121A45;--gold:#C9A227;--ice:#CADCFC;--iceL:#EEF3FD;--ink:#1F2433;--gray:#5B6275;--line:#DDE3EF;--bg:#F5F7FB;
+--ok:#2E7D4F;--okL:#E6F4EC;--ko:#B03A2E;--koL:#FBEAE8;--amb:#B7791F;--ambL:#FDF3E1;--vio:#5B4B9A;--vioL:#EFECF8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Calibri,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+a{color:var(--navy)}
+nav.top{position:sticky;top:0;z-index:10;background:var(--deep)}
+nav.top .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:6px;padding-bottom:6px}
+nav.top a{color:var(--ice);text-decoration:none;font-weight:700;font-size:14px;padding:8px 12px;border-radius:8px;white-space:nowrap}
+nav.top a:hover{background:rgba(255,255,255,.08);color:#fff}
+.hero{background:var(--deep);color:#fff;padding:40px 0 46px}
+.hero .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+.kick{color:var(--gold);font-weight:700;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
+.hero h1{font-family:Cambria,Georgia,serif;font-size:42px;line-height:1.1;margin:10px 0 12px}
+.hero p{color:var(--ice);font-size:17px;margin:0 0 18px}
+.cta{display:inline-block;background:var(--gold);color:var(--deep);font-weight:700;text-decoration:none;padding:12px 20px;border-radius:10px;margin-right:8px;margin-bottom:8px}
+.cta.sec{background:transparent;color:#fff;border:1px solid var(--ice)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(202,220,252,.25);border-radius:14px;padding:14px}
+.stat b{display:block;font-family:Cambria,Georgia,serif;font-size:30px;color:var(--gold);line-height:1.1}
+.stat span{color:var(--ice);font-size:14px}
+section{padding:38px 0 6px}
+h2{font-family:Cambria,Georgia,serif;color:var(--navy);font-size:28px;margin:0 0 6px}
+.lead{color:var(--gray);margin:0 0 18px;max-width:820px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.c{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.c h3{font-family:Cambria,Georgia,serif;color:var(--navy);margin:0 0 6px;font-size:18px}
+.c p{margin:0;color:var(--ink);font-size:15px}
+.c .ic{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;font-family:Cambria,Georgia,serif;margin-bottom:10px}
+.c.gold .ic{background:var(--gold);color:var(--deep)}
+.dom{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.d{display:block;color:inherit;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .15s,transform .15s}a.d:hover,a.d:focus-visible{border-color:var(--gold,#C9A227);transform:translateY(-2px)}
+.d .code{font-family:Cambria,Georgia,serif;font-weight:700;color:var(--gold);font-size:20px}
+.d .name{font-weight:700;color:var(--navy);font-size:14.5px;line-height:1.3;margin:2px 0 8px}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--navy)}
+.d .pct{font-size:13px;color:var(--gray);margin-top:4px}
+.road{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;position:relative}
+.step b{display:block;font-family:Cambria,Georgia,serif;color:var(--navy);font-size:16px}
+.step span{font-size:13.5px;color:var(--gray)}
+.step.hl{background:var(--navy);border-color:var(--navy)}.step.hl b{color:var(--gold)}.step.hl span{color:var(--ice)}
+.res{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.r{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-decoration:none;color:inherit;transition:box-shadow .15s,border-color .15s}
+.r:hover{border-color:var(--navy);box-shadow:0 4px 14px rgba(18,26,69,.08)}
+.r .tag{flex:none;width:58px;height:58px;border-radius:12px;display:grid;place-items:center;font-weight:700;font-size:13px;text-align:center;line-height:1.1}
+.tag.html{background:var(--navy);color:var(--gold)}.tag.pptx{background:var(--ambL);color:var(--amb)}.tag.docx{background:var(--iceL);color:var(--navy)}
+.r h3{margin:0 0 2px;font-size:16.5px;color:var(--navy)}
+.r p{margin:0;font-size:14px;color:var(--gray)}
+.r .meta{font-size:12.5px;color:var(--gold);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.groupt{font-family:Cambria,Georgia,serif;color:var(--navy);font-size:19px;margin:22px 0 10px}
+.note{background:var(--ambL);border-radius:12px;padding:12px 16px;font-size:14.5px;margin-top:14px}
+.check{background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 16px}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check label:last-child{border-bottom:0}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--ok);flex:none}
+.prog{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.prog .bar{flex:1;height:10px}.prog .bar i{background:var(--ok)}
+.gtools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:13.5px;cursor:pointer;color:var(--navy)}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+input[type=search]{flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:15px}
+th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px}
+td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#FAFBFE}
+td.t{font-weight:700;color:var(--navy);width:20%}
+td.dd{width:7%}
+.badge{display:inline-block;background:var(--iceL);color:var(--navy);border-radius:6px;padding:1px 7px;font-size:12.5px;font-weight:700}
+td.n{color:#6b4410;background:var(--ambL)!important;width:34%;font-size:14.5px}
+.count{color:var(--gray);font-size:14px}
+.tbl{overflow-x:auto;border-radius:12px}
+td{overflow-wrap:anywhere}
+.wis{background:var(--deep);color:#fff;border-radius:16px;padding:26px 28px;margin:40px 0 10px}
+.wis q{font-family:Cambria,Georgia,serif;font-size:24px;font-style:italic;display:block;margin-bottom:8px}
+.wis p{color:var(--ice);margin:0}
+footer{color:var(--gray);font-size:13px;padding:24px 0 50px}
+@media (max-width:860px){.hero .grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.dom{grid-template-columns:1fr 1fr}.road{grid-template-columns:1fr 1fr}.res{grid-template-columns:1fr}.hero h1{font-size:32px}}
+@media (max-width:560px){td.n{width:auto}td,th{padding:8px}.cards,.dom{grid-template-columns:1fr}th{position:static}td.dd{display:none}th.dd{display:none}table{font-size:14px}td.t{width:auto}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a href="#objectifs">Objectifs</a><a href="#carriere">Carrière</a><a href="#domaines">8 domaines</a><a href="#parcours">Parcours</a><a href="#ressources">Ressources</a><a href="#fiches">Fiches D1–D8</a><a href="#checklist">Check-list</a><a href="#glossaire">Glossaire</a>
+</div></nav>
+
+<header class="hero"><div class="wrap grid">
+  <div>
+    <div class="kick">Certified Information Systems Security Professional</div>
+    <h1>Préparer et réussir la certification CISSP</h1>
+    <p>Le portail de la formation : objectifs, intérêt pour votre carrière, parcours de 5 jours, accès à tous les supports, check-list de préparation et glossaire des 100 termes à maîtriser.</p>
+    <a class="cta" href="#ressources">Accéder aux supports</a><a class="cta sec" href="CISSP_Jour5_Examen_Blanc_8_Domaines.html">Passer l'examen blanc</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>8</b><span>domaines du CBK</span></div>
+    <div class="stat"><b>5 j</b><span>de formation + Jour 0</span></div>
+    <div class="stat"><b>400+</b><span>questions et cas corrigés</span></div>
+    <div class="stat"><b>700</b><span>sur 1 000 : seuil de l'examen</span></div>
+  </div>
+</div></header>
+
+<main class="wrap">
+<section id="objectifs">
+  <h2>Les objectifs de la formation</h2>
+  <p class="lead">À l'issue du parcours, vous êtes prêt à passer l'examen et capable d'agir comme un responsable de la sécurité au service de la direction.</p>
+  <div class="cards">
+    <div class="c"><div class="ic">1</div><h3>Maîtriser les 8 domaines</h3><p>Connaître le CBK en largeur et comprendre les liens entre gouvernance, technique et opérations.</p></div>
+    <div class="c"><div class="ic">2</div><h3>Raisonner en risque</h3><p>Évaluer, chiffrer et prioriser les risques, et justifier un contrôle par son rapport coût / bénéfice.</p></div>
+    <div class="c"><div class="ic">3</div><h3>Penser manager</h3><p>Choisir la réponse qu'un dirigeant de la sécurité retiendrait : personnes, loi, mission, gouvernance, coût.</p></div>
+    <div class="c gold"><div class="ic">4</div><h3>Piloter un programme</h3><p>Concevoir, déployer et mesurer un programme de sécurité aligné sur les objectifs de l'organisation.</p></div>
+    <div class="c gold"><div class="ic">5</div><h3>Décider sous pression</h3><p>Mener un incident, une reprise ou un arbitrage en suivant le processus, sans improviser.</p></div>
+    <div class="c gold"><div class="ic">6</div><h3>Réussir l'examen</h3><p>Viser au moins 75 % aux examens blancs et appliquer une stratégie éprouvée le jour J.</p></div>
+  </div>
+</section>
+
+<section id="carriere">
+  <h2>Ce que le CISSP change dans une carrière</h2>
+  <p class="lead">Le CISSP est l'une des certifications de sécurité les plus reconnues dans le monde. Accréditée selon la norme ISO/IEC 17024, elle atteste d'une expérience vérifiée et d'une vision d'ensemble.</p>
+  <div class="cards">
+    <div class="c"><div class="ic">★</div><h3>Crédibilité</h3><p>Une reconnaissance internationale, exigée ou valorisée dans de nombreux appels d'offres, banques, opérateurs et administrations.</p></div>
+    <div class="c"><div class="ic">↗</div><h3>Accès aux postes clés</h3><p>RSSI / CISO, architecte sécurité, responsable GRC, auditeur senior, consultant, directeur de la sécurité.</p></div>
+    <div class="c"><div class="ic">◎</div><h3>Langage de la direction</h3><p>Savoir parler risque, coût et décision au comité de direction et au conseil d'administration.</p></div>
+    <div class="c gold"><div class="ic">∞</div><h3>Vision 360°</h3><p>Du droit au code, de la gouvernance au datacenter : relier les sujets et éviter les angles morts.</p></div>
+    <div class="c gold"><div class="ic">⇄</div><h3>Mobilité</h3><p>Une référence partagée entre pays, utile pour travailler en Afrique de l'Ouest, en Europe ou à l'international.</p></div>
+    <div class="c gold"><div class="ic">+</div><h3>Réseau et évolution</h3><p>Communauté ISC2, formation continue (CPE) et spécialisations : CCSP, CISSP-ISSAP, ISSEP, ISSMP.</p></div>
+  </div>
+  <p class="note"><b>Conditions :</b> 5 ans d'expérience rémunérée dans au moins 2 domaines (dispense possible d'un an). Sans cette expérience, la réussite donne le statut d'Associate of ISC2. Après la réussite : endossement sous 9 mois, puis 120 CPE sur 3 ans. Modalités et tarifs à vérifier sur isc2.org.</p>
+</section>
+
+<section id="domaines">
+  <h2>Les 8 domaines et leur poids à l'examen</h2>
+  <p class="lead">Aucun domaine ne peut être sacrifié : l'examen évalue la largeur des connaissances. Cliquez sur un domaine pour ouvrir sa cheat sheet d'une page.</p>
+  <div class="dom" id="domGrid"></div>
+</section>
+
+<section id="parcours">
+  <h2>Le parcours recommandé</h2>
+  <p class="lead">Suivez les jours dans l'ordre, puis consolidez pendant 6 à 12 semaines avant l'examen.</p>
+  <div class="road">
+    <div class="step"><b>Jour 0</b><span>Syllabus, enjeux, posture</span></div>
+    <div class="step"><b>Jour 1</b><span>D1 Risques · D2 Actifs</span></div>
+    <div class="step"><b>Jour 2</b><span>D3 Architecture · D4 Réseaux</span></div>
+    <div class="step"><b>Jour 3</b><span>D5 IAM · D6 Tests</span></div>
+    <div class="step"><b>Jour 4</b><span>D7 Opérations · D8 Développement</span></div>
+    <div class="step hl"><b>Jour 5</b><span>Synthèse et examen blanc</span></div>
+    <div class="step"><b>S1 → S6</b><span>Révision ciblée, 3 examens blancs, examen</span></div>
+  </div>
+</section>
+
+<section id="ressources">
+  <h2>Tous les supports de la formation</h2>
+  <p class="lead">Commencez par les cheat sheets d'une page par domaine, à imprimer en A4. Les pages HTML s'ouvrent directement ; les présentations et documents Word se téléchargent ou s'ouvrent avec Office. Gardez tous les fichiers dans le même dossier que cette page.</p>
+  <span id="fiches"></span><div id="resList"></div>
+</section>
+
+<section id="checklist">
+  <h2>Check-list de préparation</h2>
+  <div class="prog"><div class="bar"><i id="ckBar" style="width:0"></i></div><span class="count" id="ckTxt"></span></div>
+  <div class="check" id="ckList"></div>
+</section>
+
+<section id="glossaire">
+  <h2>Glossaire : les 100 termes à maîtriser</h2>
+  <p class="lead">Chaque terme est accompagné de sa nuance : la distinction qui fait gagner ou perdre des points à l'examen.</p>
+  <div class="gtools" id="gChips"><button class="chip" data-d="ALL" aria-pressed="true">Tous</button></div>
+  <div class="gtools"><input type="search" id="gSearch" placeholder="Rechercher un terme, une définition ou une nuance…" aria-label="Rechercher dans le glossaire"><span class="count" id="gCount"></span></div>
+  <div class="tbl"><table><thead><tr><th class="dd">Dom.</th><th>Terme</th><th>Définition</th><th>Nuance à retenir</th></tr></thead><tbody id="gBody"></tbody></table></div>
+</section>
+
+<div class="wis"><q>Le CISSP ne fait pas de vous un expert de tout. Il fait de vous quelqu'un qui sait quelles questions poser.</q><p>Relier le risque à la décision, la technique au métier — et toujours mettre les personnes en premier.</p></div>
+<footer>Formation CISSP · SANOGO Souleymane, Consultant Formateur & Expert SI · Édition 2026. Les modalités ISC2 et l'état de l'art évoluent : vérifiez-les sur isc2.org, nist.gov et owasp.org.</footer>
+</main>
+
+<script>
+const GLOSS = [
+// D1 (18)
+["D1","ALE","Perte annuelle attendue : SLE × ARO.","Ne pas confondre avec la SLE (perte par occurrence). « Une fois tous les 4 ans » → ARO = 0,25."],
+["D1","SLE","Perte attendue pour une occurrence : valeur de l'actif × facteur d'exposition.","EF est un pourcentage ; ARO une fréquence annuelle."],
+["D1","Appétit pour le risque","Niveau de risque que la direction accepte de prendre pour atteindre ses objectifs.","La tolérance est l'écart acceptable autour de l'appétit."],
+["D1","Risque résiduel","Risque qui subsiste après la mise en place des contrôles.","Accepté par la direction, jamais par le RSSI seul. Le risque inhérent est celui d'avant les contrôles."],
+["D1","Transfert du risque","Partage de l'impact financier avec un tiers (assurance, sous-traitance).","Transfère le coût, pas la responsabilité ni l'atteinte à l'image."],
+["D1","Due diligence","Rechercher, évaluer, comprendre avant d'agir.","« Savoir » ; le due care, c'est « faire »."],
+["D1","Due care","Agir comme le ferait une personne prudente et raisonnable.","Son absence constitue une négligence."],
+["D1","Politique","Document obligatoire et général exprimant l'intention de la direction.","Signée par la DG ; le standard précise, la procédure détaille, la ligne directrice recommande."],
+["D1","Ligne directrice","Recommandation non obligatoire.","Seul document facultatif de la pyramide documentaire."],
+["D1","BIA","Analyse d'impact sur l'activité : processus critiques, impacts, MTD, RTO, RPO.","Réalisée avec le métier ; elle suit le mandat de la direction, elle ne le précède pas."],
+["D1","MTD","Durée maximale tolérable d'interruption, fixée par le métier.","RTO + WRT ≤ MTD."],
+["D1","RTO","Délai cible de rétablissement d'un système.","Temps de reprise, à ne pas confondre avec le RPO (données)."],
+["D1","RPO","Perte de données maximale acceptable, exprimée en temps.","Dicte la fréquence des sauvegardes ou de la réplication."],
+["D1","BCP","Plan de continuité d'activité : maintenir les fonctions métier.","Vision entreprise ; le DRP (IT) en fait partie."],
+["D1","DRP","Plan de reprise de l'informatique après sinistre.","Sous-ensemble du BCP."],
+["D1","STRIDE","Usurpation, altération, répudiation, divulgation, déni de service, élévation de privilèges.","Classe les menaces ; DREAD les note ; PASTA est une méthode en 7 étapes."],
+["D1","SCRM","Gestion des risques de la chaîne d'approvisionnement.","On externalise une activité, jamais la responsabilité."],
+["D1","Canons ISC2","Société · honnêteté et légalité · mandants · profession.","L'ordre départage les conflits ; la société passe avant l'employeur."],
+// D2 (12)
+["D2","Propriétaire (owner)","Responsable métier d'un actif ou d'une donnée ; il la classifie.","Une personne ; le responsable de traitement est l'organisation."],
+["D2","Dépositaire (custodian)","Applique au quotidien les protections décidées par le propriétaire.","Souvent l'IT : elle protège, elle ne décide pas."],
+["D2","Responsable de traitement","Organisation qui fixe les finalités et moyens d'un traitement de données personnelles.","Reste responsable même si un sous-traitant est en cause."],
+["D2","Classification","Attribution d'un niveau de sensibilité selon l'impact d'une divulgation.","Un ensemble prend le niveau le plus élevé de ses éléments."],
+["D2","Scoping","Retrait des contrôles hors périmètre d'un référentiel.","Quels contrôles ; le tailoring dit comment les régler."],
+["D2","Tailoring","Ajustement des paramètres des contrôles retenus.","Ex. : verrouillage de session à 5 minutes au lieu de 15."],
+["D2","Pseudonymisation","Remplacement réversible des identifiants.","La donnée reste personnelle ; l'anonymisation est irréversible."],
+["D2","Tokenisation","Remplacement d'une donnée par un jeton, la valeur réelle étant dans un coffre.","Le coffre devient l'actif critique."],
+["D2","DLP","Prévention des fuites de données.","Inefficace sans classification et étiquetage fiables."],
+["D2","Legal hold","Gel de la destruction des données concernées par un litige.","Prime sur la politique de rétention, sauvegardes comprises."],
+["D2","Rémanence","Données résiduelles après un effacement.","Clear (réutilisation interne), Purge (sortie), Destroy — NIST SP 800-88."],
+["D2","Effacement cryptographique","Destruction des clés qui chiffrent les données.","Méthode de référence pour le cloud et les SSD ; le dégaussage est inefficace sur la flash."],
+// D3 (16)
+["D3","Bell-LaPadula","Modèle de confidentialité : no read up, no write down.","L'étoile (*) porte sur l'écriture ; ne traite pas l'intégrité."],
+["D3","Biba","Modèle d'intégrité : no read down, no write up.","Inverse de Bell-LaPadula."],
+["D3","Clark-Wilson","Intégrité par transactions bien formées et séparation des tâches.","Le modèle des banques et du commerce."],
+["D3","Brewer-Nash","Muraille de Chine : accès bloqué après consultation d'un concurrent.","Conflits d'intérêts, droits dynamiques."],
+["D3","Moniteur de référence","Médiation de tous les accès sujet → objet.","Toujours invoqué, inviolable, vérifiable ; implémenté par le noyau de sécurité."],
+["D3","TCB","Ensemble des composants qui appliquent la politique de sécurité.","Base informatique de confiance."],
+["D3","EAL","Niveau d'assurance des Critères communs, de 1 à 7.","Mesure la rigueur de l'évaluation, pas l'absence de faille."],
+["D3","HSM","Matériel dédié à la génération et à la protection des clés.","Partagé, haute performance ; le TPM est lié à une seule machine."],
+["D3","Zero Trust","Aucune confiance implicite ; chaque accès est vérifié selon l'identité et le contexte.","PDP décide, PEP applique (NIST SP 800-207)."],
+["D3","Fail-safe / fail-secure","En panne : ouvert pour protéger les personnes / fermé pour protéger les actifs.","Issue de secours = fail-safe."],
+["D3","Kerckhoffs","Seule la clé doit rester secrète, pas l'algorithme.","Ne jamais inventer son propre algorithme."],
+["D3","Non-répudiation","Impossibilité de nier une action.","Apportée par la signature numérique, pas par un HMAC à clé partagée."],
+["D3","Mode ECB","Mode de chiffrement par blocs qui révèle les motifs des données.","À proscrire ; préférer GCM (chiffrement + intégrité)."],
+["D3","Sel","Valeur aléatoire unique ajoutée avant le hachage d'un mot de passe.","Contre les tables arc-en-ciel ; le poivre est un secret commun hors base."],
+["D3","OCSP","Vérification en ligne du statut de révocation d'un certificat.","La CRL est une liste publiée périodiquement."],
+["D3","Inférence","Déduction d'une information interdite à partir d'informations autorisées.","L'agrégation, elle, rend un ensemble plus sensible ; parade : polyinstanciation."],
+// D4 (12)
+["D4","Modèle OSI","Sept couches, de la physique (1) à l'application (7).","ARP / VLAN = 2 ; IP / IPsec = 3 ; TCP = 4 ; WAF = 7."],
+["D4","AH","En-tête IPsec : intégrité et authentification.","Ne chiffre pas ; pour la confidentialité, ESP."],
+["D4","ESP","En-tête IPsec qui apporte la confidentialité.","Mode tunnel entre passerelles, transport entre hôtes."],
+["D4","DNSSEC","Signature des réponses DNS.","Intégrité et authenticité, pas confidentialité (DoH / DoT)."],
+["D4","IDS / IPS","Détection et alerte / prévention en ligne.","L'IPS bloque, au risque de faux positifs."],
+["D4","Pare-feu à états","Pare-feu qui suit la table des connexions établies.","Ne lit pas le contenu applicatif, contrairement au WAF ou au proxy."],
+["D4","DMZ","Zone tampon qui héberge les services exposés à Internet.","Ne doit jamais accéder directement à la zone des données."],
+["D4","Micro-segmentation","Filtrage au niveau de chaque charge de travail.","Limite le mouvement latéral ; un VLAN seul ne filtre pas."],
+["D4","802.1X","Contrôle d'accès réseau par port, avec EAP et RADIUS.","EAP-TLS : authentification mutuelle par certificats."],
+["D4","TACACS+","Protocole AAA en TCP 49, contenu entièrement chiffré.","RADIUS : UDP, seul le mot de passe est chiffré."],
+["D4","SYN cookies","Parade contre l'inondation SYN.","Attaque de couche 4, parade de couche 4."],
+["D4","Bastion","Hôte durci, point d'entrée unique et tracé de l'administration.","Avec MFA et PAM ; jamais de RDP exposé sur Internet."],
+// D5 (14)
+["D5","Identification","Déclaration d'une identité.","Un identifiant n'authentifie pas."],
+["D5","Authentification","Preuve d'une identité par un ou plusieurs facteurs.","MFA = facteurs de types différents (savoir, posséder, être)."],
+["D5","FIDO2 / passkeys","Authentification par clé cryptographique liée au domaine.","Résiste à l'hameçonnage, contrairement au SMS et au TOTP."],
+["D5","FAR","Taux de faux acceptés (erreur de type II).","Le plus grave pour la sécurité."],
+["D5","FRR","Taux de faux rejets (erreur de type I).","Gêne pour les utilisateurs légitimes."],
+["D5","CER","Point où FAR = FRR.","Sert à comparer les systèmes ; plus il est bas, mieux c'est."],
+["D5","DAC","Contrôle d'accès discrétionnaire : le propriétaire décide.","Listes de contrôle d'accès."],
+["D5","MAC","Contrôle d'accès obligatoire par étiquettes et habilitations.","Non discrétionnaire ; l'utilisateur ne modifie pas les droits."],
+["D5","RBAC","Contrôle d'accès fondé sur les rôles métier.","À ne pas confondre avec le contrôle « à base de règles »."],
+["D5","ABAC","Contrôle d'accès fondé sur des attributs et le contexte.","Heure, lieu, appareil → ABAC."],
+["D5","SAML 2.0","Fédération d'identité par assertions XML.","IdP authentifie, SP consomme."],
+["D5","OAuth 2.0","Protocole d'autorisation déléguée par jetons d'accès.","N'authentifie pas l'utilisateur : c'est le rôle d'OIDC."],
+["D5","Kerberos","Authentification par tickets : AS délivre le TGT, TGS les tickets de service.","Horloges synchronisées ; le KDC est un point unique de défaillance."],
+["D5","PAM","Gestion des accès privilégiés : coffre, juste-à-temps, sessions enregistrées.","Zéro privilège permanent."],
+// D6 (10)
+["D6","Test d'intrusion","Exploitation contrôlée des faiblesses pour démontrer un impact.","Exige une autorisation écrite et des règles d'engagement."],
+["D6","Analyse de vulnérabilités","Inventaire automatisé des faiblesses connues.","N'exploite pas ; un scan authentifié réduit les faux positifs."],
+["D6","Boîte noire / blanche","Test sans connaissance / avec connaissance complète de la cible.","Noire = réalisme ; blanche = couverture ; grise = entre les deux."],
+["D6","CVSS","Score de gravité d'une vulnérabilité, de 0 à 10.","CVE identifie, CWE catégorise ; la priorité tient aussi compte de l'exposition."],
+["D6","SAST","Analyse statique du code source, sans exécution.","Tôt dans le cycle ; le DAST teste l'application en fonctionnement."],
+["D6","Fuzzing","Envoi d'entrées aléatoires ou malformées.","Par mutation ou par génération."],
+["D6","Transaction synthétique","Scénario scripté exécuté régulièrement pour surveiller un service.","Le RUM mesure l'expérience des utilisateurs réels."],
+["D6","SOC 2 Type II","Rapport sur l'efficacité des contrôles de sécurité sur une période.","Type I = conception à une date ; SOC 3 = synthèse publique."],
+["D6","KRI","Indicateur de risque clé, signal d'alerte.","Le KPI mesure la performance d'un processus."],
+["D6","Test parallèle","Activation du site de secours sans arrêter la production.","L'interruption complète est plus probante mais plus risquée."],
+// D7 (10)
+["D7","Chaîne de traçabilité","Historique documenté de chaque manipulation d'une preuve.","Sa rupture peut rendre la preuve irrecevable."],
+["D7","Ordre de volatilité","Collecter du plus éphémère au plus durable.","Mémoire avant disque ; ne pas éteindre trop tôt."],
+["D7","SIEM","Centralisation et corrélation des journaux.","Le SOAR automatise la réponse."],
+["D7","CAB","Comité d'approbation des changements.","Les urgences sont autorisées puis régularisées en CAB."],
+["D7","Confinement","Isolement des systèmes touchés pour stopper la propagation.","Avant l'éradication et la reprise."],
+["D7","Sauvegarde incrémentale","Copie des changements depuis la dernière sauvegarde.","Restauration : complète + toutes les incrémentales."],
+["D7","Sauvegarde différentielle","Copie des changements depuis la dernière complète.","Restauration : complète + la dernière différentielle."],
+["D7","RAID 5","Parité répartie ; tolère la perte d'un disque.","Le RAID n'est pas une sauvegarde."],
+["D7","Site chaud","Site de secours prêt en quelques heures.","Tiède : jours ; froid : semaines."],
+["D7","Zero-day","Vulnérabilité sans correctif disponible.","Contrôles compensatoires en attendant le correctif."],
+// D8 (8)
+["D8","Shift left","Intégrer la sécurité le plus tôt possible dans le cycle.","Le coût de correction augmente à chaque phase."],
+["D8","DevSecOps","Sécurité automatisée dans le pipeline de livraison.","Secrets, SAST, SCA, SBOM, signature, approbation."],
+["D8","SBOM","Inventaire des composants d'un logiciel.","Permet de savoir vite si une faille publiée vous touche."],
+["D8","Requête paramétrée","Requête où les données sont séparées du code SQL.","Parade principale contre l'injection SQL."],
+["D8","XSS","Script injecté exécuté dans le navigateur d'une victime.","Encodage en sortie + CSP ; à distinguer du CSRF."],
+["D8","CSRF","Requête forgée envoyée via la session ouverte de la victime.","Jeton anti-CSRF et cookies SameSite."],
+["D8","BOLA","Autorisation défaillante au niveau objet dans une API.","Vérifier à chaque requête que l'objet appartient à l'appelant."],
+["D8","Escrow","Séquestre du code source chez un tiers de confiance.","Protège le client si l'éditeur disparaît."]
+];
+
+</script>
+<script>
+(function(){"use strict";
+function el(t,a,c){var e=document.createElement(t);if(a)for(var k in a){if(k==="text")e.textContent=a[k];else if(k==="cls")e.className=a[k];else e.setAttribute(k,a[k]);}(c||[]).forEach(function(x){if(x!=null)e.appendChild(typeof x==="string"?document.createTextNode(x):x);});return e;}
+var DOMS=[["D1","Sécurité et gestion des risques",16],["D2","Sécurité des actifs",10],["D3","Architecture et ingénierie de la sécurité",13],["D4","Sécurité des communications et des réseaux",13],["D5","Gestion des identités et des accès",13],["D6","Évaluation et tests de sécurité",12],["D7","Opérations de sécurité",13],["D8","Sécurité du développement logiciel",10]];
+var g=document.getElementById("domGrid");
+DOMS.forEach(function(d){g.appendChild(el("a",{cls:"d",href:"CISSP_CheatSheet_"+d[0]+".html",title:"Cheat sheet "+d[0]},[el("div",{cls:"code",text:d[0]}),el("div",{cls:"name",text:d[1]}),el("div",{cls:"bar"},[el("i",{style:"width:"+(d[2]/16*100)+"%"})]),el("div",{cls:"pct",text:d[2]+" % de l'examen · fiche →"})]));});
+
+var RES=[
+ ["Cheat sheets par domaine (1 page imprimable)",[
+  ["html","CISSP_CheatSheet_D1.html","D1 — Sécurité et gestion des risques","Gouvernance, conformité, droit, éthique ISC2, continuité, analyse de risques, ALE.","1 page A4"],
+  ["html","CISSP_CheatSheet_D2.html","D2 — Sécurité des actifs","Classification, rôles propriétaire / dépositaire, cycle de vie, rémanence, destruction.","1 page A4"],
+  ["html","CISSP_CheatSheet_D3.html","D3 — Architecture et ingénierie de la sécurité","Principes, modèles BLP / Biba / Clark-Wilson, cryptographie, PKI, sécurité physique.","1 page A4"],
+  ["html","CISSP_CheatSheet_D4.html","D4 — Sécurité des communications et des réseaux","OSI / TCP-IP, protocoles sécurisés, IPsec, VPN, Wi-Fi, segmentation, attaques.","1 page A4"],
+  ["html","CISSP_CheatSheet_D5.html","D5 — Gestion des identités et des accès","Facteurs, MFA, biométrie, modèles d'accès, fédération SAML / OIDC, cycle de vie des comptes.","1 page A4"],
+  ["html","CISSP_CheatSheet_D6.html","D6 — Évaluation et tests de sécurité","Audits, tests d'intrusion, scans, revue de code, couverture, indicateurs, SOC 1 / 2.","1 page A4"],
+  ["html","CISSP_CheatSheet_D7.html","D7 — Opérations de sécurité","Investigations, preuves, incidents, journalisation, sauvegardes, PRA, gestion des changements.","1 page A4"],
+  ["html","CISSP_CheatSheet_D8.html","D8 — Sécurité du développement logiciel","SDLC, DevSecOps, OWASP, tests SAST / DAST, API, chaîne d'approvisionnement logicielle.","1 page A4"]]],
+ ["Entraînement interactif (HTML)",[
+  ["html","CISSP_50_Questions_Cles.html","Les 50 questions clés","Réponses, nuances, règles, pièges, tips et état de l'art 2026, avec mode quiz et suivi de progression.","Révision ciblée"],
+  ["html","CISSP_Jour5_Examen_Blanc_8_Domaines.html","Examen blanc des 8 domaines","100 questions, mode apprentissage ou examen chronométré de 120 minutes, score par domaine.","Jour 5"],
+  ["html","CISSP_Jour1_Quiz_D1_D2_Apprentissage.html","Quiz D1 et D2","70 questions, 5 cas pratiques, cheat sheet, glossaire.","Jour 1"],
+  ["html","CISSP_Jour2_Quiz_D3_D4_Apprentissage.html","Quiz D3 et D4","75 questions, 5 cas pratiques, cheat sheet, glossaire.","Jour 2"],
+  ["html","CISSP_Jour3_Quiz_D5_D6_Apprentissage.html","Quiz D5 et D6","65 questions, 5 cas pratiques, cheat sheet, glossaire.","Jour 3"],
+  ["html","CISSP_Jour4_Quiz_D7_D8_Apprentissage.html","Quiz D7 et D8","63 questions, 5 cas pratiques, cheat sheet, glossaire.","Jour 4"]]],
+ ["Supports de cours (PowerPoint)",[
+  ["pptx","CISSP_Jour0_Syllabus_Enjeux_Objectifs.pptx","Jour 0 — Syllabus, enjeux, objectifs","Enjeux, certification, syllabus, fondamentaux, études de cas, REX, diagnostic.","65 slides"],
+  ["pptx","CISSP_Jour1_D1_D2_Risques_Actifs.pptx","Jour 1 — Risques et actifs","Gouvernance, droit, continuité, risques, classification, destruction.","63 slides"],
+  ["pptx","CISSP_Jour2_D3_D4_Architecture_Reseaux.pptx","Jour 2 — Architecture et réseaux","Modèles, cryptographie, PKI, sécurité physique, OSI, IPsec, architecture.","60 slides"],
+  ["pptx","CISSP_Jour3_D5_D6_IAM_Tests.pptx","Jour 3 — Identités et tests","MFA, biométrie, modèles d'accès, fédération, tests d'intrusion, SOC.","47 slides"],
+  ["pptx","CISSP_Jour4_D7_D8_Operations_DevSecOps.pptx","Jour 4 — Opérations et DevSecOps","Investigations, incidents, sauvegardes, reprise, SDLC, OWASP, API.","46 slides"],
+  ["pptx","CISSP_Jour5_Synthese_Examen_Blanc_Strategie.pptx","Jour 5 — Synthèse et stratégie","Révision croisée, examen blanc, stratégie d'examen, plan de révision.","42 slides"]]],
+ ["Fiches de révision (Word)",[
+  ["docx","CISSP_Guide_Revision_Detaille_20p.docx","Guide de révision détaillé","Les 8 domaines en profondeur, avec exemples, pièges, REX et questions corrigées.","20 pages"],
+  ["docx","CISSP_Cheat_Sheet_Revision_30min.docx","Fiche express de 30 minutes","L'essentiel des 8 domaines, formules, paires et réflexes, pour la veille de l'examen.","6 pages"]]]
+];
+var rl=document.getElementById("resList");
+RES.forEach(function(gr){rl.appendChild(el("h3",{cls:"groupt",text:gr[0]}));var box=el("div",{cls:"res"});
+  gr[1].forEach(function(r){var a=el("a",{cls:"r",href:r[1]},[el("div",{cls:"tag "+r[0],text:r[0].toUpperCase()}),el("div",null,[el("div",{cls:"meta",text:r[4]}),el("h3",{text:r[2]}),el("p",{text:r[3]})])]);
+    if(r[0]!=="html")a.setAttribute("download","");box.appendChild(a);});rl.appendChild(box);});
+
+var CK=["J'ai vérifié mon éligibilité (5 ans dans 2 domaines) ou je vise le statut Associate","J'ai suivi les supports des Jours 0 à 5","J'ai obtenu au moins 70 % à chaque quiz de domaine","Je maîtrise les 50 questions clés","Je connais les 100 termes du glossaire et leurs nuances","J'ai fait 3 examens blancs chronométrés, le dernier à 75 % ou plus","J'ai identifié et révisé mes 2 domaines les plus faibles","J'ai réservé ma date d'examen","J'ai imprimé et annoté les 8 cheat sheets d'une page","J'ai relu la fiche express de 30 minutes la veille","J'ai préparé mes justificatifs d'expérience pour l'endossement"];
+var KEY="cissp-portail-ck",st={};try{st=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){st={};}
+var ck=document.getElementById("ckList");
+function upd(){var n=0;CK.forEach(function(_,i){if(st[i])n++;});document.getElementById("ckBar").style.width=(100*n/CK.length)+"%";document.getElementById("ckTxt").textContent=n+" / "+CK.length+" étapes";}
+CK.forEach(function(t,i){var cb=el("input",{type:"checkbox"});cb.checked=!!st[i];cb.addEventListener("change",function(){if(cb.checked)st[i]=1;else delete st[i];try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}upd();});ck.appendChild(el("label",null,[cb,el("span",{text:t})]));});
+upd();
+
+var gs={d:"ALL",q:""},gc=document.getElementById("gChips");
+DOMS.forEach(function(d){gc.appendChild(el("button",{cls:"chip","data-d":d[0],"aria-pressed":"false",text:d[0]}));});
+Array.prototype.forEach.call(gc.querySelectorAll(".chip"),function(b){b.addEventListener("click",function(){gs.d=b.getAttribute("data-d");Array.prototype.forEach.call(gc.querySelectorAll(".chip"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});draw();});});
+document.getElementById("gSearch").addEventListener("input",function(e){gs.q=e.target.value;draw();});
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
+var rows=GLOSS.slice().sort(function(a,b){return a[1].localeCompare(b[1],"fr");});
+function draw(){var b=document.getElementById("gBody");b.innerHTML="";var f=norm(gs.q.trim()),n=0;
+  rows.forEach(function(r){if(gs.d!=="ALL"&&r[0]!==gs.d)return;if(f&&norm(r.join(" ")).indexOf(f)<0)return;n++;
+    b.appendChild(el("tr",null,[el("td",{cls:"dd"},[el("span",{cls:"badge",text:r[0]})]),el("td",{cls:"t",text:r[1]}),el("td",{text:r[2]}),el("td",{cls:"n",text:r[3]})]));});
+  if(!n)b.appendChild(el("tr",null,[el("td",{colspan:"4",text:"Aucun terme ne correspond."})]));
+  document.getElementById("gCount").textContent=n+" terme(s) sur "+rows.length;}
+draw();
+})();
+</script>
+</body>
+</html>

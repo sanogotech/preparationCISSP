@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISSP D2 — Cheat sheet</title>
+<style>
+:root{--navy:#1E2761;--deep:#121A45;--gold:#C9A227;--ice:#CADCFC;--iceL:#EEF3FD;--ink:#1F2433;--gray:#5B6275;--line:#DDE3EF;--bg:#F5F7FB;--ko:#B03A2E;--koL:#FBEAE8;--ok:#2E7D4F;--okL:#E6F4EC;--amb:#B7791F;--ambL:#FDF3E1;--vioL:#EFECF8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14.5px/1.45 Calibri,"Segoe UI",Arial,sans-serif}
+.bar{background:var(--deep);padding:8px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar a,.bar button{color:var(--ice);text-decoration:none;font:inherit;font-size:13px;font-weight:700;padding:6px 10px;border-radius:8px;border:1px solid rgba(202,220,252,.3);background:transparent;cursor:pointer}
+.bar a.cur{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+.bar .sp{flex:1}
+.sheet{max-width:1120px;margin:16px auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+header{display:flex;gap:16px;align-items:center;background:var(--navy);color:#fff;border-radius:12px;padding:12px 16px}
+header .code{font-family:Cambria,Georgia,serif;font-size:34px;font-weight:700;color:var(--gold);line-height:1}
+header h1{font-family:Cambria,Georgia,serif;font-size:22px;margin:0;line-height:1.15}
+header .sub{color:var(--ice);font-size:13px}
+header .w{margin-left:auto;text-align:right;min-width:110px}
+header .w b{font-family:Cambria,Georgia,serif;font-size:26px;color:var(--gold);display:block;line-height:1}
+.ess{margin:10px 0 0;padding:8px 12px;background:var(--iceL);border-radius:10px;font-size:14px}
+.ess b{color:var(--navy)}
+.cols{columns:2;column-gap:16px;margin-top:10px}
+.blk,.box{break-inside:avoid;margin:0 0 10px}
+h2{font-family:Cambria,Georgia,serif;font-size:15px;color:var(--navy);margin:0 0 4px;padding-bottom:2px;border-bottom:2px solid var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+th{text-align:left;vertical-align:top;color:var(--navy);width:29%;padding:3px 6px 3px 0;font-weight:700}
+td{padding:3px 0;vertical-align:top}
+tr+tr th,tr+tr td{border-top:1px solid #EDF0F6}
+.ex{display:block;color:var(--amb);font-style:italic;font-size:12px}
+.box{border-radius:10px;padding:8px 10px;font-size:12.8px}
+.box h3{margin:0 0 3px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.box ul{margin:0;padding-left:16px}.box li{margin:1px 0}
+.trap{background:var(--koL)}.trap h3{color:var(--ko)}
+.tip{background:var(--ambL)}.tip h3{color:var(--amb)}
+.num{background:var(--iceL)}.num h3{color:var(--navy)}
+.pair{background:#fff;border:1px solid var(--line)}.pair h3{color:var(--navy)}
+.pair table{font-size:12.5px}.pair th{width:auto}.pair td.v{color:var(--gray);font-style:italic}
+.qa{background:var(--okL)}.qa h3{color:var(--ok)}
+.qa p{margin:2px 0}.qa b{color:var(--navy)}
+.wis{margin-top:8px;font-family:Cambria,Georgia,serif;font-style:italic;color:var(--navy);text-align:center;font-size:14px;background:var(--vioL);border-radius:10px;padding:7px}
+footer{text-align:center;color:var(--gray);font-size:11px;margin-top:6px}
+@media (max-width:760px){.cols{columns:1}header{flex-wrap:wrap}header .w{margin-left:0;text-align:left}.sheet{margin:8px;padding:12px}}
+@page{size:A4;margin:8mm}
+@media print{
+ body{background:#fff;font-size:9pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .bar{display:none}.sheet{margin:0;border:0;padding:0;max-width:none}
+ header{padding:6px 10px}header .code{font-size:24px}header h1{font-size:15px}header .w b{font-size:18px}header .sub{font-size:8pt}
+ .ess{font-size:8.3pt;padding:4px 8px;margin-top:5px}
+ .cols{column-gap:10px;margin-top:5px}
+ h2{font-size:9.5pt}
+ table,.box,.pair table{font-size:7.6pt}.ex{font-size:7.2pt}.box h3{font-size:7pt}
+ .blk,.box{margin-bottom:5px}.box{padding:4px 7px}
+ th,td{padding-top:1px;padding-bottom:1px}
+ .wis{font-size:8.3pt;padding:3px;margin-top:3px}footer{font-size:7pt;margin-top:2px}
+ .dense table,.dense .box,.dense .pair table{font-size:6.8pt;line-height:1.3}.dense .ex{font-size:6.5pt}.dense h2{font-size:8.6pt}.dense .blk,.dense .box{margin-bottom:3px}
+}
+</style></head><body>
+<nav class="bar"><a href="index.html">← Portail</a><a href="CISSP_CheatSheet_D1.html">D1</a><a href="CISSP_CheatSheet_D2.html" class="cur" aria-current="page">D2</a><a href="CISSP_CheatSheet_D3.html">D3</a><a href="CISSP_CheatSheet_D4.html">D4</a><a href="CISSP_CheatSheet_D5.html">D5</a><a href="CISSP_CheatSheet_D6.html">D6</a><a href="CISSP_CheatSheet_D7.html">D7</a><a href="CISSP_CheatSheet_D8.html">D8</a><span class="sp"></span><a href="CISSP_CheatSheet_D1.html">‹ Précédent</a><a href="CISSP_CheatSheet_D3.html">Suivant ›</a><button type="button" onclick="window.print()">Imprimer / PDF</button></nav>
+<main class="sheet">
+<header><span class="code">D2</span><div><h1>Sécurité des actifs</h1><div class="sub">CISSP · Cheat sheet en une page · 8 min de lecture</div></div><div class="w"><b>10 %</b><span class="sub">de l'examen</span></div></header>
+<p class="ess"><b>En une phrase :</b> On ne protège que ce qu'on connaît : inventorier, attribuer un propriétaire, classifier, protéger selon le niveau, détruire selon le support.</p>
+<div class="cols">
+<section class="blk"><h2>Identifier, classifier, attribuer</h2><table><tbody><tr><th>Inventaire</th><td>Matériel, logiciels, données, SaaS, comptes ; CMDB et découverte automatique ; shadow IT.<span class="ex">Écart inventaire / scan réseau = KRI</span></td></tr><tr><th>Classification gouv.</th><td>Top Secret (exceptionnellement grave) · Secret (grave) · Confidential (dommage) · Unclassified.<span class="ex">Niveau selon l'impact d'une divulgation</span></td></tr><tr><th>Classification com.</th><td>Confidentiel / propriétaire · Privé · Sensible · Public. 3 ou 4 niveaux suffisent.<span class="ex">Un ensemble prend le niveau le plus élevé</span></td></tr><tr><th>Processus</th><td>Propriétaire → critères → classer → marquer → protéger → revoir (déclassifier) → sensibiliser.<span class="ex">Résultats publiés : déclassifier</span></td></tr><tr><th>Marquage / étiquette</th><td>Lisible par l'humain / métadonnée lisible par la machine (DLP, DRM).<span class="ex">Sans étiquette, la DLP est aveugle</span></td></tr><tr><th>Rôles</th><td>Propriétaire (classifie, approuve) · dépositaire (protège) · administrateur · utilisateur · auditeur · responsable de traitement · sous-traitant · personne concernée.<span class="ex">Propriétaire = personne ; responsable de traitement = organisation</span></td></tr></tbody></table></section><section class="blk"><h2>Cycle de vie, protection et fin de vie</h2><table><tbody><tr><th>Cycle de vie</th><td>Créer / collecter (minimiser) · stocker · utiliser · partager · archiver · détruire.<span class="ex">La collecte est le meilleur point de contrôle</span></td></tr><tr><th>États</th><td>Repos (chiffrement) · transit (TLS) · usage (enclaves) — le plus difficile.<span class="ex">La donnée doit être déchiffrée pour être traitée</span></td></tr><tr><th>Outils</th><td>DLP · DRM / IRM · CASB · tokenisation (protéger le coffre) · masquage · pseudonymisation (réversible) · anonymisation (irréversible).<span class="ex">Pseudonymisé = toujours personnel</span></td></tr><tr><th>Scoping / tailoring</th><td>Retirer les contrôles hors périmètre / régler les contrôles retenus ; contrôle compensatoire ; justifier les écarts.<span class="ex">Pas de Wi-Fi → scoping ; verrouillage 5 min → tailoring</span></td></tr><tr><th>Rétention</th><td>Durée légale et métier ; trop longtemps = risque juridique ; legal hold prime sur la rétention.<span class="ex">Litige : suspendre la destruction, sauvegardes comprises</span></td></tr><tr><th>EOL / EOS</th><td>Fin de commercialisation / fin de support (plus de correctifs) ; EOS = contrôle compensatoire et plan de remplacement.<span class="ex">Serveur EOS indispensable : isoler</span></td></tr><tr><th>Destruction (SP 800-88)</th><td>Clear (réutilisation interne) · Purge (le support sort) · Destroy. SSD : pas de dégaussage. Cloud : effacement cryptographique. Rémanence.<span class="ex">Formater ne détruit pas les données</span></td></tr></tbody></table></section>
+<section class="box num"><h3>Chiffres et formules</h3><ul><li>Clear · Purge · Destroy (SP 800-88)</li><li>SSD : pas de dégaussage</li><li>Cloud : effacement cryptographique</li><li>Legal hold &gt; rétention</li></ul></section>
+<section class="box pair"><h3>Ne pas confondre</h3><table><tbody><tr><th>Propriétaire ≠ Dépositaire</th><td class="v">décide / applique</td></tr><tr><th>Scoping ≠ Tailoring</th><td class="v">quels / comment</td></tr><tr><th>Pseudonymisation ≠ Anonymisation</th><td class="v">réversible / irréversible</td></tr><tr><th>EOL ≠ EOS</th><td class="v">plus vendu / plus de correctifs</td></tr></tbody></table></section>
+<section class="box trap"><h3>Pièges à éviter</h3><ul><li>Dégausser un SSD ; formater en croyant effacer</li><li>Laisser l'IT décider de la classification</li><li>Croire qu'une donnée pseudonymisée échappe aux lois sur la vie privée</li><li>Détruire des données pendant un litige</li></ul></section>
+<section class="box tip"><h3>REX et tips d'examen</h3><ul><li>Qui décide de la donnée ? Son propriétaire métier.</li><li>REX : la plupart des fuites viennent de copies oubliées (exports, environnements de test, sauvegardes non chiffrées).</li><li>La meilleure donnée à protéger est celle qu'on ne collecte pas.</li></ul></section>
+<section class="box qa"><h3>4 questions à savoir répondre</h3><p><b>Qui fixe le niveau de classification d'une base clients ?</b> → Le propriétaire métier de la donnée.</p><p><b>Des SSD contenant des données clients sont recyclés à l'extérieur. Méthode ?</b> → Effacement cryptographique ou destruction physique.</p><p><b>Un référentiel prévoit des contrôles Wi-Fi alors qu'il n'y a pas de Wi-Fi. Les retirer, c'est…</b> → Du scoping (cadrage).</p><p><b>Fin de contrat avec un hébergeur cloud : comment rendre les données inexploitables ?</b> → Détruire les clés qui les chiffrent.</p></section>
+</div>
+<p class="wis">« On ne protège bien que ce que l'on connaît, et on ne connaît que ce dont quelqu'un répond. »</p>
+<footer>Formation CISSP · SANOGO Souleymane · Édition 2026 · modalités et état de l'art à vérifier (isc2.org, nist.gov, owasp.org)</footer>
+</main></body></html>
