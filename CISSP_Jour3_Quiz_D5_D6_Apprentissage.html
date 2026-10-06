@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISSP Jour 3 — Quiz D5 & D6</title>
+<style>
+:root{--navy:#1E2761;--deep:#121A45;--gold:#C9A227;--ice:#CADCFC;--iceL:#EEF3FD;--ink:#1F2433;--gray:#5B6275;--line:#DDE3EF;--bg:#F5F7FB;--card:#FFFFFF;
+--ok:#2E7D4F;--okL:#E6F4EC;--ko:#B03A2E;--koL:#FBEAE8;--amb:#B7791F;--ambL:#FDF3E1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Calibri,"Segoe UI",Arial,sans-serif}
+header{background:var(--deep);color:#fff;padding:20px 16px 0}
+.wrap{max-width:980px;margin:0 auto}
+.kick{color:var(--gold);font-weight:700;letter-spacing:.12em;font-size:12px;text-transform:uppercase}
+h1{font-family:Cambria,Georgia,serif;margin:4px 0 4px;font-size:28px}
+.sub{color:var(--ice);margin:0 0 14px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{background:transparent;border:0;color:var(--ice);padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap}
+nav button[aria-selected="true"]{background:var(--bg);color:var(--navy)}
+main{padding:20px 16px 60px}
+section[hidden]{display:none}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer;color:var(--navy)}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn{border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.btn.sec{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.gold{background:var(--gold);color:var(--deep)}
+.btn:disabled{opacity:.4;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.stat b{display:block;font-family:Cambria,Georgia,serif;font-size:22px;color:var(--navy)}
+.stat span{font-size:13px;color:var(--gray)}
+.prog{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .25s}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(18,26,69,.06)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.tag{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--iceL);color:var(--navy)}
+.tag.d2{background:var(--ambL);color:var(--amb)}
+.q{font-family:Cambria,Georgia,serif;font-size:20px;color:var(--navy);margin:6px 0 16px;line-height:1.35}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;font:inherit;color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--navy);background:var(--iceL)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:var(--okL)} .opt.ok .k{background:var(--ok)}
+.opt.ko{border-color:var(--ko);background:var(--koL)} .opt.ko .k{background:var(--ko)}
+.opt .why{display:block;font-size:14px;color:var(--gray);margin-top:4px;font-style:italic}
+.fb{margin-top:16px;border-radius:10px;padding:14px 16px;border-left:0}
+.fb.ok{background:var(--okL)} .fb.ko{background:var(--koL)}
+.fb h3{margin:0 0 6px;font-size:16px}
+.fb.ok h3{color:var(--ok)} .fb.ko h3{color:var(--ko)}
+.note{margin-top:10px;padding:10px 14px;border-radius:10px;font-size:15px}
+.note.tip{background:var(--iceL)} .note.rex{background:var(--ambL)}
+.note b{color:var(--navy)} .note.rex b{color:var(--amb)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:16px;flex-wrap:wrap}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+.dot{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:#fff;font-size:12px;cursor:pointer;color:var(--gray);font-family:inherit}
+.dot.cur{outline:2px solid var(--gold);outline-offset:1px}
+.dot.ok{background:var(--ok);color:#fff;border-color:var(--ok)} .dot.ko{background:var(--ko);color:#fff;border-color:var(--ko)}
+.result h2{font-family:Cambria,Georgia,serif;color:var(--navy);margin:0 0 6px}
+.big{font-family:Cambria,Georgia,serif;font-size:56px;color:var(--navy);font-weight:700;line-height:1}
+.dom{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:16px 0}
+.case{margin-bottom:18px}
+.case .ctx{background:var(--iceL);border-radius:10px;padding:12px 14px;margin:10px 0 16px}
+.case .sq{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.case h3{font-family:Cambria,Georgia,serif;color:var(--navy);margin:0;font-size:22px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:15px}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px}
+td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--iceL)}
+td:first-child{font-weight:700;color:var(--navy);width:28%}
+h2.sec{font-family:Cambria,Georgia,serif;color:var(--navy);margin:22px 0 10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.box h3{margin:0 0 6px;font-family:Cambria,Georgia,serif;color:var(--navy);font-size:17px}
+.box.r{background:var(--ambL);border-color:transparent} .box.r h3{color:var(--amb)}
+.box.g{background:var(--okL);border-color:transparent} .box.g h3{color:var(--ok)}
+.box.b{background:var(--koL);border-color:transparent} .box.b h3{color:var(--ko)}
+.box ul{margin:4px 0 0;padding-left:20px}
+input[type=search]{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;margin-bottom:12px}
+.empty{color:var(--gray);font-style:italic;padding:10px}
+.kbd{font-size:13px;color:var(--gray)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}h1{font-size:22px}.q{font-size:18px}td:first-child{width:38%}}
+@media print{header nav,.bar,.nav,.dots{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kick">CISSP · Jour 3 · Mode apprentissage</div>
+  <h1>Domaine 5 & Domaine 6 — Quiz d'entraînement</h1>
+  <p class="sub">Gestion des identités et des accès · Évaluation et tests de sécurité — réponses mélangées à chaque session, correction détaillée immédiate.</p>
+  <nav role="tablist">
+    <button role="tab" data-tab="quiz" aria-selected="true">Quiz</button>
+    <button role="tab" data-tab="cases" aria-selected="false">Cas pratiques examen</button>
+    <button role="tab" data-tab="tips" aria-selected="false">REX & tips</button>
+    <button role="tab" data-tab="cheat" aria-selected="false">Cheat sheet</button>
+    <button role="tab" data-tab="glo" aria-selected="false">Glossaire</button>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<section id="tab-quiz">
+  <div class="bar" id="filters">
+    <button class="chip" data-f="ALL" aria-pressed="true">Tous les domaines</button>
+    <button class="chip" data-f="D5" aria-pressed="false">Domaine 5</button>
+    <button class="chip" data-f="D6" aria-pressed="false">Domaine 6</button>
+    <span style="flex:1"></span>
+    <button class="btn sec" id="restart">Nouvelle session</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="sAns">0</b><span>répondues</span></div>
+    <div class="stat"><b id="sOk">0</b><span>bonnes réponses</span></div>
+    <div class="stat"><b id="sPct">—</b><span>taux de réussite</span></div>
+    <div class="stat"><b id="sTot">0</b><span>questions</span></div>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+  <div id="qbox"></div>
+  <div class="dots" id="dots"></div>
+  <p class="kbd">Raccourcis : touches 1 à 4 pour répondre, flèches gauche / droite pour naviguer.</p>
+</section>
+
+<section id="tab-cases" hidden>
+  <div class="bar"><span>Cinq scénarios type examen, chacun avec trois questions. Chaque option est commentée après votre réponse.</span><span style="flex:1"></span><button class="btn sec" id="caseReset">Réinitialiser les cas</button></div>
+  <div id="cbox"></div>
+</section>
+
+<section id="tab-tips" hidden></section>
+<section id="tab-cheat" hidden></section>
+<section id="tab-glo" hidden>
+  <input type="search" id="gsearch" placeholder="Rechercher un terme (ex. FAR, OIDC, SOC 2)…" aria-label="Rechercher dans le glossaire">
+  <table><thead><tr><th>Terme</th><th>Définition</th></tr></thead><tbody id="gbody"></tbody></table>
+  <p class="empty" id="gempty" hidden>Aucun terme ne correspond.</p>
+</section>
+
+</div></main>
+<script>
+// CONVENTION : dans chaque tableau "o", la PREMIÈRE option est la bonne réponse ; l'affichage mélange toujours l'ordre.
+const CONFIG = {
+ domains:[["D5","Domaine 5"],["D6","Domaine 6"]],
+ verdict:["Niveau solide : passez au Jour 4 et gardez 20 questions de révision par jour.","Bon niveau : relisez la cheat sheet et refaites vos erreurs.","À consolider : reprenez les slides D5-D6, puis refaites le quiz."],
+ tipsTitle:"Tips d'examen D5 / D6",
+ rex:[["Le compte orphelin","Un ancien prestataire a utilisé son accès VPN huit mois après la fin de sa mission."],
+  ["Le SMS détourné","Un SIM swap a permis de vider des portefeuilles malgré un « MFA » par SMS."],
+  ["Le compte de service","Un mot de passe inchangé depuis des années, avec des droits d'administrateur de domaine."],
+  ["Le pentest sans cadre","Un test lancé sans règles d'engagement a arrêté la production en pleine journée."],
+  ["Le rapport rangé","Les mêmes constats d'audit trois années de suite, faute de propriétaire."],
+  ["La sauvegarde intestée","Les sauvegardes « réussies » étaient illisibles le jour de la restauration."]],
+ good:["Le SIRH comme source de vérité des identités","MFA résistant à l'hameçonnage pour les accès sensibles","Comptes d'administration séparés, juste-à-temps","Recertification des accès par les responsables métier","Tests d'intrusion cadrés par écrit","Exiger des SOC 2 Type II des fournisseurs critiques","Suivre la remédiation comme un projet"],
+ bad:["Comptes partagés et génériques","SMS comme seul second facteur pour les opérations sensibles","Rotation forcée des mots de passe sans motif","Revues d'accès où l'on « coche tout »","Tester sans autorisation écrite","Confondre analyse de vulnérabilités et test d'intrusion","Mesurer les sauvegardes au lieu des restaurations"],
+ reason:["Qui décide ? Propriétaire → DAC ; étiquettes → MAC ; fonction → RBAC ; contexte → ABAC","Authentifier → OIDC ; autoriser l'accès à une API → OAuth 2.0 ; SSO d'entreprise → SAML","Avant tout test d'intrusion : autorisation écrite et règles d'engagement","L'auditeur constate et recommande ; il ne corrige pas","Processus et gouvernance des identités avant les outils"],
+ traps:["Mot de passe + PIN n'est pas une MFA (même type)","FAR = type II, le plus grave ; FRR = type I","OAuth 2.0 n'est pas un protocole d'authentification","SOC 2 Type I ne prouve pas l'efficacité dans la durée","Un scan de vulnérabilités n'est pas un test d'intrusion"],
+ cheat:[["Domaine 5 — Gestion des identités et des accès",[
+  ["IAAA","Identification · Authentification · Autorisation · Traçabilité"],
+  ["Facteurs","Type 1 savoir · type 2 posséder · type 3 être · MFA = types différents"],
+  ["Mots de passe","Longueur, contrôle des mots de passe compromis, pas de rotation forcée sans motif (NIST SP 800-63B)"],
+  ["MFA","SMS faible (SIM swap) · TOTP mieux · FIDO2 / passkeys résistants à l'hameçonnage · push avec correspondance de nombres"],
+  ["Biométrie","FRR = type I · FAR = type II (le plus grave) · CER = croisement, plus bas = meilleur"],
+  ["Modèles","DAC propriétaire · MAC étiquettes · RBAC rôles · ABAC attributs · règles globales"],
+  ["Fédération","SAML 2.0 (XML, SSO) · OAuth 2.0 (autorisation déléguée) · OIDC (authentification, jeton d'identité JWT)"],
+  ["Kerberos","KDC = AS + TGS · TGT · symétrique · horloges synchronisées · point unique de défaillance"],
+  ["Cycle de vie","Arrivée · mobilité (retirer avant d'ajouter) · revue · départ (coupure immédiate)"],
+  ["PAM","Coffre · juste-à-temps · sessions enregistrées · comptes d'administration séparés"],
+  ["Attaques","Credential stuffing · password spraying · fatigue MFA · Kerberoasting · golden ticket · SIM swap"]]],
+ ["Domaine 6 — Évaluation et tests de sécurité",[
+  ["Évaluations","Interne · externe (mandatée) · tierce partie (régulateur, client) · auditeur indépendant"],
+  ["Vulnérabilités","Scan = inventaire · test d'intrusion = exploitation · CVE / CWE / CVSS de 0 à 10"],
+  ["Test d'intrusion","Planification → découverte → attaque → rapport (NIST SP 800-115) · autorisation écrite d'abord"],
+  ["Connaissance","Boîte noire (rien) · grise (partielle) · blanche (tout)"],
+  ["Équipes","Rouge attaque · bleue défend · violette collabore · blanche arbitre"],
+  ["Logiciel","SAST (code) · DAST (exécution) · IAST · SCA · fuzzing · couverture = testé / total"],
+  ["Supervision","Transactions synthétiques (scriptées) · RUM (utilisateurs réels) · horloges NTP"],
+  ["Continuité","Liste de contrôle · table · simulation · parallèle · interruption complète"],
+  ["SOC","SOC 1 finance · SOC 2 sécurité · SOC 3 public · Type I à une date · Type II sur une période"],
+  ["Rapports","Synthèse direction · remédiation avec propriétaire · exceptions limitées · divulgation coordonnée"]]]]
+};
+
+const QUESTIONS = [
+// ---------------- DOMAINE 5 ----------------
+{d:"D5",t:"Authentification",q:"Un utilisateur saisit son identifiant. De quelle étape s'agit-il ?",
+ o:["L'identification","L'authentification","L'autorisation","La traçabilité"],
+ e:"L'identifiant déclare une identité ; il ne la prouve pas. La preuve (mot de passe, jeton, biométrie) constitue l'authentification.",
+ tip:"Déclarer = identification ; prouver = authentification."},
+{d:"D5",t:"Authentification",q:"Laquelle de ces combinaisons constitue une véritable authentification multifacteur ?",
+ o:["Un mot de passe et une clé FIDO2","Un mot de passe et un code PIN","Une empreinte digitale et une reconnaissance faciale","Deux mots de passe différents"],
+ e:"La MFA combine des facteurs de types différents : ce que je sais (mot de passe) et ce que je possède (clé). Mot de passe + PIN : deux éléments du même type. Empreinte + visage : deux éléments biométriques du même type.",
+ tip:"MFA = types différents, pas seulement deux éléments."},
+{d:"D5",t:"Authentification",q:"Une carte à puce relève de quel type de facteur ?",
+ o:["Type 2 : ce que je possède","Type 1 : ce que je sais","Type 3 : ce que je suis","Facteur contextuel"],
+ e:"Type 1 : connaissance ; type 2 : possession (carte, jeton, téléphone, clé) ; type 3 : caractéristique biométrique.",
+ tip:"1 savoir, 2 posséder, 3 être."},
+{d:"D5",t:"Mots de passe",q:"Selon les recommandations actuelles du NIST (SP 800-63B), quelle pratique faut-il privilégier ?",
+ o:["Des mots de passe longs, vérifiés contre les listes de mots de passe compromis","Une rotation obligatoire tous les 30 jours","Des règles de composition complexes imposées","Des questions secrètes de récupération"],
+ e:"Le NIST privilégie la longueur, le contrôle contre les mots de passe divulgués et le changement en cas d'indice de compromission. La rotation systématique conduit à des mots de passe prévisibles.",
+ tip:"Longueur + contrôle des fuites + MFA."},
+{d:"D5",t:"MFA",q:"Pourquoi le SMS est-il déconseillé comme seul second facteur pour des opérations Mobile Money sensibles ?",
+ o:["Il est vulnérable au SIM swap et à l'interception","Il est trop coûteux","Il ne fonctionne pas hors connexion Internet","Il n'est pas compatible avec les smartphones"],
+ e:"Un fraudeur qui obtient le transfert du numéro de la victime reçoit ses codes. Le SMS reste mieux que rien, mais pas pour les opérations à fort enjeu.",
+ tip:"Opérations sensibles → facteur lié à l'appareil ou FIDO2.",
+ rex:"La fraude au SIM swap est un risque bien réel dans l'écosystème Mobile Money ouest-africain."},
+{d:"D5",t:"MFA",q:"Quelle méthode d'authentification résiste le MIEUX à l'hameçonnage par un faux site ?",
+ o:["FIDO2 / WebAuthn (passkeys)","Code TOTP d'une application","Code reçu par SMS","Question secrète"],
+ e:"Avec FIDO2, la clé cryptographique est liée au domaine du site : sur un faux domaine, l'authentificateur refuse de signer. Un code TOTP ou SMS peut être saisi par la victime sur le faux site puis rejoué.",
+ tip:"Résistance à l'hameçonnage → FIDO2."},
+{d:"D5",t:"MFA",q:"Un attaquant envoie des dizaines de notifications d'approbation jusqu'à ce que l'utilisateur accepte par lassitude. Quelle parade est la plus adaptée ?",
+ o:["Exiger la correspondance de nombres et limiter les demandes","Passer au SMS","Supprimer la MFA","Allonger le mot de passe"],
+ e:"La correspondance de nombres oblige l'utilisateur à saisir un code affiché à l'écran de connexion, ce qu'il ne peut faire que s'il est réellement en train de se connecter.",
+ tip:"Fatigue MFA → number matching."},
+{d:"D5",t:"MFA",q:"Quelle est la différence entre HOTP et TOTP ?",
+ o:["HOTP repose sur un compteur ; TOTP sur l'heure","HOTP utilise la biométrie ; TOTP un mot de passe","HOTP est plus récent que TOTP","Aucune différence"],
+ e:"HOTP génère un code à partir d'un compteur incrémenté ; le code reste valable jusqu'à son usage. TOTP dépend de l'heure et expire en général après environ 30 secondes.",
+ tip:"H = compteur (HMAC) ; T = temps."},
+{d:"D5",t:"Biométrie",q:"Un système biométrique accepte un imposteur. De quel type d'erreur s'agit-il ?",
+ o:["Type II — faux acceptation (FAR)","Type I — faux rejet (FRR)","Erreur de croisement (CER)","Erreur d'enrôlement"],
+ e:"FAR : un imposteur est accepté (type II), c'est le plus grave pour la sécurité. FRR : un utilisateur légitime est rejeté (type I), c'est surtout une gêne.",
+ tip:"Type II = l'imposteur est Introduit."},
+{d:"D5",t:"Biométrie",q:"Pour comparer la précision globale de deux systèmes biométriques, quel indicateur utilise-t-on ?",
+ o:["Le CER (taux d'erreur croisé), le plus bas est le meilleur","Le FRR seul","Le FAR seul","Le temps d'enrôlement"],
+ e:"Le CER (ou EER) est le point où FAR et FRR sont égaux. Il permet une comparaison indépendante du réglage de sensibilité.",
+ tip:"CER bas = système précis."},
+{d:"D5",t:"Biométrie",q:"Pour l'accès à la salle des HSM, on augmente la sensibilité du lecteur biométrique. Quel est l'effet attendu ?",
+ o:["Le FAR baisse et le FRR augmente","Le FAR et le FRR baissent","Le FAR augmente et le FRR baisse","Aucun effet"],
+ e:"Plus le système est strict, moins il accepte d'imposteurs, mais plus il rejette d'utilisateurs légitimes. Pour une zone très sensible, c'est le compromis recherché.",
+ tip:"Zone critique → réduire le FAR, accepter plus de FRR."},
+{d:"D5",t:"Autorisation",q:"Le propriétaire d'un dossier partagé décide lui-même qui peut y accéder. Quel modèle est appliqué ?",
+ o:["DAC (discrétionnaire)","MAC (obligatoire)","RBAC (rôles)","À base de règles"],
+ e:"Dans le DAC, le propriétaire de la ressource gère les droits, généralement par des listes de contrôle d'accès.",
+ tip:"Le propriétaire décide → DAC."},
+{d:"D5",t:"Autorisation",q:"Les accès sont accordés en comparant l'étiquette de classification des données à l'habilitation de l'utilisateur. Quel modèle est appliqué ?",
+ o:["MAC (obligatoire)","DAC (discrétionnaire)","RBAC (rôles)","ABAC (attributs)"],
+ e:"Le MAC repose sur des étiquettes imposées par le système et une politique centrale ; l'utilisateur ne peut pas modifier les droits.",
+ tip:"Étiquettes + habilitations → MAC."},
+{d:"D5",t:"Autorisation",q:"Un accès est accordé seulement si l'utilisateur est du service Crédit, sur un poste géré, entre 7 h et 19 h. Quel modèle permet le mieux d'exprimer cette règle ?",
+ o:["ABAC (attributs)","DAC","MAC","RBAC simple"],
+ e:"L'ABAC combine des attributs de l'utilisateur, de la ressource, de l'action et du contexte. Un RBAC simple ne gère pas l'heure ni l'état de l'appareil.",
+ tip:"Contexte (heure, appareil, lieu) → ABAC."},
+{d:"D5",t:"Autorisation",q:"Un pare-feu bloque tout le trafic entrant après 22 h, quel que soit l'utilisateur. De quel modèle s'agit-il ?",
+ o:["Contrôle d'accès à base de règles","RBAC","DAC","Contrôle d'accès basé sur l'identité"],
+ e:"Les règles globales s'appliquent à tous les sujets, indépendamment de leur identité ou de leur rôle.",
+ tip:"Règle identique pour tous → rule-based."},
+{d:"D5",t:"Autorisation",q:"Quel risque principal guette un modèle RBAC mal gouverné ?",
+ o:["L'explosion du nombre de rôles et l'accumulation d'exceptions","L'impossibilité d'appliquer la séparation des tâches","Le chiffrement des données","Un temps d'authentification trop long"],
+ e:"Sans gouvernance, on crée un rôle par besoin individuel, jusqu'à avoir plus de rôles que d'employés. Les rôles doivent rester métier, stables et revus.",
+ tip:"Peu de rôles métier, exceptions documentées."},
+{d:"D5",t:"Fédération",q:"Quel protocole est conçu pour l'AUTORISATION déléguée, permettant à une application d'accéder à une API au nom de l'utilisateur ?",
+ o:["OAuth 2.0","SAML 2.0","Kerberos","LDAP"],
+ e:"OAuth 2.0 délivre des jetons d'accès à une application cliente. Il n'a pas été conçu pour authentifier l'utilisateur : c'est le rôle d'OpenID Connect.",
+ tip:"OAuth = autorisation ; OIDC = authentification."},
+{d:"D5",t:"Fédération",q:"Quel protocole ajoute une couche d'authentification au-dessus d'OAuth 2.0, avec un jeton d'identité au format JWT ?",
+ o:["OpenID Connect","SAML 2.0","RADIUS","TACACS+"],
+ e:"OIDC fournit un jeton d'identité qui renseigne l'application sur l'utilisateur authentifié. Il est très utilisé pour les applications mobiles et web.",
+ tip:"OIDC = OAuth + identité."},
+{d:"D5",t:"Fédération",q:"Une entreprise veut offrir l'authentification unique vers ses applications SaaS à partir de son annuaire, en échangeant des assertions XML. Quel protocole utilise-t-elle ?",
+ o:["SAML 2.0","OAuth 2.0 seul","Kerberos","Diameter"],
+ e:"SAML échange des assertions XML entre un fournisseur d'identité (IdP) et un fournisseur de services (SP).",
+ tip:"Assertions XML → SAML."},
+{d:"D5",t:"Fédération",q:"Dans un échange fédéré, quel acteur authentifie l'utilisateur ?",
+ o:["Le fournisseur d'identité (IdP)","Le fournisseur de services (SP)","Le navigateur","Le serveur DNS"],
+ e:"L'IdP authentifie et émet une assertion ou un jeton ; le SP (ou partie de confiance) l'accepte et accorde l'accès.",
+ tip:"IdP authentifie ; SP consomme."},
+{d:"D5",t:"Kerberos",q:"Quels sont les deux services qui composent le centre de distribution de clés (KDC) de Kerberos ?",
+ o:["Le service d'authentification (AS) et le service d'octroi de tickets (TGS)","Le serveur RADIUS et le serveur LDAP","L'IdP et le SP","Le PDP et le PEP"],
+ e:"L'AS authentifie le client et délivre un TGT ; le TGS délivre ensuite des tickets de service sur présentation du TGT.",
+ tip:"KDC = AS + TGS."},
+{d:"D5",t:"Kerberos",q:"Pourquoi les horloges doivent-elles être synchronisées dans un environnement Kerberos ?",
+ o:["Les tickets sont horodatés pour empêcher le rejeu","Pour accélérer le chiffrement","Pour répartir la charge entre KDC","Pour respecter le RGPD"],
+ e:"Les authentifiants et tickets contiennent des horodatages ; un décalage trop important (souvent 5 minutes par défaut) fait échouer l'authentification.",
+ tip:"Horodatage = protection contre le rejeu."},
+{d:"D5",t:"Kerberos",q:"Quelle est la principale faiblesse architecturale de Kerberos ?",
+ o:["Le KDC est un point unique de défaillance","Il transmet les mots de passe en clair","Il ne fonctionne qu'en Wi-Fi","Il ne supporte pas le SSO"],
+ e:"Si le KDC est indisponible, plus personne ne s'authentifie ; s'il est compromis, tout le domaine l'est. On le redonde et on le protège fortement.",
+ tip:"Redonder et protéger les contrôleurs de domaine."},
+{d:"D5",t:"Attaques",q:"Un attaquant demande des tickets de service pour des comptes de service, puis tente de les casser hors ligne. Comment s'appelle cette attaque ?",
+ o:["Kerberoasting","Golden ticket","Pass-the-hash","Credential stuffing"],
+ e:"Le Kerberoasting cible les comptes de service dont le ticket est chiffré avec un dérivé de leur mot de passe. Parade : mots de passe longs et gérés automatiquement pour les comptes de service.",
+ tip:"Comptes de service → mots de passe longs, gérés."},
+{d:"D5",t:"Attaques",q:"Un attaquant teste un même mot de passe courant (« Bienvenue2026 ») sur des milliers de comptes. De quelle attaque s'agit-il ?",
+ o:["La pulvérisation de mots de passe (password spraying)","La force brute sur un compte","Les tables arc-en-ciel","Le Kerberoasting"],
+ e:"En essayant peu de mots de passe par compte, l'attaquant évite les verrouillages. Parades : listes de mots de passe interdits, MFA, détection des échecs répartis.",
+ tip:"Un mot de passe, beaucoup de comptes → spraying."},
+{d:"D5",t:"Attaques",q:"Des identifiants volés lors d'une fuite sur un autre site sont testés sur la banque en ligne. Quelle est la MEILLEURE parade ?",
+ o:["La MFA","Le chiffrement des disques","Un pare-feu réseau","Un antivirus sur le serveur web"],
+ e:"Le credential stuffing exploite la réutilisation des mots de passe. Avec un second facteur, un mot de passe volé ne suffit plus.",
+ tip:"Réutilisation de mots de passe → MFA."},
+{d:"D5",t:"Cycle de vie",q:"Un employé passe du service Crédit au service Marketing. Quelle est la bonne pratique ?",
+ o:["Retirer les droits liés à l'ancien poste avant d'accorder ceux du nouveau","Ajouter les nouveaux droits et garder les anciens par précaution","Créer un second compte","Attendre la revue annuelle"],
+ e:"Conserver les anciens droits conduit à l'accumulation de privilèges et peut violer la séparation des tâches.",
+ tip:"Mobilité : retirer avant d'ajouter."},
+{d:"D5",t:"Cycle de vie",q:"Quelle doit être la source de vérité pour créer et désactiver les comptes des employés ?",
+ o:["Le système d'information RH","Un tableur tenu par l'équipe IT","Les demandes par courriel des managers","L'annuaire lui-même"],
+ e:"Le SIRH sait qui arrive, change de poste et part. Le relier à l'IAM automatise les arrivées et coupe les accès dès le départ.",
+ tip:"Départ RH = coupure IT."},
+{d:"D5",t:"Cycle de vie",q:"Lors du départ d'un employé, pourquoi désactiver le compte plutôt que le supprimer immédiatement ?",
+ o:["Pour préserver la traçabilité et les données associées le temps nécessaire","Pour pouvoir le réattribuer à un autre employé","Parce que la suppression est impossible","Pour économiser des licences"],
+ e:"La suppression immédiate peut faire perdre des données ou rompre le lien avec les journaux. On désactive, puis on supprime selon la politique de rétention. Un compte ne se réattribue jamais.",
+ tip:"Désactiver d'abord, supprimer ensuite."},
+{d:"D5",t:"Cycle de vie",q:"Qui doit valider la recertification périodique des accès d'une équipe ?",
+ o:["Le responsable hiérarchique ou le propriétaire de l'application","L'administrateur IAM seul","L'utilisateur lui-même","Le fournisseur du logiciel"],
+ e:"Celui qui connaît le besoin métier peut confirmer que l'accès est justifié. L'IAM fournit l'outil et trace la décision.",
+ tip:"Le métier recertifie, l'IT exécute."},
+{d:"D5",t:"Accès privilégiés",q:"Quel principe de PAM réduit le PLUS la surface d'attaque des comptes d'administration ?",
+ o:["Les privilèges juste-à-temps, accordés temporairement sur demande","Des comptes administrateurs permanents pour chaque technicien","Un mot de passe administrateur partagé et connu de l'équipe","Des droits d'administration sur les comptes de bureautique"],
+ e:"Sans privilège permanent, un compte volé ne donne pas d'emblée les droits d'administration. Le coffre et l'enregistrement des sessions complètent le dispositif.",
+ tip:"Zéro privilège permanent."},
+{d:"D5",t:"Accès privilégiés",q:"Pourquoi un administrateur doit-il disposer d'un compte d'administration distinct de son compte de messagerie et de bureautique ?",
+ o:["Pour qu'un hameçonnage sur son compte courant ne donne pas les droits d'administration","Pour simplifier la facturation des licences","Parce que la loi l'impose dans tous les pays","Pour pouvoir partager le compte d'administration"],
+ e:"Le compte quotidien est exposé aux courriels et à la navigation. Séparer les comptes limite l'impact d'une compromission.",
+ tip:"Navigation et messagerie jamais avec un compte à privilèges."},
+{d:"D5",t:"Services d'identité",q:"Quel protocole permet de provisionner et déprovisionner automatiquement les comptes dans des applications SaaS ?",
+ o:["SCIM","SAML","OCSP","SNMP"],
+ e:"SCIM normalise la création, la modification et la suppression des identités entre systèmes. SAML gère l'authentification unique, pas le provisionnement.",
+ tip:"SCIM = cycle de vie des comptes SaaS."},
+{d:"D5",t:"Sessions",q:"Quel contrôle limite le risque qu'une session restée ouverte sur un poste soit utilisée par un tiers ?",
+ o:["Le verrouillage automatique après inactivité","Le chiffrement du disque","Un pare-feu applicatif","La rotation des mots de passe"],
+ e:"Les délais d'inactivité et le verrouillage de session réduisent la fenêtre d'utilisation d'une session non surveillée.",
+ tip:"Session = délai d'inactivité + reconnexion."},
+// ---------------- DOMAINE 6 ----------------
+{d:"D6",t:"Stratégies",q:"Le régulateur bancaire mandate un cabinet pour auditer la sécurité d'AXONOVA Bank. De quel type d'audit s'agit-il ?",
+ o:["Un audit tierce partie","Un audit interne","Un audit externe mandaté par la banque","Une auto-évaluation"],
+ e:"Un audit externe est mandaté par l'organisation elle-même. Lorsqu'il est commandé par un tiers (régulateur, client), on parle d'audit tierce partie.",
+ tip:"Qui mandate ? L'organisation → externe ; un tiers → tierce partie."},
+{d:"D6",t:"Stratégies",q:"Quelle exigence est essentielle pour un auditeur ?",
+ o:["L'indépendance vis-à-vis de ce qu'il audite","La responsabilité de corriger les écarts","L'administration des systèmes audités","La conception des contrôles audités"],
+ e:"Un auditeur qui conçoit ou exploite les contrôles évaluerait son propre travail. Il constate, apprécie et recommande.",
+ tip:"L'auditeur ne corrige pas."},
+{d:"D6",t:"Vulnérabilités",q:"Quelle est la différence principale entre une analyse de vulnérabilités et un test d'intrusion ?",
+ o:["Le test d'intrusion exploite les faiblesses pour démontrer leur impact","L'analyse de vulnérabilités est toujours manuelle","Le test d'intrusion ne produit pas de rapport","Il n'y a aucune différence"],
+ e:"L'analyse inventorie les faiblesses connues, souvent avec des outils automatisés. Le test d'intrusion tente de les exploiter et de les enchaîner pour prouver un risque réel.",
+ tip:"Inventorier ≠ exploiter."},
+{d:"D6",t:"Vulnérabilités",q:"Quel est l'avantage d'un scan de vulnérabilités authentifié ?",
+ o:["Il voit les correctifs manquants et produit moins de faux positifs","Il est invisible pour les journaux","Il ne nécessite aucune autorisation","Il exploite automatiquement les failles"],
+ e:"Avec un compte, l'outil inspecte la configuration et les versions installées au lieu de les deviner depuis l'extérieur.",
+ tip:"Authentifié = vision de l'intérieur."},
+{d:"D6",t:"Vulnérabilités",q:"Que représente le score CVSS ?",
+ o:["La gravité d'une vulnérabilité, de 0 à 10","L'identifiant unique d'une vulnérabilité","Le type de faiblesse logicielle","Le nombre de systèmes touchés"],
+ e:"CVE : identifiant de la vulnérabilité. CWE : catégorie de faiblesse. CVSS : score de gravité. La priorité de correction tient aussi compte du contexte (exposition, actif).",
+ tip:"CVE = qui ; CWE = quoi ; CVSS = combien."},
+{d:"D6",t:"Tests d'intrusion",q:"Quelle est la PREMIÈRE étape indispensable avant un test d'intrusion ?",
+ o:["Obtenir une autorisation écrite et définir les règles d'engagement","Scanner tous les ports","Recruter une équipe rouge","Désactiver les systèmes de détection"],
+ e:"Sans autorisation écrite d'une personne habilitée, le test constitue une intrusion illégale. Les règles d'engagement fixent périmètre, dates, contacts et actions interdites.",
+ tip:"Autorisation écrite d'abord, toujours."},
+{d:"D6",t:"Tests d'intrusion",q:"Selon le NIST SP 800-115, quelles sont les phases d'un test d'intrusion ?",
+ o:["Planification, découverte, attaque, rapport","Analyse, conception, codage, test","Identification, confinement, éradication, reprise","Préparer, catégoriser, sélectionner, autoriser"],
+ e:"Les autres listes correspondent au cycle de développement, à la réponse à incident et au RMF.",
+ tip:"Planifier → découvrir → attaquer → rapporter."},
+{d:"D6",t:"Tests d'intrusion",q:"Le testeur ne reçoit aucune information sur l'environnement cible. De quel type de test s'agit-il ?",
+ o:["Boîte noire","Boîte blanche","Boîte grise","Test de conformité"],
+ e:"En boîte noire, le testeur simule un attaquant externe. En boîte blanche, il dispose de tout (code, architecture) ; en boîte grise, d'une partie.",
+ tip:"Noire = rien ; blanche = tout."},
+{d:"D6",t:"Tests d'intrusion",q:"Quel type de test est le plus EXHAUSTIF pour un temps donné ?",
+ o:["Boîte blanche","Boîte noire","Boîte grise","Test à l'aveugle"],
+ e:"Avec l'accès au code et à l'architecture, le testeur passe moins de temps en reconnaissance et couvre davantage de chemins. La boîte noire est plus réaliste mais moins exhaustive.",
+ tip:"Réalisme → noire ; couverture → blanche."},
+{d:"D6",t:"Tests d'intrusion",q:"Quelle équipe a pour rôle de favoriser la collaboration entre attaquants et défenseurs pour améliorer la détection ?",
+ o:["L'équipe violette","L'équipe rouge","L'équipe bleue","L'équipe blanche"],
+ e:"Rouge : attaque ; bleue : défend ; violette : met en commun pour améliorer la détection ; blanche : arbitre l'exercice.",
+ tip:"Rouge + bleu = violet."},
+{d:"D6",t:"Tests d'intrusion",q:"Un test d'intrusion réalisé « en double aveugle » signifie que…",
+ o:["Le testeur ne connaît pas l'environnement et l'équipe de défense n'est pas prévenue","Deux testeurs travaillent en parallèle","Le test est réalisé deux fois","Le rapport n'est pas transmis à la direction"],
+ e:"Ce format mesure à la fois la résistance des défenses et la capacité réelle de détection et de réponse. La direction, elle, est toujours informée et a autorisé le test.",
+ tip:"La direction autorise toujours, même en double aveugle."},
+{d:"D6",t:"Tests des contrôles",q:"Un robot exécute toutes les 5 minutes un scénario de virement pour vérifier la disponibilité du service. Il s'agit de…",
+ o:["Transactions synthétiques","Supervision des utilisateurs réels (RUM)","Fuzzing","Revue de code"],
+ e:"Les transactions synthétiques sont scriptées et régulières : elles détectent une panne même sans utilisateur actif. Le RUM mesure l'expérience des vrais utilisateurs.",
+ tip:"Scripté = synthétique ; réel = RUM."},
+{d:"D6",t:"Tests des contrôles",q:"Pourquoi synchroniser les horloges de tous les systèmes (NTP) avant une revue des journaux ?",
+ o:["Pour corréler les événements entre systèmes et établir une chronologie fiable","Pour réduire la taille des journaux","Pour chiffrer les journaux","Pour accélérer le réseau"],
+ e:"Sans horloge commune, impossible de reconstituer l'enchaînement d'une attaque, et la valeur probante des journaux diminue.",
+ tip:"Journaux exploitables = horodatage fiable."},
+{d:"D6",t:"Tests des contrôles",q:"Une équipe vérifie qu'il est impossible de saisir un virement d'un montant négatif. Quelle technique de test applique-t-elle ?",
+ o:["Un cas d'abus (misuse case)","Un test de charge","Une transaction synthétique","Un test de régression"],
+ e:"Les cas d'abus décrivent ce qu'un utilisateur malveillant tenterait, pour vérifier que l'application le refuse.",
+ tip:"Penser comme l'attaquant → misuse case."},
+{d:"D6",t:"Tests des contrôles",q:"Un testeur appelle directement l'API de paiement sans passer par l'application mobile. Quel type de test réalise-t-il ?",
+ o:["Un test d'interface","Un test d'acceptation utilisateur","Un test de reprise","Une revue de journaux"],
+ e:"Les tests d'interface vérifient chaque point d'échange (API, interface utilisateur, interface physique). Les contrôles faits seulement dans l'application mobile sont contournables : ils doivent être faits côté serveur.",
+ tip:"Ne jamais faire confiance au client."},
+{d:"D6",t:"Tests logiciels",q:"Quelle technique analyse le code source SANS l'exécuter ?",
+ o:["SAST","DAST","Fuzzing","Test d'intrusion"],
+ e:"Le SAST examine le code tôt dans le cycle de développement. Le DAST teste l'application en fonctionnement, le fuzzing envoie des entrées malformées.",
+ tip:"Statique = code ; dynamique = exécution."},
+{d:"D6",t:"Tests logiciels",q:"Quelle technique envoie à un programme un grand nombre d'entrées aléatoires ou malformées pour provoquer des plantages ?",
+ o:["Le fuzzing","La revue de code","Le SAST","La transaction synthétique"],
+ e:"Le fuzzing par mutation modifie des entrées valides ; le fuzzing par génération crée des entrées à partir d'un modèle du format attendu.",
+ tip:"Entrées aléatoires → fuzzing."},
+{d:"D6",t:"Tests logiciels",q:"Quel outil identifie les bibliothèques open source vulnérables utilisées par une application ?",
+ o:["L'analyse de la composition logicielle (SCA)","Le DAST","Le WAF","Le pare-feu à états"],
+ e:"La SCA inventorie les dépendances, leurs versions, leurs vulnérabilités connues et leurs licences ; elle s'appuie souvent sur un SBOM.",
+ tip:"Dépendances → SCA."},
+{d:"D6",t:"Tests logiciels",q:"Une équipe a testé 180 fonctions sur les 240 que compte l'application. Quelle est la couverture de test ?",
+ o:["75 %","60 %","133 %","25 %"],
+ e:"Couverture = éléments testés / éléments totaux = 180 / 240 = 75 %.",
+ tip:"Couverture = testé / total."},
+{d:"D6",t:"Tests logiciels",q:"Après une correction de bug, quel test vérifie que les fonctions existantes n'ont pas été cassées ?",
+ o:["Le test de régression","Le test unitaire du nouveau code uniquement","Le test d'acceptation initial","Le fuzzing"],
+ e:"Les tests de régression rejouent les cas existants après chaque modification ; leur automatisation est au cœur de l'intégration continue.",
+ tip:"Modification → régression."},
+{d:"D6",t:"Indicateurs",q:"Quel indicateur prouve le MIEUX l'efficacité du dispositif de sauvegarde ?",
+ o:["Le taux de restaurations testées avec succès","Le nombre de sauvegardes réalisées","Le volume de données sauvegardées","Le coût du stockage"],
+ e:"Une sauvegarde n'a de valeur que si elle se restaure. On mesure donc les restaurations réussies, dans les délais attendus.",
+ tip:"Mesurer les restaurations, pas les sauvegardes."},
+{d:"D6",t:"Indicateurs",q:"Le nombre de comptes orphelins actifs est un exemple de…",
+ o:["KRI (indicateur de risque clé)","KPI de performance commerciale","Indicateur financier","Score CVSS"],
+ e:"Un KRI signale une exposition au risque qui augmente. Un KPI mesure la performance d'un processus (par exemple, le délai de désactivation après départ).",
+ tip:"KRI = alerte ; KPI = performance."},
+{d:"D6",t:"Continuité",q:"Quel type de test de continuité est le PLUS probant mais aussi le PLUS risqué ?",
+ o:["L'interruption complète","L'exercice sur table","La relecture de la liste de contrôle","La simulation"],
+ e:"La bascule réelle prouve que le plan fonctionne, mais elle peut elle-même provoquer une indisponibilité. Elle exige l'accord de la direction.",
+ tip:"Du papier vers le réel : liste, table, simulation, parallèle, interruption."},
+{d:"D6",t:"Continuité",q:"Dans un test parallèle de continuité…",
+ o:["Le site de secours est activé sans arrêter la production","La production est arrêtée et basculée","Le plan est seulement relu","Le scénario est discuté en réunion"],
+ e:"Le test parallèle vérifie que le site de secours peut traiter les opérations, tout en laissant la production tourner.",
+ tip:"Parallèle = secours activé, production intacte."},
+{d:"D6",t:"Audits",q:"Quel rapport SOC porte sur les contrôles de sécurité, de disponibilité et de confidentialité d'un fournisseur ?",
+ o:["SOC 2","SOC 1","SOC 3 détaillé","SOC 4"],
+ e:"SOC 1 : contrôles pertinents pour l'information financière. SOC 2 : critères de confiance (sécurité, disponibilité, intégrité du traitement, confidentialité, vie privée). SOC 3 : version publique synthétique.",
+ tip:"Sécurité d'un fournisseur → SOC 2."},
+{d:"D6",t:"Audits",q:"Quelle est la différence entre un rapport SOC 2 Type I et Type II ?",
+ o:["Type I : conception à une date ; Type II : efficacité opérationnelle sur une période","Type I : sécurité ; Type II : finance","Type I : public ; Type II : confidentiel","Type I est plus exigeant que Type II"],
+ e:"Le Type II, couvrant souvent 6 à 12 mois, prouve que les contrôles ont fonctionné dans la durée : c'est celui à exiger d'un fournisseur critique.",
+ tip:"Type II = durée."},
+{d:"D6",t:"Audits",q:"Quel rapport SOC est destiné à une diffusion publique, par exemple sur le site du fournisseur ?",
+ o:["SOC 3","SOC 1","SOC 2 Type II","SOC 2 Type I"],
+ e:"Le SOC 3 résume le SOC 2 sans les détails des tests ; il peut être publié. Le SOC 2 est diffusé sous accord de confidentialité.",
+ tip:"SOC 3 = public."},
+{d:"D6",t:"Rapports",q:"Un constat ne peut pas être corrigé avant six mois. Comment le traiter correctement ?",
+ o:["Une exception formelle, à durée limitée, avec un contrôle compensatoire et l'acceptation du propriétaire","L'ignorer jusqu'au prochain audit","Le retirer du rapport","Le corriger en production sans passer par la gestion des changements"],
+ e:"La gestion des exceptions trace la décision, limite sa durée et réduit le risque en attendant la correction définitive.",
+ tip:"Exception = formelle, limitée, compensée."},
+{d:"D6",t:"Rapports",q:"À qui s'adresse en priorité la synthèse d'un rapport de test d'intrusion ?",
+ o:["À la direction, en termes de risques métier","Aux développeurs, avec le détail des requêtes","Au grand public","Au fournisseur de l'outil de scan"],
+ e:"La synthèse doit permettre à la direction de comprendre les risques et de décider. Le détail technique figure en annexe pour les équipes.",
+ tip:"Parler risque à la direction, technique aux équipes."},
+{d:"D6",t:"Rapports",q:"Un chercheur découvre une vulnérabilité dans un logiciel bancaire. Quelle démarche est éthique ?",
+ o:["Prévenir l'éditeur et lui laisser un délai raisonnable avant publication (divulgation coordonnée)","Publier immédiatement les détails pour alerter","Vendre la vulnérabilité au plus offrant","Exploiter la faille pour prouver sa gravité"],
+ e:"La divulgation coordonnée protège les utilisateurs tout en incitant à corriger. Le Code d'éthique ISC2 interdit de nuire au public ou d'agir illégalement.",
+ tip:"Prévenir, attendre, publier."},
+{d:"D6",t:"Tests des contrôles",q:"Quel outil rejoue automatiquement des techniques d'attaque connues pour vérifier que la détection fonctionne ?",
+ o:["La simulation de brèches et d'attaques (BAS)","Un analyseur de journaux","Un scanner de ports","Un gestionnaire de mots de passe"],
+ e:"Les outils BAS s'appuient souvent sur MITRE ATT&CK et vérifient en continu que les alertes se déclenchent.",
+ tip:"BAS = tester la détection en continu."}
+];
+
+const CASES = [
+{id:"A",titre:"340 comptes d'anciens employés",dom:"D5 · Cycle de vie",
+ contexte:"Une revue des accès d'AXONOVA Bank révèle 340 comptes actifs appartenant à d'anciens employés. Les départs sont signalés à l'IT par courriel, quand le manager y pense. Plusieurs de ces comptes se sont connectés au cours des trois derniers mois.",
+ qs:[
+ {q:"Quelle est la PREMIÈRE action ?",
+  o:[["Désactiver immédiatement les 340 comptes et analyser les connexions récentes","Supprime l'exposition et permet de vérifier s'il y a eu des abus."],
+     ["Lancer un projet d'outil IAM sur un an","Nécessaire, mais laisse le risque ouvert pendant un an."],
+     ["Supprimer les comptes définitivement","Perte de traçabilité, alors que des connexions suspectes sont à analyser."],
+     ["Envoyer un rappel aux managers","Ne traite pas les comptes existants."]],
+  e:"On réduit d'abord l'exposition, puis on enquête sur les connexions récentes : elles peuvent révéler un incident."},
+ {q:"Comment éviter que la situation se reproduise ?",
+  o:[["Relier le SIRH à l'IAM pour que chaque départ déclenche la désactivation","La source de vérité RH automatise le processus de départ."],
+     ["Demander aux employés de supprimer leur compte en partant","Aucune garantie."],
+     ["Imposer la rotation des mots de passe tous les 30 jours","Sans effet sur un compte orphelin connu de son ancien titulaire."],
+     ["Faire une revue des accès tous les cinq ans","Beaucoup trop espacé."]],
+  e:"Un processus arrivée / mobilité / départ piloté par les RH, complété par des revues périodiques, ferme la porte durablement."},
+ {q:"Quel indicateur suivre ensuite ?",
+  o:[["Le délai entre le départ RH et la désactivation du compte","Mesure directement l'efficacité du processus de départ."],
+     ["Le nombre total de comptes créés","N'indique rien sur les départs."],
+     ["Le nombre d'appels au support","Sans lien direct."],
+     ["Le score CVSS moyen","Concerne les vulnérabilités, pas les identités."]],
+  e:"Cible typique : coupure le jour même pour tous, immédiate pour les départs sensibles."}
+ ]},
+{id:"B",titre:"MFA des administrateurs et des clients",dom:"D5 · Authentification",
+ contexte:"Tous les accès d'AXONOVA Bank (administrateurs compris) utilisent un code envoyé par SMS comme second facteur. Plusieurs clients ont été victimes de SIM swap, et un administrateur a saisi son code sur un faux portail.",
+ qs:[
+ {q:"Quel facteur choisir pour les administrateurs ?",
+  o:[["Des clés FIDO2, avec PAM et comptes d'administration dédiés","Résistant à l'hameçonnage et au SIM swap ; le PAM limite les privilèges."],
+     ["Un code TOTP","Mieux que le SMS, mais encore saisissable sur un faux portail."],
+     ["Un second mot de passe","Même type de facteur : pas de MFA."],
+     ["Une question secrète","Facilement devinable ou trouvable."]],
+  e:"Les comptes à privilèges méritent le facteur le plus robuste : FIDO2 refuse de s'authentifier sur un faux domaine."},
+ {q:"Pour les clients Mobile Money, quelle approche est la plus adaptée ?",
+  o:[["Lier le compte à l'appareil enrôlé et valider les opérations sensibles dans l'application, avec correspondance de nombres","Réduit la dépendance au numéro de téléphone et la fatigue MFA."],
+     ["Garder le SMS seul","Ne traite pas le SIM swap."],
+     ["Supprimer le second facteur pour simplifier","Augmente la fraude."],
+     ["Exiger une clé FIDO2 matérielle pour chaque client","Irréaliste à l'échelle de 2,3 millions de clients."]],
+  e:"La solution doit être sûre ET adaptée au public : liaison à l'appareil, contrôle renforcé après un changement de SIM, validation dans l'application."},
+ {q:"Un client signale un changement de SIM suspect. Quel contrôle compensatoire appliquer ?",
+  o:[["Un délai de sécurité sur les opérations sensibles après tout changement de SIM","Laisse le temps de détecter la fraude avant les virements."],
+     ["Bloquer définitivement le compte","Disproportionné."],
+     ["Ne rien faire","Le risque est connu."],
+     ["Envoyer un SMS de confirmation","Le SMS arrive justement chez le fraudeur."]],
+  e:"Le contrôle compensatoire réduit l'impact en attendant une solution plus robuste."}
+ ]},
+{id:"C",titre:"Le test d'intrusion de demain",dom:"D6 · Tests d'intrusion",
+ contexte:"Un prestataire propose à l'équipe technique de commencer un test d'intrusion sur l'API Mobile Money dès demain matin. Aucun contrat n'est signé ; le DSI est en congé ; le prestataire indique qu'il « fera attention ».",
+ qs:[
+ {q:"Que faire ?",
+  o:[["Reporter jusqu'à l'autorisation écrite de la direction et la définition des règles d'engagement","Sans autorisation, le test est illégal et peut perturber la production."],
+     ["Laisser démarrer, le prestataire est sérieux","Aucune protection juridique ni cadre."],
+     ["Démarrer seulement sur la production","Le pire choix sans cadre."],
+     ["Donner un accord oral de l'équipe technique","Personne n'est habilité à accepter ce risque."]],
+  e:"L'autorisation doit venir d'une personne habilitée à engager l'organisation et à accepter le risque."},
+ {q:"Que doivent contenir les règles d'engagement ?",
+  o:[["Périmètre, dates et horaires, contacts d'urgence, techniques interdites, traitement des données","Elles cadrent le test et protègent les deux parties."],
+     ["Seulement le prix de la prestation","Insuffisant."],
+     ["Les mots de passe de tous les administrateurs","Inutile et dangereux."],
+     ["La liste des employés à piéger","Hors cadre sans accord spécifique."]],
+  e:"Elles prévoient aussi l'arrêt immédiat en cas d'incident et la confidentialité des résultats."},
+ {q:"Faut-il prévenir le SOC ?",
+  o:[["Pas forcément : un test non annoncé mesure la détection, à condition qu'un contact habilité puisse arrêter l'escalade","Le test évalue aussi la capacité de détection et de réponse."],
+     ["Oui, toujours, sinon le test est illégal","La légalité vient de l'autorisation de la direction, pas de l'information du SOC."],
+     ["Non, et personne d'autre ne doit être informé","Un point de contact habilité est indispensable."],
+     ["Il faut désactiver le SOC pendant le test","Supprime un objectif majeur du test."]],
+  e:"Le choix d'annoncer ou non le test dépend de l'objectif ; un contact de confiance (équipe blanche) évite les escalades inutiles."}
+ ]},
+{id:"D",titre:"Le rapport SOC du fournisseur CRM",dom:"D6 · Audits",
+ contexte:"Le fournisseur SaaS du CRM d'AXONOVA Bank transmet un rapport SOC 2 Type I daté de l'an dernier pour prouver la qualité de sa sécurité.",
+ qs:[
+ {q:"Que prouve ce rapport ?",
+  o:[["La conception des contrôles à une date donnée","Le Type I ne teste pas le fonctionnement dans la durée."],
+     ["L'efficacité des contrôles sur douze mois","C'est le rôle du Type II."],
+     ["La conformité financière du fournisseur","C'est le SOC 1."],
+     ["L'absence de vulnérabilité","Aucun rapport ne prouve cela."]],
+  e:"Un Type I répond à « les contrôles sont-ils bien conçus ? », pas à « ont-ils fonctionné ? »."},
+ {q:"Que demander ?",
+  o:[["Un SOC 2 Type II récent couvrant une période de 6 à 12 mois","Preuve de l'efficacité opérationnelle."],
+     ["Un SOC 3","Synthèse publique, moins détaillée."],
+     ["Une simple attestation sur l'honneur","Aucune valeur d'audit."],
+     ["Rien de plus","Assurance insuffisante pour un fournisseur critique."]],
+  e:"Pour un fournisseur critique, le SOC 2 Type II est la référence, complétée par une clause d'audit au contrat."},
+ {q:"En lisant le rapport, quel point est souvent oublié ?",
+  o:[["Les contrôles complémentaires à la charge du client","Le fournisseur suppose que le client gère certains contrôles (accès, MFA, revue)."],
+     ["La couleur du logo de l'auditeur","Sans importance."],
+     ["Le nombre de pages","Sans importance."],
+     ["La nationalité des employés","Sans rapport."]],
+  e:"Les « Complementary User Entity Controls » rappellent que la sécurité dans le cloud est partagée."}
+ ]},
+{id:"E",titre:"Le test de reprise",dom:"D6 · Continuité",
+ contexte:"La direction d'AXONOVA Bank veut prouver au régulateur que le plan de reprise du service de paiement fonctionne. Le plan n'a jamais été testé. Un collaborateur propose de couper la production un vendredi à 14 h pour « faire un vrai test ».",
+ qs:[
+ {q:"Quel premier type de test recommander ?",
+  o:[["Un exercice sur table avec toutes les parties prenantes","Sans risque, il révèle rapidement les lacunes d'un plan jamais testé."],
+     ["Une interruption complète vendredi à 14 h","Risque élevé pour un plan jamais éprouvé."],
+     ["Aucun test : le plan est bien écrit","Un plan non testé n'est qu'une hypothèse."],
+     ["Un test de charge de l'application","Ne teste pas la reprise."]],
+  e:"On progresse en réalisme : table, simulation, parallèle, puis interruption complète lorsque le plan est mûr."},
+ {q:"Quelle étape suivante permet de vérifier le site de secours sans risquer la production ?",
+  o:[["Un test parallèle","Le site de secours traite des opérations pendant que la production continue."],
+     ["Une relecture du plan","Déjà couverte par l'exercice sur table."],
+     ["Une interruption complète","Risque pour la production."],
+     ["Un scan de vulnérabilités","Hors sujet."]],
+  e:"Le test parallèle est l'étape intermédiaire la plus probante sans arrêter le service."},
+ {q:"Quel indicateur présenter au régulateur ?",
+  o:[["L'écart entre le RTO visé et le RTO mesuré pendant le test","Prouve la capacité réelle de reprise."],
+     ["Le nombre de pages du plan","N'indique pas l'efficacité."],
+     ["Le nombre de participants à la réunion","Indicateur d'activité, pas de résultat."],
+     ["Le budget du site de secours","Ne mesure pas l'efficacité."]],
+  e:"On mesure les résultats (RTO et RPO atteints), pas l'activité."}
+ ]}
+];
+
+const GLOSSARY = [
+["ABAC","Contrôle d'accès fondé sur des attributs (utilisateur, ressource, contexte)."],["AS","Service d'authentification de Kerberos, qui délivre le TGT."],["BAS","Simulation automatisée de brèches et d'attaques."],
+["Boîte noire / grise / blanche","Niveau de connaissance du testeur : rien, partiel, total."],["CER / EER","Taux d'erreur croisé : point où FAR = FRR."],["Couverture de test","Éléments testés / éléments totaux."],
+["Credential stuffing","Réutilisation d'identifiants volés sur d'autres services."],["CVE","Identifiant public d'une vulnérabilité."],["CVSS","Score de gravité d'une vulnérabilité, de 0 à 10."],
+["CWE","Catalogue des types de faiblesses logicielles."],["DAC","Contrôle d'accès discrétionnaire : le propriétaire décide."],["DAST","Test dynamique d'une application en fonctionnement."],
+["Divulgation coordonnée","Prévenir l'éditeur et laisser un délai avant de publier une faille."],["Équipe rouge / bleue / violette","Attaque / défense / collaboration des deux."],["FAR","Taux de faux acceptés (erreur de type II)."],
+["Fatigue MFA","Notifications répétées jusqu'à l'acceptation par lassitude."],["FIDO2 / passkeys","Authentification par clé cryptographique liée au site, résistante à l'hameçonnage."],["FRR","Taux de faux rejets (erreur de type I)."],
+["Fuzzing","Envoi d'entrées aléatoires ou malformées pour provoquer des erreurs."],["Golden ticket","TGT Kerberos forgé avec la clé du compte krbtgt."],["HOTP / TOTP","Code à usage unique basé sur un compteur / sur l'heure."],
+["IdP","Fournisseur d'identité, qui authentifie l'utilisateur."],["Juste-à-temps (JIT)","Privilèges accordés temporairement, sur demande."],["Kerberoasting","Cassage hors ligne des tickets de comptes de service."],
+["KDC","Centre de distribution de clés Kerberos (AS + TGS)."],["KPI / KRI","Indicateur de performance / indicateur de risque."],["MAC","Contrôle d'accès obligatoire fondé sur des étiquettes."],
+["Misuse case","Scénario de test décrivant ce qu'un attaquant tenterait."],["OAuth 2.0","Protocole d'autorisation déléguée par jetons d'accès."],["OIDC","OpenID Connect : authentification au-dessus d'OAuth 2.0."],
+["PAM","Gestion des accès privilégiés."],["Password spraying","Un mot de passe courant testé sur de nombreux comptes."],["Privilege creep","Accumulation de droits au fil des changements de poste."],
+["RBAC","Contrôle d'accès fondé sur les rôles."],["Recertification","Revue périodique des accès par les responsables."],["Règles d'engagement","Cadre écrit d'un test d'intrusion."],
+["RUM","Supervision de l'expérience des utilisateurs réels."],["SAML 2.0","Fédération d'identité par assertions XML."],["SAST","Analyse statique du code source."],
+["SCA","Analyse des composants et dépendances tiers."],["SCIM","Protocole de provisionnement automatique des comptes."],["SOC 1 / 2 / 3","Rapports d'audit : finance / sécurité / synthèse publique."],
+["SP / RP","Fournisseur de services / partie de confiance, qui consomme l'identité."],["TGS","Service d'octroi de tickets de Kerberos."],["TGT","Ticket d'octroi de tickets Kerberos."],
+["Transaction synthétique","Scénario scripté exécuté régulièrement pour la supervision."],["Type I / Type II","Rapport SOC : conception à une date / efficacité sur une période."],["Test de régression","Vérifie qu'une modification n'a pas cassé l'existant."]
+];
+
+</script>
+<script>
+(function(){
+"use strict";
+var LETTERS=["A","B","C","D","E","F"];
+function dlabel(d){for(var i=0;i<CONFIG.domains.length;i++)if(CONFIG.domains[i][0]===d)return CONFIG.domains[i][1];return d;}
+function el(tag,attrs,children){var e=document.createElement(tag);if(attrs){for(var k in attrs){if(k==="text")e.textContent=attrs[k];else if(k==="cls")e.className=attrs[k];else e.setAttribute(k,attrs[k]);}}
+ (children||[]).forEach(function(c){if(c!=null)e.appendChild(typeof c==="string"?document.createTextNode(c):c);});return e;}
+function shuffle(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t;}return a;}
+
+/* ---------- Onglets ---------- */
+var tabs=document.querySelectorAll("nav button");
+Array.prototype.forEach.call(tabs,function(b){b.addEventListener("click",function(){
+  Array.prototype.forEach.call(tabs,function(x){x.setAttribute("aria-selected",x===b?"true":"false");document.getElementById("tab-"+x.dataset.tab).hidden=(x!==b);});
+});});
+
+/* ---------- Quiz ---------- */
+var S={filter:"ALL",list:[],idx:0};
+function newSession(){
+  var pool=[];QUESTIONS.forEach(function(q,i){if(S.filter==="ALL"||q.d===S.filter)pool.push(i);});
+  var ord=shuffle(pool.length);
+  S.list=ord.map(function(k){var qi=pool[k];return{qi:qi,perm:shuffle(QUESTIONS[qi].o.length),chosen:null};});
+  S.idx=0;render();
+}
+function stats(){var a=0,o=0;S.list.forEach(function(it){if(it.chosen!==null){a++;if(it.chosen===0)o++;}});return{a:a,o:o};}
+function renderStats(){var s=stats();document.getElementById("sAns").textContent=s.a;document.getElementById("sOk").textContent=s.o;
+  document.getElementById("sPct").textContent=s.a?Math.round(100*s.o/s.a)+" %":"—";document.getElementById("sTot").textContent=S.list.length;
+  document.getElementById("progBar").style.width=(S.list.length?100*s.a/S.list.length:0)+"%";}
+function renderDots(){var d=document.getElementById("dots");d.innerHTML="";
+  S.list.forEach(function(it,i){var c="dot"+(i===S.idx?" cur":"")+(it.chosen===null?"":(it.chosen===0?" ok":" ko"));
+    var b=el("button",{cls:c,text:String(i+1),"aria-label":"Question "+(i+1)});b.addEventListener("click",function(){S.idx=i;render();});d.appendChild(b);});
+  var r=el("button",{cls:"dot"+(S.idx===S.list.length?" cur":""),text:"✓","aria-label":"Résultats"});r.addEventListener("click",function(){S.idx=S.list.length;render();});d.appendChild(r);}
+function answer(origIdx){var it=S.list[S.idx];if(!it||it.chosen!==null)return;it.chosen=origIdx;render();}
+function render(){
+  renderStats();renderDots();
+  var box=document.getElementById("qbox");box.innerHTML="";
+  if(!S.list.length){box.appendChild(el("p",{cls:"empty",text:"Aucune question pour ce filtre."}));return;}
+  if(S.idx>=S.list.length){box.appendChild(renderResult());return;}
+  var it=S.list[S.idx],Q=QUESTIONS[it.qi],answered=it.chosen!==null;
+  var card=el("div",{cls:"card"});
+  card.appendChild(el("div",{cls:"meta"},[el("span",{cls:"tag"+(Q.d===CONFIG.domains[1][0]?" d2":""),text:dlabel(Q.d)}),el("span",{cls:"tag",text:Q.t}),el("span",{cls:"tag",text:"Question "+(S.idx+1)+" / "+S.list.length})]));
+  card.appendChild(el("div",{cls:"q",text:Q.q}));
+  var opts=el("div",{cls:"opts"});
+  it.perm.forEach(function(orig,pos){
+    var cls="opt";if(answered){if(orig===0)cls+=" ok";else if(orig===it.chosen)cls+=" ko";}
+    var b=el("button",{cls:cls},[el("span",{cls:"k",text:LETTERS[pos]}),el("span",{text:Q.o[orig]})]);
+    if(answered)b.disabled=true;else b.addEventListener("click",function(){answer(orig);});
+    opts.appendChild(b);});
+  card.appendChild(opts);
+  if(answered){
+    var good=it.chosen===0,posGood=it.perm.indexOf(0);
+    var fb=el("div",{cls:"fb "+(good?"ok":"ko")},[el("h3",{text:good?"Bonne réponse":"Réponse incorrecte — la bonne réponse est "+LETTERS[posGood]+" : "+Q.o[0]}),el("div",{text:Q.e})]);
+    card.appendChild(fb);
+    if(Q.tip)card.appendChild(el("div",{cls:"note tip"},[el("b",{text:"Tip examen : "}),Q.tip]));
+    if(Q.rex)card.appendChild(el("div",{cls:"note rex"},[el("b",{text:"REX : "}),Q.rex]));
+  }
+  var prev=el("button",{cls:"btn sec",text:"← Précédente"});prev.disabled=S.idx===0;prev.addEventListener("click",function(){S.idx--;render();});
+  var next=el("button",{cls:"btn",text:S.idx===S.list.length-1?"Voir les résultats":"Suivante →"});next.addEventListener("click",function(){S.idx++;render();});
+  card.appendChild(el("div",{cls:"nav"},[prev,next]));
+  box.appendChild(card);
+}
+function renderResult(){
+  var s=stats(),c=el("div",{cls:"card result"});
+  c.appendChild(el("h2",{text:"Bilan de la session"}));
+  var pct=s.a?Math.round(100*s.o/s.a):0;
+  c.appendChild(el("div",{cls:"big",text:pct+" %"}));
+  c.appendChild(el("p",{text:s.o+" bonne(s) réponse(s) sur "+s.a+" question(s) répondue(s), "+(S.list.length-s.a)+" sans réponse."}));
+  var dom=el("div",{cls:"dom"});
+  CONFIG.domains.map(function(x){return x[0];}).forEach(function(d){var a=0,o=0;S.list.forEach(function(it){if(QUESTIONS[it.qi].d===d&&it.chosen!==null){a++;if(it.chosen===0)o++;}});
+    if(a)dom.appendChild(el("div",{cls:"stat"},[el("b",{text:Math.round(100*o/a)+" %"}),el("span",{text:dlabel(d)+" — "+o+"/"+a})]));});
+  var topics={};S.list.forEach(function(it){if(it.chosen!==null&&it.chosen!==0){var t=QUESTIONS[it.qi].t;topics[t]=(topics[t]||0)+1;}});
+  c.appendChild(dom);
+  var keys=Object.keys(topics);
+  c.appendChild(el("p",{text:keys.length?"Thèmes à revoir : "+keys.map(function(k){return k+" ("+topics[k]+")";}).join(", ")+".":"Aucune erreur sur les questions répondues : excellent."}));
+  var verdict=pct>=80?CONFIG.verdict[0]:pct>=70?CONFIG.verdict[1]:CONFIG.verdict[2];
+  c.appendChild(el("div",{cls:"note tip"},[el("b",{text:"Conseil : "}),verdict]));
+  var again=el("button",{cls:"btn gold",text:"Refaire uniquement mes erreurs"});
+  var wrong=S.list.filter(function(it){return it.chosen!==null&&it.chosen!==0;});
+  again.disabled=!wrong.length;
+  again.addEventListener("click",function(){S.list=shuffle(wrong.length).map(function(k){var qi=wrong[k].qi;return{qi:qi,perm:shuffle(QUESTIONS[qi].o.length),chosen:null};});S.idx=0;render();});
+  var fresh=el("button",{cls:"btn sec",text:"Nouvelle session complète"});fresh.addEventListener("click",newSession);
+  c.appendChild(el("div",{cls:"nav"},[again,fresh]));
+  return c;
+}
+Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"),function(b){b.addEventListener("click",function(){
+  S.filter=b.dataset.f;Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});newSession();});});
+document.getElementById("restart").addEventListener("click",newSession);
+document.addEventListener("keydown",function(e){
+  if(document.getElementById("tab-quiz").hidden||e.target.tagName==="INPUT")return;
+  var it=S.list[S.idx];
+  if(it&&/^[1-4]$/.test(e.key)){var pos=parseInt(e.key,10)-1;if(pos<it.perm.length)answer(it.perm[pos]);}
+  else if(e.key==="ArrowRight"&&S.idx<S.list.length){S.idx++;render();}
+  else if(e.key==="ArrowLeft"&&S.idx>0){S.idx--;render();}
+});
+
+/* ---------- Cas pratiques ---------- */
+var CS=[];
+function resetCases(){CS=CASES.map(function(c){return c.qs.map(function(q){return{perm:shuffle(q.o.length),chosen:null};});});renderCases();}
+function renderCases(){
+  var box=document.getElementById("cbox");box.innerHTML="";
+  CASES.forEach(function(c,ci){
+    var card=el("div",{cls:"card case"});
+    card.appendChild(el("div",{cls:"meta"},[el("span",{cls:"tag",text:"Cas "+c.id}),el("span",{cls:"tag d2",text:c.dom})]));
+    card.appendChild(el("h3",{text:c.titre}));
+    card.appendChild(el("div",{cls:"ctx",text:c.contexte}));
+    c.qs.forEach(function(q,qi){
+      var st=CS[ci][qi],answered=st.chosen!==null;
+      var w=el("div",{cls:"sq"});
+      w.appendChild(el("div",{cls:"q",text:(qi+1)+". "+q.q}));
+      var opts=el("div",{cls:"opts"});
+      st.perm.forEach(function(orig,pos){
+        var cls="opt";if(answered){if(orig===0)cls+=" ok";else if(orig===st.chosen)cls+=" ko";}
+        var label=el("span",null,[q.o[orig][0]]);
+        if(answered)label.appendChild(el("span",{cls:"why",text:(orig===0?"✔ ":"✗ ")+q.o[orig][1]}));
+        var b=el("button",{cls:cls},[el("span",{cls:"k",text:LETTERS[pos]}),label]);
+        if(answered)b.disabled=true;else b.addEventListener("click",function(){st.chosen=orig;renderCases();});
+        opts.appendChild(b);});
+      w.appendChild(opts);
+      if(answered){var good=st.chosen===0;
+        w.appendChild(el("div",{cls:"fb "+(good?"ok":"ko")},[el("h3",{text:good?"Bonne réponse":"Réponse attendue : "+LETTERS[st.perm.indexOf(0)]}),el("div",{text:q.e})]));}
+      card.appendChild(w);});
+    box.appendChild(card);});
+}
+document.getElementById("caseReset").addEventListener("click",resetCases);
+
+/* ---------- REX & tips ---------- */
+function list(items){return el("ul",null,items.map(function(t){return el("li",{text:t});}));}
+function box(cls,title,items){return el("div",{cls:"box "+cls},[el("h3",{text:title}),list(items)]);}
+(function(){var t=document.getElementById("tab-tips");
+  t.appendChild(el("h2",{cls:"sec",text:"Retours d'expérience (REX)"}));
+  var g=el("div",{cls:"grid2"});
+  CONFIG.rex.forEach(function(r){g.appendChild(el("div",{cls:"box r"},[el("h3",{text:r[0]}),el("p",{text:r[1],style:"margin:0"})]));});
+  t.appendChild(g);
+  t.appendChild(el("h2",{cls:"sec",text:"Bonnes pratiques et anti-patterns"}));
+  t.appendChild(el("div",{cls:"grid2"},[box("g","À faire",CONFIG.good),box("b","À éviter",CONFIG.bad)]));
+  t.appendChild(el("h2",{cls:"sec",text:CONFIG.tipsTitle}));
+  t.appendChild(el("div",{cls:"grid2"},[box("","Raisonnement",CONFIG.reason),box("","Pièges fréquents",CONFIG.traps)]));
+  t.appendChild(el("h2",{cls:"sec",text:"Méthode en 5 temps"}));
+  t.appendChild(el("div",{cls:"box"},[el("ol",{style:"margin:0;padding-left:20px"},["Qui suis-je dans le scénario ?","Que demande-t-on exactement ?","Éliminer les deux options clairement fausses","Entre les deux restantes, choisir la plus stratégique et la plus en amont","Valider et passer : pas de retour en arrière à l'examen"].map(function(x){return el("li",{text:x});}))]));
+})();
+
+/* ---------- Cheat sheet ---------- */
+(function(){var t=document.getElementById("tab-cheat");
+  CONFIG.cheat.forEach(function(sec){t.appendChild(el("h2",{cls:"sec",text:sec[0]}));
+    t.appendChild(el("table",null,[el("thead",null,[el("tr",null,[el("th",{text:"Thème"}),el("th",{text:"À retenir"})])]),el("tbody",null,sec[1].map(function(r){return el("tr",null,[el("td",{text:r[0]}),el("td",{text:r[1]})]);}))]));});
+})();
+
+/* ---------- Glossaire ---------- */
+(function(){var body=document.getElementById("gbody"),empty=document.getElementById("gempty"),inp=document.getElementById("gsearch");
+  var rows=GLOSSARY.slice().sort(function(a,b){return a[0].localeCompare(b[0],"fr");});
+  function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
+  function draw(){var f=norm(inp.value.trim());body.innerHTML="";var n=0;
+    rows.forEach(function(r){if(!f||norm(r[0]+" "+r[1]).indexOf(f)>=0){n++;body.appendChild(el("tr",null,[el("td",{text:r[0]}),el("td",{text:r[1]})]));}});
+    empty.hidden=n>0;}
+  inp.addEventListener("input",draw);draw();
+})();
+
+newSession();resetCases();
+})();
+</script>
+</body>
+</html>

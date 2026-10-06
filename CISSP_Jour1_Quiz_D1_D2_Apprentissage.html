@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISSP Jour 1 — Quiz D1 & D2</title>
+<style>
+:root{--navy:#1E2761;--deep:#121A45;--gold:#C9A227;--ice:#CADCFC;--iceL:#EEF3FD;--ink:#1F2433;--gray:#5B6275;--line:#DDE3EF;--bg:#F5F7FB;--card:#FFFFFF;
+--ok:#2E7D4F;--okL:#E6F4EC;--ko:#B03A2E;--koL:#FBEAE8;--amb:#B7791F;--ambL:#FDF3E1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Calibri,"Segoe UI",Arial,sans-serif}
+header{background:var(--deep);color:#fff;padding:20px 16px 0}
+.wrap{max-width:980px;margin:0 auto}
+.kick{color:var(--gold);font-weight:700;letter-spacing:.12em;font-size:12px;text-transform:uppercase}
+h1{font-family:Cambria,Georgia,serif;margin:4px 0 4px;font-size:28px}
+.sub{color:var(--ice);margin:0 0 14px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{background:transparent;border:0;color:var(--ice);padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap}
+nav button[aria-selected="true"]{background:var(--bg);color:var(--navy)}
+main{padding:20px 16px 60px}
+section[hidden]{display:none}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer;color:var(--navy)}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn{border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.btn.sec{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.gold{background:var(--gold);color:var(--deep)}
+.btn:disabled{opacity:.4;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.stat b{display:block;font-family:Cambria,Georgia,serif;font-size:22px;color:var(--navy)}
+.stat span{font-size:13px;color:var(--gray)}
+.prog{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .25s}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(18,26,69,.06)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.tag{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--iceL);color:var(--navy)}
+.tag.d2{background:var(--ambL);color:var(--amb)}
+.q{font-family:Cambria,Georgia,serif;font-size:20px;color:var(--navy);margin:6px 0 16px;line-height:1.35}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;font:inherit;color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--navy);background:var(--iceL)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:var(--okL)} .opt.ok .k{background:var(--ok)}
+.opt.ko{border-color:var(--ko);background:var(--koL)} .opt.ko .k{background:var(--ko)}
+.opt .why{display:block;font-size:14px;color:var(--gray);margin-top:4px;font-style:italic}
+.fb{margin-top:16px;border-radius:10px;padding:14px 16px;border-left:0}
+.fb.ok{background:var(--okL)} .fb.ko{background:var(--koL)}
+.fb h3{margin:0 0 6px;font-size:16px}
+.fb.ok h3{color:var(--ok)} .fb.ko h3{color:var(--ko)}
+.note{margin-top:10px;padding:10px 14px;border-radius:10px;font-size:15px}
+.note.tip{background:var(--iceL)} .note.rex{background:var(--ambL)}
+.note b{color:var(--navy)} .note.rex b{color:var(--amb)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:16px;flex-wrap:wrap}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+.dot{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:#fff;font-size:12px;cursor:pointer;color:var(--gray);font-family:inherit}
+.dot.cur{outline:2px solid var(--gold);outline-offset:1px}
+.dot.ok{background:var(--ok);color:#fff;border-color:var(--ok)} .dot.ko{background:var(--ko);color:#fff;border-color:var(--ko)}
+.result h2{font-family:Cambria,Georgia,serif;color:var(--navy);margin:0 0 6px}
+.big{font-family:Cambria,Georgia,serif;font-size:56px;color:var(--navy);font-weight:700;line-height:1}
+.dom{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:16px 0}
+.case{margin-bottom:18px}
+.case .ctx{background:var(--iceL);border-radius:10px;padding:12px 14px;margin:10px 0 16px}
+.case .sq{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.case h3{font-family:Cambria,Georgia,serif;color:var(--navy);margin:0;font-size:22px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:15px}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px}
+td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--iceL)}
+td:first-child{font-weight:700;color:var(--navy);width:28%}
+h2.sec{font-family:Cambria,Georgia,serif;color:var(--navy);margin:22px 0 10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.box h3{margin:0 0 6px;font-family:Cambria,Georgia,serif;color:var(--navy);font-size:17px}
+.box.r{background:var(--ambL);border-color:transparent} .box.r h3{color:var(--amb)}
+.box.g{background:var(--okL);border-color:transparent} .box.g h3{color:var(--ok)}
+.box.b{background:var(--koL);border-color:transparent} .box.b h3{color:var(--ko)}
+.box ul{margin:4px 0 0;padding-left:20px}
+input[type=search]{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;margin-bottom:12px}
+.empty{color:var(--gray);font-style:italic;padding:10px}
+.kbd{font-size:13px;color:var(--gray)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}h1{font-size:22px}.q{font-size:18px}td:first-child{width:38%}}
+@media print{header nav,.bar,.nav,.dots{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kick">CISSP · Jour 1 · Mode apprentissage</div>
+  <h1>Domaine 1 & Domaine 2 — Quiz d'entraînement</h1>
+  <p class="sub">Sécurité et gestion des risques · Sécurité des actifs — réponses mélangées à chaque session, correction détaillée immédiate.</p>
+  <nav role="tablist">
+    <button role="tab" data-tab="quiz" aria-selected="true">Quiz</button>
+    <button role="tab" data-tab="cases" aria-selected="false">Cas pratiques examen</button>
+    <button role="tab" data-tab="tips" aria-selected="false">REX & tips</button>
+    <button role="tab" data-tab="cheat" aria-selected="false">Cheat sheet</button>
+    <button role="tab" data-tab="glo" aria-selected="false">Glossaire</button>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<section id="tab-quiz">
+  <div class="bar" id="filters">
+    <button class="chip" data-f="ALL" aria-pressed="true">Tous les domaines</button>
+    <button class="chip" data-f="D1" aria-pressed="false">Domaine 1</button>
+    <button class="chip" data-f="D2" aria-pressed="false">Domaine 2</button>
+    <span style="flex:1"></span>
+    <button class="btn sec" id="restart">Nouvelle session</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="sAns">0</b><span>répondues</span></div>
+    <div class="stat"><b id="sOk">0</b><span>bonnes réponses</span></div>
+    <div class="stat"><b id="sPct">—</b><span>taux de réussite</span></div>
+    <div class="stat"><b id="sTot">0</b><span>questions</span></div>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+  <div id="qbox"></div>
+  <div class="dots" id="dots"></div>
+  <p class="kbd">Raccourcis : touches 1 à 4 pour répondre, flèches gauche / droite pour naviguer.</p>
+</section>
+
+<section id="tab-cases" hidden>
+  <div class="bar"><span>Cinq scénarios type examen, chacun avec trois questions. Chaque option est commentée après votre réponse.</span><span style="flex:1"></span><button class="btn sec" id="caseReset">Réinitialiser les cas</button></div>
+  <div id="cbox"></div>
+</section>
+
+<section id="tab-tips" hidden></section>
+<section id="tab-cheat" hidden></section>
+<section id="tab-glo" hidden>
+  <input type="search" id="gsearch" placeholder="Rechercher un terme (ex. RPO, dépositaire, legal hold)…" aria-label="Rechercher dans le glossaire">
+  <table><thead><tr><th>Terme</th><th>Définition</th></tr></thead><tbody id="gbody"></tbody></table>
+  <p class="empty" id="gempty" hidden>Aucun terme ne correspond.</p>
+</section>
+
+</div></main>
+<script>
+// CONVENTION : dans chaque tableau "o", la PREMIÈRE option est la bonne réponse.
+// L'affichage mélange toujours l'ordre (Fisher-Yates) : la position à l'écran est aléatoire.
+const QUESTIONS = [
+// ---------------- DOMAINE 1 ----------------
+{d:"D1",t:"Gouvernance",q:"Qui porte la responsabilité ULTIME de la sécurité de l'information dans une organisation ?",
+ o:["Le conseil d'administration et la direction générale","Le RSSI","Le DSI","L'auditeur interne"],
+ e:"La direction (conseil d'administration, DG) est responsable en dernier ressort. Elle délègue la mise en œuvre au RSSI et à l'IT, mais jamais la responsabilité. L'auditeur, lui, évalue de façon indépendante.",
+ tip:"« Responsabilité ultime » = direction. « Mise en œuvre » = RSSI / IT."},
+{d:"D1",t:"Gestion des risques",q:"Après la mise en place des contrôles, qui doit accepter FORMELLEMENT le risque résiduel ?",
+ o:["Le propriétaire du risque, au niveau de la direction","Le RSSI","L'administrateur système","Le prestataire qui exploite le système"],
+ e:"L'acceptation du risque est une décision métier. Le RSSI éclaire la décision et la documente, mais c'est le propriétaire du risque (un dirigeant) qui signe. Un prestataire ne peut pas accepter un risque à la place de son client.",
+ tip:"Le RSSI n'est presque jamais celui qui accepte le risque dans une bonne réponse.",
+ rex:"Un registre où le RSSI est propriétaire de tous les risques est un signal de gouvernance défaillante."},
+{d:"D1",t:"Gouvernance",q:"Quelle approche donne le plus de chances de succès à un programme de sécurité ?",
+ o:["Top-down : soutien et mandat de la direction","Bottom-up : initiative des équipes techniques","Approche par outils : déployer d'abord les technologies","Approche par conformité : viser uniquement la certification"],
+ e:"Sans mandat, budget et arbitrages de la direction, un programme porté par l'IT s'essouffle. La conformité seule ne garantit pas la sécurité, et les outils ne remplacent pas la gouvernance.",
+ tip:"Politique et mandat avant technique."},
+{d:"D1",t:"Gouvernance",q:"Un plan de sécurité à horizon d'environ un an, qui décline les objectifs stratégiques en projets concrets, est un plan…",
+ o:["Tactique","Stratégique","Opérationnel","Directeur"],
+ e:"Plan stratégique : 3 à 5 ans, orientations. Plan tactique : environ 1 an, projets et moyens. Plan opérationnel : court terme, tâches quotidiennes et procédures.",
+ tip:"Stratégique → long ; tactique → moyen (≈ 1 an) ; opérationnel → court."},
+{d:"D1",t:"Cadres de référence",q:"Laquelle de ces normes définit les exigences d'un SMSI et permet la certification d'une organisation ?",
+ o:["ISO/IEC 27001","ISO/IEC 27002","ISO/IEC 27005","NIST SP 800-53"],
+ e:"La 27001 fixe les exigences du système de management et se certifie. La 27002 est un catalogue de mesures (bonnes pratiques), la 27005 traite de la gestion des risques, et le SP 800-53 est un catalogue de contrôles du NIST.",
+ tip:"27001 = quoi (exigences, certifiable) ; 27002 = comment (mesures)."},
+{d:"D1",t:"Gouvernance",q:"Avant de signer avec un hébergeur cloud, l'entreprise examine ses certifications, ses rapports SOC 2 et ses clauses contractuelles. C'est un exemple de…",
+ o:["Due diligence","Due care","Transfert de risque","Acceptation du risque"],
+ e:"La due diligence consiste à rechercher et évaluer avant d'agir (connaître). La due care consiste ensuite à agir de façon raisonnable et prudente (appliquer les contrôles, surveiller).",
+ tip:"Diligence = Découvrir ; Care = Concrétiser."},
+{d:"D1",t:"Gouvernance",q:"Une banque applique les correctifs critiques dans les délais et forme son personnel chaque année. Elle démontre…",
+ o:["Sa due care","Sa due diligence","Un transfert de risque","Une analyse quantitative"],
+ e:"Agir comme le ferait une personne prudente et raisonnable, c'est la due care. Son absence peut être qualifiée de négligence.",
+ tip:"Une action concrète et continue → due care."},
+{d:"D1",t:"Politiques",q:"« Toutes les bases de données de production utilisent le chiffrement AES-256. » Ce texte est…",
+ o:["Un standard","Une politique","Une ligne directrice","Une procédure"],
+ e:"Un standard précise une technologie ou une règle obligatoire. La politique exprime l'intention générale (« les données clients sont chiffrées »), la procédure décrit les étapes, la ligne directrice recommande.",
+ tip:"Technologie nommée et obligatoire → standard."},
+{d:"D1",t:"Politiques",q:"Lequel de ces documents est NON obligatoire ?",
+ o:["La ligne directrice (guide)","La politique","La procédure","Le référentiel (baseline)"],
+ e:"Politique, standard, baseline et procédure sont obligatoires. Seule la ligne directrice est une recommandation.",
+ tip:"Guide = conseil, donc facultatif."},
+{d:"D1",t:"Politiques",q:"Qui doit approuver et signer la politique générale de sécurité de l'information ?",
+ o:["La direction générale","Le RSSI","Le responsable juridique","Le comité d'audit"],
+ e:"La politique exprime l'intention de la direction : sa signature lui donne autorité et légitimité. Le RSSI la rédige et la porte.",
+ tip:"Pas de signature de la direction = pas de mandat."},
+{d:"D1",t:"Analyse quantitative",q:"Un serveur vaut 200 M FCFA. Un incendie en détruirait 25 %. Quelle est la SLE ?",
+ o:["50 M FCFA","200 M FCFA","25 M FCFA","8 M FCFA"],
+ e:"SLE = AV × EF = 200 M × 0,25 = 50 M FCFA.",
+ tip:"Écrivez la formule avant de calculer."},
+{d:"D1",t:"Analyse quantitative",q:"La SLE d'un incident est de 50 M FCFA. Il se produit en moyenne une fois tous les 5 ans. Quelle est l'ALE ?",
+ o:["10 M FCFA","250 M FCFA","50 M FCFA","5 M FCFA"],
+ e:"Une fois tous les 5 ans → ARO = 0,2. ALE = SLE × ARO = 50 M × 0,2 = 10 M FCFA par an.",
+ tip:"« Une fois tous les N ans » → ARO = 1/N."},
+{d:"D1",t:"Analyse quantitative",q:"ALE avant contrôle : 40 M ; ALE après : 10 M ; coût annuel du contrôle : 12 M (FCFA). Quelle est la valeur annuelle du contrôle ?",
+ o:["18 M FCFA","30 M FCFA","28 M FCFA","−2 M FCFA"],
+ e:"Valeur = ALE avant − ALE après − coût annuel = 40 − 10 − 12 = 18 M FCFA. Le contrôle est rentable.",
+ tip:"Le coût du contrôle se soustrait toujours."},
+{d:"D1",t:"Analyse quantitative",q:"Un risque a une ALE de 20 M FCFA. Le seul contrôle disponible coûte 30 M FCFA par an. Quelle est la meilleure conclusion ?",
+ o:["Le contrôle n'est pas justifié financièrement ; étudier un autre traitement","Mettre en œuvre le contrôle, la sécurité n'a pas de prix","Ignorer le risque","Augmenter l'ARO estimé pour justifier le contrôle"],
+ e:"Un contrôle qui coûte plus que la perte qu'il évite n'est pas un bon choix. On étudie un contrôle moins cher, un transfert, ou une acceptation formelle. Ignorer ou manipuler les chiffres est une faute.",
+ tip:"Coût du contrôle > ALE → mauvais investissement."},
+{d:"D1",t:"Gestion des risques",q:"Souscrire une police de cyber-assurance est un exemple de…",
+ o:["Transfert du risque","Réduction du risque","Évitement du risque","Acceptation du risque"],
+ e:"L'assurance transfère (partage) l'impact financier. Attention : la responsabilité légale et l'atteinte à la réputation restent à l'organisation.",
+ tip:"Transférer le risque ≠ transférer la responsabilité."},
+{d:"D1",t:"Gestion des risques",q:"Laquelle de ces réponses N'EST PAS un traitement légitime du risque ?",
+ o:["Ignorer le risque","Accepter le risque","Éviter le risque","Transférer le risque"],
+ e:"Les quatre traitements sont réduire, transférer, éviter, accepter. Ignorer ou nier un risque connu (rejet) est une faute de gouvernance.",
+ tip:"Accepter = décision documentée. Ignorer = absence de décision."},
+{d:"D1",t:"Gestion des risques",q:"Le niveau de risque AVANT toute mesure de sécurité s'appelle…",
+ o:["Le risque inhérent","Le risque résiduel","L'appétit pour le risque","Le risque accepté"],
+ e:"Risque inhérent : avant contrôles. Risque résiduel : ce qui reste après les contrôles. L'appétit est le niveau de risque que la direction est prête à accepter.",
+ tip:"Inhérent = avant ; résiduel = après."},
+{d:"D1",t:"Gestion des risques",q:"La méthode Delphi, qui recueille des avis d'experts de manière anonyme et itérative, est associée à quelle analyse ?",
+ o:["Qualitative","Quantitative","Analyse coût/bénéfice","Analyse de Monte-Carlo"],
+ e:"Delphi recherche un consensus d'experts sur des échelles subjectives : c'est une technique qualitative.",
+ tip:"Avis d'experts, échelles faible/moyen/élevé → qualitative."},
+{d:"D1",t:"Gestion des risques",q:"Dans le RMF du NIST (SP 800-37), à quelle étape un dirigeant habilité accepte-t-il le risque résiduel d'un système ?",
+ o:["Autoriser","Évaluer","Sélectionner","Surveiller"],
+ e:"Les 7 étapes : Préparer, Catégoriser, Sélectionner, Mettre en œuvre, Évaluer, Autoriser, Surveiller. L'autorisation est donnée par l'Authorizing Official, qui accepte le risque résiduel.",
+ tip:"Évaluer = vérifier les contrôles ; Autoriser = décision de risque."},
+{d:"D1",t:"Gestion des risques",q:"Quelle est la PREMIÈRE étape du RMF du NIST (révision 2) ?",
+ o:["Préparer","Catégoriser","Sélectionner","Évaluer"],
+ e:"La révision 2 a ajouté l'étape « Préparer » en tête : établir le contexte et les priorités de l'organisation avant de catégoriser les systèmes.",
+ tip:"P-C-S-M-E-A-S."},
+{d:"D1",t:"Continuité",q:"Une BIA fixe un MTD de 24 h. Le temps de remise en état (WRT) est estimé à 6 h. Quel RTO MAXIMUM retenir ?",
+ o:["18 h","24 h","30 h","6 h"],
+ e:"RTO + WRT ≤ MTD → RTO ≤ 24 − 6 = 18 h. Un RTO de 24 h ferait dépasser le MTD une fois la remise en état ajoutée.",
+ tip:"RTO + WRT ≤ MTD."},
+{d:"D1",t:"Continuité",q:"Que mesure le RPO ?",
+ o:["La perte de données maximale acceptable, exprimée en temps","Le temps maximal pour rétablir un système","La durée maximale d'interruption tolérable","Le temps de vérification des données après reprise"],
+ e:"Le RPO répond à la question « jusqu'à quand peut-on revenir en arrière ? ». Il détermine la fréquence des sauvegardes ou de la réplication. Le RTO mesure le délai de reprise, le MTD la tolérance du métier, le WRT la remise en état.",
+ tip:"RPO = données ; RTO = temps de reprise."},
+{d:"D1",t:"Continuité",q:"Quelle est la PREMIÈRE étape de la planification de la continuité d'activité ?",
+ o:["Obtenir le soutien de la direction et formaliser la politique de continuité","Réaliser la BIA","Choisir un site de secours","Tester le plan"],
+ e:"Selon le NIST SP 800-34, la démarche commence par la politique de planification de continuité, qui porte le mandat de la direction. La BIA vient ensuite.",
+ tip:"Mandat d'abord, analyse ensuite."},
+{d:"D1",t:"Continuité",q:"Lors d'un incendie dans le datacenter, quelle est la priorité absolue ?",
+ o:["La sécurité des personnes","La protection des sauvegardes","La bascule sur le site de secours","La préservation des preuves"],
+ e:"La vie humaine passe toujours avant les biens, les données et la continuité.",
+ tip:"Option qui protège des vies → presque toujours la bonne."},
+{d:"D1",t:"Continuité",q:"Quelle affirmation sur le BCP et le DRP est correcte ?",
+ o:["Le DRP, centré sur l'IT, est un sous-ensemble du BCP","Le BCP est un sous-ensemble du DRP","BCP et DRP sont deux noms du même plan","Le DRP couvre les processus métier, le BCP l'infrastructure"],
+ e:"Le BCP maintient les fonctions métier (vision entreprise). Le DRP restaure les systèmes informatiques après un sinistre ; il s'inscrit dans le BCP.",
+ tip:"BCP = entreprise ; DRP = IT."},
+{d:"D1",t:"Continuité",q:"Qui doit déterminer le MTD d'un processus ?",
+ o:["Les responsables métier du processus","L'équipe d'exploitation informatique","Le prestataire d'hébergement","L'auditeur externe"],
+ e:"Le MTD exprime la tolérance du métier à l'interruption. Seul le métier peut l'évaluer ; l'IT en déduit ensuite RTO et stratégie technique.",
+ tip:"Une BIA faite par l'IT seule est un anti-pattern."},
+{d:"D1",t:"Personnel",q:"Quel est l'objectif PRINCIPAL de la séparation des tâches ?",
+ o:["Empêcher qu'une seule personne puisse commettre et dissimuler une fraude","Réduire les coûts de personnel","Accélérer les validations","Faciliter la rotation des postes"],
+ e:"En répartissant une opération sensible entre plusieurs personnes, la fraude nécessite une collusion. C'est un contrôle préventif.",
+ tip:"Séparation des tâches → prévention ; collusion nécessaire."},
+{d:"D1",t:"Personnel",q:"Les congés obligatoires sont surtout un contrôle…",
+ o:["Détectif","Préventif","Dissuasif uniquement","Correctif"],
+ e:"Pendant l'absence imposée, un remplaçant effectue les tâches : une fraude qui exige une présence quotidienne se révèle. Le contrôle est donc surtout détectif.",
+ tip:"Congés obligatoires et rotation → détection."},
+{d:"D1",t:"Personnel",q:"Un administrateur va être licencié pour faute. Quand ses accès doivent-ils être désactivés ?",
+ o:["Pendant l'entretien de notification","À la fin de son préavis","Le lendemain de l'entretien","Après restitution de son matériel"],
+ e:"Pour un départ conflictuel, la désactivation intervient au moment même de la notification, pour empêcher toute action malveillante.",
+ tip:"Départ conflictuel → coupure immédiate, coordonnée RH / IT."},
+{d:"D1",t:"Personnel",q:"Un employé a changé trois fois de poste et conserve tous ses anciens droits. Quel contrôle aurait évité cette situation ?",
+ o:["Une revue périodique des accès","Le chiffrement des postes","Un pare-feu applicatif","Une politique de mots de passe plus stricte"],
+ e:"L'accumulation de privilèges (privilege creep) se traite par des revues d'accès régulières et par le retrait des anciens droits à chaque mobilité.",
+ tip:"Mobilité → retirer avant d'ajouter."},
+{d:"D1",t:"Droit",q:"Quel niveau de preuve est exigé dans une affaire civile ?",
+ o:["La prépondérance des preuves","Au-delà du doute raisonnable","La preuve certaine","Aucun niveau particulier"],
+ e:"En civil, il suffit que les preuves penchent davantage en faveur d'une partie. Le pénal exige une preuve au-delà du doute raisonnable.",
+ tip:"Civil → prépondérance ; pénal → doute raisonnable."},
+{d:"D1",t:"Droit",q:"Une société poursuit un ancien partenaire pour rupture de contrat et demande des dommages et intérêts. De quel droit relève l'affaire ?",
+ o:["Droit civil","Droit pénal","Droit administratif","Droit international public"],
+ e:"Les litiges entre parties privées, avec réparation financière, relèvent du droit civil.",
+ tip:"Dommages et intérêts → civil ; prison → pénal."},
+{d:"D1",t:"Propriété intellectuelle",q:"Comment protéger au mieux le modèle de scoring anti-fraude d'une banque, qui fait sa valeur concurrentielle ?",
+ o:["Comme secret d'affaires : NDA, accès restreint, classification élevée","Par un brevet, publié et protégé 20 ans","Par une marque","Par un droit d'auteur seul"],
+ e:"Un brevet impose de publier l'invention, ce qui aiderait les fraudeurs. Le secret d'affaires protège tant que l'information reste secrète, à condition que l'entreprise démontre des mesures de protection.",
+ tip:"Secret d'affaires = pas d'enregistrement, mais protection à prouver."},
+{d:"D1",t:"Propriété intellectuelle",q:"Quelle est la durée de protection habituelle d'un brevet ?",
+ o:["20 ans à compter du dépôt","10 ans renouvelables indéfiniment","Vie de l'auteur + 70 ans","Tant que l'information reste secrète"],
+ e:"Brevet : 20 ans. Marque : 10 ans renouvelables. Droit d'auteur : vie de l'auteur + 50 à 70 ans selon le pays. Secret d'affaires : tant qu'il est gardé.",
+ tip:"Brevet 20 ; marque 10 renouvelable."},
+{d:"D1",t:"Vie privée",q:"Sous le RGPD, dans quel délai une violation de données doit-elle en principe être notifiée à l'autorité de contrôle ?",
+ o:["72 heures après en avoir pris connaissance","24 heures","7 jours","30 jours"],
+ e:"Le RGPD prévoit 72 heures. Le circuit de notification (juridique, DPO, direction) doit être intégré au plan de réponse à incident.",
+ tip:"Le juridique décide de la notification, pas l'équipe technique seule."},
+{d:"D1",t:"Vie privée",q:"Une banque ivoirienne veut héberger des données clients sur un SaaS situé hors de l'UEMOA. Que faire EN PREMIER ?",
+ o:["Analyser les exigences légales et réglementaires applicables au transfert","Signer le contrat pour profiter de la remise commerciale","Chiffrer les données et lancer la migration","Demander au fournisseur sa certification ISO 27001 et migrer"],
+ e:"Le transfert transfrontalier de données personnelles est encadré (en Côte d'Ivoire, loi 2013-450 et ARTCI ; exigences du régulateur bancaire). L'analyse juridique précède toute décision technique ou contractuelle.",
+ tip:"Juridique et conformité avant technique."},
+{d:"D1",t:"Éthique",q:"Votre employeur vous demande de ne pas signaler une faille qui met en danger la sécurité du public. Quel canon ISC2 guide votre décision ?",
+ o:["Canon 1 : protéger la société et le bien commun","Canon 3 : servir avec diligence ses mandants","Canon 4 : faire progresser la profession","Canon 2 : agir légalement envers son employeur"],
+ e:"Les canons s'appliquent dans l'ordre. La protection de la société (canon 1) prime sur le service à l'employeur (canon 3).",
+ tip:"Société > honnêteté/légalité > mandants > profession."},
+{d:"D1",t:"Concepts",q:"Quel mécanisme apporte la NON-RÉPUDIATION d'un message ?",
+ o:["La signature numérique avec la clé privée de l'émetteur","Un HMAC avec une clé partagée","Le chiffrement symétrique AES","Un hachage SHA-256 seul"],
+ e:"Seul l'émetteur détient sa clé privée : il ne peut pas nier avoir signé. Avec un HMAC, les deux parties partagent la clé, donc l'une ou l'autre pourrait avoir produit le code.",
+ tip:"Non-répudiation → asymétrique + clé privée."},
+{d:"D1",t:"Menaces",q:"Dans STRIDE, la menace « R » (répudiation) est principalement contrée par…",
+ o:["Des journaux protégés et des signatures numériques","Le chiffrement des données au repos","La limitation de débit","Le contrôle d'accès basé sur les rôles"],
+ e:"STRIDE : usurpation (authentification), altération (intégrité), répudiation (non-répudiation : journaux, signatures), divulgation (confidentialité), déni de service (disponibilité), élévation (autorisation).",
+ tip:"Chaque lettre de STRIDE viole une propriété de sécurité."},
+{d:"D1",t:"Menaces",q:"Quelle méthode de modélisation des menaces en 7 étapes est centrée sur le risque métier ?",
+ o:["PASTA","STRIDE","DREAD","CVSS"],
+ e:"PASTA (Process for Attack Simulation and Threat Analysis) part des objectifs métier pour simuler les attaques. STRIDE classe les menaces, DREAD les note, CVSS note des vulnérabilités.",
+ tip:"PASTA = 7 étapes, orienté métier."},
+{d:"D1",t:"Fournisseurs",q:"À quoi sert principalement un SBOM ?",
+ o:["Inventorier les composants d'un logiciel pour suivre leurs vulnérabilités","Mesurer la disponibilité d'un fournisseur","Signer le code avant livraison","Chiffrer les échanges avec un fournisseur"],
+ e:"Le Software Bill of Materials liste les bibliothèques et composants. Quand une vulnérabilité est publiée, on sait immédiatement quels produits sont touchés.",
+ tip:"SBOM = liste des ingrédients du logiciel."},
+{d:"D1",t:"Fournisseurs",q:"Une banque externalise son centre d'appels. Qui reste responsable de la protection des données clients ?",
+ o:["La banque","Le prestataire uniquement","L'autorité de protection des données","Les clients eux-mêmes"],
+ e:"On peut externaliser une activité, pas la responsabilité. La banque, responsable de traitement, doit encadrer le prestataire (contrat, audits, notification d'incident).",
+ tip:"Externaliser ≠ se décharger."},
+{d:"D1",t:"Sensibilisation",q:"Un module e-learning annuel destiné à tout le personnel sur les risques d'hameçonnage relève de…",
+ o:["La sensibilisation","La formation","L'éducation","La certification"],
+ e:"Sensibilisation : changer les comportements de tous (le « quoi »). Formation : compétence pour un rôle (le « comment »). Éducation : compréhension profonde (le « pourquoi »).",
+ tip:"Tout le personnel + comportements → sensibilisation."},
+{d:"D1",t:"Sensibilisation",q:"Quel indicateur reflète le mieux l'efficacité d'un programme contre l'hameçonnage ?",
+ o:["Le taux de signalement des messages suspects","Le nombre de modules suivis","Le taux de clic seul","Le nombre d'affiches publiées"],
+ e:"Un taux de clic nul est irréaliste ; ce qui protège l'organisation, c'est que les attaques soient signalées vite. Les indicateurs d'activité (modules, affiches) ne mesurent pas l'effet.",
+ tip:"Mesurez l'effet, pas l'activité."},
+{d:"D1",t:"Investigations",q:"Une enquête interne sur une violation de politique révèle un détournement de fonds. Quelle précaution aurait dû être prise dès le départ ?",
+ o:["Préserver les preuves et leur chaîne de traçabilité","Effacer les journaux pour protéger la vie privée","Confronter immédiatement l'employé","Réinstaller son poste de travail"],
+ e:"Toute enquête administrative peut devenir pénale. Si les preuves n'ont pas été préservées correctement, elles risquent d'être irrecevables.",
+ tip:"Préserver avant de réparer."},
+// ---------------- DOMAINE 2 ----------------
+{d:"D2",t:"Rôles",q:"Qui détermine le niveau de classification d'une base de données clients ?",
+ o:["Le propriétaire de la donnée","L'administrateur de bases de données","Le RSSI","L'auditeur interne"],
+ e:"Le propriétaire (un responsable métier) connaît la valeur de la donnée et en répond. Le RSSI définit le schéma de classification, le dépositaire applique les protections, l'auditeur vérifie.",
+ tip:"Propriétaire classifie ; dépositaire protège."},
+{d:"D2",t:"Rôles",q:"L'équipe d'exploitation réalise les sauvegardes, applique le chiffrement et gère le stockage selon les règles fixées. Son rôle est celui de…",
+ o:["Dépositaire (custodian)","Propriétaire","Responsable de traitement","Personne concernée"],
+ e:"Le dépositaire met en œuvre au quotidien les protections décidées par le propriétaire.",
+ tip:"L'IT est dépositaire, pas propriétaire."},
+{d:"D2",t:"Rôles",q:"Une banque confie le traitement de dossiers clients à un centre d'appels externe qui agit selon ses instructions. Le centre d'appels est…",
+ o:["Sous-traitant","Responsable de traitement","Propriétaire de la donnée","Personne concernée"],
+ e:"Le responsable de traitement (la banque) fixe les finalités et les moyens. Le sous-traitant traite pour son compte et selon ses instructions.",
+ tip:"Qui décide des finalités ? Le responsable. Qui exécute ? Le sous-traitant."},
+{d:"D2",t:"Classification",q:"Dans le schéma gouvernemental américain, quel niveau correspond à un dommage GRAVE en cas de divulgation ?",
+ o:["Secret","Top Secret","Confidential","Unclassified"],
+ e:"Top Secret : dommage exceptionnellement grave. Secret : dommage grave. Confidential : dommage. Unclassified : pas de dommage pour la sécurité nationale.",
+ tip:"Exceptionnellement grave / grave / dommage."},
+{d:"D2",t:"Classification",q:"Dans un schéma commercial classique, quel est le niveau le PLUS élevé ?",
+ o:["Confidentiel / propriétaire","Privé","Sensible","Public"],
+ e:"Ordre usuel : Confidentiel (propriétaire), Privé, Sensible, Public. « Privé » vise en général les données personnelles.",
+ tip:"Les noms varient selon les organisations : retenez la logique d'impact."},
+{d:"D2",t:"Classification",q:"Un rapport combine des données publiques et quelques données classées « Confidentiel ». Quelle classification lui appliquer ?",
+ o:["Confidentiel","Public","Une moyenne des deux niveaux","Aucune, il faut séparer les données"],
+ e:"Un ensemble prend le niveau le plus élevé de ses éléments. L'agrégation peut même justifier un niveau supérieur à celui de chaque élément pris isolément.",
+ tip:"Le niveau le plus haut l'emporte."},
+{d:"D2",t:"Classification",q:"Quelle est la différence entre marquage et étiquetage ?",
+ o:["Le marquage est lisible par l'humain ; l'étiquette est une métadonnée lisible par la machine","Ce sont deux synonymes","Le marquage ne concerne que le papier","L'étiquetage est réservé aux données publiques"],
+ e:"Un en-tête « Confidentiel » informe la personne qui lit. Une étiquette en métadonnée permet aux outils (DLP, DRM) d'appliquer automatiquement les règles.",
+ tip:"Sans étiquettes fiables, la DLP est aveugle."},
+{d:"D2",t:"Classification",q:"Des résultats financiers trimestriels, classés « Sensible », viennent d'être publiés. Que faire ?",
+ o:["Les déclassifier, sur décision du propriétaire","Les maintenir au même niveau par prudence","Les détruire","Les reclasser en « Confidentiel »"],
+ e:"La valeur et la sensibilité d'une donnée évoluent. Garder un niveau trop élevé coûte cher et décrédibilise la classification. La déclassification est décidée par le propriétaire.",
+ tip:"Classifier n'est pas définitif : on revoit."},
+{d:"D2",t:"Destruction",q:"Des disques SSD contenant des données clients quittent l'entreprise. Quelle méthode est la PLUS appropriée ?",
+ o:["Effacement cryptographique ou destruction physique","Dégaussage","Formatage complet","Suppression des fichiers puis vidage de la corbeille"],
+ e:"Le dégaussage agit sur les supports magnétiques, pas sur la mémoire flash. Le formatage et la suppression laissent des données récupérables. Pour un SSD qui sort : purge cryptographique ou destruction.",
+ tip:"SSD → jamais de dégaussage."},
+{d:"D2",t:"Destruction",q:"Sur quel type de support le dégaussage est-il efficace ?",
+ o:["Bandes et disques durs magnétiques","SSD","Clés USB","DVD-ROM"],
+ e:"Le dégaussage efface le champ magnétique. Il est sans effet sur la mémoire flash (SSD, USB) et sur les supports optiques.",
+ tip:"Magnétique = dégaussage possible."},
+{d:"D2",t:"Destruction",q:"Une entreprise quitte un fournisseur cloud. Comment garantir au mieux l'effacement de ses données ?",
+ o:["Effacement cryptographique : détruire les clés de chiffrement","Demander le dégaussage des disques du fournisseur","Supprimer les fichiers via la console","Écraser les fichiers une fois avec des zéros"],
+ e:"Sans accès physique aux supports partagés, la méthode de référence est de chiffrer les données avec des clés que l'on contrôle, puis de détruire ces clés.",
+ tip:"Cloud → crypto-shredding."},
+{d:"D2",t:"Destruction",q:"Selon le NIST SP 800-88, quelle catégorie convient à un disque qui sera réutilisé EN INTERNE ?",
+ o:["Effacer (Clear)","Purger (Purge)","Détruire (Destroy)","Archiver"],
+ e:"Clear : protège contre les outils de récupération simples, suffisant pour une réutilisation interne. Purge : le support quitte l'organisation. Destroy : support inutilisable, données les plus sensibles.",
+ tip:"Interne → Clear ; sortie → Purge ; maximum → Destroy."},
+{d:"D2",t:"Destruction",q:"La présence de données résiduelles sur un support après un effacement s'appelle…",
+ o:["La rémanence des données","La déduplication","L'agrégation","L'inférence"],
+ e:"La rémanence explique pourquoi un formatage ne suffit pas et pourquoi des méthodes de purge ou de destruction existent.",
+ tip:"Rémanence → choisir la méthode selon le support."},
+{d:"D2",t:"États de la donnée",q:"Quel état de la donnée est le PLUS difficile à protéger ?",
+ o:["En usage (en cours de traitement)","Au repos","En transit","Archivée"],
+ e:"Pour être traitée, la donnée doit être déchiffrée en mémoire. Des solutions existent (enclaves sécurisées) mais restent plus complexes que le chiffrement au repos ou en transit.",
+ tip:"Repos → chiffrement ; transit → TLS ; usage → difficile."},
+{d:"D2",t:"Protection",q:"Une donnée pseudonymisée reste-t-elle une donnée personnelle ?",
+ o:["Oui, car la réidentification reste possible avec la clé ou la table de correspondance","Non, elle devient anonyme","Seulement si elle est chiffrée","Seulement si elle est stockée hors du pays"],
+ e:"La pseudonymisation est réversible : la donnée reste soumise aux lois sur la vie privée. Seule une anonymisation réelle (irréversible) la fait sortir de ce champ.",
+ tip:"Pseudonymisée = personnelle ; anonymisée = plus personnelle."},
+{d:"D2",t:"Protection",q:"Dans une solution de tokenisation, quel élément devient l'actif le plus critique ?",
+ o:["Le coffre qui associe jetons et valeurs réelles","Les jetons","Les applications qui manipulent les jetons","Le réseau entre les applications"],
+ e:"Les jetons n'ont pas de valeur en eux-mêmes. Le coffre (vault) contient les correspondances : il doit être fortement protégé.",
+ tip:"On déplace le risque vers le coffre."},
+{d:"D2",t:"Protection",q:"Quel est le prérequis le plus important pour qu'une solution DLP soit efficace ?",
+ o:["Une classification des données et un étiquetage fiables","Un pare-feu de nouvelle génération","Le chiffrement de tous les postes","Une politique de mots de passe forte"],
+ e:"La DLP doit savoir ce qui est sensible pour le détecter. Sans classification ni étiquettes, elle génère des faux positifs ou laisse passer les fuites.",
+ tip:"Classification avant outils."},
+{d:"D2",t:"Contrôles",q:"Un référentiel de contrôles prévoit des mesures Wi-Fi, mais l'organisation n'a aucun réseau sans fil. Les retirer s'appelle…",
+ o:["Le cadrage (scoping)","L'adaptation (tailoring)","La compensation","L'acceptation du risque"],
+ e:"Le cadrage retire les contrôles hors périmètre. L'adaptation ajuste les paramètres des contrôles retenus (ex. durée de verrouillage).",
+ tip:"Scoping = quels contrôles ; tailoring = comment."},
+{d:"D2",t:"Contrôles",q:"L'organisation conserve le contrôle de verrouillage de session du référentiel mais passe le délai de 15 à 5 minutes. C'est…",
+ o:["De l'adaptation (tailoring)","Du cadrage (scoping)","Un contrôle compensatoire","Une dérogation"],
+ e:"Ajuster un paramètre d'un contrôle conservé pour l'adapter au contexte, c'est le tailoring.",
+ tip:"On garde le contrôle mais on change son réglage → tailoring."},
+{d:"D2",t:"Rétention",q:"Que signifie « fin de support » (EOS) pour un produit ?",
+ o:["L'éditeur ne fournit plus de correctifs de sécurité","Le produit n'est plus commercialisé","Le produit est gratuit","La licence doit être renouvelée"],
+ e:"EOL : plus vendu. EOS : plus maintenu, donc plus de correctifs. L'EOS est le vrai signal de risque.",
+ tip:"Planifier le remplacement avant l'EOS."},
+{d:"D2",t:"Rétention",q:"Un système en fin de support est indispensable au métier et ne peut pas être remplacé avant un an. Meilleure réponse ?",
+ o:["Isoler le système et renforcer sa surveillance (contrôle compensatoire)","Le laisser tel quel, il fonctionne","L'arrêter immédiatement","Le connecter directement à Internet pour faciliter le support"],
+ e:"Quand le contrôle normal (correctifs) n'est plus possible, on applique un contrôle compensatoire et on documente le risque résiduel, accepté par le propriétaire.",
+ tip:"Pas de correctif → compenser et documenter."},
+{d:"D2",t:"Rétention",q:"Un litige est en cours. La politique de rétention prévoit la destruction des courriels concernés ce mois-ci. Que faire ?",
+ o:["Suspendre la destruction : la conservation légale (legal hold) prime","Appliquer la politique de rétention","Détruire seulement les pièces jointes","Demander l'accord de l'administrateur messagerie"],
+ e:"Le legal hold, déclenché par le juridique, suspend la destruction des éléments concernés, y compris dans les sauvegardes. Détruire des preuves pendant un litige expose à de lourdes sanctions.",
+ tip:"Legal hold > politique de rétention."},
+{d:"D2",t:"Cycle de vie",q:"À quelle étape du cycle de vie la minimisation des données est-elle la PLUS efficace ?",
+ o:["La collecte","L'archivage","La destruction","Le partage"],
+ e:"Une donnée qui n'est pas collectée ne peut ni fuir, ni être conservée trop longtemps. La minimisation à la source est le contrôle le plus économique.",
+ tip:"Meilleure donnée à protéger : celle qu'on n'a pas."},
+{d:"D2",t:"Gestion des actifs",q:"Quelle est la base de toute démarche de sécurité des actifs ?",
+ o:["Un inventaire complet et à jour, avec un propriétaire par actif","L'achat d'un outil DLP","Le chiffrement de tous les disques","Un test d'intrusion annuel"],
+ e:"On ne protège que ce qu'on connaît. L'inventaire, avec un propriétaire identifié, permet ensuite classification, protection et suivi.",
+ tip:"Inventaire → propriétaire → classification → contrôles."},
+{d:"D2",t:"Rôles",q:"Qui exécute la procédure de destruction sécurisée des supports, une fois celle-ci autorisée ?",
+ o:["Le dépositaire, selon la procédure approuvée","Le propriétaire de la donnée lui-même","L'utilisateur final","L'auditeur interne"],
+ e:"Le propriétaire décide et autorise ; le dépositaire exécute selon la procédure ; l'auditeur peut vérifier les certificats de destruction.",
+ tip:"Décider ≠ exécuter ≠ vérifier."}
+];
+
+const CASES = [
+{id:"A",titre:"Fuite au centre d'appels",dom:"D1 · D2",
+ contexte:"AXONOVA Bank (banque digitale fictive, Abidjan, 2,3 millions de clients) a externalisé son centre d'appels. Un vendredi soir, le prestataire signale que 20 000 fiches clients (nom, téléphone, solde) ont été exfiltrées depuis un poste de conseiller. Le contrat ne prévoit ni droit d'audit ni délai de notification.",
+ qs:[
+ {q:"Quelle est la PREMIÈRE action du RSSI ?",
+  o:[["Activer le plan de réponse à incident et associer le juridique et la direction","C'est le cadre prévu : confinement, préservation des preuves, et évaluation des obligations de notification par le juridique."],
+     ["Résilier immédiatement le contrat du prestataire","Décision précipitée : elle peut compliquer l'enquête et l'accès aux preuves détenues par le prestataire."],
+     ["Publier un communiqué de presse","La communication suit un plan validé par la direction et le juridique, pas en premier."],
+     ["Lancer un audit complet de sécurité du prestataire","Utile plus tard, mais ce n'est pas la priorité au moment de l'incident."]],
+  e:"En incident, on suit le processus : on contient, on préserve les preuves et on associe le juridique, qui déterminera les notifications (autorité de protection des données, régulateur, clients)."},
+ {q:"Vis-à-vis des clients et de l'autorité de protection des données, qui est responsable ?",
+  o:[["AXONOVA Bank, en tant que responsable de traitement","Elle fixe les finalités du traitement ; elle reste responsable même si un sous-traitant est en cause."],
+     ["Le prestataire seul, puisque la fuite vient de chez lui","Le prestataire a ses propres obligations de sous-traitant, mais la responsabilité principale reste à la banque."],
+     ["Le conseiller qui utilisait le poste","Sa responsabilité individuelle peut être engagée, mais pas à la place de celle de l'organisation."],
+     ["Personne, la fuite étant d'origine externe","L'origine externe n'efface pas l'obligation de protéger les données."]],
+  e:"Externaliser une activité ne transfère pas la responsabilité de la protection des données. Le responsable de traitement répond de ses sous-traitants."},
+ {q:"Quelle mesure contractuelle est la PLUS importante à ajouter pour l'avenir ?",
+  o:[["Clause de notification d'incident dans un délai court et droit d'audit","Ces clauses donnent visibilité et capacité de contrôle : elles manquaient précisément ici."],
+     ["Clause de pénalité financière élevée","Dissuasive, mais elle ne donne ni visibilité ni contrôle sur la sécurité du prestataire."],
+     ["Obligation pour le prestataire d'utiliser un antivirus","Trop technique et trop étroit pour un contrat ; à traiter dans des exigences de sécurité plus larges."],
+     ["Clause d'exclusivité","Sans rapport avec la sécurité."]],
+  e:"La gestion des risques fournisseurs (SCRM) repose sur la diligence avant contrat et sur des clauses qui donnent à la banque les moyens de vérifier et de réagir : notification, audit, réversibilité, sort des données."}
+ ]},
+{id:"B",titre:"BIA du service de paiement",dom:"D1 · Continuité",
+ contexte:"La BIA du service de paiement Mobile Money d'AXONOVA Bank conclut : au-delà de 4 heures d'arrêt, l'impact devient inacceptable (pertes, image, régulateur). Après une reprise technique, il faut 1 heure de vérification des transactions. Le métier accepte de perdre au maximum 5 minutes de transactions.",
+ qs:[
+ {q:"Quel RTO MAXIMUM l'équipe technique doit-elle viser ?",
+  o:[["3 heures","RTO + WRT ≤ MTD → RTO ≤ 4 − 1 = 3 h."],
+     ["4 heures","Ce serait le MTD : avec l'heure de vérification, on le dépasserait."],
+     ["5 minutes","5 minutes est le RPO, pas le RTO."],
+     ["5 heures","Additionne au lieu de soustraire : le MTD serait dépassé."]],
+  e:"MTD = 4 h (tolérance métier), WRT = 1 h (remise en état), RPO = 5 min (perte de données). Le RTO se déduit : 3 h maximum."},
+ {q:"Quelle stratégie technique répond au RPO de 5 minutes ?",
+  o:[["Réplication continue ou quasi temps réel vers un second site","Seule une réplication fréquente garantit une perte inférieure à 5 minutes."],
+     ["Sauvegarde quotidienne sur bande","Perte possible de 24 heures de transactions."],
+     ["Site froid avec sauvegarde hebdomadaire","Ni le RTO ni le RPO ne seraient tenus."],
+     ["Sauvegarde horaire sur disque","Perte possible jusqu'à 1 heure : supérieur au RPO."]],
+  e:"Le RPO dicte la fréquence de copie des données ; le RTO dicte le type de site (chaud, tiède, froid). Ici, il faut un site chaud avec réplication."},
+ {q:"Le DSI propose de fixer lui-même le MTD à 12 heures pour réduire les coûts. Que répondre ?",
+  o:[["Le MTD est fixé par le métier ; le DSI peut présenter le coût et la direction arbitre","Le MTD exprime la tolérance du métier ; l'IT éclaire la décision par les coûts."],
+     ["Accepter, c'est le DSI qui gère l'infrastructure","L'infrastructure ne détermine pas la tolérance du métier à l'interruption."],
+     ["Demander à l'auditeur de trancher","L'auditeur évalue, il ne décide pas."],
+     ["Garder 4 h sans discussion","Le coût doit être présenté : c'est à la direction d'arbitrer en connaissance de cause."]],
+  e:"La BIA est une démarche métier. Si le coût de la stratégie est trop élevé, la direction peut revoir ses exigences, mais en toute connaissance des impacts."}
+ ]},
+{id:"C",titre:"Fraude au SIM swap : faut-il investir ?",dom:"D1 · Analyse quantitative",
+ contexte:"Les comptes Mobile Money exposés à la fraude au SIM swap représentent 800 M FCFA. Chaque attaque réussie fait perdre 15 % de ce montant. On observe 3 attaques par an. Un dispositif de vérification renforcée coûte 60 M FCFA par an et ramènerait la fréquence à 1 attaque par an.",
+ qs:[
+ {q:"Quelle est l'ALE AVANT le dispositif ?",
+  o:[["360 M FCFA","SLE = 800 × 15 % = 120 M ; ALE = 120 × 3 = 360 M FCFA."],
+     ["120 M FCFA","C'est la SLE : il faut encore multiplier par l'ARO."],
+     ["2 400 M FCFA","Multiplie l'AV par l'ARO en oubliant l'EF."],
+     ["45 M FCFA","Calcul erroné de l'EF."]],
+  e:"Toujours : SLE = AV × EF, puis ALE = SLE × ARO."},
+ {q:"Quelle est la valeur annuelle du dispositif ?",
+  o:[["180 M FCFA","ALE après = 120 × 1 = 120 M ; valeur = 360 − 120 − 60 = 180 M FCFA."],
+     ["240 M FCFA","Oublie de soustraire le coût du dispositif."],
+     ["300 M FCFA","Soustrait seulement le coût de l'ALE avant."],
+     ["60 M FCFA","Confond valeur et coût."]],
+  e:"Valeur du contrôle = ALE avant − ALE après − coût annuel. Ici positive : le dispositif est justifié."},
+ {q:"Malgré ce calcul, la direction refuse le budget. Que fait le RSSI ?",
+  o:[["Documenter le risque et obtenir l'acceptation formelle et signée de la direction","La direction peut accepter le risque ; le RSSI s'assure que la décision est éclairée et tracée."],
+     ["Déployer le dispositif sur un autre budget sans accord","Contourne la gouvernance."],
+     ["Signaler la direction au régulateur","Disproportionné : refuser un investissement n'est pas une infraction."],
+     ["Ne rien faire et attendre la prochaine fraude","L'absence de trace expose l'organisation et le RSSI."]],
+  e:"Le rôle du RSSI est d'informer, de recommander et de tracer. L'acceptation d'un risque élevé doit être formelle, revue périodiquement, et remontée au comité des risques."}
+ ]},
+{id:"D",titre:"Mise au rebut de serveurs",dom:"D2 · Destruction et rétention",
+ contexte:"AXONOVA Bank remplace 12 serveurs. Ils contiennent des disques durs magnétiques et des SSD avec des données classées « Confidentiel ». Un recycleur local propose de les reprendre gratuitement. Par ailleurs, une partie des données concerne un client en litige avec la banque.",
+ qs:[
+ {q:"Avant toute action, que faut-il vérifier EN PREMIER ?",
+  o:[["Si une conservation légale (legal hold) s'applique à certaines données","Le litige en cours peut interdire la destruction : le juridique doit se prononcer avant tout."],
+     ["Le prix de revente des serveurs","Question financière secondaire."],
+     ["La certification ISO 14001 du recycleur","Utile pour l'environnement, mais ce n'est pas la priorité de sécurité."],
+     ["La date d'achat des serveurs","Sans incidence sur la décision."]],
+  e:"Le legal hold prime sur la politique de rétention et sur la mise au rebut. Les données concernées doivent être préservées (copie sécurisée) avant toute destruction."},
+ {q:"Quelle méthode retenir pour les SSD ?",
+  o:[["Effacement cryptographique ou destruction physique certifiée","Méthodes de purge ou de destruction adaptées à la mémoire flash."],
+     ["Dégaussage","Inefficace sur la mémoire flash."],
+     ["Formatage de bas niveau","Laisse des données récupérables du fait de la gestion interne des SSD."],
+     ["Suppression des partitions","Aucune protection réelle."]],
+  e:"Le support quitte l'organisation et contient des données « Confidentiel » : il faut purger ou détruire (NIST SP 800-88), avec une méthode adaptée à la technologie, et exiger un certificat de destruction."},
+ {q:"Qui doit exécuter la procédure de destruction ?",
+  o:[["Le dépositaire (exploitation), selon la procédure approuvée par le propriétaire","Le propriétaire autorise, le dépositaire exécute, l'auditeur vérifie."],
+     ["Le recycleur, sans contrôle","La banque perdrait la maîtrise de ses données."],
+     ["Le propriétaire de la donnée en personne","Il décide et autorise, il n'exécute pas."],
+     ["L'auditeur interne","Il doit rester indépendant pour vérifier."]],
+  e:"La séparation entre décider, exécuter et vérifier est une constante du CISSP. Un procès-verbal et des certificats de destruction bouclent le processus."}
+ ]},
+{id:"E",titre:"Migration du CRM vers un SaaS",dom:"D1 · D2 · Conformité",
+ contexte:"La direction commerciale veut migrer le CRM d'AXONOVA Bank vers un SaaS hébergé en Europe, pour bénéficier d'une remise de 30 % si le contrat est signé ce mois-ci. Le CRM contient des données personnelles de clients.",
+ qs:[
+ {q:"Quelle est la PREMIÈRE étape ?",
+  o:[["Analyser les exigences légales et réglementaires sur le transfert et l'externalisation","Due diligence : formalités auprès de l'autorité de protection des données, exigences du régulateur bancaire."],
+     ["Signer pour obtenir la remise","La pression commerciale ne justifie pas de sauter la conformité."],
+     ["Lancer la migration de test avec de vraies données","Transfert de données personnelles sans base légale."],
+     ["Demander au RSSI d'accepter le risque","Le RSSI n'est pas propriétaire du risque."]],
+  e:"En Côte d'Ivoire, la loi 2013-450 encadre les transferts de données personnelles hors du pays, sous le contrôle de l'ARTCI ; l'externalisation bancaire est aussi encadrée par le régulateur."},
+ {q:"Quelle mesure technique permet à la banque de garder la maîtrise de la confidentialité dans le SaaS ?",
+  o:[["Chiffrer les données avec des clés gérées par la banque","Sans les clés, le fournisseur ne peut pas lire les données ; en fin de contrat, détruire les clés rend les données illisibles."],
+     ["Faire confiance à la certification du fournisseur","La certification est une preuve utile, pas un contrôle que la banque maîtrise."],
+     ["Désactiver les journaux pour limiter les traces","Réduit la traçabilité et la capacité d'investigation."],
+     ["Utiliser un mot de passe commun pour toute l'équipe","Supprime l'imputabilité."]],
+  e:"La gestion des clés par le client (BYOK/HYOK) est la mesure clé de maîtrise des données dans le cloud. Elle facilite aussi l'effacement cryptographique en fin de contrat."},
+ {q:"Le contrat transfère au fournisseur la gestion de l'infrastructure. Quelle affirmation est juste ?",
+  o:[["La banque reste responsable de la protection des données de ses clients","On externalise l'exploitation, pas la responsabilité."],
+     ["Le fournisseur devient seul responsable","Faux : la banque reste responsable de traitement."],
+     ["L'autorité de protection des données devient responsable","Elle contrôle, elle n'exploite pas."],
+     ["Les clients acceptent le risque en utilisant l'application","Ils ne peuvent pas accepter un risque à la place de la banque."]],
+  e:"Le modèle de responsabilité partagée du cloud répartit les tâches, jamais la responsabilité finale vis-à-vis des clients et du régulateur."}
+ ]}
+];
+
+const GLOSSARY = [
+["ALE","Annualized Loss Expectancy : perte annuelle attendue (SLE × ARO)."],["ARO","Annualized Rate of Occurrence : nombre d'occurrences attendues par an."],["AV","Asset Value : valeur de l'actif."],
+["BIA","Business Impact Analysis : analyse d'impact sur l'activité ; détermine MTD, RTO, RPO."],["BCP / PCA","Plan de continuité d'activité : maintenir les fonctions métier."],["DRP / PRA","Plan de reprise informatique après sinistre ; sous-ensemble du BCP."],
+["CASB","Cloud Access Security Broker : visibilité et contrôle des usages SaaS."],["Chaîne de traçabilité","Documentation de qui a manipulé une preuve, quand et comment."],["COBIT","Cadre de gouvernance et de gestion de l'IT (ISACA)."],
+["Contrôle compensatoire","Mesure alternative lorsqu'un contrôle prévu est impossible."],["Dépositaire (custodian)","Applique les protections décidées par le propriétaire (souvent l'IT)."],["DLP","Data Loss Prevention : prévention des fuites de données."],
+["DPO","Délégué à la protection des données : conseille et contrôle la conformité."],["DREAD","Notation des menaces : dommage, reproductibilité, exploitabilité, utilisateurs touchés, découvrabilité."],["DRM / IRM","Gestion des droits numériques appliqués à un document."],
+["Due care","Agir comme une personne prudente et raisonnable (faire)."],["Due diligence","Rechercher et évaluer avant d'agir (savoir)."],["EF","Exposure Factor : pourcentage de l'actif perdu lors d'un incident."],
+["Effacement cryptographique","Rendre les données illisibles en détruisant les clés de chiffrement."],["EOL / EOS","Fin de commercialisation / fin de support (plus de correctifs)."],["Legal hold","Conservation légale : gel de la destruction en cas de litige."],
+["Ligne directrice","Document de recommandation, non obligatoire."],["KPI / KRI","Indicateur de performance / indicateur de risque (alerte précoce)."],["MTD / MTPD","Durée maximale tolérable d'interruption, fixée par le métier."],
+["NIST CSF 2.0","Cadre de cybersécurité : Govern, Identify, Protect, Detect, Respond, Recover."],["NIST SP 800-34","Guide de planification de la continuité des systèmes d'information."],["NIST SP 800-37 (RMF)","Cadre de gestion des risques en 7 étapes."],
+["NIST SP 800-88","Guide d'assainissement des supports : Clear, Purge, Destroy."],["Non-répudiation","Impossibilité de nier une action ; apportée par la signature numérique."],["OAPI","Organisation africaine de la propriété intellectuelle (Yaoundé)."],
+["PASTA","Méthode de modélisation des menaces en 7 étapes, centrée sur le métier."],["Politique","Document obligatoire et général exprimant l'intention de la direction."],["Procédure","Description obligatoire, pas à pas, d'une tâche."],
+["Propriétaire (owner)","Responsable métier d'un actif ou d'une donnée ; il la classifie."],["Pseudonymisation","Remplacement réversible des identifiants ; la donnée reste personnelle."],["Rémanence","Données résiduelles qui subsistent après un effacement."],
+["Responsable de traitement","Organisation qui fixe les finalités et moyens d'un traitement de données personnelles."],["Risque inhérent","Risque avant tout contrôle."],["Risque résiduel","Risque restant après les contrôles, accepté par la direction."],
+["ROSI","Retour sur investissement sécurité : (réduction d'ALE − coût) / coût."],["RPO","Recovery Point Objective : perte de données maximale acceptable, en temps."],["RTO","Recovery Time Objective : délai cible de rétablissement d'un système."],
+["SBOM","Software Bill of Materials : inventaire des composants d'un logiciel."],["Scoping (cadrage)","Retirer d'un référentiel les contrôles hors périmètre."],["SCRM","Gestion des risques de la chaîne d'approvisionnement."],
+["Secret d'affaires","Information confidentielle à valeur économique, protégée tant qu'elle reste secrète."],["SLE","Single Loss Expectancy : perte par occurrence (AV × EF)."],["Sous-traitant","Traite des données personnelles pour le compte du responsable de traitement."],
+["Standard","Règle obligatoire précisant une technologie ou un paramètre."],["STRIDE","Usurpation, altération, répudiation, divulgation, déni de service, élévation de privilèges."],["Tailoring (adaptation)","Ajuster les paramètres des contrôles retenus au contexte."],
+["Tokenisation","Remplacement d'une donnée par un jeton ; la valeur réelle est dans un coffre."],["Baseline (référentiel)","Niveau minimal de configuration obligatoire."],["WRT","Work Recovery Time : temps de vérification et de remise en état après reprise."]
+];
+
+</script>
+<script>
+(function(){
+"use strict";
+var LETTERS=["A","B","C","D","E","F"];
+function el(tag,attrs,children){var e=document.createElement(tag);if(attrs){for(var k in attrs){if(k==="text")e.textContent=attrs[k];else if(k==="cls")e.className=attrs[k];else e.setAttribute(k,attrs[k]);}}
+ (children||[]).forEach(function(c){if(c!=null)e.appendChild(typeof c==="string"?document.createTextNode(c):c);});return e;}
+function shuffle(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t;}return a;}
+
+/* ---------- Onglets ---------- */
+var tabs=document.querySelectorAll("nav button");
+Array.prototype.forEach.call(tabs,function(b){b.addEventListener("click",function(){
+  Array.prototype.forEach.call(tabs,function(x){x.setAttribute("aria-selected",x===b?"true":"false");document.getElementById("tab-"+x.dataset.tab).hidden=(x!==b);});
+});});
+
+/* ---------- Quiz ---------- */
+var S={filter:"ALL",list:[],idx:0};
+function newSession(){
+  var pool=[];QUESTIONS.forEach(function(q,i){if(S.filter==="ALL"||q.d===S.filter)pool.push(i);});
+  var ord=shuffle(pool.length);
+  S.list=ord.map(function(k){var qi=pool[k];return{qi:qi,perm:shuffle(QUESTIONS[qi].o.length),chosen:null};});
+  S.idx=0;render();
+}
+function stats(){var a=0,o=0;S.list.forEach(function(it){if(it.chosen!==null){a++;if(it.chosen===0)o++;}});return{a:a,o:o};}
+function renderStats(){var s=stats();document.getElementById("sAns").textContent=s.a;document.getElementById("sOk").textContent=s.o;
+  document.getElementById("sPct").textContent=s.a?Math.round(100*s.o/s.a)+" %":"—";document.getElementById("sTot").textContent=S.list.length;
+  document.getElementById("progBar").style.width=(S.list.length?100*s.a/S.list.length:0)+"%";}
+function renderDots(){var d=document.getElementById("dots");d.innerHTML="";
+  S.list.forEach(function(it,i){var c="dot"+(i===S.idx?" cur":"")+(it.chosen===null?"":(it.chosen===0?" ok":" ko"));
+    var b=el("button",{cls:c,text:String(i+1),"aria-label":"Question "+(i+1)});b.addEventListener("click",function(){S.idx=i;render();});d.appendChild(b);});
+  var r=el("button",{cls:"dot"+(S.idx===S.list.length?" cur":""),text:"✓","aria-label":"Résultats"});r.addEventListener("click",function(){S.idx=S.list.length;render();});d.appendChild(r);}
+function answer(origIdx){var it=S.list[S.idx];if(!it||it.chosen!==null)return;it.chosen=origIdx;render();}
+function render(){
+  renderStats();renderDots();
+  var box=document.getElementById("qbox");box.innerHTML="";
+  if(!S.list.length){box.appendChild(el("p",{cls:"empty",text:"Aucune question pour ce filtre."}));return;}
+  if(S.idx>=S.list.length){box.appendChild(renderResult());return;}
+  var it=S.list[S.idx],Q=QUESTIONS[it.qi],answered=it.chosen!==null;
+  var card=el("div",{cls:"card"});
+  card.appendChild(el("div",{cls:"meta"},[el("span",{cls:"tag"+(Q.d==="D2"?" d2":""),text:Q.d==="D1"?"Domaine 1":"Domaine 2"}),el("span",{cls:"tag",text:Q.t}),el("span",{cls:"tag",text:"Question "+(S.idx+1)+" / "+S.list.length})]));
+  card.appendChild(el("div",{cls:"q",text:Q.q}));
+  var opts=el("div",{cls:"opts"});
+  it.perm.forEach(function(orig,pos){
+    var cls="opt";if(answered){if(orig===0)cls+=" ok";else if(orig===it.chosen)cls+=" ko";}
+    var b=el("button",{cls:cls},[el("span",{cls:"k",text:LETTERS[pos]}),el("span",{text:Q.o[orig]})]);
+    if(answered)b.disabled=true;else b.addEventListener("click",function(){answer(orig);});
+    opts.appendChild(b);});
+  card.appendChild(opts);
+  if(answered){
+    var good=it.chosen===0,posGood=it.perm.indexOf(0);
+    var fb=el("div",{cls:"fb "+(good?"ok":"ko")},[el("h3",{text:good?"Bonne réponse":"Réponse incorrecte — la bonne réponse est "+LETTERS[posGood]+" : "+Q.o[0]}),el("div",{text:Q.e})]);
+    card.appendChild(fb);
+    if(Q.tip)card.appendChild(el("div",{cls:"note tip"},[el("b",{text:"Tip examen : "}),Q.tip]));
+    if(Q.rex)card.appendChild(el("div",{cls:"note rex"},[el("b",{text:"REX : "}),Q.rex]));
+  }
+  var prev=el("button",{cls:"btn sec",text:"← Précédente"});prev.disabled=S.idx===0;prev.addEventListener("click",function(){S.idx--;render();});
+  var next=el("button",{cls:"btn",text:S.idx===S.list.length-1?"Voir les résultats":"Suivante →"});next.addEventListener("click",function(){S.idx++;render();});
+  card.appendChild(el("div",{cls:"nav"},[prev,next]));
+  box.appendChild(card);
+}
+function renderResult(){
+  var s=stats(),c=el("div",{cls:"card result"});
+  c.appendChild(el("h2",{text:"Bilan de la session"}));
+  var pct=s.a?Math.round(100*s.o/s.a):0;
+  c.appendChild(el("div",{cls:"big",text:pct+" %"}));
+  c.appendChild(el("p",{text:s.o+" bonne(s) réponse(s) sur "+s.a+" question(s) répondue(s), "+(S.list.length-s.a)+" sans réponse."}));
+  var dom=el("div",{cls:"dom"});
+  ["D1","D2"].forEach(function(d){var a=0,o=0;S.list.forEach(function(it){if(QUESTIONS[it.qi].d===d&&it.chosen!==null){a++;if(it.chosen===0)o++;}});
+    if(a)dom.appendChild(el("div",{cls:"stat"},[el("b",{text:Math.round(100*o/a)+" %"}),el("span",{text:(d==="D1"?"Domaine 1":"Domaine 2")+" — "+o+"/"+a})]));});
+  var topics={};S.list.forEach(function(it){if(it.chosen!==null&&it.chosen!==0){var t=QUESTIONS[it.qi].t;topics[t]=(topics[t]||0)+1;}});
+  c.appendChild(dom);
+  var keys=Object.keys(topics);
+  c.appendChild(el("p",{text:keys.length?"Thèmes à revoir : "+keys.map(function(k){return k+" ("+topics[k]+")";}).join(", ")+".":"Aucune erreur sur les questions répondues : excellent."}));
+  var verdict=pct>=80?"Niveau solide : passez au Jour 2 et gardez 20 questions de révision par jour.":pct>=70?"Bon niveau : relisez la cheat sheet et refaites vos erreurs.":"À consolider : reprenez les slides D1-D2, puis refaites le quiz.";
+  c.appendChild(el("div",{cls:"note tip"},[el("b",{text:"Conseil : "}),verdict]));
+  var again=el("button",{cls:"btn gold",text:"Refaire uniquement mes erreurs"});
+  var wrong=S.list.filter(function(it){return it.chosen!==null&&it.chosen!==0;});
+  again.disabled=!wrong.length;
+  again.addEventListener("click",function(){S.list=shuffle(wrong.length).map(function(k){var qi=wrong[k].qi;return{qi:qi,perm:shuffle(QUESTIONS[qi].o.length),chosen:null};});S.idx=0;render();});
+  var fresh=el("button",{cls:"btn sec",text:"Nouvelle session complète"});fresh.addEventListener("click",newSession);
+  c.appendChild(el("div",{cls:"nav"},[again,fresh]));
+  return c;
+}
+Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"),function(b){b.addEventListener("click",function(){
+  S.filter=b.dataset.f;Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});newSession();});});
+document.getElementById("restart").addEventListener("click",newSession);
+document.addEventListener("keydown",function(e){
+  if(document.getElementById("tab-quiz").hidden||e.target.tagName==="INPUT")return;
+  var it=S.list[S.idx];
+  if(it&&/^[1-4]$/.test(e.key)){var pos=parseInt(e.key,10)-1;if(pos<it.perm.length)answer(it.perm[pos]);}
+  else if(e.key==="ArrowRight"&&S.idx<S.list.length){S.idx++;render();}
+  else if(e.key==="ArrowLeft"&&S.idx>0){S.idx--;render();}
+});
+
+/* ---------- Cas pratiques ---------- */
+var CS=[];
+function resetCases(){CS=CASES.map(function(c){return c.qs.map(function(q){return{perm:shuffle(q.o.length),chosen:null};});});renderCases();}
+function renderCases(){
+  var box=document.getElementById("cbox");box.innerHTML="";
+  CASES.forEach(function(c,ci){
+    var card=el("div",{cls:"card case"});
+    card.appendChild(el("div",{cls:"meta"},[el("span",{cls:"tag",text:"Cas "+c.id}),el("span",{cls:"tag d2",text:c.dom})]));
+    card.appendChild(el("h3",{text:c.titre}));
+    card.appendChild(el("div",{cls:"ctx",text:c.contexte}));
+    c.qs.forEach(function(q,qi){
+      var st=CS[ci][qi],answered=st.chosen!==null;
+      var w=el("div",{cls:"sq"});
+      w.appendChild(el("div",{cls:"q",text:(qi+1)+". "+q.q}));
+      var opts=el("div",{cls:"opts"});
+      st.perm.forEach(function(orig,pos){
+        var cls="opt";if(answered){if(orig===0)cls+=" ok";else if(orig===st.chosen)cls+=" ko";}
+        var label=el("span",null,[q.o[orig][0]]);
+        if(answered)label.appendChild(el("span",{cls:"why",text:(orig===0?"✔ ":"✗ ")+q.o[orig][1]}));
+        var b=el("button",{cls:cls},[el("span",{cls:"k",text:LETTERS[pos]}),label]);
+        if(answered)b.disabled=true;else b.addEventListener("click",function(){st.chosen=orig;renderCases();});
+        opts.appendChild(b);});
+      w.appendChild(opts);
+      if(answered){var good=st.chosen===0;
+        w.appendChild(el("div",{cls:"fb "+(good?"ok":"ko")},[el("h3",{text:good?"Bonne réponse":"Réponse attendue : "+LETTERS[st.perm.indexOf(0)]}),el("div",{text:q.e})]));}
+      card.appendChild(w);});
+    box.appendChild(card);});
+}
+document.getElementById("caseReset").addEventListener("click",resetCases);
+
+/* ---------- REX & tips ---------- */
+function list(items){return el("ul",null,items.map(function(t){return el("li",{text:t});}));}
+function box(cls,title,items){return el("div",{cls:"box "+cls},[el("h3",{text:title}),list(items)]);}
+(function(){var t=document.getElementById("tab-tips");
+  t.appendChild(el("h2",{cls:"sec",text:"Retours d'expérience (REX)"}));
+  var g=el("div",{cls:"grid2"});
+  [["La politique de 80 pages","Personne ne la lit. Une politique courte et des standards précis fonctionnent mieux."],
+   ["Le PCA jamais testé","Les sauvegardes existaient, mais la restauration prenait trois fois le RTO."],
+   ["La classification oubliée","Sans étiquettes exploitées par les outils, la classification reste lettre morte."],
+   ["Le registre figé","Un registre des risques revu une fois par an décrit le passé, pas le risque actuel."],
+   ["Le sous-traitant invisible","Une fuite majeure provenait d'un sous-traitant de rang 2 jamais évalué."],
+   ["Le départ mal géré","Un ancien administrateur a gardé un accès VPN six mois : le lien RH / IT est vital."]]
+   .forEach(function(r){g.appendChild(el("div",{cls:"box r"},[el("h3",{text:r[0]}),el("p",{text:r[1],style:"margin:0"})]));});
+  t.appendChild(g);
+  t.appendChild(el("h2",{cls:"sec",text:"Bonnes pratiques et anti-patterns"}));
+  t.appendChild(el("div",{cls:"grid2"},[
+    box("g","À faire",["Faire signer la politique par la direction générale","Un propriétaire métier par risque et par actif","Combiner analyses qualitative et quantitative","Tester le PCA au moins une fois par an","Relier RH et gestion des identités","Évaluer les fournisseurs avant contrat et chaque année","Classifier en 3 ou 4 niveaux appliqués par les outils"]),
+    box("b","À éviter",["Le RSSI qui accepte le risque à la place du métier","Confondre conformité et sécurité","Une BIA réalisée par l'IT seule","Croire que l'assurance transfère la responsabilité","Dégausser des SSD","Sur-classifier au point de bloquer le travail","Des indicateurs sans seuil d'action"])]));
+  t.appendChild(el("h2",{cls:"sec",text:"Tips d'examen D1 / D2"}));
+  t.appendChild(el("div",{cls:"grid2"},[
+    box("","Raisonnement",["Pensez manager : la direction décide, le RSSI conseille et trace","Politique et mandat avant la technique","Personnes d'abord, toujours","Repérez le rôle qu'on vous donne (RSSI, auditeur, consultant)","Repérez PREMIER, MEILLEUR, PRINCIPAL, SAUF"]),
+    box("","Pièges fréquents",["Propriétaire (classifie) ≠ dépositaire (protège)","RPO = données ; RTO = temps ; RTO + WRT ≤ MTD","Pseudonymisée = toujours personnelle","Transfert de risque ≠ transfert de responsabilité","Options avec TOUJOURS / JAMAIS / SEULEMENT : souvent fausses"])]));
+  t.appendChild(el("h2",{cls:"sec",text:"Méthode en 5 temps"}));
+  t.appendChild(el("div",{cls:"box"},[el("ol",{style:"margin:0;padding-left:20px"},["Qui suis-je dans le scénario ?","Que demande-t-on exactement ?","Éliminer les deux options clairement fausses","Entre les deux restantes, choisir la plus stratégique et la plus en amont","Valider et passer : pas de retour en arrière à l'examen"].map(function(x){return el("li",{text:x});}))]));
+})();
+
+/* ---------- Cheat sheet ---------- */
+(function(){var t=document.getElementById("tab-cheat");
+  function tbl(title,rows){t.appendChild(el("h2",{cls:"sec",text:title}));
+    t.appendChild(el("table",null,[el("thead",null,[el("tr",null,[el("th",{text:"Thème"}),el("th",{text:"À retenir"})])]),el("tbody",null,rows.map(function(r){return el("tr",null,[el("td",{text:r[0]}),el("td",{text:r[1]})]);}))]));}
+  tbl("Domaine 1 — Sécurité et gestion des risques",[
+   ["Formules","SLE = AV × EF · ALE = SLE × ARO · Valeur du contrôle = ALE avant − ALE après − coût annuel · ROSI = (réduction d'ALE − coût) / coût"],
+   ["Continuité","RTO + WRT ≤ MTD · RPO = perte de données acceptable · DRP inclus dans le BCP · première étape : politique et soutien de la direction"],
+   ["Traitement du risque","Réduire · Transférer · Éviter · Accepter (jamais ignorer)"],
+   ["Documents","Politique · Standard · Baseline · Procédure (obligatoires) · Ligne directrice (facultative)"],
+   ["Droit","Pénal : doute raisonnable · Civil : prépondérance des preuves · Administratif : régulateurs"],
+   ["Propriété intellectuelle","Brevet 20 ans · Marque 10 ans renouvelable · Droit d'auteur : vie + 50 à 70 ans · Secret d'affaires : tant qu'il est gardé"],
+   ["Vie privée","Responsable de traitement · Sous-traitant · Personne concernée · RGPD : notification sous 72 h · CI : loi 2013-450, ARTCI"],
+   ["RMF NIST","Préparer · Catégoriser · Sélectionner · Mettre en œuvre · Évaluer · Autoriser · Surveiller"],
+   ["Menaces","STRIDE (classer) · PASTA (7 étapes, métier) · DREAD (noter) · arbres d'attaque"],
+   ["Personnel","Séparation des tâches : prévention · Rotation et congés obligatoires : détection · départ conflictuel : coupure immédiate"],
+   ["Sensibilisation","Sensibilisation (quoi, tous) · Formation (comment, rôles) · Éducation (pourquoi, experts)"],
+   ["Éthique ISC2","Société > honnêteté et légalité > mandants > profession"]]);
+  tbl("Domaine 2 — Sécurité des actifs",[
+   ["Classification gouv.","Top Secret (exceptionnellement grave) · Secret (grave) · Confidential (dommage) · Unclassified"],
+   ["Classification com.","Confidentiel · Privé · Sensible · Public · un ensemble prend le niveau le plus élevé"],
+   ["Rôles","Propriétaire classifie · Dépositaire protège · Utilisateur utilise · Auditeur vérifie"],
+   ["Cycle de vie","Créer · Stocker · Utiliser · Partager · Archiver · Détruire · minimiser dès la collecte"],
+   ["États","Repos : chiffrement · Transit : TLS · Usage : le plus difficile"],
+   ["NIST SP 800-88","Clear (réutilisation interne) · Purge (le support sort) · Destroy (maximum)"],
+   ["SSD / cloud","Pas de dégaussage sur SSD · effacement cryptographique dans le cloud"],
+   ["Outils","DLP (dépend de la classification) · DRM · CASB · tokenisation (protéger le coffre)"],
+   ["Données personnelles","Pseudonymisée = personnelle · Anonymisée = plus personnelle"],
+   ["Contrôles","Scoping = quels contrôles · Tailoring = comment · contrôle compensatoire si impossible"],
+   ["Rétention","EOS = plus de correctifs · Legal hold prime sur la politique de rétention"]]);
+})();
+
+/* ---------- Glossaire ---------- */
+(function(){var body=document.getElementById("gbody"),empty=document.getElementById("gempty"),inp=document.getElementById("gsearch");
+  var rows=GLOSSARY.slice().sort(function(a,b){return a[0].localeCompare(b[0],"fr");});
+  function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
+  function draw(){var f=norm(inp.value.trim());body.innerHTML="";var n=0;
+    rows.forEach(function(r){if(!f||norm(r[0]+" "+r[1]).indexOf(f)>=0){n++;body.appendChild(el("tr",null,[el("td",{text:r[0]}),el("td",{text:r[1]})]));}});
+    empty.hidden=n>0;}
+  inp.addEventListener("input",draw);draw();
+})();
+
+newSession();resetCases();
+})();
+</script>
+</body>
+</html>

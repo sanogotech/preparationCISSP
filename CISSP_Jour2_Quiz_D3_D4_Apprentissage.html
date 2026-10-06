@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISSP Jour 2 — Quiz D3 & D4</title>
+<style>
+:root{--navy:#1E2761;--deep:#121A45;--gold:#C9A227;--ice:#CADCFC;--iceL:#EEF3FD;--ink:#1F2433;--gray:#5B6275;--line:#DDE3EF;--bg:#F5F7FB;--card:#FFFFFF;
+--ok:#2E7D4F;--okL:#E6F4EC;--ko:#B03A2E;--koL:#FBEAE8;--amb:#B7791F;--ambL:#FDF3E1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Calibri,"Segoe UI",Arial,sans-serif}
+header{background:var(--deep);color:#fff;padding:20px 16px 0}
+.wrap{max-width:980px;margin:0 auto}
+.kick{color:var(--gold);font-weight:700;letter-spacing:.12em;font-size:12px;text-transform:uppercase}
+h1{font-family:Cambria,Georgia,serif;margin:4px 0 4px;font-size:28px}
+.sub{color:var(--ice);margin:0 0 14px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{background:transparent;border:0;color:var(--ice);padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;border-radius:8px 8px 0 0;white-space:nowrap}
+nav button[aria-selected="true"]{background:var(--bg);color:var(--navy)}
+main{padding:20px 16px 60px}
+section[hidden]{display:none}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer;color:var(--navy)}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn{border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.btn.sec{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.gold{background:var(--gold);color:var(--deep)}
+.btn:disabled{opacity:.4;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.stat b{display:block;font-family:Cambria,Georgia,serif;font-size:22px;color:var(--navy)}
+.stat span{font-size:13px;color:var(--gray)}
+.prog{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .25s}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(18,26,69,.06)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.tag{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--iceL);color:var(--navy)}
+.tag.d2{background:var(--ambL);color:var(--amb)}
+.q{font-family:Cambria,Georgia,serif;font-size:20px;color:var(--navy);margin:6px 0 16px;line-height:1.35}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;font:inherit;color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--navy);background:var(--iceL)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:var(--okL)} .opt.ok .k{background:var(--ok)}
+.opt.ko{border-color:var(--ko);background:var(--koL)} .opt.ko .k{background:var(--ko)}
+.opt .why{display:block;font-size:14px;color:var(--gray);margin-top:4px;font-style:italic}
+.fb{margin-top:16px;border-radius:10px;padding:14px 16px;border-left:0}
+.fb.ok{background:var(--okL)} .fb.ko{background:var(--koL)}
+.fb h3{margin:0 0 6px;font-size:16px}
+.fb.ok h3{color:var(--ok)} .fb.ko h3{color:var(--ko)}
+.note{margin-top:10px;padding:10px 14px;border-radius:10px;font-size:15px}
+.note.tip{background:var(--iceL)} .note.rex{background:var(--ambL)}
+.note b{color:var(--navy)} .note.rex b{color:var(--amb)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:16px;flex-wrap:wrap}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+.dot{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:#fff;font-size:12px;cursor:pointer;color:var(--gray);font-family:inherit}
+.dot.cur{outline:2px solid var(--gold);outline-offset:1px}
+.dot.ok{background:var(--ok);color:#fff;border-color:var(--ok)} .dot.ko{background:var(--ko);color:#fff;border-color:var(--ko)}
+.result h2{font-family:Cambria,Georgia,serif;color:var(--navy);margin:0 0 6px}
+.big{font-family:Cambria,Georgia,serif;font-size:56px;color:var(--navy);font-weight:700;line-height:1}
+.dom{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:16px 0}
+.case{margin-bottom:18px}
+.case .ctx{background:var(--iceL);border-radius:10px;padding:12px 14px;margin:10px 0 16px}
+.case .sq{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.case h3{font-family:Cambria,Georgia,serif;color:var(--navy);margin:0;font-size:22px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:15px}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px}
+td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--iceL)}
+td:first-child{font-weight:700;color:var(--navy);width:28%}
+h2.sec{font-family:Cambria,Georgia,serif;color:var(--navy);margin:22px 0 10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.box h3{margin:0 0 6px;font-family:Cambria,Georgia,serif;color:var(--navy);font-size:17px}
+.box.r{background:var(--ambL);border-color:transparent} .box.r h3{color:var(--amb)}
+.box.g{background:var(--okL);border-color:transparent} .box.g h3{color:var(--ok)}
+.box.b{background:var(--koL);border-color:transparent} .box.b h3{color:var(--ko)}
+.box ul{margin:4px 0 0;padding-left:20px}
+input[type=search]{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;margin-bottom:12px}
+.empty{color:var(--gray);font-style:italic;padding:10px}
+.kbd{font-size:13px;color:var(--gray)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}h1{font-size:22px}.q{font-size:18px}td:first-child{width:38%}}
+@media print{header nav,.bar,.nav,.dots{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kick">CISSP · Jour 2 · Mode apprentissage</div>
+  <h1>Domaine 3 & Domaine 4 — Quiz d'entraînement</h1>
+  <p class="sub">Architecture et ingénierie de la sécurité · Sécurité des communications et des réseaux — réponses mélangées à chaque session, correction détaillée immédiate.</p>
+  <nav role="tablist">
+    <button role="tab" data-tab="quiz" aria-selected="true">Quiz</button>
+    <button role="tab" data-tab="cases" aria-selected="false">Cas pratiques examen</button>
+    <button role="tab" data-tab="tips" aria-selected="false">REX & tips</button>
+    <button role="tab" data-tab="cheat" aria-selected="false">Cheat sheet</button>
+    <button role="tab" data-tab="glo" aria-selected="false">Glossaire</button>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<section id="tab-quiz">
+  <div class="bar" id="filters">
+    <button class="chip" data-f="ALL" aria-pressed="true">Tous les domaines</button>
+    <button class="chip" data-f="D3" aria-pressed="false">Domaine 3</button>
+    <button class="chip" data-f="D4" aria-pressed="false">Domaine 4</button>
+    <span style="flex:1"></span>
+    <button class="btn sec" id="restart">Nouvelle session</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="sAns">0</b><span>répondues</span></div>
+    <div class="stat"><b id="sOk">0</b><span>bonnes réponses</span></div>
+    <div class="stat"><b id="sPct">—</b><span>taux de réussite</span></div>
+    <div class="stat"><b id="sTot">0</b><span>questions</span></div>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+  <div id="qbox"></div>
+  <div class="dots" id="dots"></div>
+  <p class="kbd">Raccourcis : touches 1 à 4 pour répondre, flèches gauche / droite pour naviguer.</p>
+</section>
+
+<section id="tab-cases" hidden>
+  <div class="bar"><span>Cinq scénarios type examen, chacun avec trois questions. Chaque option est commentée après votre réponse.</span><span style="flex:1"></span><button class="btn sec" id="caseReset">Réinitialiser les cas</button></div>
+  <div id="cbox"></div>
+</section>
+
+<section id="tab-tips" hidden></section>
+<section id="tab-cheat" hidden></section>
+<section id="tab-glo" hidden>
+  <input type="search" id="gsearch" placeholder="Rechercher un terme (ex. ESP, Biba, TACACS+)…" aria-label="Rechercher dans le glossaire">
+  <table><thead><tr><th>Terme</th><th>Définition</th></tr></thead><tbody id="gbody"></tbody></table>
+  <p class="empty" id="gempty" hidden>Aucun terme ne correspond.</p>
+</section>
+
+</div></main>
+<script>
+// CONVENTION : dans chaque tableau "o", la PREMIÈRE option est la bonne réponse ; l'affichage mélange toujours l'ordre.
+const CONFIG = {
+ domains:[["D3","Domaine 3"],["D4","Domaine 4"]],
+ verdict:["Niveau solide : passez au Jour 3 et gardez 20 questions de révision par jour.","Bon niveau : relisez la cheat sheet et refaites vos erreurs.","À consolider : reprenez les slides D3-D4, puis refaites le quiz."],
+ tipsTitle:"Tips d'examen D3 / D4",
+ rex:[["Le certificat oublié","Un certificat expiré a coupé l'application mobile un lundi matin : inventaire et alertes 30 jours avant."],
+  ["Le compartiment public","Des sauvegardes de la base clients se sont retrouvées sur un stockage cloud ouvert par erreur."],
+  ["Le réseau à plat","Un poste infecté a atteint les serveurs de base de données sans le moindre filtrage."],
+  ["Le RDP exposé","Point d'entrée classique des rançongiciels : jamais d'administration directe depuis Internet."],
+  ["La clé dans le code","Une clé d'API publiée dans un dépôt public a été exploitée en quelques heures."],
+  ["Le groupe jamais testé","Le jour du délestage, le groupe électrogène n'a pas démarré : carburant périmé, batterie morte."]],
+ good:["Modéliser les menaces dès la conception","Refus par défaut entre zones, micro-segmentation","TLS 1.3, AES-GCM, Argon2 ou bcrypt","Clés dans un HSM ou un coffre de secrets, avec rotation","Bastion + MFA pour toute administration","Inventaire des certificats et des usages cryptographiques","Tester onduleurs, groupes et bascules"],
+ bad:["Inventer son propre algorithme de chiffrement","Mode ECB, MD5, SHA-1, TLS 1.0","Secrets en clair dans le code ou les images","Considérer un VLAN comme une frontière sans filtrage","WEP, WPS, Wi-Fi invité relié au réseau interne","Halon ou sprinklers sous eau en salle serveurs","Croire que le fournisseur cloud sécurise vos données"],
+ reason:["Chiffrer → clé publique du destinataire ; signer → sa propre clé privée","Confidentialité → Bell-LaPadula ; intégrité commerciale → Clark-Wilson ; conflits → Brewer-Nash","Identifier la couche visée : la parade est souvent à la même couche","Les personnes d'abord : porte d'évacuation fail-safe","La meilleure réponse reste souvent la plus stratégique"],
+ traps:["La cryptographie n'apporte pas la disponibilité","Le hachage n'est pas réversible : ce n'est pas du chiffrement","AH n'apporte pas la confidentialité : il faut ESP","DNSSEC = intégrité, pas confidentialité","Un EAL élevé ne signifie pas « sans faille »"],
+ cheat:[["Domaine 3 — Architecture et ingénierie de la sécurité",[
+  ["Modèles","Bell-LaPadula : no read up / no write down (confidentialité) · Biba : no read down / no write up (intégrité) · Clark-Wilson : transactions bien formées · Brewer-Nash : conflits d'intérêts"],
+  ["Évaluation","Critères communs (ISO/IEC 15408) : PP, ST, TOE · EAL1 à EAL7 · certification (technique) ≠ autorisation (direction)"],
+  ["Confiance","TCB · moniteur de référence : toujours invoqué, inviolable, vérifiable · anneau 0 = noyau"],
+  ["Principes","Moindre privilège · défense en profondeur · secure by default · fail-secure (fail-safe pour les personnes) · Zero Trust"],
+  ["Cloud","Les données et les identités restent toujours sous la responsabilité du client"],
+  ["Crypto","Symétrique : n(n−1)/2 clés · asymétrique : 2n · chiffrer = clé publique du destinataire · signer = clé privée de l'émetteur"],
+  ["Algorithmes","Recommandés : AES-GCM, SHA-256, RSA ≥ 3072, ECC · à éviter : DES, 3DES, RC4, MD5, SHA-1, ECB"],
+  ["PKI","CSR → RA → CA → certificat X.509 · révocation : CRL ou OCSP · racine hors ligne"],
+  ["Post-quantique","FIPS 203 ML-KEM · FIPS 204 ML-DSA · FIPS 205 SLH-DSA · inventaire + crypto-agilité"],
+  ["Physique","Dissuader, retarder, détecter, évaluer, répondre · sas · pré-action en salle serveurs · Halon interdit"],
+  ["Incendie (US)","A ordinaires · B liquides · C électrique · D métaux · K cuisine"]]],
+ ["Domaine 4 — Sécurité des communications et des réseaux",[
+  ["OSI","1 Physique · 2 Liaison (ARP, switch) · 3 Réseau (IP, IPsec, routeur) · 4 Transport (TCP/UDP) · 5 Session · 6 Présentation · 7 Application (WAF)"],
+  ["TCP","SYN → SYN-ACK → ACK · inondation SYN → SYN cookies · UDP sans connexion"],
+  ["Ports","22 SSH · 23 Telnet · 25 SMTP · 53 DNS · 88 Kerberos · 443 HTTPS · 636 LDAPS · 3389 RDP"],
+  ["IPsec","AH = intégrité · ESP = confidentialité · transport (hôte à hôte) · tunnel (passerelle) · IKE"],
+  ["Sans fil","WEP cassé · WPA2 AES-CCMP · WPA3 SAE · entreprise = 802.1X + EAP-TLS + RADIUS"],
+  ["Pare-feu","Paquets · à états · proxy applicatif · NGFW · WAF · refus par défaut"],
+  ["Détection","IDS alerte · IPS bloque · signature (connu) · anomalie (inconnu)"],
+  ["AAA distant","RADIUS : UDP, seul le mot de passe chiffré · TACACS+ : TCP 49, tout chiffré, AAA séparés"],
+  ["Architecture","DMZ / sous-réseau filtré · bastion · micro-segmentation · Zero Trust (PDP / PEP)"],
+  ["Attaques","ARP, saut de VLAN (2) · usurpation IP, smurf (3) · SYN (4) · empoisonnement DNS (7)"]]]]
+};
+
+const QUESTIONS = [
+// ---------------- DOMAINE 3 ----------------
+{d:"D3",t:"Modèles",q:"Quel modèle de sécurité vise principalement la CONFIDENTIALITÉ ?",
+ o:["Bell-LaPadula","Biba","Clark-Wilson","Brewer-Nash"],
+ e:"Bell-LaPadula, conçu pour le militaire, empêche la fuite d'information vers des niveaux inférieurs. Biba et Clark-Wilson visent l'intégrité ; Brewer-Nash les conflits d'intérêts.",
+ tip:"Bell-LaPadula = Lecture (confidentialité)."},
+{d:"D3",t:"Modèles",q:"Dans Bell-LaPadula, la propriété * (étoile) interdit…",
+ o:["D'écrire vers un niveau inférieur","De lire un niveau supérieur","De lire un niveau inférieur","D'écrire vers un niveau supérieur"],
+ e:"Règle simple : pas de lecture au-dessus (no read up). Propriété * : pas d'écriture en dessous (no write down), pour éviter qu'un sujet habilité « Secret » recopie de l'information vers « Public ».",
+ tip:"L'étoile (*) porte toujours sur l'écriture."},
+{d:"D3",t:"Modèles",q:"Quelle règle correspond au modèle Biba ?",
+ o:["Pas de lecture en dessous, pas d'écriture au-dessus","Pas de lecture au-dessus, pas d'écriture en dessous","Lecture et écriture au même niveau uniquement","Accès bloqué après consultation d'un concurrent"],
+ e:"Biba protège l'intégrité : un sujet ne doit pas être « contaminé » par des données de faible intégrité (no read down) ni altérer des données de plus haute intégrité (no write up).",
+ tip:"Biba est l'inverse de Bell-LaPadula."},
+{d:"D3",t:"Modèles",q:"Une banque impose que les soldes ne soient modifiés que par des transactions contrôlées, avec séparation des tâches. Quel modèle s'applique le MIEUX ?",
+ o:["Clark-Wilson","Bell-LaPadula","Brewer-Nash","Take-Grant"],
+ e:"Clark-Wilson repose sur des transactions bien formées (programmes de transformation), la vérification de l'intégrité et la séparation des tâches, via le triplet sujet / programme / objet.",
+ tip:"Intégrité commerciale par transactions → Clark-Wilson.",
+ rex:"C'est exactement le fonctionnement d'un core banking : personne ne touche la base directement."},
+{d:"D3",t:"Modèles",q:"Un cabinet de conseil empêche un consultant qui a consulté les dossiers de la banque A d'accéder ensuite à ceux de sa concurrente B. Quel modèle est appliqué ?",
+ o:["Brewer-Nash (muraille de Chine)","Biba","Bell-LaPadula","Graham-Denning"],
+ e:"Brewer-Nash adapte dynamiquement les droits selon l'historique des accès pour éviter les conflits d'intérêts.",
+ tip:"Conflit d'intérêts → Brewer-Nash."},
+{d:"D3",t:"Évaluation",q:"Dans les Critères communs, quel document décrit ce que le fournisseur affirme sur la sécurité de son produit ?",
+ o:["La cible de sécurité (ST)","Le profil de protection (PP)","La cible d'évaluation (TOE)","Le niveau EAL"],
+ e:"Le profil de protection exprime les besoins d'une catégorie de produits (côté client). La cible de sécurité décrit ce que le fournisseur prétend. La TOE est le produit évalué ; l'EAL est le niveau d'assurance.",
+ tip:"PP = besoin ; ST = promesse ; TOE = produit."},
+{d:"D3",t:"Évaluation",q:"Quel niveau EAL correspond à une conception vérifiée FORMELLEMENT et testée ?",
+ o:["EAL7","EAL4","EAL5","EAL1"],
+ e:"L'échelle va de EAL1 (testé fonctionnellement) à EAL7 (conception vérifiée formellement et testée). EAL4 (conçu, testé et revu méthodiquement) est fréquent pour les produits commerciaux.",
+ tip:"7 = formel ; 1 = fonctionnel."},
+{d:"D3",t:"Évaluation",q:"Quelle est la différence entre certification et autorisation (accréditation) d'un système ?",
+ o:["La certification évalue techniquement les contrôles ; l'autorisation est la décision de la direction d'accepter le risque","Ce sont deux synonymes","L'autorisation précède toujours la certification","La certification est réalisée par la direction générale"],
+ e:"La certification produit une évaluation technique. L'autorisation est une décision de gestion : un dirigeant accepte le risque résiduel et autorise la mise en service.",
+ tip:"Technique → certification ; décision → autorisation."},
+{d:"D3",t:"Capacités",q:"Quelles sont les trois exigences du moniteur de référence ?",
+ o:["Toujours invoqué, inviolable, vérifiable","Rapide, redondant, chiffré","Centralisé, journalisé, sauvegardé","Authentifié, autorisé, audité"],
+ e:"Le moniteur de référence doit médiatiser tous les accès (toujours invoqué), être protégé contre la modification (inviolable) et être assez petit pour être analysé et testé (vérifiable).",
+ tip:"Le noyau de sécurité est l'implémentation du moniteur de référence."},
+{d:"D3",t:"Capacités",q:"Dans le modèle des anneaux de protection, quel anneau est le PLUS privilégié ?",
+ o:["Anneau 0","Anneau 3","Anneau 1","Anneau 2"],
+ e:"L'anneau 0 héberge le noyau du système d'exploitation ; les applications utilisateur s'exécutent dans l'anneau 3.",
+ tip:"Plus le numéro est bas, plus le privilège est élevé."},
+{d:"D3",t:"Capacités",q:"Quel composant, intégré à la carte mère, permet le démarrage mesuré et l'attestation de l'intégrité d'une machine ?",
+ o:["Le TPM","Le HSM","Le CASB","Le WAF"],
+ e:"Le TPM est une puce liée à une machine : stockage de clés, mesures de démarrage, attestation. Le HSM est un équipement dédié, partagé, pour des opérations cryptographiques à haute performance.",
+ tip:"TPM = une machine ; HSM = service crypto partagé."},
+{d:"D3",t:"Capacités",q:"Une banque doit générer et protéger les clés qui signent des millions de transactions par jour. Quelle solution est la PLUS adaptée ?",
+ o:["Un HSM certifié","Un fichier de clés chiffré sur le serveur applicatif","Le TPM de chaque serveur","Un coffre de mots de passe d'équipe"],
+ e:"Le HSM génère et conserve les clés dans un matériel durci et certifié ; elles n'en sortent pas en clair. Il est conçu pour de forts volumes d'opérations.",
+ tip:"Clés critiques et volume élevé → HSM."},
+{d:"D3",t:"Principes",q:"En cas de coupure électrique, la porte de sortie de secours d'un bâtiment doit…",
+ o:["S'ouvrir (fail-safe), pour protéger les personnes","Rester verrouillée (fail-secure)","Se bloquer jusqu'au retour du courant","Déclencher l'alarme et rester fermée"],
+ e:"La sécurité des personnes prime : une issue de secours doit permettre l'évacuation. Une porte de salle serveurs, elle, peut rester verrouillée (fail-secure).",
+ tip:"Personnes → fail-safe ; actifs → fail-secure."},
+{d:"D3",t:"Principes",q:"Quel principe affirme qu'aucun accès ne doit être accordé sur la seule base de la localisation réseau ?",
+ o:["Zero Trust","Défense en profondeur","Sécurité par l'obscurité","Moindre fonctionnalité"],
+ e:"Zero Trust (NIST SP 800-207) supprime la notion de réseau interne de confiance : chaque accès est authentifié, autorisé et évalué selon le contexte.",
+ tip:"Ne jamais faire confiance, toujours vérifier."},
+{d:"D3",t:"Principes",q:"Dans une architecture Zero Trust, quel composant applique concrètement la décision d'autoriser ou de bloquer une session ?",
+ o:["Le point d'application de la politique (PEP)","Le point de décision (PDP)","Le moteur de corrélation du SIEM","L'annuaire LDAP"],
+ e:"Le PDP (moteur et administrateur de politiques) décide ; le PEP applique la décision sur le chemin de la connexion.",
+ tip:"PDP décide, PEP exécute."},
+{d:"D3",t:"Architectures",q:"Dans un service IaaS, qui est responsable de la mise à jour du système d'exploitation des machines virtuelles ?",
+ o:["Le client","Le fournisseur","Les deux à parts égales","Personne : c'est automatique"],
+ e:"En IaaS, le fournisseur gère le matériel et la virtualisation ; le client gère le système d'exploitation, les applications, les données et les accès.",
+ tip:"Plus on monte (IaaS → PaaS → SaaS), plus le fournisseur prend en charge."},
+{d:"D3",t:"Architectures",q:"Quelle responsabilité reste TOUJOURS au client, quel que soit le modèle cloud ?",
+ o:["Les données et la gestion des identités et des accès","Le matériel","La virtualisation","La sécurité physique du datacenter"],
+ e:"Même en SaaS, le client classifie ses données, gère ses utilisateurs et leurs droits, et reste responsable vis-à-vis des régulateurs.",
+ tip:"Les données sont toujours à vous."},
+{d:"D3",t:"Architectures",q:"Un attaquant parvient à exécuter du code sur l'hyperviseur depuis une machine virtuelle invitée. Comment s'appelle cette attaque ?",
+ o:["Évasion de VM (VM escape)","Prolifération de VM (VM sprawl)","Saut de VLAN","Attaque par canal auxiliaire"],
+ e:"L'évasion de VM rompt l'isolation entre machines virtuelles : c'est la menace la plus grave en virtualisation. La prolifération désigne des VM non inventoriées ni maintenues.",
+ tip:"Escape = sortir de l'isolation."},
+{d:"D3",t:"Architectures",q:"Pour un système industriel (ICS / SCADA), quelle propriété est généralement prioritaire ?",
+ o:["La disponibilité et la sûreté","La confidentialité","La non-répudiation","L'anonymat"],
+ e:"Un arrêt de processus industriel peut mettre des vies en danger. Les correctifs y sont difficiles ; on privilégie la segmentation et la surveillance.",
+ tip:"ICS : disponibilité d'abord, puis intégrité, puis confidentialité."},
+{d:"D3",t:"Architectures",q:"Des employés combinent plusieurs informations non sensibles pour déduire le salaire d'un collègue. De quel problème s'agit-il ?",
+ o:["Inférence","Agrégation","Polyinstanciation","Injection SQL"],
+ e:"L'inférence consiste à déduire une information interdite à partir d'informations permises. L'agrégation, elle, désigne la sensibilité accrue d'un ensemble de données.",
+ tip:"Inférence = déduire ; agrégation = assembler."},
+{d:"D3",t:"Architectures",q:"Quelle technique de base de données présente des versions différentes d'un même enregistrement selon l'habilitation, pour ne pas révéler l'existence d'une donnée ?",
+ o:["La polyinstanciation","La normalisation","Le partitionnement","La réplication"],
+ e:"La polyinstanciation est une parade à l'inférence dans les bases multiniveaux.",
+ tip:"Poly = plusieurs instances selon le niveau."},
+{d:"D3",t:"Architectures",q:"Quel est le risque PRINCIPAL des objets connectés (IoT) en entreprise ?",
+ o:["Mots de passe par défaut et absence de mises à jour","Consommation électrique élevée","Coût des licences","Incompatibilité avec le Wi-Fi"],
+ e:"Beaucoup d'objets connectés sont livrés avec des identifiants par défaut et ne reçoivent pas de correctifs. Il faut les inventorier, changer les identifiants et les isoler dans un segment dédié.",
+ tip:"IoT → segment isolé."},
+{d:"D3",t:"Cryptographie",q:"Selon le principe de Kerckhoffs, la sécurité d'un système cryptographique doit reposer…",
+ o:["Uniquement sur le secret de la clé","Sur le secret de l'algorithme","Sur la longueur du message","Sur l'obscurité de l'implémentation"],
+ e:"Un algorithme public, étudié par la communauté, est plus fiable. Seule la clé doit rester secrète.",
+ tip:"Ne jamais créer son propre algorithme."},
+{d:"D3",t:"Cryptographie",q:"Combien de clés symétriques faut-il pour que 100 personnes puissent toutes communiquer deux à deux de façon confidentielle ?",
+ o:["4 950","200","100","9 900"],
+ e:"En symétrique : n(n−1)/2 = 100 × 99 / 2 = 4 950. En asymétrique, il faudrait 2n = 200 clés (une paire par personne).",
+ tip:"Symétrique n(n−1)/2 ; asymétrique 2n."},
+{d:"D3",t:"Cryptographie",q:"Alice veut envoyer à Bob un message que lui seul pourra lire. Avec quelle clé chiffre-t-elle ?",
+ o:["La clé publique de Bob","La clé privée de Bob","La clé privée d'Alice","La clé publique d'Alice"],
+ e:"On chiffre avec la clé publique du destinataire ; seul le détenteur de la clé privée correspondante (Bob) peut déchiffrer.",
+ tip:"Confidentialité → clé publique du destinataire."},
+{d:"D3",t:"Cryptographie",q:"Pour signer numériquement un document, l'émetteur utilise…",
+ o:["Sa propre clé privée","Sa propre clé publique","La clé publique du destinataire","Une clé symétrique partagée"],
+ e:"L'empreinte du document est chiffrée avec la clé privée de l'émetteur ; n'importe qui vérifie avec sa clé publique. Cela apporte intégrité, authentification et non-répudiation.",
+ tip:"Signature → clé privée de l'émetteur."},
+{d:"D3",t:"Cryptographie",q:"Quel objectif de sécurité la cryptographie N'apporte-t-elle PAS ?",
+ o:["La disponibilité","La confidentialité","L'intégrité","La non-répudiation"],
+ e:"La cryptographie protège confidentialité, intégrité, authenticité et non-répudiation. Elle peut même menacer la disponibilité si une clé est perdue.",
+ tip:"Pas de disponibilité par la crypto."},
+{d:"D3",t:"Cryptographie",q:"Pourquoi TLS combine-t-il cryptographie asymétrique et symétrique ?",
+ o:["L'asymétrique sert à établir une clé de session ; la symétrique, plus rapide, chiffre les données","L'asymétrique est plus rapide pour les gros volumes","La symétrique apporte la non-répudiation","Pour doubler la longueur de clé"],
+ e:"C'est le principe de la cryptographie hybride : on tire parti de l'échange de clé asymétrique et de la performance du chiffrement symétrique.",
+ tip:"Asymétrique pour la clé, symétrique pour les données."},
+{d:"D3",t:"Cryptographie",q:"Quel mode de chiffrement par blocs est à proscrire car il laisse apparaître les motifs des données ?",
+ o:["ECB","GCM","CBC","CTR"],
+ e:"En ECB, deux blocs identiques donnent deux blocs chiffrés identiques. GCM est recommandé : il chiffre et garantit l'intégrité.",
+ tip:"ECB = à éviter ; GCM = recommandé."},
+{d:"D3",t:"Cryptographie",q:"Quelle est la meilleure façon de stocker les mots de passe des clients ?",
+ o:["Un hachage lent dédié (Argon2, bcrypt) avec un sel unique par mot de passe","Un chiffrement AES avec une clé stockée sur le serveur","Un hachage SHA-256 sans sel","Un hachage MD5 avec un sel commun"],
+ e:"Les fonctions dédiées sont volontairement lentes et le sel unique empêche les tables précalculées. Chiffrer les mots de passe est une erreur : la clé permettrait de tous les récupérer.",
+ tip:"Mots de passe → hachage lent + sel, jamais chiffrement."},
+{d:"D3",t:"Cryptographie",q:"Quel algorithme de hachage est considéré comme cassé (collisions démontrées) ?",
+ o:["SHA-1","SHA-256","SHA-3","SHA-512"],
+ e:"MD5 et SHA-1 ont des collisions pratiques. SHA-2 (256, 512) et SHA-3 restent recommandés.",
+ tip:"MD5 et SHA-1 : à proscrire."},
+{d:"D3",t:"Cryptographie",q:"Un HMAC garantit l'intégrité et l'authenticité d'un message. Pourquoi n'apporte-t-il PAS la non-répudiation ?",
+ o:["Les deux parties partagent la même clé secrète","Il n'utilise pas de fonction de hachage","Il est trop rapide","Il ne fonctionne qu'avec TLS"],
+ e:"Comme l'émetteur et le destinataire détiennent la même clé, l'un ou l'autre aurait pu produire le code. Seule une signature avec une clé privée unique prouve l'origine devant un tiers.",
+ tip:"Clé partagée = pas de non-répudiation."},
+{d:"D3",t:"PKI",q:"Quel mécanisme permet de vérifier EN TEMPS RÉEL si un certificat a été révoqué ?",
+ o:["OCSP","CRL","CSR","X.509"],
+ e:"OCSP interroge un répondeur pour connaître le statut d'un certificat. La CRL est une liste publiée périodiquement. La CSR est la demande de certificat ; X.509 est le format.",
+ tip:"OCSP = en ligne ; CRL = liste."},
+{d:"D3",t:"PKI",q:"Dans une PKI, quel acteur vérifie l'identité du demandeur avant l'émission d'un certificat ?",
+ o:["L'autorité d'enregistrement (RA)","L'autorité de certification racine","Le répondeur OCSP","Le titulaire du certificat"],
+ e:"La RA vérifie l'identité ; la CA signe et émet le certificat. La CA racine est idéalement conservée hors ligne.",
+ tip:"RA vérifie, CA signe."},
+{d:"D3",t:"Gestion des clés",q:"Aucun administrateur ne doit pouvoir reconstituer seul la clé maîtresse du HSM. Quel principe applique-t-on ?",
+ o:["Connaissance partagée (split knowledge) et double contrôle","Séquestre de clés","Rotation des clés","Crypto-agilité"],
+ e:"La clé est découpée en fragments détenus par plusieurs personnes, et certaines opérations exigent la présence de plusieurs d'entre elles.",
+ tip:"Aucun acteur seul ne détient la clé maîtresse."},
+{d:"D3",t:"Post-quantique",q:"Quel standard NIST publié en 2024 définit le mécanisme post-quantique d'encapsulation de clés ML-KEM ?",
+ o:["FIPS 203","FIPS 204","FIPS 205","FIPS 140-3"],
+ e:"FIPS 203 : ML-KEM (échange de clés). FIPS 204 : ML-DSA (signature). FIPS 205 : SLH-DSA (signature à base de hachage). FIPS 140-3 concerne la validation des modules cryptographiques.",
+ tip:"203 = clés ; 204 et 205 = signatures."},
+{d:"D3",t:"Post-quantique",q:"Quelle est la PREMIÈRE action à mener pour préparer la migration post-quantique ?",
+ o:["Inventorier les usages cryptographiques et la durée de vie des données","Remplacer immédiatement tous les certificats","Doubler la taille de toutes les clés RSA","Attendre que les ordinateurs quantiques soient disponibles"],
+ e:"On ne peut migrer que ce que l'on connaît. Les données à longue durée de vie sont déjà exposées à la stratégie « récolter maintenant, déchiffrer plus tard ».",
+ tip:"Inventaire + crypto-agilité."},
+{d:"D3",t:"Attaques",q:"Un attaquant mesure le temps de calcul et la consommation électrique d'une carte à puce pour en déduire la clé. Quel type d'attaque est-ce ?",
+ o:["Attaque par canal auxiliaire","Force brute","Attaque par texte clair choisi","Attaque par rejeu"],
+ e:"Les canaux auxiliaires exploitent des effets physiques de l'implémentation (temps, consommation, rayonnement). Parades : implémentations à temps constant, matériel durci.",
+ tip:"Mesure physique → canal auxiliaire."},
+{d:"D3",t:"Attaques",q:"Quelle attaque cherche deux entrées différentes produisant le même haché ?",
+ o:["L'attaque des anniversaires","L'attaque par rejeu","L'attaque de l'homme du milieu","Le pass-the-hash"],
+ e:"Le paradoxe des anniversaires rend les collisions bien plus faciles à trouver qu'on ne l'imagine. Parade : fonctions de hachage à sortie longue.",
+ tip:"Collision → anniversaire."},
+{d:"D3",t:"Attaques",q:"Quelle parade est la PLUS efficace contre une attaque par rejeu ?",
+ o:["Horodatage, nonce ou numéro de séquence","Un chiffrement plus long","Un pare-feu applicatif","Le hachage des mots de passe"],
+ e:"En rendant chaque message unique et limité dans le temps, on empêche la réutilisation d'un message capturé.",
+ tip:"Rejeu → rendre chaque message unique."},
+{d:"D3",t:"Physique",q:"Quel système d'extinction est le PLUS adapté à une salle serveurs équipée de sprinklers ?",
+ o:["Pré-action","Sous eau (wet pipe)","Déluge","Halon"],
+ e:"Le pré-action exige une double condition (détection puis chaleur) avant de libérer l'eau, ce qui limite les dégâts en cas de déclenchement intempestif. Le Halon est interdit.",
+ tip:"Salle serveurs → pré-action ou gaz propre."},
+{d:"D3",t:"Physique",q:"Selon la classification américaine, un feu d'équipements électriques est de classe…",
+ o:["C","A","B","D"],
+ e:"A : combustibles ordinaires ; B : liquides inflammables ; C : électrique ; D : métaux ; K : huiles de cuisson. On n'éteint pas un feu électrique avec de l'eau.",
+ tip:"C comme Courant."},
+{d:"D3",t:"Physique",q:"Une sous-tension PROLONGÉE de l'alimentation électrique s'appelle…",
+ o:["Une baisse de tension (brownout)","Un creux (sag)","Un pic (spike)","Une microcoupure (fault)"],
+ e:"Momentané / prolongé : microcoupure / coupure (perte totale), creux / baisse (sous-tension), pic / surtension (surtension).",
+ tip:"Prolongé : blackout, brownout, surge."},
+{d:"D3",t:"Physique",q:"Quel dispositif empêche le talonnage (une personne qui suit un employé autorisé) à l'entrée d'une zone sensible ?",
+ o:["Un sas (mantrap)","Une caméra","Un panneau d'avertissement","Un détecteur de fumée"],
+ e:"Le sas n'autorise le passage que d'une personne à la fois, avec deux portes qui ne s'ouvrent pas simultanément. La caméra détecte, elle n'empêche pas.",
+ tip:"Empêcher → sas ; constater → caméra."},
+// ---------------- DOMAINE 4 ----------------
+{d:"D4",t:"Modèles",q:"À quelle couche du modèle OSI se situe le protocole ARP ?",
+ o:["Couche 2 — Liaison","Couche 3 — Réseau","Couche 4 — Transport","Couche 1 — Physique"],
+ e:"ARP associe une adresse IP à une adresse MAC sur le réseau local : il relève de la couche liaison, comme les commutateurs et les VLAN.",
+ tip:"MAC, ARP, switch, VLAN → couche 2."},
+{d:"D4",t:"Modèles",q:"À quelle couche OSI opère un routeur ?",
+ o:["Couche 3 — Réseau","Couche 2 — Liaison","Couche 4 — Transport","Couche 7 — Application"],
+ e:"Le routeur prend ses décisions sur les adresses IP : couche réseau.",
+ tip:"IP, routeur, IPsec → couche 3."},
+{d:"D4",t:"Modèles",q:"Un pare-feu applicatif web (WAF) qui bloque des injections SQL agit à quelle couche ?",
+ o:["Couche 7 — Application","Couche 3 — Réseau","Couche 4 — Transport","Couche 2 — Liaison"],
+ e:"Pour reconnaître une injection, il faut analyser le contenu des requêtes HTTP : couche application.",
+ tip:"Contenu applicatif → couche 7."},
+{d:"D4",t:"Modèles",q:"Quel est l'ordre de la poignée de main TCP ?",
+ o:["SYN, SYN-ACK, ACK","SYN, ACK, FIN","ACK, SYN, SYN-ACK","SYN, FIN, ACK"],
+ e:"Le client envoie SYN, le serveur répond SYN-ACK, le client confirme par ACK.",
+ tip:"Inondation SYN = l'ACK n'arrive jamais."},
+{d:"D4",t:"Attaques",q:"Quelle parade est la PLUS adaptée contre une inondation SYN ?",
+ o:["Les SYN cookies","Le chiffrement TLS","DNSSEC","Le protocole WPA3"],
+ e:"Les SYN cookies évitent de réserver des ressources avant la fin de la poignée de main, ce qui neutralise la saturation de la table des connexions semi-ouvertes.",
+ tip:"Attaque de couche 4 → parade de couche 4."},
+{d:"D4",t:"Protocoles",q:"Quel protocole remplace Telnet pour une administration à distance chiffrée ?",
+ o:["SSH (port 22)","FTP (port 21)","SNMPv2c (port 161)","HTTP (port 80)"],
+ e:"Telnet transmet tout en clair, y compris les mots de passe. SSH chiffre la session et permet l'authentification par clés.",
+ tip:"Telnet 23 → SSH 22."},
+{d:"D4",t:"Protocoles",q:"Quel est le port par défaut de LDAP sécurisé (LDAPS) ?",
+ o:["636","389","443","3389"],
+ e:"LDAP : 389 ; LDAPS : 636 ; HTTPS : 443 ; RDP : 3389.",
+ tip:"389 en clair, 636 sécurisé."},
+{d:"D4",t:"Protocoles",q:"Quelle version de SNMP apporte l'authentification et le chiffrement ?",
+ o:["SNMPv3","SNMPv1","SNMPv2c","Aucune version"],
+ e:"SNMPv1 et v2c utilisent des « communautés » transmises en clair. SNMPv3 ajoute authentification et chiffrement.",
+ tip:"Supervision → SNMPv3 uniquement."},
+{d:"D4",t:"Protocoles",q:"Que garantit DNSSEC ?",
+ o:["L'authenticité et l'intégrité des réponses DNS","La confidentialité des requêtes DNS","La disponibilité des serveurs DNS","Le chiffrement de tout le trafic web"],
+ e:"DNSSEC signe les enregistrements DNS, ce qui contre l'empoisonnement de cache. La confidentialité des requêtes relève de DoH ou DoT.",
+ tip:"DNSSEC = intégrité ; DoH / DoT = confidentialité."},
+{d:"D4",t:"IPsec",q:"Avec IPsec, quel composant apporte la CONFIDENTIALITÉ des données ?",
+ o:["ESP","AH","IKE","Le mode transport"],
+ e:"AH assure l'intégrité et l'authentification sans chiffrer. ESP chiffre (et peut aussi assurer l'intégrité). IKE négocie les clés.",
+ tip:"Besoin de chiffrer → ESP."},
+{d:"D4",t:"IPsec",q:"Pour relier deux agences par un VPN IPsec entre passerelles, quel mode utilise-t-on ?",
+ o:["Le mode tunnel","Le mode transport","Le mode passif","Le mode AH seul"],
+ e:"Le mode tunnel encapsule le paquet IP complet entre deux passerelles. Le mode transport protège la charge utile entre deux hôtes.",
+ tip:"Passerelle à passerelle → tunnel."},
+{d:"D4",t:"Protocoles",q:"Quel avantage apporte TLS 1.3 par rapport à TLS 1.2 ?",
+ o:["Suppression des suites faibles et confidentialité persistante obligatoire","Compatibilité avec SSL 3.0","Suppression du chiffrement pour gagner en vitesse","Utilisation obligatoire de RSA pour l'échange de clé"],
+ e:"TLS 1.3 retire les algorithmes obsolètes, impose des échanges de clé éphémères (confidentialité persistante) et accélère la négociation.",
+ tip:"Minimum TLS 1.2, cible TLS 1.3."},
+{d:"D4",t:"Sans fil",q:"Quelle norme Wi-Fi utilise l'échange de clé SAE, plus robuste contre les attaques par dictionnaire hors ligne ?",
+ o:["WPA3","WPA2","WPA","WEP"],
+ e:"WPA3-Personnel remplace la clé pré-partagée de WPA2 par SAE. WEP est cassé ; WPA (TKIP) est obsolète.",
+ tip:"WEP → jamais ; WPA3 → cible."},
+{d:"D4",t:"Sans fil",q:"Quelle méthode d'authentification Wi-Fi d'entreprise est la PLUS robuste ?",
+ o:["EAP-TLS avec certificats client et serveur","Clé pré-partagée commune","WPS par code PIN","Filtrage des adresses MAC"],
+ e:"EAP-TLS, dans le cadre de 802.1X, authentifie mutuellement le poste et le réseau par certificats. Le filtrage MAC se contourne facilement par usurpation.",
+ tip:"802.1X + EAP-TLS + RADIUS."},
+{d:"D4",t:"Sans fil",q:"Un attaquant installe un point d'accès portant le même nom que celui de l'entreprise pour intercepter les connexions. C'est…",
+ o:["Un jumeau maléfique (evil twin)","Du bluejacking","Un saut de VLAN","Une inondation SYN"],
+ e:"L'evil twin imite un réseau légitime. Parade : authentification mutuelle (EAP-TLS) et détection des points d'accès pirates.",
+ tip:"Imitation de SSID → evil twin."},
+{d:"D4",t:"Composants",q:"Quel type de pare-feu suit l'état des connexions établies ?",
+ o:["Pare-feu à états (stateful)","Filtrage de paquets statique","Concentrateur","Répéteur"],
+ e:"Le pare-feu à états maintient une table des connexions et n'autorise que les réponses correspondant à une session ouverte. Le filtrage statique examine chaque paquet isolément.",
+ tip:"Stateful = mémoire des connexions."},
+{d:"D4",t:"Composants",q:"Quelle est la différence ESSENTIELLE entre un IDS et un IPS ?",
+ o:["L'IDS détecte et alerte ; l'IPS, placé en ligne, bloque","L'IDS chiffre le trafic ; l'IPS le déchiffre","L'IPS n'utilise que des signatures","L'IDS est toujours plus coûteux"],
+ e:"L'IDS observe une copie du trafic ; l'IPS est sur le chemin et peut stopper une attaque, au risque de bloquer du trafic légitime en cas de faux positif.",
+ tip:"Détecter ≠ prévenir."},
+{d:"D4",t:"Composants",q:"Quelle méthode de détection repère des attaques INCONNUES, au prix de davantage de faux positifs ?",
+ o:["La détection par anomalie (comportementale)","La détection par signature","Le filtrage d'URL","La liste blanche d'adresses IP"],
+ e:"La détection par anomalie compare l'activité à une référence de comportement normal. Les signatures, elles, ne reconnaissent que des attaques connues.",
+ tip:"Inconnu → anomalie ; connu → signature."},
+{d:"D4",t:"Composants",q:"Quelle solution vérifie l'état de sécurité d'un poste (correctifs, antivirus) avant de l'admettre sur le réseau ?",
+ o:["NAC","WAF","CDN","Proxy inverse"],
+ e:"Le contrôle d'admission au réseau (NAC) authentifie le poste, vérifie sa conformité et peut le placer en quarantaine.",
+ tip:"NAC s'appuie souvent sur 802.1X."},
+{d:"D4",t:"Architecture",q:"Où placer le serveur web public d'une banque ?",
+ o:["Dans une DMZ (sous-réseau filtré)","Sur le réseau interne des employés","Dans la zone de la base de données","Directement sur Internet sans pare-feu"],
+ e:"La DMZ isole les services exposés : si le serveur est compromis, l'attaquant ne se retrouve pas directement dans le réseau interne.",
+ tip:"Service exposé → DMZ."},
+{d:"D4",t:"Architecture",q:"Quelle est la règle par défaut d'un pare-feu bien configuré ?",
+ o:["Tout refuser, puis autoriser explicitement le nécessaire","Tout autoriser, puis bloquer les menaces connues","Autoriser le trafic sortant sans contrôle","Autoriser tout le trafic interne"],
+ e:"Le refus par défaut applique le moindre privilège au réseau. Autoriser par défaut laisse passer tout ce qu'on n'a pas anticipé.",
+ tip:"Default deny."},
+{d:"D4",t:"Architecture",q:"Pourquoi un VLAN seul ne constitue-t-il pas une frontière de sécurité suffisante ?",
+ o:["Sans filtrage entre segments, le trafic peut passer, et des attaques de saut de VLAN existent","Les VLAN chiffrent mal le trafic","Les VLAN ne fonctionnent qu'en Wi-Fi","Les VLAN interdisent le routage"],
+ e:"Un VLAN sépare logiquement, mais il faut un filtrage (pare-feu, listes de contrôle) entre segments et une configuration rigoureuse des ports trunk.",
+ tip:"Segmenter et filtrer."},
+{d:"D4",t:"Accès distant",q:"Quel protocole AAA chiffre l'intégralité du contenu et sépare authentification, autorisation et traçabilité ?",
+ o:["TACACS+","RADIUS","LDAP","Kerberos"],
+ e:"TACACS+ (TCP 49) chiffre tout le paquet et sépare les trois A, ce qui le rend adapté à l'administration des équipements réseau. RADIUS (UDP) ne chiffre que le mot de passe et combine authentification et autorisation.",
+ tip:"TACACS+ = TCP, tout chiffré."},
+{d:"D4",t:"Accès distant",q:"Comment sécuriser au MIEUX l'administration des serveurs par des administrateurs distants ?",
+ o:["Via un bastion avec MFA, gestion des accès privilégiés et sessions enregistrées","En ouvrant RDP sur Internet avec un mot de passe complexe","En partageant un compte administrateur commun","En autorisant les connexions depuis n'importe quelle adresse IP"],
+ e:"Le bastion concentre et trace les accès privilégiés ; la MFA et le PAM réduisent le risque de vol d'identifiants. RDP exposé est un vecteur majeur de rançongiciels.",
+ tip:"Jamais d'administration directe depuis Internet."},
+{d:"D4",t:"Attaques",q:"Un attaquant envoie de fausses réponses ARP pour se placer entre un poste et la passerelle. Quelle parade est la PLUS adaptée ?",
+ o:["Inspection ARP dynamique sur les commutateurs","DNSSEC","WPA3","Un proxy inverse"],
+ e:"L'empoisonnement ARP est une attaque de couche 2 ; l'inspection ARP dynamique valide les associations IP / MAC au niveau du commutateur.",
+ tip:"Couche 2 → parade sur le switch."},
+{d:"D4",t:"Attaques",q:"Dans une attaque smurf, l'attaquant…",
+ o:["Envoie des pings vers une adresse de diffusion en usurpant l'adresse de la victime","Inonde un serveur de connexions TCP semi-ouvertes","Empoisonne le cache d'un serveur DNS","Imite un point d'accès Wi-Fi"],
+ e:"Toutes les machines du réseau répondent à la victime, qui est submergée. Parade : bloquer les diffusions dirigées et filtrer l'usurpation d'adresses.",
+ tip:"Smurf = ICMP + diffusion + usurpation."},
+{d:"D4",t:"Attaques",q:"Quelle mesure protège le MIEUX une banque en ligne contre un déni de service distribué massif ?",
+ o:["Un service anti-DDoS chez l'opérateur ou un CDN, avec sur-capacité","Un antivirus sur chaque serveur","Un IDS par signature","Le chiffrement des disques"],
+ e:"Une attaque volumétrique sature les liens avant d'atteindre les serveurs : elle doit être absorbée en amont, chez l'opérateur ou un fournisseur spécialisé.",
+ tip:"DDoS volumétrique → filtrer en amont."},
+{d:"D4",t:"Supports",q:"Dans un environnement industriel à fortes interférences électromagnétiques, quel support réseau choisir ?",
+ o:["La fibre optique","La paire torsadée non blindée (UTP)","Le Wi-Fi","Le coaxial fin"],
+ e:"La fibre transporte de la lumière : elle est insensible aux interférences électromagnétiques et difficile à écouter.",
+ tip:"Interférences ou écoute → fibre."},
+{d:"D4",t:"Architectures",q:"Dans un réseau défini par logiciel (SDN), quelle séparation est fondamentale ?",
+ o:["Le plan de contrôle est séparé du plan de données","Le réseau interne est séparé d'Internet","Le trafic voix est séparé du trafic données","Le chiffrement est séparé de l'authentification"],
+ e:"Le contrôleur centralise les décisions (plan de contrôle) ; les équipements se contentent de transmettre (plan de données). Le contrôleur devient donc une cible critique à protéger.",
+ tip:"SDN : protéger le contrôleur."},
+{d:"D4",t:"Architectures",q:"Quel est le principal risque de sécurité de la téléphonie sur IP ?",
+ o:["Écoute des appels et fraude téléphonique si le trafic n'est pas protégé","Les interférences électromagnétiques","La saturation des disques","La perte de la base clients"],
+ e:"Sans chiffrement (SRTP) ni segmentation, les appels peuvent être interceptés et les comptes détournés pour passer des appels coûteux.",
+ tip:"VoIP → SRTP + segment dédié."},
+{d:"D4",t:"Composants",q:"À quoi sert principalement un pot de miel (honeypot) ?",
+ o:["Attirer et observer les attaquants pour détecter et comprendre leurs méthodes","Bloquer automatiquement toutes les attaques","Chiffrer le trafic sortant","Accélérer le réseau"],
+ e:"Le pot de miel est un leurre. Il est légitime d'observer ; inciter quelqu'un à commettre une infraction (provocation) ne l'est pas.",
+ tip:"Observer oui ; provoquer non."}
+];
+
+const CASES = [
+{id:"A",titre:"Réseau à plat et RDP exposé",dom:"D4 · Architecture",
+ contexte:"Chez AXONOVA Bank, tous les serveurs (API, applications, bases, outils d'administration) sont sur un même réseau sans filtrage interne. Les administrateurs se connectent en RDP depuis Internet. Un scan externe montre le port 3389 ouvert.",
+ qs:[
+ {q:"Quelle action réduit le PLUS rapidement le risque le plus élevé ?",
+  o:[["Fermer RDP sur Internet et imposer l'accès via un bastion avec MFA","C'est l'exposition la plus probable et la plus grave : un vecteur classique de rançongiciel."],
+     ["Lancer un projet de micro-segmentation de six mois","Indispensable, mais trop long pour traiter l'urgence."],
+     ["Acheter un IDS","Il détecterait, sans supprimer l'exposition."],
+     ["Imposer des mots de passe de 20 caractères","Utile, mais l'exposition directe demeure."]],
+  e:"On traite d'abord la menace la plus probable et la plus immédiate, puis on refond l'architecture."},
+ {q:"Où placer l'API utilisée par l'application mobile ?",
+  o:[["Dans une DMZ, derrière un WAF, sans accès direct à la zone données","Les services exposés doivent être isolés du cœur du SI."],
+     ["Dans la même zone que le core banking pour réduire la latence","Une compromission de l'API donnerait accès aux données."],
+     ["Sur le réseau des employés","Mélange des niveaux de confiance."],
+     ["Directement sur Internet sans pare-feu","Aucune défense en profondeur."]],
+  e:"Défense en profondeur : DMZ, filtrage entre zones, et l'API ne parle qu'à la zone applicative, jamais directement aux bases."},
+ {q:"Quelle règle appliquer entre les zones ?",
+  o:[["Refus par défaut, avec des flux autorisés explicitement et documentés","Applique le moindre privilège au réseau."],
+     ["Tout autoriser puis bloquer les incidents observés","On réagit après coup, trop tard."],
+     ["Autoriser tout le trafic interne","Facilite le mouvement latéral de l'attaquant."],
+     ["Se reposer sur les VLAN sans filtrage","Un VLAN sépare, il ne filtre pas."]],
+  e:"Chaque flux doit avoir un propriétaire et une justification ; tout le reste est bloqué."}
+ ]},
+{id:"B",titre:"Mots de passe clients en MD5",dom:"D3 · Cryptographie",
+ contexte:"Un audit révèle que les mots de passe des 2,3 millions de clients sont stockés hachés en MD5, sans sel. L'équipe propose plusieurs solutions.",
+ qs:[
+ {q:"Quel est le problème PRINCIPAL ?",
+  o:[["MD5 sans sel se casse rapidement par tables précalculées et matériel spécialisé","MD5 est rapide et cassé ; sans sel, des mots de passe identiques donnent des hachés identiques."],
+     ["MD5 est trop lent pour une banque","C'est l'inverse : il est trop rapide, ce qui aide l'attaquant."],
+     ["Les hachés prennent trop de place","Sans rapport avec la sécurité."],
+     ["MD5 ne fonctionne pas en mobile","Faux et hors sujet."]],
+  e:"Une base de hachés MD5 non salés qui fuit permet de retrouver très vite une grande partie des mots de passe."},
+ {q:"Quelle solution retenir ?",
+  o:[["Argon2id ou bcrypt avec un sel unique par compte","Fonctions lentes, conçues pour les mots de passe ; le sel empêche les tables précalculées."],
+     ["Chiffrer les mots de passe en AES-256","La clé permettrait de tout déchiffrer : un mot de passe se hache, il ne se chiffre pas."],
+     ["Passer à SHA-256 sans sel","Toujours rapide et sans sel."],
+     ["Hacher deux fois en MD5","Ne corrige ni la rapidité ni l'absence de sel."]],
+  e:"Hachage lent + sel unique, éventuellement un poivre conservé hors de la base (dans un HSM)."},
+ {q:"Comment migrer sans connaître les mots de passe en clair ?",
+  o:[["Re-hacher au fil des connexions et forcer la réinitialisation des comptes inactifs","Au login, le mot de passe saisi est vérifié puis haché avec le nouvel algorithme."],
+     ["Demander les mots de passe aux clients par courriel","Contraire à toute bonne pratique, ouvre la voie à l'hameçonnage."],
+     ["Casser les hachés MD5 pour les convertir","Inacceptable éthiquement et juridiquement."],
+     ["Conserver MD5, le risque est faible","Le risque est élevé et connu."]],
+  e:"Une migration progressive est classique ; on peut aussi envelopper immédiatement l'ancien haché dans le nouvel algorithme pour protéger les comptes inactifs."}
+ ]},
+{id:"C",titre:"Signer les ordres de virement",dom:"D3 · Cryptographie",
+ contexte:"Des clients contestent des virements qu'ils affirment ne pas avoir ordonnés. La banque veut pouvoir prouver, devant un juge, qu'un ordre a bien été émis depuis l'appareil du client.",
+ qs:[
+ {q:"Quelle propriété de sécurité est recherchée ?",
+  o:[["La non-répudiation","Empêcher le client de nier avoir émis l'ordre."],
+     ["La disponibilité","Sans rapport avec la preuve de l'origine."],
+     ["La confidentialité","Protège le contenu, pas l'origine."],
+     ["L'anonymat","À l'opposé du besoin."]],
+  e:"La non-répudiation exige une preuve qu'un seul acteur a pu produire."},
+ {q:"Quel mécanisme choisir ?",
+  o:[["Une signature numérique avec une clé privée propre à l'appareil du client","Seul l'appareil détient la clé ; la banque vérifie avec la clé publique."],
+     ["Un HMAC avec une clé partagée entre la banque et le client","La banque détenant aussi la clé, elle pourrait avoir produit le code."],
+     ["Le chiffrement TLS de la connexion","Protège le transport, ne prouve pas l'auteur de l'ordre."],
+     ["Un hachage SHA-256 de l'ordre","N'importe qui peut calculer un haché."]],
+  e:"Clé privée générée et conservée dans l'enclave sécurisée du téléphone, signature de chaque ordre, journalisation horodatée côté banque."},
+ {q:"Où conserver les clés de vérification et les journaux côté banque ?",
+  o:[["Dans un HSM et des journaux protégés contre la modification","La valeur probante dépend de l'intégrité des clés et des traces."],
+     ["Dans un fichier sur le serveur applicatif","Modifiable par un administrateur : faible valeur probante."],
+     ["Dans la messagerie du RSSI","Aucune garantie d'intégrité."],
+     ["Nulle part : la signature suffit","Sans traces fiables, la preuve est fragile."]],
+  e:"Intégrité des journaux et protection des clés sont indispensables pour qu'une preuve soit recevable."}
+ ]},
+{id:"D",titre:"Wi-Fi des agents partenaires",dom:"D4 · Sans fil",
+ contexte:"Les agents partenaires Mobile Money se connectent au Wi-Fi des agences avec une clé WPA2 partagée, connue de tous depuis deux ans. Ce réseau donne accès au réseau interne de la banque.",
+ qs:[
+ {q:"Quel est le défaut le PLUS grave ?",
+  o:[["Le Wi-Fi des partenaires donne accès au réseau interne","Un tiers non maîtrisé se retrouve dans la zone de confiance."],
+     ["Le Wi-Fi utilise AES","AES est un bon algorithme."],
+     ["Les agences ont un Wi-Fi","Le besoin métier est légitime."],
+     ["Le réseau n'a pas de nom caché","Masquer le nom n'est pas une protection."]],
+  e:"La segmentation passe avant le renforcement du chiffrement : un partenaire ne doit accéder qu'aux services qui lui sont destinés."},
+ {q:"Quelle authentification mettre en place ?",
+  o:[["WPA3-Entreprise / 802.1X avec certificats (EAP-TLS) et RADIUS","Identité individuelle, révocable, authentification mutuelle."],
+     ["Changer la clé partagée tous les ans","Toujours une clé commune, non nominative."],
+     ["Filtrage des adresses MAC","Contournable par usurpation."],
+     ["WEP pour la compatibilité","Cassé."]],
+  e:"Une identité par agent permet de révoquer un accès sans impacter les autres et de tracer les connexions."},
+ {q:"Un agent quitte le réseau de partenaires. Que faire ?",
+  o:[["Révoquer son certificat et son compte immédiatement","L'accès individuel se coupe sans changer la configuration des autres."],
+     ["Changer la clé Wi-Fi de toutes les agences","Lourd, et inutile avec des identités individuelles."],
+     ["Attendre l'expiration naturelle du certificat","Laisse un accès ouvert pendant des mois."],
+     ["Lui demander de supprimer le réseau de son téléphone","Aucune garantie."]],
+  e:"Le cycle de vie des accès des tiers est un point d'audit fréquent : départ = révocation immédiate."}
+ ]},
+{id:"E",titre:"Datacenter et coupures électriques",dom:"D3 · Sécurité physique",
+ contexte:"Le datacenter principal d'AXONOVA Bank subit des délestages fréquents. La salle serveurs est protégée par des sprinklers sous eau. Lors du dernier délestage, le groupe électrogène n'a pas démarré.",
+ qs:[
+ {q:"Quel est le rôle de l'onduleur (UPS) ?",
+  o:[["Assurer la continuité pendant quelques minutes, le temps que le groupe électrogène prenne le relais","Il couvre la transition et lisse les variations de tension."],
+     ["Alimenter le datacenter pendant plusieurs jours","C'est le rôle du groupe électrogène avec un approvisionnement en carburant."],
+     ["Remplacer le groupe électrogène","Autonomie insuffisante."],
+     ["Refroidir les serveurs","Rôle de la climatisation."]],
+  e:"Onduleur (court terme) + groupe électrogène (long terme) + tests réguliers sous charge."},
+ {q:"Comment éviter que le groupe ne démarre pas la prochaine fois ?",
+  o:[["Tests réguliers sous charge, maintenance, gestion du carburant et des batteries","Un équipement de secours non testé n'est pas un secours."],
+     ["Acheter un second groupe identique sans test","Sans test, le même défaut peut se répéter."],
+     ["Débrancher les serveurs pendant les délestages","Interruption de service."],
+     ["Compter sur l'onduleur seul","Autonomie trop courte."]],
+  e:"La continuité repose sur des tests réguliers ; c'est le REX le plus fréquent en Afrique de l'Ouest."},
+ {q:"Quel système d'extinction recommander pour la salle serveurs ?",
+  o:[["Pré-action, ou un gaz propre avec alarme et délai d'évacuation","Limite les dégâts des eaux tout en protégeant les personnes."],
+     ["Conserver les sprinklers sous eau","Risque de dégâts en cas de fuite ou de déclenchement intempestif."],
+     ["Installer du Halon","Interdit."],
+     ["Supprimer toute extinction automatique","Inacceptable pour la sécurité des personnes et des biens."]],
+  e:"Le choix doit toujours préserver la sécurité des personnes : alarme et temps d'évacuation avant libération d'un gaz."}
+ ]}
+];
+
+const GLOSSARY = [
+["802.1X","Contrôle d'accès réseau par port, souvent avec EAP et RADIUS."],["AH","En-tête IPsec : intégrité et authentification, sans chiffrement."],["Agrégation","Sensibilité accrue d'un ensemble de données peu sensibles prises isolément."],
+["Anneaux de protection","Niveaux de privilège du processeur ; l'anneau 0 est le noyau."],["Bastion","Hôte durci, point d'entrée unique et tracé de l'administration."],["Bell-LaPadula","Modèle de confidentialité : no read up, no write down."],
+["Biba","Modèle d'intégrité : no read down, no write up."],["Brewer-Nash","Modèle « muraille de Chine » contre les conflits d'intérêts."],["Canal auxiliaire","Attaque exploitant temps, consommation ou rayonnement d'une implémentation."],
+["Clark-Wilson","Modèle d'intégrité par transactions bien formées et séparation des tâches."],["CRL","Liste de révocation de certificats publiée par la CA."],["Critères communs","Norme ISO/IEC 15408 d'évaluation de la sécurité des produits."],
+["DMZ","Zone tampon qui héberge les services exposés à Internet."],["DNSSEC","Signature des réponses DNS : intégrité et authenticité."],["EAL","Niveau d'assurance des Critères communs, de 1 à 7."],
+["ECB","Mode de chiffrement à éviter : il révèle les motifs des données."],["ESP","En-tête IPsec qui apporte la confidentialité."],["Evil twin","Point d'accès pirate imitant un réseau Wi-Fi légitime."],
+["Fail-safe / fail-secure","En panne : ouvert pour protéger les personnes / fermé pour protéger les actifs."],["GCM","Mode de chiffrement authentifié (confidentialité + intégrité)."],["HMAC","Code d'authentification de message à clé partagée."],
+["HSM","Matériel dédié à la génération et à la protection des clés."],["IDS / IPS","Détection / prévention d'intrusion."],["IKE","Protocole de négociation des clés IPsec."],
+["Inférence","Déduction d'une information interdite à partir d'informations autorisées."],["Kerckhoffs","Principe : seule la clé doit rester secrète."],["ML-KEM","Standard post-quantique d'échange de clés (FIPS 203)."],
+["Moniteur de référence","Médiation de tous les accès ; toujours invoqué, inviolable, vérifiable."],["NAC","Contrôle d'admission des équipements au réseau."],["NGFW","Pare-feu de nouvelle génération (applications, utilisateurs, IPS)."],
+["OCSP","Vérification en ligne du statut d'un certificat."],["PDP / PEP","Point de décision / point d'application de la politique (Zero Trust)."],["PKI","Infrastructure à clés publiques : CA, RA, certificats, révocation."],
+["Polyinstanciation","Versions multiples d'une donnée selon l'habilitation."],["Pré-action","Sprinkler à double déclenchement, adapté aux salles serveurs."],["RADIUS","Protocole AAA en UDP ; seul le mot de passe est chiffré."],
+["SAE","Échange de clé de WPA3, résistant aux attaques par dictionnaire hors ligne."],["Sas (mantrap)","Double porte empêchant le talonnage."],["SDN","Réseau piloté par logiciel : plan de contrôle séparé du plan de données."],
+["Sel","Valeur aléatoire unique ajoutée avant le hachage d'un mot de passe."],["SYN cookies","Parade contre l'inondation SYN."],["TACACS+","Protocole AAA en TCP 49 ; tout le contenu est chiffré."],
+["TCB","Base informatique de confiance qui applique la politique de sécurité."],["TPM","Puce de confiance d'une machine : clés, démarrage mesuré, attestation."],["VM escape","Évasion d'une machine virtuelle vers l'hyperviseur."],
+["WAF","Pare-feu applicatif web."],["WPA3","Norme de sécurité Wi-Fi actuelle."],["Zero Trust","Aucune confiance implicite ; chaque accès est vérifié (NIST SP 800-207)."]
+];
+
+</script>
+<script>
+(function(){
+"use strict";
+var LETTERS=["A","B","C","D","E","F"];
+function dlabel(d){for(var i=0;i<CONFIG.domains.length;i++)if(CONFIG.domains[i][0]===d)return CONFIG.domains[i][1];return d;}
+function el(tag,attrs,children){var e=document.createElement(tag);if(attrs){for(var k in attrs){if(k==="text")e.textContent=attrs[k];else if(k==="cls")e.className=attrs[k];else e.setAttribute(k,attrs[k]);}}
+ (children||[]).forEach(function(c){if(c!=null)e.appendChild(typeof c==="string"?document.createTextNode(c):c);});return e;}
+function shuffle(n){var a=[];for(var i=0;i<n;i++)a.push(i);for(var j=n-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t;}return a;}
+
+/* ---------- Onglets ---------- */
+var tabs=document.querySelectorAll("nav button");
+Array.prototype.forEach.call(tabs,function(b){b.addEventListener("click",function(){
+  Array.prototype.forEach.call(tabs,function(x){x.setAttribute("aria-selected",x===b?"true":"false");document.getElementById("tab-"+x.dataset.tab).hidden=(x!==b);});
+});});
+
+/* ---------- Quiz ---------- */
+var S={filter:"ALL",list:[],idx:0};
+function newSession(){
+  var pool=[];QUESTIONS.forEach(function(q,i){if(S.filter==="ALL"||q.d===S.filter)pool.push(i);});
+  var ord=shuffle(pool.length);
+  S.list=ord.map(function(k){var qi=pool[k];return{qi:qi,perm:shuffle(QUESTIONS[qi].o.length),chosen:null};});
+  S.idx=0;render();
+}
+function stats(){var a=0,o=0;S.list.forEach(function(it){if(it.chosen!==null){a++;if(it.chosen===0)o++;}});return{a:a,o:o};}
+function renderStats(){var s=stats();document.getElementById("sAns").textContent=s.a;document.getElementById("sOk").textContent=s.o;
+  document.getElementById("sPct").textContent=s.a?Math.round(100*s.o/s.a)+" %":"—";document.getElementById("sTot").textContent=S.list.length;
+  document.getElementById("progBar").style.width=(S.list.length?100*s.a/S.list.length:0)+"%";}
+function renderDots(){var d=document.getElementById("dots");d.innerHTML="";
+  S.list.forEach(function(it,i){var c="dot"+(i===S.idx?" cur":"")+(it.chosen===null?"":(it.chosen===0?" ok":" ko"));
+    var b=el("button",{cls:c,text:String(i+1),"aria-label":"Question "+(i+1)});b.addEventListener("click",function(){S.idx=i;render();});d.appendChild(b);});
+  var r=el("button",{cls:"dot"+(S.idx===S.list.length?" cur":""),text:"✓","aria-label":"Résultats"});r.addEventListener("click",function(){S.idx=S.list.length;render();});d.appendChild(r);}
+function answer(origIdx){var it=S.list[S.idx];if(!it||it.chosen!==null)return;it.chosen=origIdx;render();}
+function render(){
+  renderStats();renderDots();
+  var box=document.getElementById("qbox");box.innerHTML="";
+  if(!S.list.length){box.appendChild(el("p",{cls:"empty",text:"Aucune question pour ce filtre."}));return;}
+  if(S.idx>=S.list.length){box.appendChild(renderResult());return;}
+  var it=S.list[S.idx],Q=QUESTIONS[it.qi],answered=it.chosen!==null;
+  var card=el("div",{cls:"card"});
+  card.appendChild(el("div",{cls:"meta"},[el("span",{cls:"tag"+(Q.d===CONFIG.domains[1][0]?" d2":""),text:dlabel(Q.d)}),el("span",{cls:"tag",text:Q.t}),el("span",{cls:"tag",text:"Question "+(S.idx+1)+" / "+S.list.length})]));
+  card.appendChild(el("div",{cls:"q",text:Q.q}));
+  var opts=el("div",{cls:"opts"});
+  it.perm.forEach(function(orig,pos){
+    var cls="opt";if(answered){if(orig===0)cls+=" ok";else if(orig===it.chosen)cls+=" ko";}
+    var b=el("button",{cls:cls},[el("span",{cls:"k",text:LETTERS[pos]}),el("span",{text:Q.o[orig]})]);
+    if(answered)b.disabled=true;else b.addEventListener("click",function(){answer(orig);});
+    opts.appendChild(b);});
+  card.appendChild(opts);
+  if(answered){
+    var good=it.chosen===0,posGood=it.perm.indexOf(0);
+    var fb=el("div",{cls:"fb "+(good?"ok":"ko")},[el("h3",{text:good?"Bonne réponse":"Réponse incorrecte — la bonne réponse est "+LETTERS[posGood]+" : "+Q.o[0]}),el("div",{text:Q.e})]);
+    card.appendChild(fb);
+    if(Q.tip)card.appendChild(el("div",{cls:"note tip"},[el("b",{text:"Tip examen : "}),Q.tip]));
+    if(Q.rex)card.appendChild(el("div",{cls:"note rex"},[el("b",{text:"REX : "}),Q.rex]));
+  }
+  var prev=el("button",{cls:"btn sec",text:"← Précédente"});prev.disabled=S.idx===0;prev.addEventListener("click",function(){S.idx--;render();});
+  var next=el("button",{cls:"btn",text:S.idx===S.list.length-1?"Voir les résultats":"Suivante →"});next.addEventListener("click",function(){S.idx++;render();});
+  card.appendChild(el("div",{cls:"nav"},[prev,next]));
+  box.appendChild(card);
+}
+function renderResult(){
+  var s=stats(),c=el("div",{cls:"card result"});
+  c.appendChild(el("h2",{text:"Bilan de la session"}));
+  var pct=s.a?Math.round(100*s.o/s.a):0;
+  c.appendChild(el("div",{cls:"big",text:pct+" %"}));
+  c.appendChild(el("p",{text:s.o+" bonne(s) réponse(s) sur "+s.a+" question(s) répondue(s), "+(S.list.length-s.a)+" sans réponse."}));
+  var dom=el("div",{cls:"dom"});
+  CONFIG.domains.map(function(x){return x[0];}).forEach(function(d){var a=0,o=0;S.list.forEach(function(it){if(QUESTIONS[it.qi].d===d&&it.chosen!==null){a++;if(it.chosen===0)o++;}});
+    if(a)dom.appendChild(el("div",{cls:"stat"},[el("b",{text:Math.round(100*o/a)+" %"}),el("span",{text:dlabel(d)+" — "+o+"/"+a})]));});
+  var topics={};S.list.forEach(function(it){if(it.chosen!==null&&it.chosen!==0){var t=QUESTIONS[it.qi].t;topics[t]=(topics[t]||0)+1;}});
+  c.appendChild(dom);
+  var keys=Object.keys(topics);
+  c.appendChild(el("p",{text:keys.length?"Thèmes à revoir : "+keys.map(function(k){return k+" ("+topics[k]+")";}).join(", ")+".":"Aucune erreur sur les questions répondues : excellent."}));
+  var verdict=pct>=80?CONFIG.verdict[0]:pct>=70?CONFIG.verdict[1]:CONFIG.verdict[2];
+  c.appendChild(el("div",{cls:"note tip"},[el("b",{text:"Conseil : "}),verdict]));
+  var again=el("button",{cls:"btn gold",text:"Refaire uniquement mes erreurs"});
+  var wrong=S.list.filter(function(it){return it.chosen!==null&&it.chosen!==0;});
+  again.disabled=!wrong.length;
+  again.addEventListener("click",function(){S.list=shuffle(wrong.length).map(function(k){var qi=wrong[k].qi;return{qi:qi,perm:shuffle(QUESTIONS[qi].o.length),chosen:null};});S.idx=0;render();});
+  var fresh=el("button",{cls:"btn sec",text:"Nouvelle session complète"});fresh.addEventListener("click",newSession);
+  c.appendChild(el("div",{cls:"nav"},[again,fresh]));
+  return c;
+}
+Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"),function(b){b.addEventListener("click",function(){
+  S.filter=b.dataset.f;Array.prototype.forEach.call(document.querySelectorAll("#filters .chip"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});newSession();});});
+document.getElementById("restart").addEventListener("click",newSession);
+document.addEventListener("keydown",function(e){
+  if(document.getElementById("tab-quiz").hidden||e.target.tagName==="INPUT")return;
+  var it=S.list[S.idx];
+  if(it&&/^[1-4]$/.test(e.key)){var pos=parseInt(e.key,10)-1;if(pos<it.perm.length)answer(it.perm[pos]);}
+  else if(e.key==="ArrowRight"&&S.idx<S.list.length){S.idx++;render();}
+  else if(e.key==="ArrowLeft"&&S.idx>0){S.idx--;render();}
+});
+
+/* ---------- Cas pratiques ---------- */
+var CS=[];
+function resetCases(){CS=CASES.map(function(c){return c.qs.map(function(q){return{perm:shuffle(q.o.length),chosen:null};});});renderCases();}
+function renderCases(){
+  var box=document.getElementById("cbox");box.innerHTML="";
+  CASES.forEach(function(c,ci){
+    var card=el("div",{cls:"card case"});
+    card.appendChild(el("div",{cls:"meta"},[el("span",{cls:"tag",text:"Cas "+c.id}),el("span",{cls:"tag d2",text:c.dom})]));
+    card.appendChild(el("h3",{text:c.titre}));
+    card.appendChild(el("div",{cls:"ctx",text:c.contexte}));
+    c.qs.forEach(function(q,qi){
+      var st=CS[ci][qi],answered=st.chosen!==null;
+      var w=el("div",{cls:"sq"});
+      w.appendChild(el("div",{cls:"q",text:(qi+1)+". "+q.q}));
+      var opts=el("div",{cls:"opts"});
+      st.perm.forEach(function(orig,pos){
+        var cls="opt";if(answered){if(orig===0)cls+=" ok";else if(orig===st.chosen)cls+=" ko";}
+        var label=el("span",null,[q.o[orig][0]]);
+        if(answered)label.appendChild(el("span",{cls:"why",text:(orig===0?"✔ ":"✗ ")+q.o[orig][1]}));
+        var b=el("button",{cls:cls},[el("span",{cls:"k",text:LETTERS[pos]}),label]);
+        if(answered)b.disabled=true;else b.addEventListener("click",function(){st.chosen=orig;renderCases();});
+        opts.appendChild(b);});
+      w.appendChild(opts);
+      if(answered){var good=st.chosen===0;
+        w.appendChild(el("div",{cls:"fb "+(good?"ok":"ko")},[el("h3",{text:good?"Bonne réponse":"Réponse attendue : "+LETTERS[st.perm.indexOf(0)]}),el("div",{text:q.e})]));}
+      card.appendChild(w);});
+    box.appendChild(card);});
+}
+document.getElementById("caseReset").addEventListener("click",resetCases);
+
+/* ---------- REX & tips ---------- */
+function list(items){return el("ul",null,items.map(function(t){return el("li",{text:t});}));}
+function box(cls,title,items){return el("div",{cls:"box "+cls},[el("h3",{text:title}),list(items)]);}
+(function(){var t=document.getElementById("tab-tips");
+  t.appendChild(el("h2",{cls:"sec",text:"Retours d'expérience (REX)"}));
+  var g=el("div",{cls:"grid2"});
+  CONFIG.rex.forEach(function(r){g.appendChild(el("div",{cls:"box r"},[el("h3",{text:r[0]}),el("p",{text:r[1],style:"margin:0"})]));});
+  t.appendChild(g);
+  t.appendChild(el("h2",{cls:"sec",text:"Bonnes pratiques et anti-patterns"}));
+  t.appendChild(el("div",{cls:"grid2"},[box("g","À faire",CONFIG.good),box("b","À éviter",CONFIG.bad)]));
+  t.appendChild(el("h2",{cls:"sec",text:CONFIG.tipsTitle}));
+  t.appendChild(el("div",{cls:"grid2"},[box("","Raisonnement",CONFIG.reason),box("","Pièges fréquents",CONFIG.traps)]));
+  t.appendChild(el("h2",{cls:"sec",text:"Méthode en 5 temps"}));
+  t.appendChild(el("div",{cls:"box"},[el("ol",{style:"margin:0;padding-left:20px"},["Qui suis-je dans le scénario ?","Que demande-t-on exactement ?","Éliminer les deux options clairement fausses","Entre les deux restantes, choisir la plus stratégique et la plus en amont","Valider et passer : pas de retour en arrière à l'examen"].map(function(x){return el("li",{text:x});}))]));
+})();
+
+/* ---------- Cheat sheet ---------- */
+(function(){var t=document.getElementById("tab-cheat");
+  CONFIG.cheat.forEach(function(sec){t.appendChild(el("h2",{cls:"sec",text:sec[0]}));
+    t.appendChild(el("table",null,[el("thead",null,[el("tr",null,[el("th",{text:"Thème"}),el("th",{text:"À retenir"})])]),el("tbody",null,sec[1].map(function(r){return el("tr",null,[el("td",{text:r[0]}),el("td",{text:r[1]})]);}))]));});
+})();
+
+/* ---------- Glossaire ---------- */
+(function(){var body=document.getElementById("gbody"),empty=document.getElementById("gempty"),inp=document.getElementById("gsearch");
+  var rows=GLOSSARY.slice().sort(function(a,b){return a[0].localeCompare(b[0],"fr");});
+  function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
+  function draw(){var f=norm(inp.value.trim());body.innerHTML="";var n=0;
+    rows.forEach(function(r){if(!f||norm(r[0]+" "+r[1]).indexOf(f)>=0){n++;body.appendChild(el("tr",null,[el("td",{text:r[0]}),el("td",{text:r[1]})]));}});
+    empty.hidden=n>0;}
+  inp.addEventListener("input",draw);draw();
+})();
+
+newSession();resetCases();
+})();
+</script>
+</body>
+</html>
