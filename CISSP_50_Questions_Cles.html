@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CISSP — 50 questions clés</title>
+<style>
+:root{--navy:#1E2761;--deep:#121A45;--gold:#C9A227;--ice:#CADCFC;--iceL:#EEF3FD;--ink:#1F2433;--gray:#5B6275;--line:#DDE3EF;--bg:#F5F7FB;--card:#fff;
+--ok:#2E7D4F;--okL:#E6F4EC;--ko:#B03A2E;--koL:#FBEAE8;--amb:#B7791F;--ambL:#FDF3E1;--vio:#5B4B9A;--vioL:#EFECF8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Calibri,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header{background:var(--deep);color:#fff;padding:28px 0 22px}
+.kick{color:var(--gold);font-weight:700;letter-spacing:.12em;font-size:12px;text-transform:uppercase}
+h1{font-family:Cambria,Georgia,serif;font-size:32px;margin:6px 0 6px;line-height:1.15}
+.sub{color:var(--ice);margin:0;max-width:760px}
+.toolbar{position:sticky;top:0;z-index:5;background:rgba(245,247,251,.97);border-bottom:1px solid var(--line);padding:10px 0;backdrop-filter:blur(4px)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:13.5px;cursor:pointer;color:var(--navy)}
+.chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+input[type=search]{flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.btn{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:10px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer}
+.btn.on{background:var(--gold);border-color:var(--gold);color:var(--deep)}
+.meter{font-size:13.5px;color:var(--gray);margin-left:auto}
+.meter b{color:var(--navy)}
+main{padding:22px 0 60px}
+h2.sec{font-family:Cambria,Georgia,serif;color:var(--navy);font-size:24px;margin:30px 0 12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rule{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;gap:12px}
+.rule .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;font-family:Cambria,Georgia,serif}
+.rule h3{margin:0 0 2px;font-size:16px;color:var(--navy)}
+.rule p{margin:0;font-size:14.5px;color:var(--gray)}
+.trap{background:var(--koL);border-radius:12px;padding:12px 14px}
+.trap h3{margin:0 0 2px;font-size:15.5px;color:var(--ko)}
+.trap p{margin:0;font-size:14.5px}
+.dhead{display:flex;align-items:center;gap:14px;background:var(--navy);color:#fff;border-radius:14px;padding:14px 18px;margin:34px 0 6px}
+.dhead .code{font-family:Cambria,Georgia,serif;font-size:26px;font-weight:700;color:var(--gold)}
+.dhead .t{font-family:Cambria,Georgia,serif;font-size:20px;font-weight:700}
+.dhead .p{margin-left:auto;color:var(--ice);font-size:14px}
+.wisdom{font-family:Cambria,Georgia,serif;font-style:italic;color:var(--navy);background:var(--vioL);border-radius:10px;padding:10px 16px;margin:0 0 12px;font-size:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(18,26,69,.05)}
+.card.done{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok) inset}
+.qh{display:flex;gap:12px;align-items:flex-start}
+.num{flex:none;min-width:40px;height:40px;border-radius:10px;background:var(--iceL);color:var(--navy);display:grid;place-items:center;font-weight:700;font-family:Cambria,Georgia,serif}
+.q{font-family:Cambria,Georgia,serif;font-size:19px;color:var(--navy);margin:6px 0 0;line-height:1.3;flex:1}
+.mk{flex:none;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);cursor:pointer;margin-top:8px;white-space:nowrap}
+.mk input{width:18px;height:18px;accent-color:var(--ok)}
+.ans{margin:12px 0 0 52px}
+.reveal{border:1px dashed var(--navy);background:var(--iceL);color:var(--navy);border-radius:10px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;width:100%;text-align:left}
+.a{background:var(--okL);border-radius:10px;padding:10px 14px;font-weight:700;color:#1d5a37}
+.blocks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.b{border-radius:10px;padding:10px 12px;font-size:14.5px}
+.b h4{margin:0 0 3px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.b p{margin:0}
+.b.nu{background:#fff;border:1px solid var(--line);grid-column:1/-1}.b.nu h4{color:var(--navy)}
+.b.ru{background:var(--iceL)}.b.ru h4{color:var(--navy)}
+.b.pi{background:var(--koL)}.b.pi h4{color:var(--ko)}
+.b.ti{background:var(--ambL)}.b.ti h4{color:var(--amb)}
+.b.ea{background:var(--vioL)}.b.ea h4{color:var(--vio)}
+.empty{color:var(--gray);font-style:italic;padding:20px 0}
+.foot{color:var(--gray);font-size:13px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+.hidden{display:none!important}
+@media (max-width:700px){.toolbar{position:static}#chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}.chip{white-space:nowrap}h1{font-size:25px}.grid2,.blocks{grid-template-columns:1fr}.ans{margin-left:0}.q{font-size:17px}.dhead .t{font-size:17px}.meter{margin-left:0;width:100%}}
+@media print{.toolbar{display:none}.reveal{display:none}.ansbody{display:block!important}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="kick">CISSP · Révision ciblée</div>
+  <h1>Les 50 questions clés à connaître</h1>
+  <p class="sub">Pour chaque question : la réponse attendue, la nuance qui départage les options, la règle à retenir, le piège à éviter, un tip d'examen et l'état de l'art 2026.</p>
+</div></header>
+<div class="toolbar"><div class="wrap">
+  <div class="row" id="chips"><button class="chip" data-d="ALL" aria-pressed="true">Tous</button></div>
+  <div class="row" style="margin-top:8px">
+    <input type="search" id="search" placeholder="Rechercher (ex. RPO, OIDC, legal hold, BOLA)…" aria-label="Rechercher">
+    <button class="btn" id="mode" aria-pressed="false">Mode quiz : masquer les réponses</button>
+    <button class="btn" id="todo" aria-pressed="false">À revoir seulement</button>
+    <span class="meter" id="meter"></span>
+  </div>
+</div></div>
+<main><div class="wrap">
+  <h2 class="sec">Les 8 règles d'or</h2>
+  <div class="grid2" id="rules"></div>
+  <h2 class="sec">Comment éviter les pièges</h2>
+  <div class="grid2" id="traps"></div>
+  <div id="list"></div>
+  <p class="empty hidden" id="empty">Aucune question ne correspond à ces critères.</p>
+  <p class="foot">Repères d'examen et éléments d'état de l'art à vérifier régulièrement (isc2.org, NIST, OWASP) : ils évoluent. Cochez « Je maîtrise » pour suivre votre progression ; ce suivi reste dans ce navigateur.</p>
+</div></main>
+<script>
+const DOMAINS = {
+ D1:{n:"Sécurité et gestion des risques",p:"16 %",w:"« La sécurité n'est pas un frein à l'activité : c'est ce qui lui permet de durer. »"},
+ D2:{n:"Sécurité des actifs",p:"10 %",w:"« On ne protège bien que ce que l'on connaît, et on ne connaît que ce dont quelqu'un répond. »"},
+ D3:{n:"Architecture et ingénierie",p:"13 %",w:"« Une faille de conception se paie à chaque version ; un bon principe se rentabilise à chaque version. »"},
+ D4:{n:"Communications et réseaux",p:"13 %",w:"« Le réseau n'est plus un château fort : chaque flux doit mériter sa confiance. »"},
+ D5:{n:"Identités et accès",p:"13 %",w:"« L'attaquant ne force plus la porte : il se connecte. »"},
+ D6:{n:"Évaluation et tests",p:"12 %",w:"« Un contrôle non testé n'est qu'une hypothèse. »"},
+ D7:{n:"Opérations de sécurité",p:"13 %",w:"« Dans la crise, le processus est la seule chose qui ne panique pas. »"},
+ D8:{n:"Développement logiciel",p:"10 %",w:"« Le client n'est jamais de confiance — même quand c'est votre propre application. »"}
+};
+const RULES = [
+ ["Les personnes d'abord","Aucune donnée, aucun service ne vaut une vie. Fail-safe pour les issues, évacuation avant reprise."],
+ ["La direction décide","Le RSSI conseille, documente et fait exécuter ; il n'accepte pas le risque à la place du métier."],
+ ["Gouvernance avant technique","Politique, analyse, processus, puis outil. L'achat n'est jamais la première étape."],
+ ["En amont d'abord","« EN PREMIER » désigne l'étape qui rend les autres possibles : mandat, analyse, cadrage."],
+ ["Processus même en urgence","L'urgence accélère le processus (changement, incident), elle ne le supprime pas."],
+ ["Préserver avant de réparer","Confiner, capturer la mémoire et les journaux, puis éradiquer et reprendre."],
+ ["Chaque rôle à sa place","Propriétaire décide, dépositaire applique, auditeur vérifie sans corriger."],
+ ["Coût raisonnable","Un contrôle doit coûter moins que le risque évité ; sinon, autre traitement."]
+];
+const TRAPS = [
+ ["La réponse la plus technique","Elle est souvent vraie mais pas la meilleure. Montez d'un niveau : qui décide, quel processus ?"],
+ ["Les absolus","TOUJOURS, JAMAIS, UNIQUEMENT, « éliminer tout risque » : presque toujours faux."],
+ ["La question inversée","SAUF, N'EST PAS, LE MOINS : relisez deux fois, cherchez l'option fausse."],
+ ["Le mauvais rôle","« En tant qu'auditeur » ou « en tant que consultant » change la bonne réponse."],
+ ["La confusion de paires","RTO / RPO, BCP / DRP, OAuth / OIDC, AH / ESP, Type I / Type II : verbalisez la différence."],
+ ["Le réflexe de terrain","Réinstaller, couper, patcher tout de suite : l'examen attend d'abord le processus."]
+];
+const Q = [
+// ===== D1 (9)
+{d:"D1",q:"Qui porte la responsabilité ultime de la sécurité de l'information ?",
+ a:"Le conseil d'administration et la direction générale.",
+ n:"Le RSSI conçoit et pilote, l'IT exécute, l'auditeur vérifie : tous contribuent, mais aucun ne remplace la direction. Elle délègue l'exécution, jamais la responsabilité.",
+ r:"Responsabilité ultime = direction ; mise en œuvre = RSSI et IT.",
+ p:"Choisir « le RSSI » parce qu'il est « responsable de la sécurité » dans l'organigramme.",
+ t:"Quand une option désigne la direction ou le conseil, lisez-la deux fois : c'est souvent la bonne.",
+ e:"NIST CSF 2.0 a ajouté la fonction « Govern » : la gouvernance cyber est désormais explicitement l'affaire des dirigeants."},
+{d:"D1",q:"Qui accepte formellement le risque résiduel ?",
+ a:"Le propriétaire du risque, au niveau de la direction.",
+ n:"Le RSSI peut recommander d'accepter un risque, mais il ne peut pas le faire à la place du métier. L'acceptation doit être écrite, datée et revue.",
+ r:"Accepter = décision métier documentée.",
+ p:"« Le RSSI accepte le risque » ou « l'équipe projet décide ».",
+ t:"Si la direction refuse un budget, la bonne réponse est souvent : documenter et faire signer l'acceptation.",
+ e:"Les registres de risques modernes lient chaque risque à un propriétaire nominatif et à une date de revue."},
+{d:"D1",q:"Quelle est la différence entre due diligence et due care ?",
+ a:"Due diligence = rechercher et évaluer (savoir) ; due care = agir comme une personne prudente (faire).",
+ n:"Évaluer un fournisseur avant de signer est de la diligence ; appliquer les correctifs et former le personnel est du care. L'absence de due care constitue une négligence.",
+ r:"Diligence = Découvrir ; Care = Concrétiser.",
+ p:"Inverser les deux termes dans un scénario d'évaluation de fournisseur.",
+ t:"Un verbe d'enquête (évaluer, auditer, rechercher) → diligence ; un verbe d'action (appliquer, faire respecter) → care.",
+ e:"Les régulateurs sanctionnent de plus en plus le défaut de due care des dirigeants, au-delà de l'organisation."},
+{d:"D1",q:"Comment calculer l'ALE et décider si un contrôle est rentable ?",
+ a:"SLE = AV × EF ; ALE = SLE × ARO ; valeur du contrôle = ALE avant − ALE après − coût annuel.",
+ n:"« Une fois tous les 4 ans » donne ARO = 0,25. Si la valeur du contrôle est négative, on étudie un autre traitement (transfert, acceptation), on ne manipule pas les chiffres.",
+ r:"Le contrôle doit coûter moins que la perte qu'il évite.",
+ p:"Oublier de soustraire le coût du contrôle, ou confondre SLE et ALE.",
+ t:"Écrivez toujours la formule avant d'y placer les valeurs.",
+ e:"Les approches quantitatives modernes (FAIR) raisonnent en fourchettes de probabilité plutôt qu'en valeur unique."},
+{d:"D1",q:"Quels sont les quatre traitements légitimes du risque ?",
+ a:"Réduire, transférer, éviter, accepter.",
+ n:"Ignorer ou nier un risque connu n'est pas un traitement mais une faute. Le transfert (assurance, sous-traitance) partage l'impact financier, pas la responsabilité ni l'atteinte à l'image.",
+ r:"Transférer le coût, jamais la responsabilité.",
+ p:"Croire qu'une cyber-assurance dispense de protéger les données.",
+ t:"Une option « ignorer car improbable » est toujours fausse.",
+ e:"Les assureurs exigent désormais MFA, sauvegardes hors ligne et EDR avant de couvrir le risque cyber."},
+{d:"D1",q:"Quelle relation lie MTD, RTO, WRT et RPO ?",
+ a:"RTO + WRT ≤ MTD ; le RPO mesure la perte de données acceptable, pas un délai de reprise.",
+ n:"Le MTD est fixé par le métier dans la BIA ; l'IT en déduit le RTO. Un RPO de 15 minutes impose une sauvegarde ou une réplication au moins toutes les 15 minutes.",
+ r:"Le métier fixe le MTD ; l'IT en déduit RTO et stratégie.",
+ p:"Prendre le RTO égal au MTD en oubliant le temps de remise en état.",
+ t:"MTD 8 h et WRT 3 h → RTO maximal 5 h.",
+ e:"Les architectures actif-actif rapprochent RTO et RPO de zéro pour les services critiques comme le paiement mobile."},
+{d:"D1",q:"Quelle est la première étape de la planification de la continuité d'activité ?",
+ a:"Obtenir le soutien de la direction et formaliser la politique de continuité.",
+ n:"La BIA est la première étape d'analyse, mais sans mandat elle n'a ni moyens ni légitimité. Le DRP, centré sur l'IT, fait partie du BCP.",
+ r:"Mandat → BIA → stratégies → plan → tests → maintien.",
+ p:"Répondre « réaliser la BIA » ou « choisir un site de secours ».",
+ t:"Pour toute démarche « depuis zéro », cherchez l'option de mandat ou de politique.",
+ e:"La norme ISO 22301 structure la continuité comme un système de management, avec revue de direction."},
+{d:"D1",q:"Dans quel ordre s'appliquent les canons du Code d'éthique ISC2 ?",
+ a:"1. Protéger la société · 2. Agir honorablement et légalement · 3. Servir ses mandants · 4. Faire progresser la profession.",
+ n:"En cas de conflit, l'ordre départage : la société passe avant l'employeur, qui passe avant la profession. Une violation peut entraîner la révocation de la certification.",
+ r:"Société > honnêteté > mandants > profession.",
+ p:"Privilégier la loyauté envers l'employeur face à un danger pour le public.",
+ t:"Questions divulguées de l'examen : refuser et signaler.",
+ e:"L'éthique de l'IA (biais, transparence, usage de données personnelles) entre désormais dans les dilemmes du RSSI."},
+{d:"D1",q:"Comment distinguer les familles de droit et leurs niveaux de preuve ?",
+ a:"Pénal : au-delà du doute raisonnable · civil : prépondérance des preuves · administratif : décisions des régulateurs.",
+ n:"« Civil law » désigne aussi le système romano-germanique (Côte d'Ivoire, France) par opposition à la common law : lisez le contexte. Le secret d'affaires n'est protégé que si l'entreprise prouve l'avoir protégé.",
+ r:"Dommages et intérêts → civil ; prison → pénal ; régulateur → administratif.",
+ p:"Confondre le niveau de preuve civil et pénal.",
+ t:"Les questions restent génériques : cherchez le principe, pas un article de loi.",
+ e:"En Afrique de l'Ouest : loi ivoirienne 2013-450 (données, ARTCI), convention de Malabo en vigueur depuis 2023."},
+// ===== D2 (5)
+{d:"D2",q:"Qui fixe le niveau de classification d'une donnée ?",
+ a:"Son propriétaire métier.",
+ n:"Le RSSI définit le schéma de classification ; le dépositaire (souvent l'IT) applique les protections ; l'auditeur vérifie. Le propriétaire connaît la valeur et répond de la donnée.",
+ r:"Propriétaire classifie ; dépositaire protège.",
+ p:"Choisir l'administrateur de base de données ou le RSSI.",
+ t:"« L'IT est dépositaire, pas propriétaire » résout la majorité des questions de rôles.",
+ e:"Les outils d'étiquetage automatique proposent une classification, mais la décision reste humaine et métier."},
+{d:"D2",q:"Comment détruire des données sur des SSD qui quittent l'entreprise ?",
+ a:"Effacement cryptographique ou destruction physique (purge ou destruction selon NIST SP 800-88).",
+ n:"Le dégaussage n'agit que sur les supports magnétiques. Un formatage laisse des données récupérables. Pour une réutilisation interne, un effacement (Clear) peut suffire.",
+ r:"Interne → Clear ; le support sort → Purge ; données les plus sensibles → Destroy.",
+ p:"Choisir le dégaussage pour un SSD.",
+ t:"Dans le cloud, sans accès aux disques : détruire les clés de chiffrement.",
+ e:"Les SSD récents intègrent un chiffrement natif permettant un effacement cryptographique quasi instantané."},
+{d:"D2",q:"Une donnée pseudonymisée reste-t-elle une donnée personnelle ?",
+ a:"Oui : la réidentification reste possible avec la clé ou la table de correspondance.",
+ n:"Seule une anonymisation réelle, irréversible, fait sortir la donnée du champ des lois sur la vie privée. La tokenisation déplace le risque vers le coffre de jetons.",
+ r:"Réversible = personnelle.",
+ p:"Croire qu'une base pseudonymisée peut être partagée librement.",
+ t:"Si une table de correspondance existe quelque part, ce n'est pas de l'anonymisation.",
+ e:"Les données synthétiques gagnent du terrain pour les tests et l'IA, sans exposer de personnes réelles."},
+{d:"D2",q:"Quelle est la différence entre scoping et tailoring ?",
+ a:"Scoping = choisir quels contrôles s'appliquent ; tailoring = régler les contrôles retenus au contexte.",
+ n:"Pas de Wi-Fi → retirer les contrôles Wi-Fi (scoping). Verrouillage de session passé de 15 à 5 minutes (tailoring). Un contrôle impossible appelle un contrôle compensatoire documenté.",
+ r:"Quels contrôles / comment.",
+ p:"Inverser les deux notions.",
+ t:"Supprimer = scoping ; ajuster = tailoring.",
+ e:"Les référentiels comme CIS Benchmarks proposent des profils de niveau 1 et 2, déjà pensés pour l'adaptation."},
+{d:"D2",q:"Que faire si une politique de rétention prévoit de détruire des données concernées par un litige ?",
+ a:"Suspendre la destruction : la conservation légale (legal hold) prime.",
+ n:"Le gel est déclenché et levé par le juridique et concerne aussi les sauvegardes et la messagerie. Détruire des preuves pendant un litige expose à de lourdes sanctions.",
+ r:"Legal hold > politique de rétention.",
+ p:"Appliquer mécaniquement la politique de rétention.",
+ t:"Conserver trop longtemps est aussi un risque : la rétention reste limitée hors litige.",
+ e:"Les plateformes de messagerie cloud intègrent des fonctions de legal hold, à configurer avant d'en avoir besoin."},
+// ===== D3 (7)
+{d:"D3",q:"Quel modèle de sécurité choisir selon le besoin ?",
+ a:"Confidentialité → Bell-LaPadula ; intégrité → Biba ou Clark-Wilson ; conflits d'intérêts → Brewer-Nash.",
+ n:"Bell-LaPadula : no read up, no write down (l'étoile porte sur l'écriture). Biba en est l'inverse. Clark-Wilson impose des transactions bien formées et la séparation des tâches : c'est le modèle des banques.",
+ r:"BLP = Lecture (confidentialité) ; Biba = Bonne intégrité.",
+ p:"Choisir Bell-LaPadula pour un besoin d'intégrité.",
+ t:"« Transactions contrôlées » dans l'énoncé → Clark-Wilson.",
+ e:"Les politiques d'accès cloud (ABAC) appliquent ces principes de façon dynamique plutôt que par niveaux fixes."},
+{d:"D3",q:"Avec quelles clés chiffrer et signer ?",
+ a:"Chiffrer avec la clé publique du destinataire ; signer avec sa propre clé privée.",
+ n:"La signature (empreinte chiffrée par la clé privée) apporte intégrité, authentification et non-répudiation. Un HMAC à clé partagée n'apporte pas la non-répudiation.",
+ r:"Confidentialité → clé publique du destinataire ; origine → clé privée de l'émetteur.",
+ p:"« Signer avec la clé publique » ou « chiffrer avec sa clé privée pour la confidentialité ».",
+ t:"Dessinez mentalement qui détient quelle clé avant de répondre.",
+ e:"Les signatures post-quantiques (ML-DSA, FIPS 204) commencent à être intégrées dans les PKI."},
+{d:"D3",q:"Combien de clés faut-il pour n participants ?",
+ a:"Symétrique : n(n−1)/2 ; asymétrique : 2n.",
+ n:"Pour 100 personnes : 4 950 clés symétriques contre 200 asymétriques. C'est pourquoi on utilise l'asymétrique pour échanger une clé de session, puis le symétrique pour les données (cryptographie hybride, comme TLS).",
+ r:"Asymétrique pour la clé, symétrique pour les données.",
+ p:"Oublier la division par deux.",
+ t:"Calcul rapide : n × (n−1), puis diviser par 2.",
+ e:"TLS 1.3 impose des échanges de clés éphémères : la confidentialité persistante est devenue la norme."},
+{d:"D3",q:"Quels algorithmes et modes faut-il éviter ?",
+ a:"DES, 3DES, RC4, le mode ECB, MD5, SHA-1, SSL et TLS 1.0 / 1.1.",
+ n:"ECB révèle les motifs des données ; MD5 et SHA-1 ont des collisions démontrées. Les mots de passe se hachent avec une fonction lente et un sel (Argon2, bcrypt), ils ne se chiffrent pas.",
+ r:"AES-GCM, SHA-256, RSA ≥ 3072, ECC, TLS 1.3.",
+ p:"Proposer de « chiffrer les mots de passe » ou de « hacher deux fois en MD5 ».",
+ t:"Kerckhoffs : seule la clé est secrète ; ne jamais créer son propre algorithme.",
+ e:"NIST a publié en août 2024 FIPS 203, 204 et 205 ; la crypto-agilité et l'inventaire cryptographique deviennent prioritaires."},
+{d:"D3",q:"Que retenir de la responsabilité partagée dans le cloud ?",
+ a:"Quel que soit le modèle, les données, les identités et les accès restent sous la responsabilité du client.",
+ n:"En IaaS, le client gère aussi le système d'exploitation et les applications ; en SaaS, le fournisseur gère presque tout le reste. La majorité des fuites cloud viennent d'erreurs de configuration du client.",
+ r:"Les données sont toujours à vous.",
+ p:"Croire que le fournisseur sécurise les données du client.",
+ t:"Plus on monte (IaaS → PaaS → SaaS), plus le fournisseur prend en charge — jamais tout.",
+ e:"Les outils CSPM surveillent en continu les erreurs de configuration cloud."},
+{d:"D3",q:"Comment se comporter en cas de panne : fail-safe ou fail-secure ?",
+ a:"Fail-safe pour protéger les personnes (issues de secours) ; fail-secure pour protéger les actifs (salle serveurs).",
+ n:"Une issue de secours doit s'ouvrir en cas de coupure ; une porte de salle serveurs peut rester verrouillée. En cas de conflit, la sécurité des personnes l'emporte.",
+ r:"La vie humaine prime.",
+ p:"Choisir fail-secure pour une sortie de secours.",
+ t:"Dès qu'une personne est concernée, cherchez l'option qui la protège.",
+ e:"Les systèmes de contrôle d'accès modernes se coordonnent avec l'alarme incendie pour libérer les issues."},
+{d:"D3",q:"Quel système d'extinction pour une salle serveurs ?",
+ a:"Sprinkler à pré-action ou gaz propre (FM-200, Inergen) avec alarme et délai d'évacuation.",
+ n:"Le pré-action exige une double condition avant de libérer l'eau. Le Halon est interdit. Un feu électrique est de classe C (classification américaine).",
+ r:"Pré-action en salle serveurs ; jamais de Halon.",
+ p:"Choisir sous eau (wet pipe) ou déluge.",
+ t:"Classes : A ordinaires, B liquides, C électrique, D métaux, K cuisine.",
+ e:"Les datacenters récents combinent détection très précoce (aspiration) et gaz propres."},
+// ===== D4 (6)
+{d:"D4",q:"À quelle couche OSI se situent les principaux protocoles et attaques ?",
+ a:"Couche 2 : ARP, VLAN · couche 3 : IP, IPsec · couche 4 : TCP, UDP · couche 7 : HTTP, DNS, WAF.",
+ n:"L'empoisonnement ARP et le saut de VLAN sont de couche 2 ; l'usurpation IP et le smurf de couche 3 ; l'inondation SYN de couche 4 ; l'empoisonnement DNS de couche 7.",
+ r:"La parade se trouve souvent à la même couche que l'attaque.",
+ p:"Placer ARP en couche 3.",
+ t:"« Pour Le Réseau, Tout Se Passe Automatiquement » (de 1 à 7).",
+ e:"Avec le chiffrement généralisé, la détection s'appuie davantage sur les métadonnées de flux que sur le contenu."},
+{d:"D4",q:"Quel composant IPsec et quel mode choisir ?",
+ a:"ESP pour la confidentialité ; mode tunnel entre passerelles, mode transport entre hôtes.",
+ n:"AH n'assure que l'intégrité et l'authentification : il ne chiffre pas. IKE négocie les clés. Pour relier deux agences : ESP en mode tunnel.",
+ r:"Chiffrer → ESP ; site à site → tunnel.",
+ p:"Choisir AH pour la confidentialité.",
+ t:"AH = Authentification ; ESP = Encrypted.",
+ e:"Les SD-WAN et le ZTNA remplacent progressivement les VPN site à site traditionnels, sans changer ces principes."},
+{d:"D4",q:"Que garantit DNSSEC ?",
+ a:"L'authenticité et l'intégrité des réponses DNS, pas leur confidentialité.",
+ n:"DNSSEC signe les enregistrements et contre l'empoisonnement de cache. La confidentialité des requêtes relève de DNS over HTTPS ou DNS over TLS.",
+ r:"DNSSEC = intégrité ; DoH / DoT = confidentialité.",
+ p:"Choisir DNSSEC pour empêcher l'écoute des requêtes.",
+ t:"Chaque fois qu'un protocole « signe », pensez intégrité et authenticité.",
+ e:"Les résolveurs chiffrés (DoH) se généralisent dans les navigateurs, ce qui complique la supervision réseau."},
+{d:"D4",q:"IDS ou IPS, signature ou anomalie ?",
+ a:"L'IDS détecte et alerte ; l'IPS, placé en ligne, bloque. La signature reconnaît le connu ; l'anomalie détecte l'inconnu.",
+ n:"La détection par anomalie produit davantage de faux positifs. Un IPS mal réglé peut bloquer du trafic légitime. Un pot de miel permet d'observer, jamais de provoquer.",
+ r:"Détecter ≠ prévenir.",
+ p:"Croire qu'un IDS bloque les attaques.",
+ t:"« Attaque jamais vue » dans l'énoncé → détection par anomalie.",
+ e:"Les plateformes XDR corrèlent réseau, terminaux et identités, souvent avec des modèles d'apprentissage automatique."},
+{d:"D4",q:"Comment sécuriser l'administration et l'accès à distance ?",
+ a:"Pas d'administration directe depuis Internet : bastion, PAM, MFA, sessions enregistrées ; VPN avec MFA ou ZTNA pour les utilisateurs.",
+ n:"RDP exposé sur Internet est un vecteur majeur de rançongiciels. RADIUS (UDP) ne chiffre que le mot de passe ; TACACS+ (TCP 49) chiffre tout et sépare les trois A.",
+ r:"Un seul point d'entrée, tracé et fortement authentifié.",
+ p:"« Mot de passe complexe sur RDP exposé » présenté comme suffisant.",
+ t:"Équipements réseau → TACACS+ ; accès Wi-Fi d'entreprise → 802.1X + RADIUS.",
+ e:"Le ZTNA accorde l'accès application par application, selon l'identité et l'état du poste (NIST SP 800-207)."},
+{d:"D4",q:"Quelle architecture réseau appliquer ?",
+ a:"Refus par défaut, DMZ pour les services exposés, segmentation entre zones et micro-segmentation pour les charges critiques.",
+ n:"Un VLAN sépare mais ne filtre pas : sans pare-feu entre segments, il ne constitue pas une frontière de sécurité. La DMZ ne doit jamais accéder directement à la zone des données.",
+ r:"Default deny et défense en profondeur.",
+ p:"Considérer un VLAN comme suffisant.",
+ t:"Service exposé à Internet → DMZ derrière un WAF.",
+ e:"Zero Trust : plus de confiance implicite liée à la localisation réseau."},
+// ===== D5 (6)
+{d:"D5",q:"Qu'est-ce qu'une véritable authentification multifacteur ?",
+ a:"Au moins deux facteurs de types différents : savoir, posséder, être.",
+ n:"Mot de passe + PIN, ou empreinte + visage, ne sont pas une MFA (un seul type). Le SMS reste vulnérable au SIM swap ; FIDO2 / passkeys résistent à l'hameçonnage.",
+ r:"MFA = types différents.",
+ p:"Compter deux éléments du même type comme deux facteurs.",
+ t:"« Site d'hameçonnage qui relaie les codes » → FIDO2.",
+ e:"Les passkeys se généralisent chez les grandes plateformes ; le NIST les reconnaît comme authentificateurs résistants à l'hameçonnage."},
+{d:"D5",q:"Quelle erreur biométrique est la plus grave ?",
+ a:"Le FAR (type II) : un imposteur est accepté.",
+ n:"Le FRR (type I) rejette un utilisateur légitime : c'est une gêne. Le CER (FAR = FRR) sert à comparer les systèmes ; plus il est bas, meilleur est le système.",
+ r:"Type II = l'imposteur est Introduit.",
+ p:"Choisir le FRR comme erreur la plus dangereuse.",
+ t:"Zone critique : on augmente la sensibilité, le FAR baisse, le FRR augmente.",
+ e:"La détection du vivant (liveness) devient indispensable face aux deepfakes vocaux et vidéo."},
+{d:"D5",q:"Comment choisir entre DAC, MAC, RBAC et ABAC ?",
+ a:"Qui décide ? Le propriétaire → DAC ; le système par étiquettes → MAC ; la fonction → RBAC ; les attributs et le contexte → ABAC.",
+ n:"RBAC est le modèle des entreprises et des banques ; ABAC exprime des règles fines (service, appareil, heure). Les règles globales identiques pour tous relèvent du contrôle à base de règles.",
+ r:"Repérez qui détient la décision.",
+ p:"Confondre RBAC (rôle) et contrôle à base de règles (rule-based).",
+ t:"« Heure, lieu, appareil » dans l'énoncé → ABAC.",
+ e:"Les architectures Zero Trust s'appuient sur l'ABAC et l'évaluation continue du risque de session."},
+{d:"D5",q:"Quelle est la différence entre SAML, OAuth 2.0 et OpenID Connect ?",
+ a:"SAML fédère par assertions XML ; OAuth 2.0 autorise l'accès délégué ; OIDC authentifie l'utilisateur au-dessus d'OAuth.",
+ n:"OAuth seul n'a pas été conçu pour authentifier. Pour connecter un utilisateur à une application mobile via un fournisseur d'identité, on utilise OIDC.",
+ r:"OAuth autorise ; OIDC authentifie.",
+ p:"Choisir OAuth pour « identifier l'utilisateur ».",
+ t:"Assertions XML → SAML ; jeton d'identité JWT → OIDC.",
+ e:"OAuth 2.1 consolide les bonnes pratiques (PKCE obligatoire, flux implicite abandonné)."},
+{d:"D5",q:"Comment gérer le cycle de vie des identités ?",
+ a:"Arrivée depuis le SIRH, mobilité (retirer avant d'ajouter), recertification par le métier, départ immédiat.",
+ n:"Sans retrait des anciens droits, l'employé accumule des privilèges. Un départ conflictuel se coupe pendant l'entretien. On désactive avant de supprimer pour préserver la traçabilité.",
+ r:"Départ RH = coupure IT.",
+ p:"Cumuler les droits « par précaution » lors d'une mutation.",
+ t:"Comptes orphelins = KRI ; délai de coupure après départ = KPI.",
+ e:"Les plateformes d'IGA automatisent les campagnes de recertification et détectent les droits toxiques."},
+{d:"D5",q:"Comment protéger les comptes à privilèges ?",
+ a:"PAM : coffre de mots de passe, privilèges juste-à-temps, sessions enregistrées, comptes d'administration séparés.",
+ n:"Un compte administrateur permanent volé donne le contrôle du domaine : c'est l'objectif de la plupart des rançongiciels. Le compte de messagerie ne doit jamais avoir de droits d'administration.",
+ r:"Zéro privilège permanent.",
+ p:"Un compte administrateur partagé par l'équipe.",
+ t:"Comptes de service : mots de passe longs gérés automatiquement, droits minimaux.",
+ e:"La détection des menaces sur les identités (ITDR) surveille Kerberoasting, golden ticket et abus d'annuaire."},
+// ===== D6 (5)
+{d:"D6",q:"Que faut-il obtenir avant un test d'intrusion ?",
+ a:"Une autorisation écrite d'une personne habilitée et des règles d'engagement.",
+ n:"Sans autorisation, un test est une intrusion illégale. Les règles d'engagement fixent périmètre, dates, contacts, actions interdites et conditions d'arrêt. Informer ou non le SOC dépend de l'objectif.",
+ r:"Autorisation écrite d'abord, toujours.",
+ p:"Accepter un accord oral de l'équipe technique.",
+ t:"La légalité vient de l'autorisation de la direction, pas de l'information du SOC.",
+ e:"Les simulations continues d'attaques (BAS) et le purple teaming complètent les tests d'intrusion annuels."},
+{d:"D6",q:"Quelle différence entre analyse de vulnérabilités et test d'intrusion ?",
+ a:"L'analyse inventorie les faiblesses connues ; le test d'intrusion les exploite pour prouver l'impact.",
+ n:"Un scan authentifié voit les correctifs manquants avec moins de faux positifs. CVE identifie, CWE catégorise, CVSS note la gravité de 0 à 10.",
+ r:"Inventorier ≠ exploiter.",
+ p:"Présenter un scan automatisé comme un test d'intrusion.",
+ t:"Priorité de correction = gravité × exposition × criticité de l'actif.",
+ e:"Le catalogue KEV de la CISA et le score EPSS aident à prioriser les failles réellement exploitées."},
+{d:"D6",q:"Que prouvent les rapports SOC 1, 2, 3 et les Types I et II ?",
+ a:"SOC 1 : contrôles financiers · SOC 2 : sécurité et critères de confiance · SOC 3 : synthèse publique · Type I : conception à une date · Type II : efficacité sur une période.",
+ n:"Pour un fournisseur critique, on exige un SOC 2 Type II récent. Il faut aussi lire les contrôles complémentaires à la charge du client.",
+ r:"Sécurité dans la durée → SOC 2 Type II.",
+ p:"Accepter un SOC 2 Type I comme preuve d'efficacité.",
+ t:"Type II = « deux » = durée.",
+ e:"Les plateformes de conformité automatisent la collecte de preuves en continu plutôt qu'une fois par an."},
+{d:"D6",q:"Quel est le rôle d'un auditeur qui découvre un écart ?",
+ a:"Il le documente, évalue le risque et recommande une correction au responsable concerné.",
+ n:"L'auditeur doit rester indépendant : il ne conçoit, n'exploite ni ne corrige les contrôles qu'il évalue. La correction passe par le propriétaire et la gestion des changements.",
+ r:"L'auditeur constate et recommande.",
+ p:"« Corriger immédiatement l'écart » quand on vous attribue le rôle d'auditeur.",
+ t:"Lisez toujours le rôle qu'on vous donne dans l'énoncé.",
+ e:"Les trois lignes de maîtrise (IIA) séparent opérationnels, fonctions de contrôle et audit interne."},
+{d:"D6",q:"Comment tester un plan de continuité sans risque excessif ?",
+ a:"Progresser : liste de contrôle, exercice sur table, simulation, test parallèle, puis interruption complète.",
+ n:"Le test parallèle active le site de secours sans arrêter la production. L'interruption complète est la plus probante mais exige l'accord de la direction.",
+ r:"Du papier vers le réel, année après année.",
+ p:"Proposer une interruption complète pour un plan jamais testé.",
+ t:"Mesurez le RTO réellement obtenu, pas le nombre de participants.",
+ e:"Le chaos engineering teste la résilience en continu dans les architectures cloud."},
+// ===== D7 (7)
+{d:"D7",q:"Quelle est la séquence de gestion d'un incident ?",
+ a:"Détection, réponse (confinement), atténuation, rapport, reprise, remédiation, leçons apprises.",
+ n:"Restaurer avant de confiner expose la sauvegarde à la réinfection ; réinstaller avant d'analyser détruit les preuves. La notification est décidée par la direction et le juridique.",
+ r:"Confiner avant de réparer.",
+ p:"« Restaurer immédiatement » ou « réinstaller tous les serveurs ».",
+ t:"NIST SP 800-61 : préparation ; détection et analyse ; confinement, éradication, reprise ; post-incident.",
+ e:"Les playbooks SOAR automatisent le confinement (isolement de poste, blocage de compte) en quelques secondes."},
+{d:"D7",q:"Dans quel ordre collecter les preuves ?",
+ a:"Du plus volatil au moins volatil : registres et cache, mémoire, état réseau, fichiers temporaires, disque, journaux distants, archives.",
+ n:"Éteindre un système compromis fait perdre la mémoire vive (processus, connexions, clés). On travaille toujours sur une copie bit à bit, dont l'empreinte prouve l'intégrité.",
+ r:"Volatil d'abord ; chaîne de traçabilité toujours.",
+ p:"Éteindre la machine « pour stopper l'attaque ».",
+ t:"Une preuve recevable est pertinente, déterminante et obtenue légalement.",
+ e:"La criminalistique cloud repose sur des instantanés et des journaux du fournisseur, à prévoir contractuellement."},
+{d:"D7",q:"Comment restaurer selon le type de sauvegarde ?",
+ a:"Incrémentale : complète + toutes les incrémentales ; différentielle : complète + la dernière différentielle.",
+ n:"Complète le dimanche, panne le jeudi : 4 jeux en incrémental, 2 en différentiel. L'incrémentale sauvegarde vite mais restaure lentement.",
+ r:"Incrémentale = toutes ; différentielle = la dernière.",
+ p:"Inverser les deux règles.",
+ t:"La différentielle ne remet pas le bit d'archive à zéro.",
+ e:"Règle 3-2-1-1-0 : une copie hors ligne ou immuable et zéro erreur aux tests de restauration."},
+{d:"D7",q:"Le RAID est-il une sauvegarde ?",
+ a:"Non : il protège contre la panne d'un disque, pas contre la suppression, la corruption ou un rançongiciel.",
+ n:"Une suppression ou un chiffrement malveillant est répliqué instantanément sur tous les disques. RAID 5 : n−1 disques utiles, tolère la perte d'un disque ; RAID 6 : de deux.",
+ r:"RAID = disponibilité ; sauvegarde = récupération.",
+ p:"Compter sur le RAID pour récupérer un fichier supprimé.",
+ t:"4 disques de 2 To en RAID 5 → 6 To utiles.",
+ e:"Les instantanés immuables des baies et du cloud sont devenus la défense de référence contre les rançongiciels."},
+{d:"D7",q:"Comment gérer un changement urgent en production ?",
+ a:"Par la procédure de changement d'urgence : autorisation habilitée, plan de retour arrière, régularisation en CAB.",
+ n:"Même une faille critique ne justifie pas une modification hors processus : un correctif non maîtrisé peut couper le service. On peut appliquer un contrôle compensatoire en attendant.",
+ r:"L'urgence accélère, elle ne supprime pas le processus.",
+ p:"Laisser un développeur déployer directement « parce que c'est grave ».",
+ t:"Pas de déploiement le vendredi soir sans plan de retour arrière.",
+ e:"Les pipelines GitOps tracent chaque changement et permettent un retour arrière automatisé."},
+{d:"D7",q:"Quel site de secours choisir et dans quel ordre revenir ?",
+ a:"Chaud (heures), tiède (jours), froid (semaines) selon le RTO ; au retour, ramener d'abord les fonctions les moins critiques.",
+ n:"Vers le site de secours, on reprend d'abord le plus critique ; vers le site principal, on valide d'abord avec le moins critique. Un accord réciproque est peu coûteux mais peu fiable.",
+ r:"Aller : critique d'abord ; revenir : moins critique d'abord.",
+ p:"Revenir avec les fonctions critiques en premier.",
+ t:"RTO de 2 heures → site chaud.",
+ e:"La reprise dans le cloud (DRaaS) rend le site chaud accessible aux organisations moyennes."},
+{d:"D7",q:"Comment prioriser les correctifs ?",
+ a:"Selon la gravité, l'exposition et la criticité de l'actif, puis tester et déployer via la gestion des changements.",
+ n:"Deux failles de même score CVSS ne se valent pas : celle d'un serveur exposé à Internet passe avant celle d'un poste isolé. Sans correctif (zero-day), on applique des contrôles compensatoires.",
+ r:"Risque = gravité × exposition × criticité.",
+ p:"Prioriser uniquement par le score CVSS.",
+ t:"Inventaire d'abord : on ne corrige pas ce qu'on ignore posséder.",
+ e:"Les failles activement exploitées (catalogue KEV) sont traitées en jours, pas en semaines."},
+// ===== D8 (5)
+{d:"D8",q:"À quel moment intégrer la sécurité dans un projet logiciel ?",
+ a:"Dès l'initiation et la définition des exigences.",
+ n:"Un défaut évité en conception ne doit jamais être corrigé ; plus il est découvert tard, plus il coûte. Le test d'intrusion final vérifie, il ne conçoit pas la sécurité.",
+ r:"Shift left : la sécurité commence aux exigences.",
+ p:"Répondre « lors des tests » ou « avant la mise en production ».",
+ t:"Spirale = modèle guidé par le risque ; agile = sécurité dans la définition de « fini ».",
+ e:"Le NIST SSDF (SP 800-218) formalise les pratiques de développement sécurisé attendues des éditeurs."},
+{d:"D8",q:"Comment se protéger de l'injection, du XSS et du CSRF ?",
+ a:"Injection → requêtes paramétrées ; XSS → encodage en sortie et CSP ; CSRF → jeton anti-CSRF et cookies SameSite.",
+ n:"La validation des entrées se fait côté serveur, par liste blanche. Le chiffrement de la base ne protège pas d'une injection. Les messages d'erreur restent génériques.",
+ r:"Le client n'est jamais de confiance.",
+ p:"Confondre XSS (script dans le navigateur) et CSRF (requête via la session de la victime).",
+ t:"Script exécuté chez les autres → XSS ; action à l'insu de l'utilisateur connecté → CSRF.",
+ e:"Les frameworks modernes encodent par défaut, mais les API et le rendu côté client rouvrent ces failles."},
+{d:"D8",q:"Quelle est la faille d'API la plus fréquente et comment la corriger ?",
+ a:"BOLA : vérifier à chaque requête, côté serveur, que l'objet demandé appartient à l'appelant.",
+ n:"L'application mobile masque les données d'autrui, mais l'API les renvoie si l'on change un identifiant. Masquer ou chiffrer l'identifiant n'est pas une correction.",
+ r:"Autorisation par objet, côté serveur.",
+ p:"Corriger en cachant l'identifiant dans l'application.",
+ t:"Ajoutez limitation de débit et inventaire des versions d'API.",
+ e:"L'OWASP API Security Top 10 (2023) place BOLA en tête des risques."},
+{d:"D8",q:"Que faire d'un secret publié dans un dépôt de code ?",
+ a:"Le révoquer et le remplacer immédiatement, puis le stocker dans un coffre de secrets.",
+ n:"Supprimer le fichier ou rendre le dépôt privé ne suffit pas : l'historique conserve le secret. On ajoute ensuite une détection de secrets au commit.",
+ r:"Secret exposé = secret compromis.",
+ p:"« Supprimer le fichier du dépôt » comme première action.",
+ t:"Pipeline : secrets, SAST, SCA, SBOM, signature, approbation.",
+ e:"La signature et la provenance des artefacts (SLSA, Sigstore) répondent aux attaques de la chaîne d'approvisionnement."},
+{d:"D8",q:"Comment maîtriser les logiciels acquis et le code généré par IA ?",
+ a:"Évaluer avant d'adopter : escrow pour les éditeurs, SCA et SBOM pour l'open source, SOC 2 Type II pour le SaaS, revue humaine du code généré.",
+ n:"Un assistant de code peut suggérer des paquets inexistants que des attaquants publient ensuite sous ce nom. Les exigences de sécurité se contractualisent avant l'achat.",
+ r:"On n'externalise pas la responsabilité.",
+ p:"Faire confiance par défaut à l'éditeur ou au code généré.",
+ t:"Éditeur fragile et logiciel critique → séquestre du code source.",
+ e:"Les SBOM deviennent une exigence contractuelle et réglementaire dans plusieurs juridictions."}
+];
+
+</script>
+<script>
+(function(){"use strict";
+function el(t,a,c){var e=document.createElement(t);if(a)for(var k in a){if(k==="text")e.textContent=a[k];else if(k==="cls")e.className=a[k];else e.setAttribute(k,a[k]);}(c||[]).forEach(function(x){if(x!=null)e.appendChild(typeof x==="string"?document.createTextNode(x):x);});return e;}
+var KEY="cissp50-done";var done={};
+try{done=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){done={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+var st={d:"ALL",q:"",quiz:false,todo:false,open:{}};
+
+RULES.forEach(function(r,i){document.getElementById("rules").appendChild(el("div",{cls:"rule"},[el("div",{cls:"n",text:String(i+1)}),el("div",null,[el("h3",{text:r[0]}),el("p",{text:r[1]})])]));});
+TRAPS.forEach(function(r){document.getElementById("traps").appendChild(el("div",{cls:"trap"},[el("h3",{text:r[0]}),el("p",{text:r[1]})]));});
+var chips=document.getElementById("chips");
+Object.keys(DOMAINS).forEach(function(d){chips.appendChild(el("button",{cls:"chip","data-d":d,"aria-pressed":"false",text:d+" · "+DOMAINS[d].n}));});
+Array.prototype.forEach.call(chips.querySelectorAll(".chip"),function(b){b.addEventListener("click",function(){st.d=b.getAttribute("data-d");Array.prototype.forEach.call(chips.querySelectorAll(".chip"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});render();});});
+document.getElementById("search").addEventListener("input",function(e){st.q=e.target.value;render();});
+var mb=document.getElementById("mode");mb.addEventListener("click",function(){st.quiz=!st.quiz;st.open={};mb.className="btn"+(st.quiz?" on":"");mb.setAttribute("aria-pressed",String(st.quiz));mb.textContent=st.quiz?"Mode quiz activé : réponses masquées":"Mode quiz : masquer les réponses";render();});
+var tb=document.getElementById("todo");tb.addEventListener("click",function(){st.todo=!st.todo;tb.className="btn"+(st.todo?" on":"");tb.setAttribute("aria-pressed",String(st.todo));render();});
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
+function block(cls,title,text){return el("div",{cls:"b "+cls},[el("h4",{text:title}),el("p",{text:text})]);}
+function render(){
+  var list=document.getElementById("list");list.innerHTML="";var f=norm(st.q.trim()),shown=0,cur=null;
+  Q.forEach(function(x,i){
+    if(st.d!=="ALL"&&x.d!==st.d)return;
+    if(st.todo&&done[i])return;
+    if(f&&norm([x.q,x.a,x.n,x.r,x.p,x.t,x.e].join(" ")).indexOf(f)<0)return;
+    if(x.d!==cur){cur=x.d;var D=DOMAINS[x.d];
+      list.appendChild(el("div",{cls:"dhead"},[el("span",{cls:"code",text:x.d}),el("span",{cls:"t",text:D.n}),el("span",{cls:"p",text:D.p+" de l'examen"})]));
+      list.appendChild(el("p",{cls:"wisdom",text:"Sagesse — "+D.w}));}
+    shown++;
+    var cb=el("input",{type:"checkbox","aria-label":"Je maîtrise la question "+(i+1)});cb.checked=!!done[i];
+    cb.addEventListener("change",function(){if(cb.checked)done[i]=1;else delete done[i];save();card.className="card"+(cb.checked?" done":"");meter();if(st.todo&&cb.checked)setTimeout(render,250);});
+    var card=el("article",{cls:"card"+(done[i]?" done":""),id:"q"+(i+1)},[
+      el("div",{cls:"qh"},[el("div",{cls:"num",text:String(i+1)}),el("p",{cls:"q",text:x.q}),el("label",{cls:"mk"},[cb,"Je maîtrise"])])]);
+    var ans=el("div",{cls:"ans"});
+    var body=el("div",{cls:"ansbody"},[el("div",{cls:"a",text:"Réponse : "+x.a}),
+      el("div",{cls:"blocks"},[block("nu","Nuance de réponse",x.n),block("ru","Règle à retenir",x.r),block("pi","Piège à éviter",x.p),block("ti","Tip d'examen",x.t),block("ea","État de l'art 2026",x.e)])]);
+    if(st.quiz&&!st.open[i]){var rv=el("button",{cls:"reveal",text:"Réfléchissez à votre réponse, puis cliquez pour la vérifier"});
+      rv.addEventListener("click",function(){st.open[i]=1;ans.innerHTML="";ans.appendChild(body);});ans.appendChild(rv);}
+    else ans.appendChild(body);
+    card.appendChild(ans);list.appendChild(card);
+  });
+  document.getElementById("empty").classList.toggle("hidden",shown>0);meter();
+}
+function meter(){var n=Object.keys(done).length;document.getElementById("meter").innerHTML="";document.getElementById("meter").appendChild(el("span",null,["Maîtrisées : ",el("b",{text:n+" / "+Q.length})," · "+Math.round(100*n/Q.length)+" %"]));}
+render();
+})();
+</script>
+</body>
+</html>
