@@ -7,3 +7,10 @@ Beaucoup de RSSI viennement du develeppment vs systeme et reseau car beaucoup d'
 
 ** Cours officiel en ligne : 
 - https://isc2.vitalsource.com/home/my-library
+
+- Triade CIA (A comme availability mais aussi est touché si on degrade la qualité attendu par le cleint rapidité, ..qualité des donnes..,  C ..., I.. PRECISER LES NUANCES ET LES EXEMPLES DIVERS
+-
+-
+- On est toujours vunemerable ....)
+
+- L'informatique n'est pas un metier a part hors metiers et les hommes ..
