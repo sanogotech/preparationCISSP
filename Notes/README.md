@@ -14,3 +14,12 @@ Beaucoup de RSSI viennement du develeppment vs systeme et reseau car beaucoup d'
 - On est toujours vunemerable ....)
 
 - L'informatique n'est pas un metier a part hors metiers et les hommes ..
+
+
+- sensibilisation(quoi et PDCA pour verifier), formation (comment),education(pourquoi ?)
+
+Processus de recrutemet des personnel  et selon niveau cassier judiiere
+
+- localiation donnne dans le pays du client pour eviter bloages ..
+
+- S'appuyer service juridique..
