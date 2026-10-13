@@ -76,3 +76,9 @@ Les actifs a sécurisé en commençant personne, actus physique, logiciel. Tangi
 6. Zero Trust (ne jamais faire confiance meme en interne)
 
 7. Privacy by Design (ex: pour deposer le CV pas besoin carte d'idendité ...?)
+
+8. Share responsabiity
+
+9. SASE( secure access service edge ) pour acces cloud secure
+
+10. Security Models ( mode 
