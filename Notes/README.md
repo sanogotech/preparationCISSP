@@ -68,3 +68,5 @@ Les actifs a sécurisé en commençant personne, actus physique, logiciel. Tangi
 2. Defense en profondeur en couche complementaire  (politique, procedure, formation, sensibilisation, perimetre, environnement, ... , .. data)
 
 3. Secure by defaults (OS, applications ..)
+
+4. Fail  safe (securité des homme) ,   Fail securely (securité des actifs)
