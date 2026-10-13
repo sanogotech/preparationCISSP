@@ -70,3 +70,9 @@ Les actifs a sécurisé en commençant personne, actus physique, logiciel. Tangi
 3. Secure by defaults (OS, applications ..)
 
 4. Fail  safe (securité des homme) ,   Fail securely (securité des actifs)
+
+5. Segration of Duties ( le CISO ne doit pas etre rataché au DSI car le CISO est responsable du controle) separation des responsabilite... un seul personnes ne doit pas pouvoir faire toutes les taches
+
+6. Zero Trust (ne jamais faire confiance meme en interne)
+
+7. Privacy by Design (ex: pour deposer le CV pas besoin carte d'idendité ...?)
