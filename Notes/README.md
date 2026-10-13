@@ -66,3 +66,5 @@ Les actifs a sécurisé en commençant personne, actus physique, logiciel. Tangi
 1. Modélisation des menaces ( menaces / actions/ risques) avec des methoses stride ou ???
 
 2. Defense en profondeur en couche complementaire  (politique, procedure, formation, sensibilisation, perimetre, environnement, ... , .. data)
+
+3. Secure by defaults (OS, applications ..)
