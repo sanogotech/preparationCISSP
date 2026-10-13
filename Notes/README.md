@@ -24,6 +24,10 @@ Processus de recrutemet des personnel  et selon niveau cassier judiiere
 
 - S'appuyer service juridique..
 
+
+
+#  Module 2  Gestion  des actifs
+
 ## Administrative, industry, regulatory, criminal, civil 
 ## Attaque= objectifs+ méthodes d'attaques + vulnérabilité 
 
@@ -55,3 +59,10 @@ Les actifs a sécurisé en commençant personne, actus physique, logiciel. Tangi
 
 
 ## contrôle administratif, technique, physique, organisationnel ? Combinaison 5 types de contrôles minium
+
+
+#  Domaine 3 :  Arcitecture  et ingenerie
+
+1. Modélisation des menaces ( menaces / actions/ risques) avec des methoses stride ou ???
+
+2. Defense en profondeur en couche complementaire  (politique, procedure, formation, sensibilisation, perimetre, environnement, ... , .. data)
