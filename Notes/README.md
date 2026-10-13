@@ -81,4 +81,6 @@ Les actifs a sécurisé en commençant personne, actus physique, logiciel. Tangi
 
 9. SASE( secure access service edge ) pour acces cloud secure
 
-10. Security Models ( mode 
+10. Security Models ( mode
+
+11. Bell lapa.. (confidecialilité)     vs Biba (integrité)
