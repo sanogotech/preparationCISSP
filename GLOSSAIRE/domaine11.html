@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+<title>Glossaire D11 · Sigles et acronymes de A à Z</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap">
+<style>/* Layout : portail de révision — barre de navigation fixe, en-tête de domaine, sections empilées avec sommaire */
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --sunk:#E9EDF2; --ink:#101B2B; --muted:#5A6879; --line:#D7DEE7;
+  --accent:#1F4E9E; --accent-soft:#E3EBF8; --on-accent:#FFFFFF;
+  --ok:#2E7D46; --ok-soft:#E3F2E8; --bad:#B3262F; --bad-soft:#FBE7E8; --warn:#B0680A;
+  --hl:#FFF4D6; --hl-ink:#6B4B00;
+  --f-disp:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-quote:"Source Serif 4",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44; --on-accent:#0C121B;
+  --ok:#6FD38C; --ok-soft:#163323; --bad:#FF7A7A; --bad-soft:#3A1A1D; --warn:#F0B955;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44; --on-accent:#0C121B;
+  --ok:#6FD38C; --ok-soft:#163323; --bad:#FF7A7A; --bad-soft:#3A1A1D; --warn:#F0B955;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0}
+
+/* Barre du portail */
+.pbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.pbar-in{display:flex;align-items:center;gap:14px;padding-block:9px;overflow-x:auto;scrollbar-width:none}
+.pbar-in::-webkit-scrollbar{display:none}
+.logo{font-family:var(--f-disp);font-weight:700;font-size:17px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.logo span{color:var(--accent)}
+.pnav{display:flex;gap:4px}
+.pnav a{font-family:var(--f-mono);font-size:12px;font-weight:600;text-decoration:none;color:var(--muted);padding:5px 9px;border-radius:6px;white-space:nowrap}
+.pnav a:hover{background:var(--sunk);color:var(--ink)}
+.pnav a[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+
+/* En-tête de page */
+.hero{background:var(--surface);border-bottom:1px solid var(--line)}
+.hero-in{padding-block:26px 18px;display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.hero h1 .code{color:var(--accent);margin-right:10px}
+.en{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.pitch{max-width:72ch;margin:0;font-size:16px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.stat{display:flex;flex-direction:column;gap:2px;padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);min-width:150px;text-decoration:none;color:var(--ink)}
+.stat b{font-family:var(--f-disp);font-size:20px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+a.stat:hover{border-color:var(--accent)}
+.toc{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-top:6px}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:13px;font-weight:500;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:6px;white-space:nowrap;border:1px solid var(--line)}
+.toc a:hover{color:var(--ink);border-color:var(--accent)}
+
+main{padding-block:10px 60px}
+.sec{padding-top:34px;scroll-margin-top:60px}
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:14px}
+.sec-h h2{font-size:24px;font-weight:700}
+.sec-h .n{font-family:var(--f-mono);font-size:13px;color:var(--accent);margin-right:8px}
+.sec-h p{margin:0;color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+
+/* Objectifs */
+.obj{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:8px}
+.obj li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.obj b{font-family:var(--f-mono);color:var(--accent);font-size:13px}
+
+/* Concepts */
+.concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.concept{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.concept h3{font-size:17px;font-weight:600;margin-bottom:4px;display:flex;gap:8px;align-items:baseline}
+.concept h3 i{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.concept p{margin:0;font-size:14.5px}
+
+/* Schémas */
+.schemas{display:flex;flex-direction:column;gap:14px}
+.schema h3{font-size:18px;margin-bottom:12px}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px}
+.flow .st{flex:1 1 130px;min-width:0;background:var(--bg);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:7px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.flow .st b{font-family:var(--f-disp);font-size:15px}
+.flow .st span{font-size:12.5px;color:var(--muted)}
+.flow .ar{align-self:center;color:var(--muted);font-family:var(--f-mono)}
+.cycle-back{margin-top:8px;font-family:var(--f-mono);font-size:12px;color:var(--accent)}
+.stack{display:flex;flex-direction:column;gap:4px}
+.stack .ly{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:12px;background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:8px 12px;font-size:14px}
+.stack .ly b{font-family:var(--f-disp);font-size:15px}
+.stack .ly span{color:var(--muted)}
+.note{margin:10px 0 0;font-size:13px;color:var(--hl-ink);background:var(--hl);display:inline-block;padding:4px 10px;border-radius:6px}
+
+/* Tableaux */
+.tables{display:flex;flex-direction:column;gap:14px}
+.tables h3{font-size:18px;margin-bottom:10px}
+.tblw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+td:first-child{font-weight:600}
+
+/* Scénarios */
+.scens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.scen{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.scen .sit{margin:0;font-size:14.5px}
+.scen .q{margin:0;font-weight:600;font-family:var(--f-disp);font-size:16px;color:var(--accent)}
+.scen .ans{background:var(--ok-soft);border-radius:7px;padding:10px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.scen .ans p{margin:0}
+.scen .why{color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:7px 13px;font-size:13.5px;font-weight:500;text-decoration:none;color:var(--ink);display:inline-block}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn[disabled]{opacity:.5;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* Quiz */
+.quiz{max-width:820px}
+.qz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:14px;color:var(--muted)}
+.qz-prog{height:5px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.qz-prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.qz-q{font-family:var(--f-disp);font-size:20px;font-weight:600;margin:0 0 14px;line-height:1.3}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 14px;display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;font-size:15px}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .k{font-family:var(--f-mono);font-weight:600;color:var(--muted)}
+.opt.good{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--bg);border-left:4px solid var(--muted);font-size:14.5px}
+.fb.ok{border-left-color:var(--ok)}.fb.ko{border-left-color:var(--bad)}
+.fb b{display:block;margin-bottom:2px}
+.qz-end{display:flex;flex-direction:column;gap:12px}
+.score{font-family:var(--f-disp);font-size:44px;font-weight:700;line-height:1}
+.score small{font-size:18px;color:var(--muted);font-weight:500}
+.review{display:flex;flex-direction:column;gap:8px}
+.review div{background:var(--bg);border-radius:7px;padding:10px 12px;font-size:14px}
+.review b{color:var(--bad)}
+
+/* Glossaire */
+.glo-s{max-width:320px;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--surface)}
+.glo td:first-child{font-family:var(--f-mono);font-size:13px}
+
+/* Checklist */
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-width:820px}
+.chk label{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;font-size:14.5px}
+.chk input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.chk input:checked+span{color:var(--muted);text-decoration:line-through}
+.meter{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden;max-width:820px;margin-bottom:10px}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:40px;flex-wrap:wrap}
+.pager a{flex:1 1 220px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.pager a:hover{border-color:var(--accent)}
+.pager small{display:block;font-family:var(--f-mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pager a.next{text-align:right}
+.foot{margin-top:30px;font-size:12px;color:var(--muted)}
+
+@media (max-width:760px){
+  .hero h1{font-size:26px}
+  .concepts,.scens{grid-template-columns:minmax(0,1fr)}
+  .stack .ly{grid-template-columns:minmax(0,1fr);gap:2px}
+  .flow .ar{display:none}
+  .flow .st{flex-basis:100%}
+  .stat{min-width:0;flex:1 1 40%}
+}
+/* Glossaire : barre d'outils, cartes de concepts, flashcards, liste A–Z */
+.pnav span.off{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--line);padding:5px 9px;white-space:nowrap}
+.gbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-top:18px}
+.gbar .inp,.gbar .sel{padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--bg)}
+.gbar .inp{flex:1 1 220px;min-width:0}
+.gbar .sel{flex:0 1 230px;min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{border:0;background:var(--bg);padding:7px 12px;font-size:13.5px;font-weight:500;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.gcount{font-size:13.5px;color:var(--muted);margin:14px 0 4px}
+.gcount b{color:var(--ink)}
+.th-h{font-family:var(--f-disp);font-size:20px;font-weight:700;margin:24px 0 10px;display:flex;gap:10px;align-items:baseline}
+.th-h .n{font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+.th-h small{font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--muted)}
+.gcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.gc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;scroll-margin-top:70px}
+.gc.known{border-color:var(--ok)}
+.gc.rev{border-color:var(--warn)}
+.gc.flash-target{box-shadow:0 0 0 3px var(--accent-soft)}
+.gc-h{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:baseline}
+.gc-h .num{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.gc-h h3{font-size:18px;font-weight:600;line-height:1.25}
+.gc-h h3 .enx{font-family:var(--f-body);font-weight:500;font-size:14px;color:var(--accent)}
+.gc-tags{grid-column:2;display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-family:var(--f-mono);font-size:11px;padding:1px 6px;border-radius:4px;background:var(--sunk);color:var(--muted)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.wa{background:var(--hl);color:var(--hl-ink)}
+.gc .def{margin:0;font-size:14.5px}
+.gc-more{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.blk{background:var(--bg);border-radius:7px;padding:8px 11px}
+.blk h4{margin:0 0 2px;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.blk p{margin:0;font-size:14px}
+.blk.tip{background:var(--accent-soft)}.blk.tip h4{color:var(--accent)}
+.blk.nu h4{color:var(--warn)}
+.sag{margin:0;padding:2px 0 2px 12px;border-left:2px solid var(--accent);font-family:var(--f-quote);font-style:italic;font-size:16px}
+.gc-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.gc-acts .btn{padding:5px 10px;font-size:13px}
+.lnk{border:0;background:none;color:var(--accent);font-size:13px;padding:0;text-decoration:underline}
+.fc{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--accent);border-radius:12px;padding:26px;min-height:320px;display:flex;flex-direction:column;gap:12px;cursor:pointer;max-width:780px}
+.fc .t{font-family:var(--f-disp);font-size:28px;font-weight:700;line-height:1.15;text-wrap:balance}
+.fc .t .enx{display:block;font-family:var(--f-body);font-size:16px;font-weight:500;color:var(--accent);margin-top:4px}
+.fc .hint{margin-top:auto;font-size:13px;color:var(--muted)}
+.fc-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;max-width:780px;justify-content:center}
+.az-letters{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0}
+.az-letters a{font-family:var(--f-mono);font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);border-radius:5px;padding:3px 8px;background:var(--surface)}
+.az td:first-child{white-space:normal;min-width:200px}
+.az td:first-child small{display:block;font-family:var(--f-mono);font-weight:500;color:var(--accent);font-size:12px}
+.az tr.lt td{background:var(--bg);font-family:var(--f-disp);font-size:18px;font-weight:700;color:var(--accent)}
+.empty{padding:30px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+/* Accueil du glossaire */
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:10px}
+.dt{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-height:150px}
+a.dt:hover{border-color:var(--accent)}
+.dt .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dt .cd{font-family:var(--f-mono);font-weight:600;font-size:13px;color:var(--accent)}
+.dt h3{font-size:17px;font-weight:600}
+.dt p{margin:0;font-size:13px;color:var(--muted)}
+.dt .pg{margin-top:auto;height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.dt .pg i{display:block;height:100%;background:var(--ok)}
+.dt.soon{background:transparent;border-style:dashed}
+.dt.soon h3{color:var(--muted)}
+.st-ok{font-size:11px;font-family:var(--f-mono);color:var(--ok);background:var(--ok-soft);padding:1px 7px;border-radius:999px}
+.st-soon{font-size:11px;font-family:var(--f-mono);color:var(--muted);background:var(--sunk);padding:1px 7px;border-radius:999px}
+.grp{font-family:var(--f-disp);font-size:16px;font-weight:600;color:var(--muted);margin:20px 0 8px}
+.res{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.res a{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:14px}
+.res a:hover{border-color:var(--accent)}
+.res a b{font-family:var(--f-mono);color:var(--accent);font-size:12px}
+.res a span small{color:var(--accent);font-weight:500}
+.res a span em{display:block;font-style:normal;color:var(--muted);font-size:13px}
+@media (max-width:760px){.gcards{grid-template-columns:minmax(0,1fr)}.fc{padding:20px 18px}.fc .t{font-size:23px}}
+</style>
+</head><body>
+<header class="pbar"><div class="wrap pbar-in"><a class="logo" href="indexGlossaire.html">Glossaire <span>360</span></a><nav class="pnav" aria-label="Domaines"><a href="indexGlossaire.html">Accueil</a><a href="domaine0.html">D0</a><a href="domaine1.html">D1</a><a href="domaine2.html">D2</a><a href="domaine3.html">D3</a><a href="domaine4.html">D4</a><a href="domaine5.html">D5</a><a href="domaine6.html">D6</a><a href="domaine7.html">D7</a><a href="domaine8.html">D8</a><a href="domaine9.html">D9</a><a href="domaine10.html">D10</a><a href="domaine11.html" aria-current="page">D11</a><a href="domaine12.html">D12</a></nav></div></header>
+<div id="app"></div>
+<script>const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const norm=s=>String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const LETTERS="ABCD";
+
+/* Moteur de quiz : mode « learn » (correction immédiate) ou « exam » (correction à la fin) */
+function Quiz(el,questions,cfg){
+  cfg=cfg||{};
+  let qs,i,ans,timer,deadline;
+  function start(list){
+    qs=(list||questions).map(q=>({q:q.q,ex:q.ex,d:q.d,opts:shuffle(q.opts.map((t,k)=>({t,ok:k===q.a})))}));
+    i=0;ans=[];
+    clearInterval(timer);
+    if(cfg.minutes){deadline=Date.now()+cfg.minutes*60000;timer=setInterval(tick,1000)}
+    render();
+  }
+  function tick(){const r=deadline-Date.now();const t=el.querySelector(".qz-time");if(t)t.textContent=fmt(r);if(r<=0){clearInterval(timer);finish(true)}}
+  const fmt=ms=>{ms=Math.max(0,ms);const m=Math.floor(ms/60000),s=Math.floor(ms%60000/1000);return `${m}:${String(s).padStart(2,"0")}`};
+  function render(){
+    if(i>=qs.length)return finish(false);
+    const q=qs[i],a=ans[i],good=ans.filter(x=>x&&x.ok).length;
+    el.innerHTML=`<div class="qz-top"><span>Question <b>${i+1}</b> / ${qs.length}${q.d&&cfg.showDom?` · <span class="en">${q.d}</span>`:""}</span>
+      <span>${cfg.mode==="exam"?(cfg.minutes?`Temps restant <b class="qz-time">${fmt(deadline-Date.now())}</b>`:""):`Score <b>${good}</b> / ${ans.filter(Boolean).length}`}</span></div>
+      <div class="qz-prog"><i style="width:${i/qs.length*100}%"></i></div>
+      <p class="qz-q">${esc(q.q)}</p>
+      <div class="opts">${q.opts.map((o,k)=>{
+        let cls="opt";
+        if(a){ if(cfg.mode==="exam"){if(a.k===k)cls+=" picked"} else {if(o.ok)cls+=" good";else if(a.k===k)cls+=" wrong"} }
+        return `<button class="${cls}" type="button" data-k="${k}"${a&&cfg.mode!=="exam"?" disabled":""}><span class="k">${LETTERS[k]}</span><span>${esc(o.t)}</span></button>`}).join("")}</div>
+      ${a&&cfg.mode!=="exam"?`<div class="fb ${a.ok?"ok":"ko"}"><b>${a.ok?"Bonne réponse.":"Pas tout à fait."}</b>${esc(q.ex)}</div>`:""}
+      <div class="row" style="margin-top:14px">
+        ${cfg.mode==="exam"?`<button class="btn primary" type="button" data-nav="next"${a?"":" disabled"}>${i+1<qs.length?"Valider et continuer":"Terminer l'examen"}</button><button class="btn" type="button" data-nav="stop">Arrêter et voir le résultat</button>`
+          :`${a?`<button class="btn primary" type="button" data-nav="next">${i+1<qs.length?"Question suivante":"Voir mon score"}</button>`:""}`}
+      </div>`;
+  }
+  el.addEventListener("click",e=>{
+    const o=e.target.closest(".opt");
+    if(o&&!o.disabled&&i<qs.length){const k=+o.dataset.k;if(cfg.mode!=="exam"&&ans[i])return;ans[i]={k,ok:qs[i].opts[k].ok};render();return}
+    const n=e.target.closest("[data-nav]");if(!n||n.disabled)return;
+    if(n.dataset.nav==="next"){i++;render()}
+    else if(n.dataset.nav==="stop")finish(false);
+    else if(n.dataset.nav==="again")start();
+    else if(n.dataset.nav==="errors"){const wrong=qs.filter((q,k)=>!ans[k]||!ans[k].ok).map(q=>({q:q.q,ex:q.ex,d:q.d,opts:q.opts.map(o=>o.t),a:q.opts.findIndex(o=>o.ok)}));start(wrong)}
+  });
+  function finish(timeout){
+    clearInterval(timer);
+    const total=qs.length,good=qs.filter((q,k)=>ans[k]&&ans[k].ok).length,pct=Math.round(good/total*100);
+    const per={};qs.forEach((q,k)=>{if(!q.d)return;per[q.d]=per[q.d]||[0,0];per[q.d][1]++;if(ans[k]&&ans[k].ok)per[q.d][0]++});
+    if(cfg.onDone)cfg.onDone({pct,good,total,per});
+    const wrong=qs.map((q,k)=>({q,a:ans[k]})).filter(x=>!x.a||!x.a.ok);
+    el.innerHTML=`<div class="qz-end">
+      ${timeout?`<p class="note">Temps écoulé : les questions sans réponse comptent comme fausses.</p>`:""}
+      <div class="score">${pct} %<small> · ${good} / ${total} bonnes réponses</small></div>
+      <p style="margin:0">${pct>=80?"Excellent niveau : vous êtes prêt sur ce périmètre.":pct>=70?"Bon niveau, proche du seuil de réussite. Revoyez les erreurs ci-dessous.":"Niveau à consolider : relisez les concepts et les fiches, puis recommencez."}</p>
+      ${Object.keys(per).length>1?`<div class="tblw"><table><thead><tr><th>Domaine</th><th>Score</th></tr></thead><tbody>${Object.keys(per).sort().map(d=>`<tr><td>${d}</td><td>${per[d][0]} / ${per[d][1]} (${Math.round(per[d][0]/per[d][1]*100)} %)</td></tr>`).join("")}</tbody></table></div>`:""}
+      <div class="row"><button class="btn primary" type="button" data-nav="again">Recommencer</button>${wrong.length?`<button class="btn" type="button" data-nav="errors">Refaire seulement mes ${wrong.length} erreur${wrong.length>1?"s":""}</button>`:""}</div>
+      ${wrong.length?`<h3 style="font-size:17px;margin-top:6px">Correction des erreurs</h3><div class="review">${wrong.map(x=>`<div><p style="margin:0 0 4px;font-weight:600">${esc(x.q.q)}</p><p style="margin:0">Bonne réponse : <strong>${esc(x.q.opts.find(o=>o.ok).t)}</strong>${x.a?` · votre réponse : <b>${esc(x.q.opts[x.a.k].t)}</b>`:" · sans réponse"}</p><p style="margin:4px 0 0;color:var(--muted)">${esc(x.q.ex)}</p></div>`).join("")}</div>`:""}
+    </div>`;
+  }
+  return {start};
+}
+</script>
+<script>const GD={"code": "D11", "num": 11, "name": "Sigles et acronymes de A à Z", "en": "Acronyms A–Z", "pitch": "Bonus de révision : les 100 sigles que l'examen emploie sans les expliquer. Chaque fiche donne le développé anglais, le sens en français et le piège à éviter.", "themes": ["A – B", "C", "D – E", "F – H", "I", "J – M", "N – O", "P", "R – S", "T – Z"], "items": [[1, "AAA — Authentification, autorisation, traçabilité", "Authentication, Authorization, Accounting", "Trois services de contrôle d'accès réseau : prouver l'identité, accorder les droits, enregistrer l'usage.", "RADIUS et TACACS+ fournissent l'AAA.", "Accounting (réseau) ≈ accountability (imputabilité).", "Prouver, permettre, tracer.", "Ne pas confondre avec IAAA (qui ajoute l'identification).", "D11 · D5"], [1, "ABAC — Contrôle d'accès par attributs", "Attribute-Based Access Control", "Décision d'accès fondée sur les attributs du sujet, de l'objet et du contexte.", "Accès si service = finance et poste géré.", "Le plus fin, le plus complexe.", "Le contexte complète l'identité.", "Base du Zero Trust.", "D11 · D5"], [1, "ACL — Liste de contrôle d'accès", "Access Control List", "Liste attachée à un objet indiquant qui peut faire quoi.", "ACL d'un dossier ou d'un routeur.", "Vue centrée sur l'objet.", "Chaque porte connaît ses visiteurs.", "ACL = colonne de la matrice d'accès.", "D11 · D5"], [1, "AES — Standard de chiffrement avancé", "Advanced Encryption Standard", "Chiffrement symétrique par blocs de 128 bits, clés de 128, 192 ou 256 bits.", "AES-256-GCM pour les données sensibles.", "Le mode d'utilisation compte autant que l'algorithme.", "Le standard éprouvé vaut mieux que le secret maison.", "Remplaçant de DES.", "D11 · D3"], [1, "ALE — Espérance de perte annuelle", "Annualized Loss Expectancy", "Perte financière annuelle attendue : SLE × ARO.", "SLE 40 M × ARO 0,5 = 20 M FCFA.", "Sert à justifier le coût d'un contrôle.", "Ce qui se chiffre se défend.", "ALE = SLE × ARO.", "D11 · D1"], [1, "APT — Menace persistante avancée", "Advanced Persistent Threat", "Attaquant compétent et discret qui reste longtemps dans le réseau.", "Espionnage pendant des mois.", "Détection comportementale nécessaire.", "Le voleur patient est le plus dangereux.", "Souvent étatique.", "D11 · D9"], [1, "ARO — Taux d'occurrence annuel", "Annualized Rate of Occurrence", "Nombre d'incidents attendus par an.", "Une fois tous les 4 ans = 0,25.", "Peut être supérieur à 1.", "La fréquence fait le prix.", "Utilisé dans ALE.", "D11 · D1"], [1, "ASLR — Randomisation de l'espace d'adressage", "Address Space Layout Randomization", "Placement aléatoire des zones mémoire pour compliquer l'exploitation.", "Les adresses changent à chaque exécution.", "Contournable par fuite d'adresse.", "Déplacer la cible complique le tir.", "Avec DEP contre les dépassements de tampon.", "D11 · D3"], [1, "BCP — Plan de continuité d'activité", "Business Continuity Plan", "Plan pour maintenir les activités critiques pendant une perturbation.", "Fonctionnement dégradé des agences.", "Sujet métier, pas seulement IT.", "La pirogue a besoin de rameurs.", "PCA en français.", "D11 · D7"], [1, "BIA — Analyse d'impact sur l'activité", "Business Impact Analysis", "Identification des processus critiques et de l'impact de leur interruption dans le temps.", "Fixe MTD, RTO, RPO.", "Précède toute stratégie de continuité.", "On sauve d'abord ce qui fait vivre la maison.", "Première analyse du BCP.", "D11 · D1"], [2, "CASB — Courtier de sécurité d'accès cloud", "Cloud Access Security Broker", "Point de contrôle entre utilisateurs et services cloud.", "Découverte du shadow IT.", "Ne remplace pas la classification.", "Voir avant de contrôler.", "Visibilité, conformité, données, menaces.", "D11 · D2"], [2, "CER — Taux d'erreur croisé", "Crossover Error Rate", "Point où FAR = FRR en biométrie.", "Comparer deux lecteurs.", "Plus il est bas, mieux c'est.", "Le point d'équilibre dit la qualité.", "Aussi EER.", "D11 · D5"], [2, "CIA — Confidentialité, intégrité, disponibilité", "Confidentiality, Integrity, Availability", "Triade fondamentale de la sécurité.", "Chiffrement, hachage, redondance.", "Rien à voir avec l'agence de renseignement.", "Trois pieds font tenir le tabouret.", "Contraire : DAD.", "D11 · D0"], [2, "CMDB — Base de gestion des configurations", "Configuration Management Database", "Référentiel des éléments de configuration et de leurs relations.", "Analyse d'impact avant un changement.", "Ne vaut que si elle est à jour.", "La carte doit ressembler au terrain.", "Lié à ITIL.", "D11 · D7"], [2, "CMMI — Modèle de maturité intégré", "Capability Maturity Model Integration", "Échelle de maturité des processus en 5 niveaux.", "Passer de « reproductible » à « défini ».", "Maturité des processus, pas sécurité du produit.", "On ne gravit pas la montagne d'un bond.", "Initial, Reproductible, Défini, Géré, Optimisé.", "D11 · D8"], [2, "CRL — Liste de révocation de certificats", "Certificate Revocation List", "Liste publiée des certificats révoqués avant leur expiration.", "Certificat révoqué après fuite de la clé.", "Moins réactive que l'OCSP.", "Ce qui a perdu la confiance doit le savoir.", "Alternative : OCSP.", "D11 · D3"], [2, "CSIRT — Équipe de réponse aux incidents", "Computer Security Incident Response Team", "Équipe chargée de gérer les incidents de sécurité.", "Le CI-CERT au niveau national.", "Constituée avant l'incident.", "On creuse le puits avant d'avoir soif.", "Aussi CERT, CIRT.", "D11 · D7"], [2, "CSRF — Falsification de requête intersite", "Cross-Site Request Forgery", "Faire exécuter une action à un utilisateur connecté à son insu.", "Lien qui déclenche un virement.", "Différent du XSS (qui exécute un script).", "On signe sans lire ce qu'on vous présente.", "Jeton anti-CSRF, SameSite.", "D11 · D8"], [2, "CVE — Vulnérabilités et expositions communes", "Common Vulnerabilities and Exposures", "Identifiant unique d'une vulnérabilité publique.", "CVE-2021-44228.", "CVE = cas ; CWE = type de faiblesse.", "Un nom commun pour un danger commun.", "Géré par MITRE.", "D11 · D6"], [2, "CVSS — Système de notation des vulnérabilités", "Common Vulnerability Scoring System", "Score de gravité de 0 à 10.", "10.0 pour une exécution de code à distance sans authentification.", "Gravité technique, pas risque métier.", "Le thermomètre ne dit pas qui est malade.", "Prioriser aussi par exposition.", "D11 · D6"], [3, "DAC — Contrôle d'accès discrétionnaire", "Discretionary Access Control", "Le propriétaire décide des accès à sa ressource.", "Partage d'un dossier par son créateur.", "Souple mais propice aux excès.", "La clé confiée au propriétaire voyage vite.", "DAC = Discrétion.", "D11 · D5"], [3, "DDoS — Déni de service distribué", "Distributed Denial of Service", "Saturation d'un service par de multiples sources.", "Botnet saturant un site.", "Protection en amont nécessaire.", "On ne vide pas la mer avec une calebasse.", "Atteinte à la disponibilité.", "D11 · D4"], [3, "DKIM — Signature de domaine des mails", "DomainKeys Identified Mail", "Signature cryptographique des mails par le domaine émetteur.", "Vérification de l'intégrité d'un mail reçu.", "Prouve le domaine, pas l'honnêteté.", "Le sceau prouve l'expéditeur.", "Avec SPF et DMARC.", "D11 · D4"], [3, "DLP — Prévention des fuites de données", "Data Loss Prevention", "Détection et blocage des sorties de données sensibles.", "Blocage d'un fichier de cartes vers un webmail.", "S'appuie sur la classification.", "Le filet ne sert que s'il a la bonne maille.", "Réseau, terminal, cloud.", "D11 · D2"], [3, "DMARC — Politique d'authentification des mails", "Domain-based Message Authentication, Reporting and Conformance", "Politique indiquant quoi faire des mails échouant à SPF/DKIM, avec rapports.", "Politique « reject ».", "Ne protège pas des domaines ressemblants.", "Décider du sort de l'imposteur.", "Mnémo : DMARC = Décision.", "D11 · D4"], [3, "DMZ — Zone démilitarisée", "Demilitarized Zone", "Zone tampon pour les services exposés à Internet.", "Serveurs web entre deux pare-feu.", "Ne doit pas initier de connexions vers l'interne.", "La cour avant la maison.", "Screened subnet.", "D11 · D4"], [3, "DNSSEC — Extensions de sécurité du DNS", "Domain Name System Security Extensions", "Signature des enregistrements DNS pour garantir leur authenticité.", "Domaine bancaire signé.", "Ne chiffre pas les requêtes.", "Le registre signé ne ment pas.", "Authenticité, pas confidentialité.", "D11 · D4"], [3, "DRP — Plan de reprise après sinistre", "Disaster Recovery Plan", "Procédures de restauration des systèmes après sinistre.", "Bascule sur le site de secours.", "PRA = IT ; PCA = métier.", "Le plan B se prépare avant la panne.", "PRA en français.", "D11 · D7"], [3, "EAL — Niveau d'assurance de l'évaluation", "Evaluation Assurance Level", "Profondeur d'évaluation Common Criteria, de 1 à 7.", "Pare-feu EAL4+.", "Rigueur de l'évaluation, pas force du produit.", "Le label rassure, la configuration protège.", "EAL7 = vérifié formellement.", "D11 · D3"], [3, "EDR — Détection et réponse sur les terminaux", "Endpoint Detection and Response", "Outil qui surveille les terminaux, détecte les comportements malveillants et permet d'y répondre.", "Isolement automatique d'un poste infecté.", "Exige une supervision humaine.", "Voir, comprendre, isoler.", "XDR étend aux autres sources.", "D11 · D7"], [4, "FAR — Taux de fausses acceptations", "False Acceptance Rate", "Imposteurs acceptés à tort (erreur de type II).", "Intrus accepté par le lecteur d'empreintes.", "L'erreur la plus grave.", "Trop souple, on laisse entrer les autres.", "Type II = Intrus.", "D11 · D5"], [4, "FRR — Taux de faux rejets", "False Rejection Rate", "Utilisateurs légitimes rejetés (erreur de type I).", "Employé rejeté trois fois.", "Gênant mais pas dangereux.", "Trop sévère, on bloque les siens.", "Type I.", "D11 · D5"], [4, "FIM — Surveillance de l'intégrité des fichiers", "File Integrity Monitoring", "Détection des modifications de fichiers critiques.", "Alerte sur un binaire système modifié.", "Trop de fichiers = bruit.", "Ce qui change sans raison inquiète.", "Exigé par PCI DSS.", "D11 · D7"], [4, "FIPS — Normes fédérales de traitement de l'information", "Federal Information Processing Standards", "Normes du gouvernement américain publiées par le NIST.", "FIPS 140-3 pour les modules cryptographiques.", "Obligatoires pour les agences fédérales américaines.", "La norme publique fixe le minimum.", "FIPS 199 : catégorisation.", "D11 · D10"], [4, "GDPR — Règlement général sur la protection des données", "General Data Protection Regulation", "RGPD européen.", "Notification sous 72 heures.", "Portée extraterritoriale.", "La loi suit la personne.", "Amendes jusqu'à 4 % du CA mondial.", "D11 · D10"], [4, "GRC — Gouvernance, risque et conformité", "Governance, Risk and Compliance", "Approche intégrée de la gouvernance, des risques et de la conformité, souvent outillée.", "Plateforme GRC gérant registre des risques et contrôles.", "L'outil ne remplace pas la décision.", "Un seul tableau pour trois exigences.", "Vision unifiée pour la direction.", "D11 · D1"], [4, "HIDS — Détection d'intrusion sur l'hôte", "Host-based Intrusion Detection System", "IDS installé sur un serveur ou poste.", "Détection des modifications locales.", "Voit l'activité locale, pas le réseau.", "Le gardien de la chambre.", "NIDS = réseau.", "D11 · D7"], [4, "HMAC — Code d'authentification de message par hachage", "Hash-based Message Authentication Code", "Hachage avec clé secrète partagée : intégrité et origine.", "Signature des appels d'une API.", "Pas de non-répudiation.", "Le secret partagé lie, il ne désigne pas.", "Piège classique.", "D11 · D3"], [4, "HSM — Module matériel de sécurité", "Hardware Security Module", "Équipement dédié qui protège et utilise les clés cryptographiques.", "HSM d'une autorité de certification.", "Plus robuste qu'un TPM.", "Le coffre des clés a son propre coffre.", "Souvent FIPS 140.", "D11 · D3"], [4, "HVAC — Chauffage, ventilation, climatisation", "Heating, Ventilation and Air Conditioning", "Systèmes qui contrôlent température et humidité des locaux.", "Salle serveurs à 40-60 % d'humidité.", "Une panne de climatisation est un incident de disponibilité.", "La chaleur est un attaquant silencieux.", "Pression positive contre la poussière.", "D11 · D3"], [5, "IaaS — Infrastructure en tant que service", "Infrastructure as a Service", "Le fournisseur loue l'infrastructure ; le client gère OS, applications et données.", "Machines virtuelles dans le cloud.", "Le client corrige ses OS.", "Louer le terrain, bâtir sa maison.", "Plus de responsabilité côté client.", "D11 · D3"], [5, "IAM — Gestion des identités et des accès", "Identity and Access Management", "Processus et outils de gestion des identités et des droits.", "Annuaire, SSO, MFA, cycle JML.", "Domaine 5 du CISSP.", "Qui est qui, qui peut quoi.", "IGA et PAM en font partie.", "D11 · D5"], [5, "IDS — Système de détection d'intrusion", "Intrusion Detection System", "Détecte et alerte, sans bloquer.", "IDS en dérivation sur le lien Internet.", "Faux négatifs = plus dangereux.", "IDS Informe.", "IPS = bloque.", "D11 · D7"], [5, "IKE — Échange de clés Internet", "Internet Key Exchange", "Protocole qui négocie les clés et associations de sécurité d'IPsec.", "Négociation d'un tunnel site à site.", "Mauvaise configuration = tunnel faible.", "S'accorder avant d'échanger.", "IKEv2 recommandé.", "D11 · D4"], [5, "IoC — Indicateur de compromission", "Indicator of Compromise", "Trace technique d'une compromission.", "Empreinte d'un malware, domaine malveillant.", "Change vite ; les comportements durent plus.", "Le signe trahit le passage.", "IOA = indicateur d'attaque.", "D11 · D7"], [5, "IPS — Système de prévention d'intrusion", "Intrusion Prevention System", "Détecte et bloque en ligne.", "IPS devant les serveurs exposés.", "Un faux positif bloque du légitime.", "IPS Interdit.", "En ligne (inline).", "D11 · D7"], [5, "IPsec — Sécurité IP", "Internet Protocol Security", "Suite qui sécurise IP : AH, ESP, IKE.", "VPN site à site.", "AH ne chiffre pas.", "Le tunnel protège le voyage.", "Transport ou tunnel.", "D11 · D4"], [5, "ISMS / SMSI — Système de management de la sécurité de l'information", "Information Security Management System", "Ensemble de politiques, processus et contrôles pilotés selon ISO 27001.", "SMSI certifié d'un opérateur.", "Un système de management, pas un outil.", "Organiser pour durer.", "PDCA.", "D11 · D10"], [5, "IV — Vecteur d'initialisation", "Initialization Vector", "Valeur unique qui rend chaque chiffrement différent.", "Nouvel IV par message.", "Un IV réutilisé affaiblit le chiffrement.", "Ne jamais repasser par le même chemin.", "Faiblesse de WEP.", "D11 · D3"], [5, "IGA — Gouvernance et administration des identités", "Identity Governance and Administration", "Outils et processus de cycle de vie, revues et conformité des accès.", "Détection des conflits de séparation des tâches.", "Dépend de données RH fiables.", "Ce qui n'est gouverné est gaspillé.", "Revues et certifications d'accès.", "D11 · D5"], [6, "JIT — Juste à temps", "Just-In-Time access", "Privilèges accordés seulement quand et le temps nécessaire.", "Droits d'administration pour 2 heures.", "Supprime les privilèges permanents.", "Juste assez, juste à temps.", "Pratique PAM.", "D11 · D5"], [6, "JWT — Jeton web JSON", "JSON Web Token", "Jeton signé transportant des informations entre parties.", "ID token OpenID Connect.", "Signé n'est pas chiffré.", "Le sceau protège, il ne cache pas.", "Vérifier signature et expiration.", "D11 · D5"], [6, "KDC — Centre de distribution de clés", "Key Distribution Center", "Cœur de Kerberos : AS + TGS.", "Contrôleur de domaine.", "Point unique de défaillance.", "Celui qui distribue les clés doit être imprenable.", "KDC = AS + TGS.", "D11 · D5"], [6, "KPI — Indicateur clé de performance", "Key Performance Indicator", "Mesure de l'efficacité d'un processus de sécurité.", "Délai moyen de correction.", "Mesure plutôt le passé.", "Ce qui ne se mesure pas ne s'améliore pas.", "KPI = performance.", "D11 · D6"], [6, "KRI — Indicateur clé de risque", "Key Risk Indicator", "Signal précoce d'évolution du risque.", "Systèmes en fin de support.", "Lié à un seuil de tolérance.", "Le baromètre annonce l'orage.", "KRI = risque à venir.", "D11 · D6"], [6, "LDAP — Protocole d'accès aux annuaires", "Lightweight Directory Access Protocol", "Protocole d'interrogation des annuaires.", "Requête vers Active Directory.", "En clair sur le port 389 ; LDAPS sur 636.", "L'annuaire se consulte, il ne se crie pas.", "Utiliser LDAPS.", "D11 · D5"], [6, "MAC — Contrôle d'accès obligatoire / Adresse MAC", "Mandatory Access Control / Media Access Control", "Deux sens : modèle d'accès par étiquettes (sécurité) ou adresse physique d'une carte réseau (réseau).", "Système militaire (MAC) ; filtrage d'adresses MAC sur un switch.", "Lire le contexte de la question.", "Un même sigle, deux mondes.", "Piège : distinguer par le domaine de la question.", "D11 · D5 · D4"], [6, "MDM — Gestion des appareils mobiles", "Mobile Device Management", "Gestion et sécurisation des smartphones et tablettes de l'organisation.", "Effacement à distance d'un téléphone perdu.", "Le BYOD pose des questions de vie privée.", "Ce qui sort du bureau doit rester gouverné.", "Conteneurisation des données professionnelles.", "D11 · D7"], [6, "MFA — Authentification multifacteur", "Multifactor Authentication", "Combinaison d'au moins deux types de facteurs.", "Mot de passe + clé FIDO2.", "Mot de passe + PIN n'en est pas.", "Deux verrous différents.", "Savoir, avoir, être.", "D11 · D5"], [6, "MTD — Durée maximale d'interruption tolérable", "Maximum Tolerable Downtime", "Durée au-delà de laquelle l'interruption devient inacceptable.", "24 h pour la facturation.", "Fixée par le métier.", "Chaque activité a son seuil de rupture.", "MTD ≥ RTO + WRT.", "D11 · D7"], [7, "NAC — Contrôle d'accès réseau", "Network Access Control", "Vérifie identité et conformité avant connexion.", "Quarantaine d'un poste non à jour.", "Pré et post-admission.", "On vérifie l'invité avant d'ouvrir.", "S'appuie sur 802.1X.", "D11 · D4"], [7, "NAT — Traduction d'adresses réseau", "Network Address Translation", "Traduction d'adresses privées en adresses publiques.", "Toute l'entreprise sort avec une IP.", "Ce n'est pas un pare-feu.", "Cacher n'est pas protéger.", "PAT : par ports.", "D11 · D4"], [7, "NDA — Accord de confidentialité", "Non-Disclosure Agreement", "Contrat interdisant de divulguer des informations confidentielles.", "NDA signé par un auditeur.", "Protège les secrets d'affaires.", "La parole donnée doit être écrite.", "Survit souvent au contrat.", "D11 · D1"], [7, "NGFW — Pare-feu de nouvelle génération", "Next-Generation Firewall", "Pare-feu applicatif avec identité, IPS et inspection TLS.", "Blocage d'une application quel que soit le port.", "Coûteux et complexe.", "Voir qui parle et ce qu'il dit.", "Couches 3 à 7.", "D11 · D4"], [7, "NIST — Institut national des normes et de la technologie", "National Institute of Standards and Technology", "Agence américaine qui publie les SP 800, FIPS et le CSF.", "SP 800-53, CSF 2.0.", "Références volontaires hors du gouvernement américain.", "Le bon outil dans la bonne boîte.", "Organisme le plus cité à l'examen.", "D11 · D10"], [7, "NTP — Protocole de temps réseau", "Network Time Protocol", "Synchronisation des horloges des systèmes.", "Journaux horodatés de façon cohérente.", "Serveur NTP à protéger ; abus possible en amplification.", "Sans heure commune, pas d'histoire commune.", "Requis pour Kerberos.", "D11 · D6"], [7, "OAuth — Autorisation ouverte", "Open Authorization", "Cadre d'autorisation déléguée par jetons.", "Application accédant au calendrier.", "Pas un protocole d'authentification.", "Prêter la clé d'une pièce.", "OIDC ajoute l'identité.", "D11 · D5"], [7, "OCSP — Protocole d'état des certificats en ligne", "Online Certificate Status Protocol", "Vérification en temps réel de la validité d'un certificat.", "Navigateur vérifiant un certificat bancaire.", "OCSP stapling réduit la charge.", "Vérifier avant de croire.", "Alternative à la CRL.", "D11 · D3"], [7, "OIDC — OpenID Connect", "OpenID Connect", "Couche d'authentification sur OAuth 2.0.", "« Se connecter avec… ».", "C'est OIDC qui authentifie.", "Ajouter le nom à la clé.", "ID token JWT.", "D11 · D5"], [7, "OSINT — Renseignement en sources ouvertes", "Open-Source Intelligence", "Collecte d'informations publiques.", "Organigramme trouvé en ligne.", "Reconnaissance passive.", "Ce qui est public renseigne l'adversaire.", "Première phase de l'attaque.", "D11 · D6"], [8, "PaaS — Plateforme en tant que service", "Platform as a Service", "Le fournisseur gère infrastructure et plateforme ; le client gère applications et données.", "Base de données managée.", "Le client reste responsable du code et des accès.", "Louer l'atelier, fabriquer son produit.", "Entre IaaS et SaaS.", "D11 · D3"], [8, "PAM — Gestion des accès à privilèges", "Privileged Access Management", "Contrôle et traçabilité des comptes d'administration.", "Coffre et enregistrement des sessions.", "Le PAM est lui-même une cible.", "Le pouvoir se prête.", "Aussi PAP en réseau (piège).", "D11 · D5"], [8, "PASTA — Simulation d'attaque et analyse des menaces", "Process for Attack Simulation and Threat Analysis", "Méthode de modélisation des menaces en 7 étapes, orientée risque métier.", "Modélisation d'une banque en ligne.", "Plus lourde que STRIDE.", "Partir du but pour trouver la menace.", "Orientée attaquant et risque.", "D11 · D1"], [8, "PCI DSS — Norme de sécurité des cartes de paiement", "Payment Card Industry Data Security Standard", "Norme contractuelle de protection des données de cartes.", "Commerçant certifié PCI DSS.", "Contractuelle, pas légale.", "Moins on touche aux cartes, mieux c'est.", "Version 4.0.", "D11 · D10"], [8, "PDCA — Planifier, faire, vérifier, agir", "Plan-Do-Check-Act", "Cycle d'amélioration continue.", "SMSI ISO 27001.", "Sans « Check », on répète les erreurs.", "La roue qui tourne fait avancer.", "Roue de Deming.", "D11 · D0"], [8, "PHI — Informations de santé protégées", "Protected Health Information", "Données de santé identifiantes (HIPAA).", "Dossier médical électronique.", "Catégorie sensible partout.", "La santé d'autrui se garde comme la sienne.", "Loi américaine HIPAA.", "D11 · D2"], [8, "PII — Données personnelles identifiantes", "Personally Identifiable Information", "Informations permettant d'identifier une personne.", "Nom, téléphone, adresse IP.", "Les données pseudonymisées restent des PII.", "La donnée d'autrui est un dépôt.", "Terme anglo-saxon des données personnelles.", "D11 · D2"], [8, "PKI — Infrastructure à clés publiques", "Public Key Infrastructure", "Ensemble qui émet, gère et révoque les certificats.", "CA interne de l'entreprise.", "La racine doit rester hors ligne.", "La racine protège tout l'arbre.", "CA, RA, CRL, OCSP.", "D11 · D3"], [8, "PSK — Clé pré-partagée", "Pre-Shared Key", "Secret commun configuré à l'avance sur tous les équipements.", "Mot de passe Wi-Fi unique du bureau.", "Ne permet ni imputabilité ni révocation individuelle.", "Un secret pour tous n'est plus un secret.", "Préférer le mode Entreprise (802.1X).", "D11 · D4"], [8, "PIA / DPIA — Analyse d'impact sur la vie privée", "Privacy / Data Protection Impact Assessment", "Évaluation des risques d'un traitement pour les personnes.", "Avant un projet de vidéosurveillance.", "Obligatoire pour les traitements à haut risque (RGPD).", "Mesurer avant de collecter.", "Associée à privacy by design.", "D11 · D2"], [9, "RADIUS — Authentification des utilisateurs distants", "Remote Authentication Dial-In User Service", "Protocole AAA sur UDP, chiffre seulement le mot de passe.", "Authentification Wi-Fi et VPN.", "TACACS+ chiffre tout.", "Le standard courant n'est pas le plus fermé.", "UDP 1812/1813.", "D11 · D4"], [9, "RBAC — Contrôle d'accès basé sur les rôles", "Role-Based Access Control", "Droits attribués aux rôles.", "Rôle « comptable ».", "Explosion des rôles possible.", "La fonction donne la clé.", "Différent de rule-based.", "D11 · D5"], [9, "RPO — Objectif de point de reprise", "Recovery Point Objective", "Perte de données maximale acceptable.", "15 minutes de données au maximum.", "Détermine la fréquence des sauvegardes.", "On compte ce que l'on peut perdre.", "RPO = données.", "D11 · D7"], [9, "RTO — Objectif de délai de reprise", "Recovery Time Objective", "Délai cible de restauration.", "4 heures pour la messagerie.", "Doit être inférieur au MTD.", "Le temps de reprise a un prix.", "RTO = temps.", "D11 · D7"], [9, "SaaS — Logiciel en tant que service", "Software as a Service", "Application complète fournie par le fournisseur.", "CRM en ligne.", "Le client reste responsable des identités et données.", "Louer la maison ne dispense pas de fermer la porte.", "Le moins de responsabilité côté client.", "D11 · D3"], [9, "SAML — Langage de balisage d'assertions de sécurité", "Security Assertion Markup Language", "Standard XML de fédération et de SSO.", "SSO d'entreprise vers SaaS.", "Plutôt web d'entreprise.", "Le message signé porte la confiance.", "IdP → SP.", "D11 · D5"], [9, "SBOM — Nomenclature logicielle", "Software Bill of Materials", "Inventaire des composants d'un logiciel.", "Retrouver Log4j en quelques heures.", "Doit être tenu à jour.", "Connais ce que tu manges.", "Produit par la SCA.", "D11 · D8"], [9, "SIEM — Gestion des informations et événements de sécurité", "Security Information and Event Management", "Collecte, corrélation et alerte sur les événements.", "Corrélation de connexions anormales.", "Sans analystes, il produit du bruit.", "La sentinelle qui dort ne protège pas.", "Cœur du SOC.", "D11 · D7"], [9, "SLE — Espérance de perte unique", "Single Loss Expectancy", "Perte pour une occurrence : AV × EF.", "200 M × 25 % = 50 M FCFA.", "Ne tient pas compte de la fréquence.", "Un coup peut coûter cher.", "SLE = AV × EF.", "D11 · D1"], [9, "SSO — Authentification unique", "Single Sign-On", "Une seule authentification pour plusieurs applications.", "Accès à tous les SaaS après une connexion.", "Point unique de défaillance.", "Une clé bien gardée vaut mieux que vingt.", "MFA obligatoire.", "D11 · D5"], [10, "TACACS+ — Contrôle d'accès aux terminaux", "Terminal Access Controller Access-Control System Plus", "Protocole AAA sur TCP qui chiffre tout et sépare les fonctions.", "Administration des routeurs.", "Mieux pour l'administration fine.", "Séparer pour mieux contrôler.", "TCP 49.", "D11 · D4"], [10, "TCB — Base informatique de confiance", "Trusted Computing Base", "Composants qui assurent la sécurité du système.", "Noyau, TPM.", "Plus petite = plus vérifiable.", "Peu d'éléments, bien gardés.", "Inclut le moniteur de référence.", "D11 · D3"], [10, "TGT — Ticket d'octroi de tickets", "Ticket Granting Ticket", "Ticket Kerberos prouvant l'authentification.", "Valable la journée de travail.", "Volé, il permet pass-the-ticket.", "Le passeport ouvre les visas.", "Délivré par l'AS.", "D11 · D5"], [10, "TLS — Sécurité de la couche transport", "Transport Layer Security", "Protocole de chiffrement et d'authentification des communications.", "HTTPS.", "SSL et TLS 1.0/1.1 obsolètes.", "Ce qui voyage nu se fait voler.", "TLS 1.2 ou 1.3.", "D11 · D4"], [10, "TOCTOU — Du contrôle à l'usage", "Time Of Check to Time Of Use", "Condition de course entre la vérification et l'utilisation.", "Fichier remplacé entre contrôle et ouverture.", "Difficile à tester.", "Entre le regard et le geste, tout peut changer.", "Opérations atomiques.", "D11 · D8"], [10, "TPM — Module de plateforme sécurisée", "Trusted Platform Module", "Puce de la carte mère pour les clés et mesures de démarrage.", "BitLocker.", "Lié à une machine.", "Le secret soudé à la machine.", "Secure boot, chiffrement.", "D11 · D3"], [10, "UEBA — Analyse comportementale des utilisateurs et entités", "User and Entity Behavior Analytics", "Détection des comportements anormaux.", "Téléchargement massif nocturne.", "Période d'apprentissage nécessaire.", "Les habitudes trahissent l'imposteur.", "Contre les menaces internes.", "D11 · D7"], [10, "VPN — Réseau privé virtuel", "Virtual Private Network", "Tunnel chiffré sur un réseau public.", "Accès distant des commerciaux.", "Le split tunnel est risqué.", "Une porte dérobée reste une porte.", "Évolution vers ZTNA.", "D11 · D4"], [10, "WAF — Pare-feu applicatif web", "Web Application Firewall", "Filtre HTTP contre injections et XSS.", "WAF devant le portail client.", "Ne corrige pas le code.", "Le bouclier ne remplace pas l'armure.", "Virtual patching.", "D11 · D4"], [10, "XSS — Script intersite", "Cross-Site Scripting", "Injection de script exécuté dans le navigateur des victimes.", "Commentaire piégé volant les cookies.", "Vise les utilisateurs, pas le serveur.", "Ce qui sort doit être dit sans être joué.", "Encodage des sorties, CSP.", "D11 · D8"]]};</script>
+<script>(function(){
+const d=GD, K=d.code, kKey="gl-known-"+K, rKey="gl-rev-"+K;
+const C=d.items.map((x,i)=>({i,n:i+1,th:x[0],fr:x[1],en:x[2],def:x[3],ex:x[4],nu:x[5],sag:x[6],tip:x[7],dom:x[8]}));
+C.forEach(c=>c.hay=norm([c.fr,c.en,c.def,c.ex,c.nu,c.tip,c.dom].join(" ")));
+const known=new Set(store.get(kKey,[])), rev=new Set(store.get(rKey,[]));
+const open=new Set();
+const F={q:"",th:"",st:"all",view:"cards"};
+const save=()=>{store.set(kKey,[...known]);store.set(rKey,[...rev]);stats()};
+const pad=n=>String(n).padStart(3,"0");
+
+document.getElementById("app").innerHTML=`
+<section class="hero"><div class="wrap hero-in">
+  <div class="eyebrow">Glossaire 360 · Domaine ${d.num}${d.num===0?" · socle transverse":d.num<=8?" · CBK CISSP":" · bonus"}</div>
+  <h1><span class="code">${K}</span>${esc(d.name)}</h1>
+  <div class="en">${esc(d.en)}</div>
+  <p class="pitch">${esc(d.pitch)}</p>
+  <div class="stats">
+    <div class="stat"><b>${C.length}</b><span>concepts détaillés</span></div>
+    <div class="stat"><b id="s-k">0</b><span>concepts connus</span></div>
+    <div class="stat"><b id="s-r">0</b><span>à revoir</span></div>
+  </div>
+  <div class="meter" style="max-width:none;margin:4px 0 0"><i id="s-m"></i></div>
+</div></section>
+<main class="wrap">
+  <div class="gbar">
+    <input class="inp" id="q" type="search" placeholder="Chercher un terme, en français ou en anglais…" aria-label="Chercher">
+    <select class="sel" id="th" aria-label="Sous-thème"><option value="">Tous les sous-thèmes</option>${d.themes.map((t,k)=>`<option value="${k+1}">${k+1}. ${esc(t)}</option>`).join("")}</select>
+    <select class="sel" id="st" aria-label="Progression"><option value="all">Tous les concepts</option><option value="todo">Pas encore connus</option><option value="rev">À revoir</option><option value="known">Connus</option></select>
+    <div class="seg" role="group" aria-label="Affichage">
+      <button type="button" data-v="cards" aria-pressed="true">Fiches</button><button type="button" data-v="flash" aria-pressed="false">Flashcards</button><button type="button" data-v="az" aria-pressed="false">Liste A–Z</button><button type="button" data-v="test" aria-pressed="false">Auto-test</button>
+    </div>
+  </div>
+  <p class="gcount" id="cnt"></p>
+  <div id="view"></div>
+  <p class="foot">Votre progression est enregistrée dans ce navigateur. Les termes anglais entre parenthèses sont ceux de l'examen.</p>
+</main>`;
+
+function stats(){$("#s-k").textContent=known.size;$("#s-r").textContent=rev.size;$("#s-m").style.width=(known.size/C.length*100)+"%"}
+function list(){return C.filter(c=>(!F.q||F.q.split(/\s+/).every(w=>c.hay.includes(w)))&&(!F.th||String(c.th)===F.th)&&
+  (F.st==="all"||(F.st==="todo"&&!known.has(c.n))||(F.st==="rev"&&rev.has(c.n))||(F.st==="known"&&known.has(c.n))))}
+function card(c){const o=open.has(c.n);
+  return `<article class="gc${known.has(c.n)?" known":rev.has(c.n)?" rev":""}" id="c${c.n}" data-n="${c.n}">
+  <div class="gc-h"><span class="num">${pad(c.n)}</span><h3>${esc(c.fr)} <span class="enx">(${esc(c.en)})</span></h3>
+  <div class="gc-tags">${c.dom.split(" · ").map(x=>`<span class="tag">${x}</span>`).join("")}${known.has(c.n)?`<span class="tag ok">✓ connu</span>`:""}${rev.has(c.n)?`<span class="tag wa">↻ à revoir</span>`:""}</div></div>
+  <p class="def">${esc(c.def)}</p>
+  ${o?`<div class="gc-more">
+    <div class="blk"><h4>Exemple</h4><p>${esc(c.ex)}</p></div>
+    <div class="blk nu"><h4>Nuance</h4><p>${esc(c.nu)}</p></div>
+    <div class="blk tip"><h4>Tip examen</h4><p>${esc(c.tip)}</p></div>
+    <p class="sag">${esc(c.sag)}</p></div>`:""}
+  <div class="gc-acts"><button class="lnk" type="button" data-a="open">${o?"Masquer le détail":"Exemple, nuance, sagesse et tip"}</button>
+    <span style="flex:1"></span>
+    <button class="btn${known.has(c.n)?" primary":""}" type="button" data-a="known">${known.has(c.n)?"✓ Connu":"Je connais"}</button>
+    <button class="btn" type="button" data-a="rev">${rev.has(c.n)?"Retirer":"À revoir"}</button></div>
+</article>`}
+function mark(kind,n){if(kind==="known"){if(known.has(n))known.delete(n);else{known.add(n);rev.delete(n)}}else{if(rev.has(n))rev.delete(n);else{rev.add(n);known.delete(n)}}save()}
+
+let deck=[],pos=0,flip=false;
+function render(){
+  const L=list();
+  $("#cnt").innerHTML=`<b>${L.length}</b> concept${L.length>1?"s":""} sur ${C.length}`;
+  const v=$("#view");
+  if(F.view==="cards"){
+    if(!L.length){v.innerHTML=`<div class="empty">Aucun concept ne correspond.</div>`;return}
+    const by=new Map();L.forEach(c=>{if(!by.has(c.th))by.set(c.th,[]);by.get(c.th).push(c)});
+    v.innerHTML=[...by].map(([t,cs])=>`<h2 class="th-h"><span class="n">${String(t).padStart(2,"0")}</span>${esc(d.themes[t-1])} <small>${cs.length}</small></h2><div class="gcards">${cs.map(card).join("")}</div>`).join("");
+  } else if(F.view==="flash"){
+    deck=L.map(c=>c.n);if(pos>=deck.length)pos=0;flash();
+  } else if(F.view==="az"){
+    const s=L.slice().sort((a,b)=>a.fr.localeCompare(b.fr,"fr"));
+    const letters=[...new Set(s.map(c=>norm(c.fr)[0].toUpperCase()))];
+    let last="";
+    v.innerHTML=`<div class="az-letters">${letters.map(l=>`<a href="#az-${l}">${l}</a>`).join("")}</div><div class="card"><div class="tblw"><table class="az"><thead><tr><th>Terme</th><th>Définition</th></tr></thead><tbody>${s.map(c=>{const l=norm(c.fr)[0].toUpperCase();const head=l!==last?`<tr class="lt" id="az-${l}"><td colspan="2">${l}</td></tr>`:"";last=l;return head+`<tr><td>${esc(c.fr)}<small>${esc(c.en)}</small></td><td>${esc(c.def)}</td></tr>`}).join("")}</tbody></table></div></div>`;
+  } else {
+    const pool=L.length>=4?L:C;
+    const qs=shuffle(pool).slice(0,Math.min(20,pool.length)).map(c=>{const others=shuffle(C.filter(x=>x.n!==c.n)).slice(0,3);
+      return {q:"Quel terme correspond à cette définition ? « "+c.def+" »",opts:[c.fr+" ("+c.en+")",...others.map(o=>o.fr+" ("+o.en+")")],a:0,ex:c.tip}});
+    v.innerHTML=`<p class="pitch" style="font-size:14px;color:var(--muted);margin:0 0 10px">20 définitions tirées des concepts affichés : retrouvez le bon terme.</p><div class="card quiz" id="qz"></div>`;
+    Quiz($("#qz"),qs,{mode:"learn"}).start();
+  }
+}
+function flash(){
+  const v=$("#view");
+  if(!deck.length){v.innerHTML=`<div class="empty">Aucun concept ne correspond.</div>`;return}
+  const c=C[deck[pos]-1];
+  v.innerHTML=`<div class="fc" id="fc" tabindex="0" role="button" aria-label="Retourner la carte">
+    <div class="eyebrow">${pad(c.n)} · ${esc(d.themes[c.th-1])} · carte ${pos+1} / ${deck.length}${known.has(c.n)?" · ✓ connu":rev.has(c.n)?" · ↻ à revoir":""}</div>
+    <div class="t">${esc(c.fr)}<span class="enx">(${esc(c.en)})</span></div>
+    ${flip?`<p style="margin:0">${esc(c.def)}</p><div class="blk tip"><h4>Tip examen</h4><p>${esc(c.tip)}</p></div><p class="sag">${esc(c.sag)}</p>`:`<p class="hint">Donnez la définition de tête, puis cliquez pour retourner la carte (ou Espace).</p>`}
+  </div>
+  <div class="fc-nav"><button class="btn" type="button" data-f="prev">← Précédente</button><button class="btn" type="button" data-f="shuf">Mélanger</button><button class="btn" type="button" data-f="rev">À revoir</button><button class="btn primary" type="button" data-f="known">Je connais</button><button class="btn" type="button" data-f="next">Suivante →</button></div>`;
+}
+const go=k=>{pos=(pos+k+deck.length)%deck.length;flip=false;flash()};
+$("#view").addEventListener("click",e=>{
+  if(F.view==="flash"){
+    if(e.target.closest("#fc")){flip=!flip;flash();return}
+    const b=e.target.closest("[data-f]");if(!b||!deck.length)return;const f=b.dataset.f,n=deck[pos];
+    if(f==="next")go(1);else if(f==="prev")go(-1);else if(f==="shuf"){deck=shuffle(deck);pos=0;flip=false;flash()}
+    else{if(f==="known"){known.add(n);rev.delete(n)}else{rev.add(n);known.delete(n)}save();go(1)}
+    return}
+  if(F.view!=="cards")return;
+  const el=e.target.closest(".gc");if(!el)return;const n=+el.dataset.n;const a=e.target.closest("[data-a]");if(!a)return;
+  if(a.dataset.a==="open"){open.has(n)?open.delete(n):open.add(n)}else mark(a.dataset.a,n);
+  e.target.closest(".gc").outerHTML=card(C[n-1]);
+});
+document.addEventListener("keydown",e=>{if(F.view!=="flash"||/INPUT|SELECT/.test(document.activeElement.tagName))return;
+  if(e.key===" "){e.preventDefault();flip=!flip;flash()}else if(e.key==="ArrowRight")go(1);else if(e.key==="ArrowLeft")go(-1)});
+$("#q").addEventListener("input",e=>{F.q=norm(e.target.value.trim());render()});
+$("#th").addEventListener("change",e=>{F.th=e.target.value;render()});
+$("#st").addEventListener("change",e=>{F.st=e.target.value;render()});
+$$(".seg button").forEach(b=>b.addEventListener("click",()=>{F.view=b.dataset.v;$$(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));pos=0;flip=false;render()}));
+
+stats();
+const h=location.hash.match(/^#c(\d+)$/);
+if(h&&C[+h[1]-1]){open.add(+h[1]);render();const el=$("#c"+h[1]);if(el){el.classList.add("flash-target");el.scrollIntoView({block:"center"})}}
+else{open.add(1);render()}
+})();
+</script>
+</body></html>

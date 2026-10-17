@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+<title>Glossaire D7 · Opérations de sécurité</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap">
+<style>/* Layout : portail de révision — barre de navigation fixe, en-tête de domaine, sections empilées avec sommaire */
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --sunk:#E9EDF2; --ink:#101B2B; --muted:#5A6879; --line:#D7DEE7;
+  --accent:#1F4E9E; --accent-soft:#E3EBF8; --on-accent:#FFFFFF;
+  --ok:#2E7D46; --ok-soft:#E3F2E8; --bad:#B3262F; --bad-soft:#FBE7E8; --warn:#B0680A;
+  --hl:#FFF4D6; --hl-ink:#6B4B00;
+  --f-disp:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-quote:"Source Serif 4",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44; --on-accent:#0C121B;
+  --ok:#6FD38C; --ok-soft:#163323; --bad:#FF7A7A; --bad-soft:#3A1A1D; --warn:#F0B955;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44; --on-accent:#0C121B;
+  --ok:#6FD38C; --ok-soft:#163323; --bad:#FF7A7A; --bad-soft:#3A1A1D; --warn:#F0B955;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0}
+
+/* Barre du portail */
+.pbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.pbar-in{display:flex;align-items:center;gap:14px;padding-block:9px;overflow-x:auto;scrollbar-width:none}
+.pbar-in::-webkit-scrollbar{display:none}
+.logo{font-family:var(--f-disp);font-weight:700;font-size:17px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.logo span{color:var(--accent)}
+.pnav{display:flex;gap:4px}
+.pnav a{font-family:var(--f-mono);font-size:12px;font-weight:600;text-decoration:none;color:var(--muted);padding:5px 9px;border-radius:6px;white-space:nowrap}
+.pnav a:hover{background:var(--sunk);color:var(--ink)}
+.pnav a[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+
+/* En-tête de page */
+.hero{background:var(--surface);border-bottom:1px solid var(--line)}
+.hero-in{padding-block:26px 18px;display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.hero h1 .code{color:var(--accent);margin-right:10px}
+.en{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.pitch{max-width:72ch;margin:0;font-size:16px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.stat{display:flex;flex-direction:column;gap:2px;padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);min-width:150px;text-decoration:none;color:var(--ink)}
+.stat b{font-family:var(--f-disp);font-size:20px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+a.stat:hover{border-color:var(--accent)}
+.toc{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-top:6px}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:13px;font-weight:500;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:6px;white-space:nowrap;border:1px solid var(--line)}
+.toc a:hover{color:var(--ink);border-color:var(--accent)}
+
+main{padding-block:10px 60px}
+.sec{padding-top:34px;scroll-margin-top:60px}
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:14px}
+.sec-h h2{font-size:24px;font-weight:700}
+.sec-h .n{font-family:var(--f-mono);font-size:13px;color:var(--accent);margin-right:8px}
+.sec-h p{margin:0;color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+
+/* Objectifs */
+.obj{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:8px}
+.obj li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.obj b{font-family:var(--f-mono);color:var(--accent);font-size:13px}
+
+/* Concepts */
+.concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.concept{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.concept h3{font-size:17px;font-weight:600;margin-bottom:4px;display:flex;gap:8px;align-items:baseline}
+.concept h3 i{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.concept p{margin:0;font-size:14.5px}
+
+/* Schémas */
+.schemas{display:flex;flex-direction:column;gap:14px}
+.schema h3{font-size:18px;margin-bottom:12px}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px}
+.flow .st{flex:1 1 130px;min-width:0;background:var(--bg);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:7px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.flow .st b{font-family:var(--f-disp);font-size:15px}
+.flow .st span{font-size:12.5px;color:var(--muted)}
+.flow .ar{align-self:center;color:var(--muted);font-family:var(--f-mono)}
+.cycle-back{margin-top:8px;font-family:var(--f-mono);font-size:12px;color:var(--accent)}
+.stack{display:flex;flex-direction:column;gap:4px}
+.stack .ly{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:12px;background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:8px 12px;font-size:14px}
+.stack .ly b{font-family:var(--f-disp);font-size:15px}
+.stack .ly span{color:var(--muted)}
+.note{margin:10px 0 0;font-size:13px;color:var(--hl-ink);background:var(--hl);display:inline-block;padding:4px 10px;border-radius:6px}
+
+/* Tableaux */
+.tables{display:flex;flex-direction:column;gap:14px}
+.tables h3{font-size:18px;margin-bottom:10px}
+.tblw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+td:first-child{font-weight:600}
+
+/* Scénarios */
+.scens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.scen{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.scen .sit{margin:0;font-size:14.5px}
+.scen .q{margin:0;font-weight:600;font-family:var(--f-disp);font-size:16px;color:var(--accent)}
+.scen .ans{background:var(--ok-soft);border-radius:7px;padding:10px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.scen .ans p{margin:0}
+.scen .why{color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:7px 13px;font-size:13.5px;font-weight:500;text-decoration:none;color:var(--ink);display:inline-block}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn[disabled]{opacity:.5;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* Quiz */
+.quiz{max-width:820px}
+.qz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:14px;color:var(--muted)}
+.qz-prog{height:5px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.qz-prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.qz-q{font-family:var(--f-disp);font-size:20px;font-weight:600;margin:0 0 14px;line-height:1.3}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 14px;display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;font-size:15px}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .k{font-family:var(--f-mono);font-weight:600;color:var(--muted)}
+.opt.good{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--bg);border-left:4px solid var(--muted);font-size:14.5px}
+.fb.ok{border-left-color:var(--ok)}.fb.ko{border-left-color:var(--bad)}
+.fb b{display:block;margin-bottom:2px}
+.qz-end{display:flex;flex-direction:column;gap:12px}
+.score{font-family:var(--f-disp);font-size:44px;font-weight:700;line-height:1}
+.score small{font-size:18px;color:var(--muted);font-weight:500}
+.review{display:flex;flex-direction:column;gap:8px}
+.review div{background:var(--bg);border-radius:7px;padding:10px 12px;font-size:14px}
+.review b{color:var(--bad)}
+
+/* Glossaire */
+.glo-s{max-width:320px;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--surface)}
+.glo td:first-child{font-family:var(--f-mono);font-size:13px}
+
+/* Checklist */
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-width:820px}
+.chk label{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;font-size:14.5px}
+.chk input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.chk input:checked+span{color:var(--muted);text-decoration:line-through}
+.meter{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden;max-width:820px;margin-bottom:10px}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:40px;flex-wrap:wrap}
+.pager a{flex:1 1 220px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.pager a:hover{border-color:var(--accent)}
+.pager small{display:block;font-family:var(--f-mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pager a.next{text-align:right}
+.foot{margin-top:30px;font-size:12px;color:var(--muted)}
+
+@media (max-width:760px){
+  .hero h1{font-size:26px}
+  .concepts,.scens{grid-template-columns:minmax(0,1fr)}
+  .stack .ly{grid-template-columns:minmax(0,1fr);gap:2px}
+  .flow .ar{display:none}
+  .flow .st{flex-basis:100%}
+  .stat{min-width:0;flex:1 1 40%}
+}
+/* Glossaire : barre d'outils, cartes de concepts, flashcards, liste A–Z */
+.pnav span.off{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--line);padding:5px 9px;white-space:nowrap}
+.gbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-top:18px}
+.gbar .inp,.gbar .sel{padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--bg)}
+.gbar .inp{flex:1 1 220px;min-width:0}
+.gbar .sel{flex:0 1 230px;min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{border:0;background:var(--bg);padding:7px 12px;font-size:13.5px;font-weight:500;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.gcount{font-size:13.5px;color:var(--muted);margin:14px 0 4px}
+.gcount b{color:var(--ink)}
+.th-h{font-family:var(--f-disp);font-size:20px;font-weight:700;margin:24px 0 10px;display:flex;gap:10px;align-items:baseline}
+.th-h .n{font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+.th-h small{font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--muted)}
+.gcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.gc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;scroll-margin-top:70px}
+.gc.known{border-color:var(--ok)}
+.gc.rev{border-color:var(--warn)}
+.gc.flash-target{box-shadow:0 0 0 3px var(--accent-soft)}
+.gc-h{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:baseline}
+.gc-h .num{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.gc-h h3{font-size:18px;font-weight:600;line-height:1.25}
+.gc-h h3 .enx{font-family:var(--f-body);font-weight:500;font-size:14px;color:var(--accent)}
+.gc-tags{grid-column:2;display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-family:var(--f-mono);font-size:11px;padding:1px 6px;border-radius:4px;background:var(--sunk);color:var(--muted)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.wa{background:var(--hl);color:var(--hl-ink)}
+.gc .def{margin:0;font-size:14.5px}
+.gc-more{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.blk{background:var(--bg);border-radius:7px;padding:8px 11px}
+.blk h4{margin:0 0 2px;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.blk p{margin:0;font-size:14px}
+.blk.tip{background:var(--accent-soft)}.blk.tip h4{color:var(--accent)}
+.blk.nu h4{color:var(--warn)}
+.sag{margin:0;padding:2px 0 2px 12px;border-left:2px solid var(--accent);font-family:var(--f-quote);font-style:italic;font-size:16px}
+.gc-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.gc-acts .btn{padding:5px 10px;font-size:13px}
+.lnk{border:0;background:none;color:var(--accent);font-size:13px;padding:0;text-decoration:underline}
+.fc{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--accent);border-radius:12px;padding:26px;min-height:320px;display:flex;flex-direction:column;gap:12px;cursor:pointer;max-width:780px}
+.fc .t{font-family:var(--f-disp);font-size:28px;font-weight:700;line-height:1.15;text-wrap:balance}
+.fc .t .enx{display:block;font-family:var(--f-body);font-size:16px;font-weight:500;color:var(--accent);margin-top:4px}
+.fc .hint{margin-top:auto;font-size:13px;color:var(--muted)}
+.fc-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;max-width:780px;justify-content:center}
+.az-letters{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0}
+.az-letters a{font-family:var(--f-mono);font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);border-radius:5px;padding:3px 8px;background:var(--surface)}
+.az td:first-child{white-space:normal;min-width:200px}
+.az td:first-child small{display:block;font-family:var(--f-mono);font-weight:500;color:var(--accent);font-size:12px}
+.az tr.lt td{background:var(--bg);font-family:var(--f-disp);font-size:18px;font-weight:700;color:var(--accent)}
+.empty{padding:30px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+/* Accueil du glossaire */
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:10px}
+.dt{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-height:150px}
+a.dt:hover{border-color:var(--accent)}
+.dt .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dt .cd{font-family:var(--f-mono);font-weight:600;font-size:13px;color:var(--accent)}
+.dt h3{font-size:17px;font-weight:600}
+.dt p{margin:0;font-size:13px;color:var(--muted)}
+.dt .pg{margin-top:auto;height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.dt .pg i{display:block;height:100%;background:var(--ok)}
+.dt.soon{background:transparent;border-style:dashed}
+.dt.soon h3{color:var(--muted)}
+.st-ok{font-size:11px;font-family:var(--f-mono);color:var(--ok);background:var(--ok-soft);padding:1px 7px;border-radius:999px}
+.st-soon{font-size:11px;font-family:var(--f-mono);color:var(--muted);background:var(--sunk);padding:1px 7px;border-radius:999px}
+.grp{font-family:var(--f-disp);font-size:16px;font-weight:600;color:var(--muted);margin:20px 0 8px}
+.res{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.res a{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:14px}
+.res a:hover{border-color:var(--accent)}
+.res a b{font-family:var(--f-mono);color:var(--accent);font-size:12px}
+.res a span small{color:var(--accent);font-weight:500}
+.res a span em{display:block;font-style:normal;color:var(--muted);font-size:13px}
+@media (max-width:760px){.gcards{grid-template-columns:minmax(0,1fr)}.fc{padding:20px 18px}.fc .t{font-size:23px}}
+</style>
+</head><body>
+<header class="pbar"><div class="wrap pbar-in"><a class="logo" href="indexGlossaire.html">Glossaire <span>360</span></a><nav class="pnav" aria-label="Domaines"><a href="indexGlossaire.html">Accueil</a><a href="domaine0.html">D0</a><a href="domaine1.html">D1</a><a href="domaine2.html">D2</a><a href="domaine3.html">D3</a><a href="domaine4.html">D4</a><a href="domaine5.html">D5</a><a href="domaine6.html">D6</a><a href="domaine7.html" aria-current="page">D7</a><a href="domaine8.html">D8</a><a href="domaine9.html">D9</a><a href="domaine10.html">D10</a><a href="domaine11.html">D11</a><a href="domaine12.html">D12</a></nav></div></header>
+<div id="app"></div>
+<script>const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const norm=s=>String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const LETTERS="ABCD";
+
+/* Moteur de quiz : mode « learn » (correction immédiate) ou « exam » (correction à la fin) */
+function Quiz(el,questions,cfg){
+  cfg=cfg||{};
+  let qs,i,ans,timer,deadline;
+  function start(list){
+    qs=(list||questions).map(q=>({q:q.q,ex:q.ex,d:q.d,opts:shuffle(q.opts.map((t,k)=>({t,ok:k===q.a})))}));
+    i=0;ans=[];
+    clearInterval(timer);
+    if(cfg.minutes){deadline=Date.now()+cfg.minutes*60000;timer=setInterval(tick,1000)}
+    render();
+  }
+  function tick(){const r=deadline-Date.now();const t=el.querySelector(".qz-time");if(t)t.textContent=fmt(r);if(r<=0){clearInterval(timer);finish(true)}}
+  const fmt=ms=>{ms=Math.max(0,ms);const m=Math.floor(ms/60000),s=Math.floor(ms%60000/1000);return `${m}:${String(s).padStart(2,"0")}`};
+  function render(){
+    if(i>=qs.length)return finish(false);
+    const q=qs[i],a=ans[i],good=ans.filter(x=>x&&x.ok).length;
+    el.innerHTML=`<div class="qz-top"><span>Question <b>${i+1}</b> / ${qs.length}${q.d&&cfg.showDom?` · <span class="en">${q.d}</span>`:""}</span>
+      <span>${cfg.mode==="exam"?(cfg.minutes?`Temps restant <b class="qz-time">${fmt(deadline-Date.now())}</b>`:""):`Score <b>${good}</b> / ${ans.filter(Boolean).length}`}</span></div>
+      <div class="qz-prog"><i style="width:${i/qs.length*100}%"></i></div>
+      <p class="qz-q">${esc(q.q)}</p>
+      <div class="opts">${q.opts.map((o,k)=>{
+        let cls="opt";
+        if(a){ if(cfg.mode==="exam"){if(a.k===k)cls+=" picked"} else {if(o.ok)cls+=" good";else if(a.k===k)cls+=" wrong"} }
+        return `<button class="${cls}" type="button" data-k="${k}"${a&&cfg.mode!=="exam"?" disabled":""}><span class="k">${LETTERS[k]}</span><span>${esc(o.t)}</span></button>`}).join("")}</div>
+      ${a&&cfg.mode!=="exam"?`<div class="fb ${a.ok?"ok":"ko"}"><b>${a.ok?"Bonne réponse.":"Pas tout à fait."}</b>${esc(q.ex)}</div>`:""}
+      <div class="row" style="margin-top:14px">
+        ${cfg.mode==="exam"?`<button class="btn primary" type="button" data-nav="next"${a?"":" disabled"}>${i+1<qs.length?"Valider et continuer":"Terminer l'examen"}</button><button class="btn" type="button" data-nav="stop">Arrêter et voir le résultat</button>`
+          :`${a?`<button class="btn primary" type="button" data-nav="next">${i+1<qs.length?"Question suivante":"Voir mon score"}</button>`:""}`}
+      </div>`;
+  }
+  el.addEventListener("click",e=>{
+    const o=e.target.closest(".opt");
+    if(o&&!o.disabled&&i<qs.length){const k=+o.dataset.k;if(cfg.mode!=="exam"&&ans[i])return;ans[i]={k,ok:qs[i].opts[k].ok};render();return}
+    const n=e.target.closest("[data-nav]");if(!n||n.disabled)return;
+    if(n.dataset.nav==="next"){i++;render()}
+    else if(n.dataset.nav==="stop")finish(false);
+    else if(n.dataset.nav==="again")start();
+    else if(n.dataset.nav==="errors"){const wrong=qs.filter((q,k)=>!ans[k]||!ans[k].ok).map(q=>({q:q.q,ex:q.ex,d:q.d,opts:q.opts.map(o=>o.t),a:q.opts.findIndex(o=>o.ok)}));start(wrong)}
+  });
+  function finish(timeout){
+    clearInterval(timer);
+    const total=qs.length,good=qs.filter((q,k)=>ans[k]&&ans[k].ok).length,pct=Math.round(good/total*100);
+    const per={};qs.forEach((q,k)=>{if(!q.d)return;per[q.d]=per[q.d]||[0,0];per[q.d][1]++;if(ans[k]&&ans[k].ok)per[q.d][0]++});
+    if(cfg.onDone)cfg.onDone({pct,good,total,per});
+    const wrong=qs.map((q,k)=>({q,a:ans[k]})).filter(x=>!x.a||!x.a.ok);
+    el.innerHTML=`<div class="qz-end">
+      ${timeout?`<p class="note">Temps écoulé : les questions sans réponse comptent comme fausses.</p>`:""}
+      <div class="score">${pct} %<small> · ${good} / ${total} bonnes réponses</small></div>
+      <p style="margin:0">${pct>=80?"Excellent niveau : vous êtes prêt sur ce périmètre.":pct>=70?"Bon niveau, proche du seuil de réussite. Revoyez les erreurs ci-dessous.":"Niveau à consolider : relisez les concepts et les fiches, puis recommencez."}</p>
+      ${Object.keys(per).length>1?`<div class="tblw"><table><thead><tr><th>Domaine</th><th>Score</th></tr></thead><tbody>${Object.keys(per).sort().map(d=>`<tr><td>${d}</td><td>${per[d][0]} / ${per[d][1]} (${Math.round(per[d][0]/per[d][1]*100)} %)</td></tr>`).join("")}</tbody></table></div>`:""}
+      <div class="row"><button class="btn primary" type="button" data-nav="again">Recommencer</button>${wrong.length?`<button class="btn" type="button" data-nav="errors">Refaire seulement mes ${wrong.length} erreur${wrong.length>1?"s":""}</button>`:""}</div>
+      ${wrong.length?`<h3 style="font-size:17px;margin-top:6px">Correction des erreurs</h3><div class="review">${wrong.map(x=>`<div><p style="margin:0 0 4px;font-weight:600">${esc(x.q.q)}</p><p style="margin:0">Bonne réponse : <strong>${esc(x.q.opts.find(o=>o.ok).t)}</strong>${x.a?` · votre réponse : <b>${esc(x.q.opts[x.a.k].t)}</b>`:" · sans réponse"}</p><p style="margin:4px 0 0;color:var(--muted)">${esc(x.q.ex)}</p></div>`).join("")}</div>`:""}
+    </div>`;
+  }
+  return {start};
+}
+</script>
+<script>const GD={"code": "D7", "num": 7, "name": "Opérations de sécurité", "en": "Security Operations", "pitch": "Faire vivre la sécurité au quotidien et tenir dans la crise : enquêtes, criminalistique, surveillance, changements, incidents, détection, sauvegardes, reprise et sécurité des personnes.", "themes": ["Enquêtes et preuves", "Criminalistique numérique", "Journalisation et surveillance", "Concepts opérationnels", "Configuration, changements, correctifs", "Réponse aux incidents", "Détection et prévention", "Sauvegardes et résilience", "Reprise après sinistre", "Sécurité physique et des personnes"], "items": [[1, "Admissibilité de la preuve", "Evidence admissibility", "Une preuve est recevable si elle est pertinente, matérielle et compétente (obtenue légalement et fiable).", "Journaux collectés selon une procédure documentée.", "Une preuve obtenue illégalement est écartée.", "La forme protège le fond.", "Pertinente, matérielle, compétente.", "D7 · D1"], [1, "Règle de la meilleure preuve", "Best evidence rule", "Le document original est préféré à une copie lorsqu'il est disponible.", "Présenter le contrat signé plutôt qu'une photocopie.", "Pour les données numériques, une copie vérifiée par empreinte est acceptée.", "L'original dit plus que l'écho.", "Copie bit à bit + hachage = copie fiable.", "D7"], [1, "Règle de la preuve orale", "Parol evidence rule", "Quand un accord est écrit, on suppose qu'il contient tout l'accord ; les accords oraux contraires ne sont pas pris en compte.", "Un fournisseur invoque une promesse orale contraire au contrat signé.", "Importance de contrats complets.", "Ce qui n'est pas écrit n'a pas été promis.", "Concerne les contrats écrits.", "D7 · D1"], [1, "Ouï-dire", "Hearsay evidence", "Témoignage indirect, rapportant ce qu'une autre personne a dit ; souvent irrecevable.", "Un employé rapporte ce qu'un collègue lui a raconté.", "Les journaux tenus dans le cours normal des affaires y échappent souvent.", "Ce qui est entendu dire n'est pas vu.", "Business records exception.", "D7"], [1, "Types de preuves", "Types of evidence", "Réelle (objet), documentaire (écrits, journaux), testimoniale (témoignage), démonstrative (schémas illustrant).", "Le disque saisi est une preuve réelle ; les journaux, documentaires.", "Directe (prouve seule) ou circonstancielle (indice).", "Chaque preuve a sa nature et sa force.", "Réelle, documentaire, testimoniale, démonstrative.", "D7"], [1, "Chaîne de possession", "Chain of custody", "Traçabilité de chaque manipulation d'une preuve : qui, quand, où, comment, pourquoi.", "Registre signé à chaque transfert du disque saisi.", "Une rupture peut rendre la preuve irrecevable.", "Ce qui n'est pas tracé n'a pas existé.", "Indispensable dès la collecte.", "D7"], [1, "Saisie et circonstances urgentes", "Search warrant / Exigent circumstances", "Les autorités saisissent avec mandat, sauf urgence où la preuve risque d'être détruite.", "Saisie immédiate d'un poste avant effacement imminent.", "Une entreprise peut examiner ses propres actifs selon ses politiques.", "La loi encadre la main qui saisit.", "Les politiques informées et signées facilitent l'examen interne.", "D7 · D1"], [1, "Recours aux forces de l'ordre", "Law enforcement involvement", "Décision, prise par la direction et le juridique, d'impliquer police ou justice.", "Plainte auprès de la PLCC après une fraude.", "Implique publicité possible et perte de contrôle sur l'enquête.", "Appeler la justice, c'est accepter ses règles.", "Décision de la direction, pas du technicien.", "D7 · D1"], [1, "Entretien d'enquête", "Interviewing", "Recueil d'informations auprès de témoins ou suspects, selon des règles strictes.", "Entretien d'un employé soupçonné en présence des RH.", "Un interrogatoire relève des autorités.", "La question juste vaut mieux que la pression.", "Préparer, documenter, respecter les droits.", "D7"], [1, "Artefacts", "Artifacts", "Traces laissées sur un système par une activité : fichiers, registres, journaux, historiques.", "Historique de navigation, fichiers temporaires, clés de registre.", "Un artefact isolé doit être corroboré.", "Chaque pas laisse une empreinte.", "Objectif 7.1 : artefacts informatiques, réseau, mobiles.", "D7"], [2, "Criminalistique numérique", "Digital forensics", "Identification, préservation, collecte, examen, analyse et présentation de preuves numériques.", "Analyse d'un poste compromis pour reconstituer l'intrusion.", "Méthode rigoureuse et reproductible.", "Comprendre sans altérer.", "Toujours travailler sur une copie.", "D7"], [2, "Image bit à bit", "Bit-stream / forensic image", "Copie exacte de tout le support, y compris l'espace libre et non alloué.", "Image complète d'un disque de 1 To.", "Une simple copie de fichiers perd les éléments supprimés.", "La copie fidèle garde même les silences.", "Vérifiée par empreinte de hachage.", "D7"], [2, "Bloqueur d'écriture", "Write blocker", "Dispositif qui empêche toute écriture sur le support analysé.", "Disque saisi branché via un bloqueur matériel.", "Sans lui, le système peut modifier des métadonnées.", "Regarder sans toucher.", "Garantit l'intégrité de l'original.", "D7"], [2, "Empreinte de vérification", "Hash verification", "Calcul d'une empreinte de l'original et de la copie pour prouver leur identité.", "SHA-256 identique avant et après copie.", "Une empreinte différente signale une altération.", "L'empreinte ne ment pas.", "Fondement de l'intégrité de la preuve.", "D7 · D3"], [2, "Ordre de volatilité", "Order of volatility", "On collecte d'abord ce qui disparaît le plus vite : registres et cache, mémoire, état réseau, disque, journaux distants, archives.", "Capture de la RAM avant extinction.", "Éteindre la machine détruit la mémoire.", "On ramasse le lait avant qu'il ne tourne.", "RFC 3227.", "D7"], [2, "Analyse de la mémoire", "Memory forensics", "Analyse du contenu de la mémoire vive : processus, connexions, clés, malwares sans fichier.", "Découvrir un malware résidant uniquement en mémoire.", "Doit être capturée avant tout redémarrage.", "Ce qui vit en mémoire meurt à l'extinction.", "Outils : Volatility.", "D7"], [2, "Analyse réseau", "Network forensics", "Analyse des captures de trafic et flux pour reconstituer une attaque.", "Retrouver l'exfiltration dans les captures PCAP.", "Le trafic chiffré limite l'analyse du contenu.", "Les routes racontent le voyage.", "PCAP = contenu ; NetFlow = métadonnées.", "D7 · D4"], [2, "Chronologie", "Timeline analysis", "Reconstitution ordonnée des événements à partir de toutes les sources.", "Chronologie croisant journaux, fichiers et mails.", "Exige des horloges synchronisées.", "Remettre les jours dans l'ordre éclaire l'histoire.", "Base du rapport d'enquête.", "D7"], [2, "Anti-criminalistique", "Anti-forensics", "Techniques d'un attaquant pour effacer, modifier ou masquer ses traces.", "Effacement des journaux, modification des dates de fichiers.", "Les journaux centralisés et immuables la contrarient.", "Le voleur efface ses pas, le bon enquêteur cherche ailleurs.", "Timestomping, effacement, chiffrement.", "D7"], [2, "Rapport d'expertise", "Forensic report", "Document présentant méthode, constats et conclusions de façon claire et reproductible.", "Rapport remis au juridique avant une procédure.", "Il doit être compréhensible par des non-spécialistes.", "Dire clairement ce que l'on a prouvé.", "Méthode reproductible = crédibilité.", "D7"], [3, "SIEM", "Security Information and Event Management", "Collecte, normalisation, corrélation et alerte sur les événements de sécurité.", "Corrélation entre échec VPN et connexion réussie depuis un autre pays.", "Sans règles adaptées ni analystes, il produit du bruit.", "La sentinelle qui dort ne protège pas le camp.", "Outil central du SOC.", "D7"], [3, "SOAR", "Security Orchestration, Automation and Response", "Automatisation des tâches de réponse et orchestration des outils.", "Blocage automatique d'une IP malveillante et ouverture d'un ticket.", "Une automatisation mal conçue amplifie les erreurs.", "Automatiser le répétitif, réfléchir à l'exceptionnel.", "Réduit le délai de réponse.", "D7"], [3, "UEBA", "User and Entity Behavior Analytics", "Détection des comportements anormaux d'utilisateurs et d'équipements par analyse statistique.", "Alerte sur un comptable qui télécharge 10 Go la nuit.", "Exige une période d'apprentissage.", "Les habitudes trahissent l'imposteur.", "Efficace contre les menaces internes.", "D7"], [3, "Renseignement sur les menaces", "Threat intelligence", "Informations sur les attaquants, leurs techniques et indicateurs, pour orienter la défense.", "Flux d'indicateurs sur les campagnes visant les banques africaines.", "Inutile s'il n'est pas actionnable.", "Connais ton ennemi.", "Stratégique, tactique, opérationnel.", "D7"], [3, "Chasse aux menaces", "Threat hunting", "Recherche proactive d'attaquants déjà présents, à partir d'hypothèses.", "Chercher des usages anormaux de PowerShell.", "Elle suppose l'approche « assume breach ».", "Chercher l'ennemi avant qu'il ne se montre.", "Guidée par MITRE ATT&CK.", "D7"], [3, "Indicateur de compromission", "Indicator of Compromise (IOC)", "Trace technique d'une compromission : empreinte de fichier, IP, domaine, clé de registre.", "Domaine malveillant connu détecté dans les requêtes DNS.", "Les IOC changent vite ; les comportements (TTP) durent plus.", "Le signe trahit le passage.", "IOC = réactif ; IOA (indicateur d'attaque) = comportement.", "D7"], [3, "Surveillance de l'intégrité des fichiers", "File Integrity Monitoring (FIM)", "Détection des modifications de fichiers système et de configuration critiques.", "Alerte sur la modification d'un binaire système.", "Trop de fichiers surveillés génèrent du bruit.", "Ce qui change sans raison inquiète.", "Exigé par PCI DSS.", "D7"], [3, "Surveillance des flux sortants", "Egress monitoring", "Surveillance du trafic qui quitte l'organisation pour détecter l'exfiltration.", "Alerte sur un envoi massif vers un stockage cloud inconnu.", "Le chiffrement et la stéganographie la compliquent.", "Surveiller qui sort autant que qui entre.", "Associée au DLP.", "D7 · D4"], [3, "Flux réseau", "NetFlow / Flow data", "Métadonnées des communications : qui parle à qui, quand, combien.", "Détecter un poste qui communique avec un pays inhabituel.", "Ne contient pas le contenu.", "Savoir qui parle à qui suffit souvent.", "Moins volumineux que la capture complète.", "D7 · D4"], [3, "Corrélation d'événements", "Event correlation", "Rapprochement d'événements de sources différentes pour identifier une attaque.", "Phishing + connexion anormale + création de compte = alerte critique.", "Dépend de journaux complets et horodatés.", "Plusieurs indices font une preuve.", "Fonction clé du SIEM.", "D7"], [4, "Besoin d'en connaître en exploitation", "Need to know (operations)", "Les opérateurs n'accèdent qu'aux informations nécessaires à leurs tâches.", "Un opérateur de sauvegarde ne lit pas le contenu des sauvegardes.", "S'applique aussi aux prestataires.", "Savoir moins pour risquer moins.", "Concept fondamental de l'objectif 7.4.", "D7 · D5"], [4, "Séparation des tâches en exploitation", "Separation of duties (operations)", "Les fonctions critiques d'exploitation sont réparties entre plusieurs personnes.", "L'administrateur sécurité n'est pas l'administrateur système.", "La collusion reste le risque résiduel.", "Celui qui compte l'argent ne tient pas la caisse.", "Exemple : développeur ≠ opérateur de production.", "D7 · D5"], [4, "Contrôle à deux personnes", "Two-person control / Dual control", "Une action critique exige la présence ou l'accord de deux personnes.", "Ouverture du coffre des clés avec deux agents.", "Plus coûteux, réservé aux actions critiques.", "Deux témoins valent mieux qu'un.", "Proche de la séparation des tâches.", "D7"], [4, "Connaissance fractionnée", "Split knowledge", "Un secret est divisé pour qu'aucune personne ne le connaisse en entier.", "Chaque administrateur détient une moitié du mot de passe maître.", "Souvent combinée au contrôle à deux personnes.", "Le secret coupé en deux ne s'échappe pas seul.", "Utilisé pour les clés maîtres et le séquestre.", "D7 · D3"], [4, "Rotation des postes", "Job rotation", "Changement régulier de poste pour détecter les fraudes et former des remplaçants.", "Rotation annuelle des administrateurs de trésorerie.", "Exige documentation et formation.", "Le masque tombe quand le porteur change.", "Contrôle détectif et dissuasif.", "D7 · D1"], [4, "Congés obligatoires", "Mandatory vacations", "Absence imposée pour que d'autres reprennent les tâches et révèlent d'éventuelles fraudes.", "Deux semaines consécutives pour les opérateurs de paiement.", "Contrôle détectif.", "L'absence révèle ce que la présence cachait.", "Typique de la finance.", "D7 · D1"], [4, "Surveillance des comptes privilégiés", "Privileged account monitoring", "Journalisation et revue renforcées des actions des administrateurs.", "Revue des commandes exécutées en root.", "Les administrateurs doivent savoir qu'ils sont surveillés.", "Le pouvoir se surveille de près.", "Complète le PAM.", "D7 · D5"], [4, "Accord de niveau opérationnel", "Operational Level Agreement (OLA)", "Engagement entre équipes internes pour soutenir les SLA externes.", "L'équipe réseau s'engage à rétablir un lien en 2 heures.", "SLA = externe ; OLA = interne.", "La promesse au client se tient par l'accord interne.", "Soutient la disponibilité.", "D7"], [4, "Protection des ressources", "Resource protection", "Protection des supports, du matériel et des actifs immatériels pendant toute leur vie opérationnelle.", "Supports de sauvegarde étiquetés, stockés et détruits selon leur classification.", "Concerne aussi les licences, la propriété intellectuelle et les images systèmes.", "Ce qui sert chaque jour se protège chaque jour.", "Objectif 7.5 : gestion des supports et techniques de protection.", "D7 · D2"], [4, "Durcissement", "Hardening", "Réduction de la surface d'attaque : services inutiles désactivés, comptes par défaut supprimés, configuration sûre.", "Serveur durci selon le CIS Benchmark.", "Un durcissement excessif peut casser des fonctions.", "Moins de portes, moins de gardes.", "S'appuie sur des baselines.", "D7 · D3"], [5, "Gestion de configuration", "Configuration management", "Maintien d'un état connu et documenté des systèmes et de leurs configurations.", "Toutes les configurations versionnées et comparées à la baseline.", "Elle donne le point de référence de la gestion des changements.", "Ce qui n'est pas maîtrisé dérive.", "Approvisionnement, baselines, automatisation (objectif 7.3).", "D7"], [5, "Dérive de configuration", "Configuration drift", "Écart progressif entre la configuration réelle et la baseline.", "Un port ouvert « temporairement » jamais refermé.", "Les changements manuels en sont la cause principale.", "Ce qui glisse peu à peu finit par tomber.", "Détection automatique et correction.", "D7"], [5, "Infrastructure en tant que code", "Infrastructure as Code (IaC)", "Description de l'infrastructure dans des fichiers versionnés et déployés automatiquement.", "Serveurs créés par des scripts Terraform revus en équipe.", "Le code d'infrastructure doit lui-même être analysé et protégé.", "Ce qui est écrit se reproduit à l'identique.", "Facilite la conformité et le retour arrière.", "D7 · D8"], [5, "Comité consultatif des changements", "Change Advisory Board (CAB)", "Instance qui évalue et approuve les changements significatifs.", "Revue hebdomadaire des mises en production.", "Un CAB trop lent pousse aux contournements.", "Décider ensemble, c'est porter ensemble.", "Approuve les changements normaux.", "D7"], [5, "Demande de changement", "Request for Change (RFC)", "Demande formelle décrivant le changement, son impact, ses tests et son plan de retour arrière.", "RFC pour la mise à jour d'un pare-feu.", "Sans plan de retour arrière, le changement n'est pas prêt.", "Mesure deux fois, coupe une fois.", "Première étape du processus de changement.", "D7"], [5, "Types de changements", "Standard / Normal / Emergency changes", "Standard : préapprouvé et à faible risque. Normal : évalué par le CAB. Urgent : accéléré, documenté et revu après coup.", "Correctif critique déployé en changement d'urgence.", "L'urgence ne supprime pas la traçabilité.", "L'urgence presse le pas, pas l'oubli.", "Ne jamais contourner le processus, utiliser la voie d'urgence.", "D7"], [5, "Revue post-implémentation", "Post-implementation review (PIR)", "Vérification après coup que le changement a atteint son objectif sans effet indésirable.", "Revue d'un changement qui a provoqué une panne.", "Source d'amélioration du processus.", "Regarder derrière pour mieux avancer.", "Obligatoire après un changement d'urgence.", "D7"], [5, "Gestion des correctifs", "Patch management", "Identifier, évaluer, tester, déployer et vérifier les correctifs selon des délais par criticité.", "Correctifs critiques sous 15 jours, urgents sous 72 heures.", "Un correctif non testé peut casser la production.", "Le toit se répare quand il fait beau.", "Tester avant de déployer, sauf urgence absolue.", "D7"], [5, "Correctif virtuel", "Virtual patching", "Protection d'une vulnérabilité par une règle (WAF, IPS) en attendant le correctif réel.", "Règle WAF bloquant l'exploitation d'une faille connue.", "Mesure temporaire, pas une correction.", "Le pansement en attendant le chirurgien.", "Contrôle compensatoire.", "D7"], [5, "Fenêtre de maintenance", "Maintenance window", "Période planifiée pour appliquer des changements avec un impact minimal.", "Mises à jour le dimanche de 2 h à 5 h.", "Les urgences ne peuvent pas toujours attendre la fenêtre.", "Agir quand le marché dort.", "Communiquée à l'avance aux métiers.", "D7"], [6, "Événement et incident", "Event vs Incident", "Un événement est une occurrence observable ; un incident est un événement qui menace la sécurité.", "Un échec de connexion est un événement ; une compromission de compte est un incident.", "Tout incident est un événement, l'inverse est faux.", "Le bruit n'est pas toujours l'alarme.", "Le tri des événements est la première tâche.", "D7"], [6, "Équipe de réponse aux incidents", "CSIRT / CIRT", "Équipe désignée et formée pour gérer les incidents, avec rôles techniques, juridiques et communication.", "Cellule réunissant SOC, juridique, communication et direction.", "Une équipe constituée pendant la crise arrive trop tard.", "On creuse le puits avant d'avoir soif.", "Composée avant l'incident, avec mandat clair.", "D7"], [6, "Détection", "Detection", "Identifier qu'un incident se produit, à partir d'alertes, signalements ou anomalies.", "Alerte SIEM sur un chiffrement massif de fichiers.", "La détection tardive multiplie les dégâts.", "Le mal vu tôt se soigne vite.", "Étape 1 du processus (ISC)².", "D7"], [6, "Réponse", "Response", "Activation de l'équipe et premières actions d'analyse et de triage.", "Déclenchement de la cellule de crise ransomware.", "Ne pas agir seul ni dans la précipitation.", "Réagir vite, mais réagir ensemble.", "Étape 2.", "D7"], [6, "Atténuation et confinement", "Mitigation / Containment", "Limiter l'extension de l'incident : isoler les systèmes, bloquer les comptes.", "Isoler du réseau un poste infecté sans l'éteindre.", "Confiner avant d'éradiquer.", "Éteindre le feu avant de chercher l'allumette.", "Étape 3.", "D7"], [6, "Rapport d'incident", "Reporting", "Informer la direction, les régulateurs et les parties concernées selon les obligations.", "Notification au régulateur dans les délais légaux.", "La décision de notifier implique la direction et le juridique.", "La vérité tardive coûte plus cher.", "Étape 4.", "D7 · D1"], [6, "Reprise", "Recovery", "Restaurer les systèmes et services à un état sain.", "Restauration depuis des sauvegardes vérifiées saines.", "Restaurer trop tôt peut réintroduire l'attaquant.", "Rebâtir sur un sol sain.", "Étape 5.", "D7"], [6, "Remédiation", "Remediation", "Traiter la cause racine pour éviter que l'incident se reproduise.", "Corriger la faille exploitée et changer les mots de passe compromis.", "Sans cause racine, l'incident revient.", "Soigner la cause, pas seulement le symptôme.", "Étape 6.", "D7"], [6, "Leçons apprises", "Lessons learned", "Analyse post-incident sans recherche de coupable pour améliorer les contrôles et les plans.", "Réunion de retour d'expérience dans les deux semaines.", "Un retour d'expérience sans plan d'action n'est qu'une réunion.", "L'erreur est un professeur, à condition de l'écouter.", "Étape 7 et dernière.", "D7"], [6, "Playbook", "Playbook / Runbook", "Procédure prédéfinie de réponse à un type d'incident.", "Playbook « compromission de messagerie ».", "Un playbook trop rigide gêne face à l'imprévu.", "Le geste appris sauve dans la panique.", "Souvent automatisé dans le SOAR.", "D7"], [7, "IDS réseau et hôte", "NIDS / HIDS", "Système de détection d'intrusion sur le réseau (NIDS) ou sur un hôte (HIDS).", "NIDS sur le lien Internet, HIDS sur les serveurs critiques.", "Le NIDS ne voit pas le trafic chiffré ; le HIDS voit l'activité locale.", "Deux regards, deux angles.", "IDS = détecte et alerte.", "D7 · D4"], [7, "IPS", "Intrusion Prevention System", "Système placé en ligne qui détecte et bloque les attaques.", "IPS bloquant une tentative d'exploitation connue.", "Un faux positif bloque du trafic légitime.", "Celui qui bloque doit être sûr de son jugement.", "IPS = en ligne ; IDS = en dérivation.", "D7 · D4"], [7, "Détection par signatures", "Signature-based detection", "Comparaison de l'activité à une base de motifs d'attaques connues.", "Détection d'un malware connu par son empreinte.", "Aveugle aux attaques nouvelles (zero-day).", "On ne reconnaît que ce qu'on a déjà vu.", "Peu de faux positifs, mises à jour indispensables.", "D7"], [7, "Détection par anomalies", "Anomaly / Behavior-based detection", "Comparaison de l'activité à un comportement normal appris.", "Alerte sur un trafic sortant inhabituel à 3 h du matin.", "Plus de faux positifs, mais détecte l'inconnu.", "L'habitude rompue trahit l'intrus.", "Aussi appelée heuristique ou statistique.", "D7"], [7, "Liste d'autorisation d'applications", "Application allowlisting", "Seules les applications approuvées peuvent s'exécuter.", "Postes de caisse n'exécutant que le logiciel de vente.", "Contraignant sur les postes polyvalents.", "Ce qui n'est pas invité ne rentre pas.", "Plus efficace qu'une liste de blocage.", "D7"], [7, "Bac à sable", "Sandboxing", "Exécution d'un fichier suspect dans un environnement isolé pour observer son comportement.", "Pièces jointes testées avant d'arriver dans la boîte mail.", "Certains malwares détectent le bac à sable et restent inactifs.", "On goûte l'eau du puits avant de la servir.", "Détection dynamique.", "D7"], [7, "Pot de miel", "Honeypot / Honeynet", "Système leurre qui attire l'attaquant pour le détecter et l'étudier.", "Faux serveur « Paie » qui alerte à la moindre connexion.", "Mal isolé, il sert de rebond.", "Le miel attire la mouche.", "Honeynet = réseau de leurres ; honeytoken = donnée leurre.", "D7"], [7, "Incitation et provocation", "Enticement vs Entrapment", "Incitation : laisser une opportunité à un attaquant déjà décidé (légal). Provocation : pousser quelqu'un à commettre un délit (illégal).", "Un honeypot non annoncé relève de l'incitation.", "La provocation peut rendre les poursuites impossibles.", "Le miel attire, il ne pousse pas.", "Enticement = Envie ; Entrapment = Embuscade.", "D7 · D1"], [7, "EDR et XDR", "Endpoint / Extended Detection and Response", "EDR : détection et réponse sur les terminaux. XDR : corrélation étendue aux réseaux, mails, cloud.", "EDR qui isole automatiquement un poste chiffrant des fichiers.", "Exige une supervision humaine.", "Voir, comprendre, isoler.", "Remplace progressivement l'antivirus classique.", "D7"], [7, "Détection par apprentissage automatique", "Machine learning-based detection", "Outils qui apprennent à repérer les comportements malveillants à partir de données.", "Classement automatique des alertes par risque.", "Peut être trompé par des données empoisonnées.", "L'outil apprend de ce qu'on lui montre.", "Mentionné dans l'objectif 7.7 (outils fondés sur l'IA).", "D7"], [8, "Sauvegarde complète", "Full backup", "Copie de toutes les données sélectionnées ; remet à zéro le bit d'archive.", "Sauvegarde complète chaque dimanche.", "La plus longue à réaliser, la plus simple à restaurer.", "Tout garder pour tout retrouver.", "Base de toute stratégie.", "D7"], [8, "Sauvegarde incrémentielle", "Incremental backup", "Copie des données modifiées depuis la dernière sauvegarde, quelle qu'elle soit ; remet le bit d'archive à zéro.", "Incrémentielle chaque soir.", "Sauvegarde rapide, restauration longue (complète + toutes les incrémentielles).", "Petits pas rapides, long chemin de retour.", "Restauration la plus lente.", "D7"], [8, "Sauvegarde différentielle", "Differential backup", "Copie des données modifiées depuis la dernière sauvegarde complète ; ne remet pas le bit d'archive à zéro.", "Différentielle chaque soir, de plus en plus volumineuse.", "Restauration = complète + dernière différentielle.", "Depuis la dernière complète.", "Mnémo : Différentielle = Depuis la Dernière complète.", "D7"], [8, "Règle 3-2-1", "3-2-1 backup rule", "Trois copies, sur deux supports différents, dont une hors site.", "Production, sauvegarde locale et copie dans un autre site.", "Variante moderne 3-2-1-1-0 : une copie immuable, zéro erreur à la restauration.", "Ne mets pas toute ta récolte dans un seul grenier.", "Protège contre la perte d'un support ou d'un site.", "D7"], [8, "Sauvegarde immuable et hors ligne", "Immutable / Offline backup", "Copie qui ne peut être modifiée ni supprimée pendant une durée, ou déconnectée du réseau.", "Stockage objet verrouillé 30 jours.", "Indispensable contre les ransomwares.", "Ce que l'on ne peut toucher ne peut être chiffré.", "Isoler aussi les identifiants d'administration des sauvegardes.", "D7"], [8, "Instantané", "Snapshot", "Copie de l'état d'un système ou volume à un instant donné.", "Instantané d'une VM avant une mise à jour.", "Un instantané sur le même stockage n'est pas une sauvegarde.", "La photo n'est pas le coffre.", "Utile pour un retour arrière rapide.", "D7"], [8, "Coffre électronique et journalisation distante", "Electronic vaulting / Remote journaling", "Coffre électronique : transfert de sauvegardes complètes vers un site distant. Journalisation distante : envoi des journaux de transactions en continu.", "Transactions bancaires répliquées en continu vers le site de secours.", "Le remote journaling transfère les transactions, pas les fichiers entiers.", "Envoyer au loin ce que l'on ne peut perdre.", "Réduit le RPO.", "D7"], [8, "RAID", "Redundant Array of Independent Disks", "Combinaison de disques pour la performance ou la tolérance aux pannes : 0 agrégation, 1 miroir, 5 parité, 6 double parité, 10 miroirs agrégés.", "RAID 5 sur un serveur de fichiers.", "Le RAID n'est pas une sauvegarde.", "RAID 0 = zéro protection.", "RAID 5 : 3 disques minimum ; RAID 6 : 4.", "D7"], [8, "Haute disponibilité", "High availability / Clustering", "Redondance des composants pour éliminer les points uniques de défaillance : clusters actif-actif ou actif-passif.", "Cluster de deux serveurs de base de données.", "La haute disponibilité ne protège pas contre la corruption des données.", "Deux piliers valent mieux qu'un.", "Mesurée en « neuf » : 99,99 %.", "D7"], [8, "Réplication synchrone et asynchrone", "Synchronous vs Asynchronous replication", "Synchrone : écriture confirmée sur les deux sites, aucune perte, distance limitée. Asynchrone : léger décalage, longue distance possible.", "Synchrone entre deux salles du même campus.", "La synchrone ralentit l'application si la distance augmente.", "Aller ensemble coûte en vitesse.", "Synchrone = RPO nul.", "D7"], [9, "Plan de reprise après sinistre", "Disaster Recovery Plan (DRP)", "Procédures pour restaurer les systèmes informatiques après un sinistre.", "Bascule des applications critiques sur le site de secours.", "Le PRA concerne l'IT ; le PCA les activités.", "On creuse le puits avant d'avoir soif.", "Doit être testé régulièrement.", "D7"], [9, "Site chaud", "Hot site", "Site entièrement équipé avec données synchronisées, opérationnel en minutes ou heures.", "Site miroir pour la plateforme de paiement.", "Le plus cher.", "Le siège de secours prêt à l'emploi.", "Délai : minutes à heures.", "D7"], [9, "Site tiède", "Warm site", "Site équipé en partie ou totalement, mais sans données à jour.", "Serveurs prêts, restauration des données nécessaire.", "Compromis coût / délai.", "À moitié prêt, à moitié chemin.", "Délai : heures à jours.", "D7"], [9, "Site froid", "Cold site", "Locaux avec énergie et climatisation, sans équipement ni données.", "Salle vide réservée en cas de sinistre.", "Le moins cher, le plus lent.", "Le toit est là, il faut tout apporter.", "Délai : semaines.", "D7"], [9, "Sites mobiles et cloud", "Mobile / Cloud recovery sites", "Conteneurs équipés transportables ou infrastructure cloud mobilisée à la demande.", "Reprise dans le cloud avec infrastructure déployée par script.", "Le cloud a ses propres dépendances et risques.", "Partir là où l'on peut tenir.", "DRaaS = reprise en tant que service.", "D7"], [9, "Accord de réciprocité", "Reciprocal agreement", "Deux organisations s'engagent à s'héberger mutuellement en cas de sinistre.", "Deux banques partenaires partagent leurs salles.", "Peu fiable : capacité, confidentialité et sinistre commun.", "Compter sur le voisin quand sa maison brûle aussi.", "Rarement la bonne réponse.", "D7"], [9, "Retour au site principal", "Return to primary site", "Rapatriement progressif des activités une fois le site principal réparé.", "Rapatrier d'abord les applications les moins critiques.", "On teste le site principal avant d'y ramener le vital.", "On ne risque pas l'essentiel sur un sol non éprouvé.", "Le moins critique revient en premier.", "D7"], [9, "Communication de crise", "Crisis communication", "Messages coordonnés vers employés, clients, régulateurs et médias, par un porte-parole unique.", "Messages préparés à l'avance et canal hors bande.", "Des déclarations contradictoires aggravent la crise.", "Une seule voix rassure.", "Seules les personnes autorisées parlent aux médias.", "D7 · D1"], [9, "Équipes de reprise", "Recovery and salvage teams", "Équipe de reprise : remet en service au site de secours. Équipe de récupération : remet en état le site principal.", "L'équipe de salvage évalue les dégâts après l'incendie.", "Rôles et suppléants définis à l'avance.", "Chacun sait où il va quand l'alarme sonne.", "Recovery = site de secours ; salvage = site principal.", "D7"], [9, "MTBF et MTTR", "Mean Time Between Failures / Mean Time To Repair", "MTBF : durée moyenne de fonctionnement entre pannes. MTTR : durée moyenne de réparation.", "Disque avec un MTBF élevé, MTTR de 4 heures avec pièces en stock.", "Un MTBF élevé n'empêche pas une panne demain.", "La fiabilité se mesure, la réparation se prépare.", "Utiles pour dimensionner la redondance.", "D7"], [10, "Agents de sécurité", "Security guards", "Personnel qui surveille, contrôle les accès et réagit ; capable de jugement contrairement aux dispositifs.", "Gardien à l'accueil du datacenter.", "Coûteux et sujet à l'erreur ou à la corruption.", "L'œil humain juge ce que la machine ignore.", "Seul contrôle physique capable de discernement.", "D7 · D3"], [10, "Vidéosurveillance", "Closed-circuit television (CCTV)", "Caméras qui dissuadent, détectent et enregistrent.", "Caméras aux entrées et dans la salle serveurs.", "Sans surveillance humaine ni conservation adaptée, elle sert peu.", "Ce qui est vu est protégé.", "Dissuasive et détective.", "D7 · D3"], [10, "Détection d'intrusion physique", "Physical intrusion detection", "Capteurs (mouvement, ouverture, vibration) qui déclenchent une alarme.", "Alarme de porte de salle serveurs ouverte hors horaires.", "Une alarme sans réaction prévue est inutile.", "La cloche ne sert que si quelqu'un vient.", "Associée à une procédure d'intervention.", "D7 · D3"], [10, "Gestion des clés physiques", "Key and lock management", "Inventaire, attribution, restitution et changement des clés et serrures.", "Registre des clés de la salle serveurs.", "Une clé non rendue impose de changer la serrure.", "Qui garde la clé garde la porte.", "Inclut combinaisons et badges maîtres.", "D7"], [10, "Sécurité des déplacements", "Travel security", "Protection des employés et des données en déplacement.", "Ordinateur dédié et chiffré pour les voyages à risque.", "Certains pays inspectent les appareils à la frontière.", "On voyage léger quand le chemin est dangereux.", "Objectif 7.15 : sûreté du personnel.", "D7"], [10, "Code de contrainte", "Duress code", "Signal discret indiquant qu'une personne agit sous la menace.", "Code d'alarme spécial qui désarme en apparence mais alerte la sécurité.", "Doit rester connu des seuls intéressés.", "Le mot convenu sauve sans éclat.", "La sécurité des personnes prime.", "D7"], [10, "Gestion des urgences", "Emergency management", "Plans d'évacuation, points de rassemblement, exercices et responsables d'étage.", "Exercice d'évacuation incendie semestriel.", "La vie des personnes passe avant tout.", "Les serveurs se reconstruisent, pas les vies.", "Toujours prioritaire sur la protection des actifs.", "D7 · D1"], [10, "Sécurité du télétravail", "Remote work security", "Protection des employés et données hors des locaux : VPN ou ZTNA, poste géré, environnement de travail.", "Interdiction de traiter des données sensibles dans les lieux publics.", "Le domicile n'a pas les contrôles du bureau.", "La maison devient un bureau, le bureau doit suivre.", "Sensibilisation et poste maîtrisé.", "D7 · D4"], [10, "Menace interne en exploitation", "Insider threat (operations)", "Surveillance et prévention des abus par des personnes disposant d'accès légitimes.", "Alerte UEBA sur un administrateur qui copie des sauvegardes.", "La plupart des incidents internes sont involontaires.", "On ne donne pas toutes les clés au gardien du portail.", "Moindre privilège, séparation des tâches, surveillance.", "D7 · D5"], [10, "Sûreté sanitaire et crises", "Health and safety in crisis", "Protection du personnel lors de pandémies, catastrophes ou troubles.", "Plan de continuité en télétravail lors d'une épidémie.", "Le PCA doit prévoir l'absence massive de personnel.", "Protéger les hommes, c'est protéger l'activité.", "La sécurité des personnes est toujours la priorité.", "D7 · D1"]]};</script>
+<script>(function(){
+const d=GD, K=d.code, kKey="gl-known-"+K, rKey="gl-rev-"+K;
+const C=d.items.map((x,i)=>({i,n:i+1,th:x[0],fr:x[1],en:x[2],def:x[3],ex:x[4],nu:x[5],sag:x[6],tip:x[7],dom:x[8]}));
+C.forEach(c=>c.hay=norm([c.fr,c.en,c.def,c.ex,c.nu,c.tip,c.dom].join(" ")));
+const known=new Set(store.get(kKey,[])), rev=new Set(store.get(rKey,[]));
+const open=new Set();
+const F={q:"",th:"",st:"all",view:"cards"};
+const save=()=>{store.set(kKey,[...known]);store.set(rKey,[...rev]);stats()};
+const pad=n=>String(n).padStart(3,"0");
+
+document.getElementById("app").innerHTML=`
+<section class="hero"><div class="wrap hero-in">
+  <div class="eyebrow">Glossaire 360 · Domaine ${d.num}${d.num===0?" · socle transverse":d.num<=8?" · CBK CISSP":" · bonus"}</div>
+  <h1><span class="code">${K}</span>${esc(d.name)}</h1>
+  <div class="en">${esc(d.en)}</div>
+  <p class="pitch">${esc(d.pitch)}</p>
+  <div class="stats">
+    <div class="stat"><b>${C.length}</b><span>concepts détaillés</span></div>
+    <div class="stat"><b id="s-k">0</b><span>concepts connus</span></div>
+    <div class="stat"><b id="s-r">0</b><span>à revoir</span></div>
+  </div>
+  <div class="meter" style="max-width:none;margin:4px 0 0"><i id="s-m"></i></div>
+</div></section>
+<main class="wrap">
+  <div class="gbar">
+    <input class="inp" id="q" type="search" placeholder="Chercher un terme, en français ou en anglais…" aria-label="Chercher">
+    <select class="sel" id="th" aria-label="Sous-thème"><option value="">Tous les sous-thèmes</option>${d.themes.map((t,k)=>`<option value="${k+1}">${k+1}. ${esc(t)}</option>`).join("")}</select>
+    <select class="sel" id="st" aria-label="Progression"><option value="all">Tous les concepts</option><option value="todo">Pas encore connus</option><option value="rev">À revoir</option><option value="known">Connus</option></select>
+    <div class="seg" role="group" aria-label="Affichage">
+      <button type="button" data-v="cards" aria-pressed="true">Fiches</button><button type="button" data-v="flash" aria-pressed="false">Flashcards</button><button type="button" data-v="az" aria-pressed="false">Liste A–Z</button><button type="button" data-v="test" aria-pressed="false">Auto-test</button>
+    </div>
+  </div>
+  <p class="gcount" id="cnt"></p>
+  <div id="view"></div>
+  <p class="foot">Votre progression est enregistrée dans ce navigateur. Les termes anglais entre parenthèses sont ceux de l'examen.</p>
+</main>`;
+
+function stats(){$("#s-k").textContent=known.size;$("#s-r").textContent=rev.size;$("#s-m").style.width=(known.size/C.length*100)+"%"}
+function list(){return C.filter(c=>(!F.q||F.q.split(/\s+/).every(w=>c.hay.includes(w)))&&(!F.th||String(c.th)===F.th)&&
+  (F.st==="all"||(F.st==="todo"&&!known.has(c.n))||(F.st==="rev"&&rev.has(c.n))||(F.st==="known"&&known.has(c.n))))}
+function card(c){const o=open.has(c.n);
+  return `<article class="gc${known.has(c.n)?" known":rev.has(c.n)?" rev":""}" id="c${c.n}" data-n="${c.n}">
+  <div class="gc-h"><span class="num">${pad(c.n)}</span><h3>${esc(c.fr)} <span class="enx">(${esc(c.en)})</span></h3>
+  <div class="gc-tags">${c.dom.split(" · ").map(x=>`<span class="tag">${x}</span>`).join("")}${known.has(c.n)?`<span class="tag ok">✓ connu</span>`:""}${rev.has(c.n)?`<span class="tag wa">↻ à revoir</span>`:""}</div></div>
+  <p class="def">${esc(c.def)}</p>
+  ${o?`<div class="gc-more">
+    <div class="blk"><h4>Exemple</h4><p>${esc(c.ex)}</p></div>
+    <div class="blk nu"><h4>Nuance</h4><p>${esc(c.nu)}</p></div>
+    <div class="blk tip"><h4>Tip examen</h4><p>${esc(c.tip)}</p></div>
+    <p class="sag">${esc(c.sag)}</p></div>`:""}
+  <div class="gc-acts"><button class="lnk" type="button" data-a="open">${o?"Masquer le détail":"Exemple, nuance, sagesse et tip"}</button>
+    <span style="flex:1"></span>
+    <button class="btn${known.has(c.n)?" primary":""}" type="button" data-a="known">${known.has(c.n)?"✓ Connu":"Je connais"}</button>
+    <button class="btn" type="button" data-a="rev">${rev.has(c.n)?"Retirer":"À revoir"}</button></div>
+</article>`}
+function mark(kind,n){if(kind==="known"){if(known.has(n))known.delete(n);else{known.add(n);rev.delete(n)}}else{if(rev.has(n))rev.delete(n);else{rev.add(n);known.delete(n)}}save()}
+
+let deck=[],pos=0,flip=false;
+function render(){
+  const L=list();
+  $("#cnt").innerHTML=`<b>${L.length}</b> concept${L.length>1?"s":""} sur ${C.length}`;
+  const v=$("#view");
+  if(F.view==="cards"){
+    if(!L.length){v.innerHTML=`<div class="empty">Aucun concept ne correspond.</div>`;return}
+    const by=new Map();L.forEach(c=>{if(!by.has(c.th))by.set(c.th,[]);by.get(c.th).push(c)});
+    v.innerHTML=[...by].map(([t,cs])=>`<h2 class="th-h"><span class="n">${String(t).padStart(2,"0")}</span>${esc(d.themes[t-1])} <small>${cs.length}</small></h2><div class="gcards">${cs.map(card).join("")}</div>`).join("");
+  } else if(F.view==="flash"){
+    deck=L.map(c=>c.n);if(pos>=deck.length)pos=0;flash();
+  } else if(F.view==="az"){
+    const s=L.slice().sort((a,b)=>a.fr.localeCompare(b.fr,"fr"));
+    const letters=[...new Set(s.map(c=>norm(c.fr)[0].toUpperCase()))];
+    let last="";
+    v.innerHTML=`<div class="az-letters">${letters.map(l=>`<a href="#az-${l}">${l}</a>`).join("")}</div><div class="card"><div class="tblw"><table class="az"><thead><tr><th>Terme</th><th>Définition</th></tr></thead><tbody>${s.map(c=>{const l=norm(c.fr)[0].toUpperCase();const head=l!==last?`<tr class="lt" id="az-${l}"><td colspan="2">${l}</td></tr>`:"";last=l;return head+`<tr><td>${esc(c.fr)}<small>${esc(c.en)}</small></td><td>${esc(c.def)}</td></tr>`}).join("")}</tbody></table></div></div>`;
+  } else {
+    const pool=L.length>=4?L:C;
+    const qs=shuffle(pool).slice(0,Math.min(20,pool.length)).map(c=>{const others=shuffle(C.filter(x=>x.n!==c.n)).slice(0,3);
+      return {q:"Quel terme correspond à cette définition ? « "+c.def+" »",opts:[c.fr+" ("+c.en+")",...others.map(o=>o.fr+" ("+o.en+")")],a:0,ex:c.tip}});
+    v.innerHTML=`<p class="pitch" style="font-size:14px;color:var(--muted);margin:0 0 10px">20 définitions tirées des concepts affichés : retrouvez le bon terme.</p><div class="card quiz" id="qz"></div>`;
+    Quiz($("#qz"),qs,{mode:"learn"}).start();
+  }
+}
+function flash(){
+  const v=$("#view");
+  if(!deck.length){v.innerHTML=`<div class="empty">Aucun concept ne correspond.</div>`;return}
+  const c=C[deck[pos]-1];
+  v.innerHTML=`<div class="fc" id="fc" tabindex="0" role="button" aria-label="Retourner la carte">
+    <div class="eyebrow">${pad(c.n)} · ${esc(d.themes[c.th-1])} · carte ${pos+1} / ${deck.length}${known.has(c.n)?" · ✓ connu":rev.has(c.n)?" · ↻ à revoir":""}</div>
+    <div class="t">${esc(c.fr)}<span class="enx">(${esc(c.en)})</span></div>
+    ${flip?`<p style="margin:0">${esc(c.def)}</p><div class="blk tip"><h4>Tip examen</h4><p>${esc(c.tip)}</p></div><p class="sag">${esc(c.sag)}</p>`:`<p class="hint">Donnez la définition de tête, puis cliquez pour retourner la carte (ou Espace).</p>`}
+  </div>
+  <div class="fc-nav"><button class="btn" type="button" data-f="prev">← Précédente</button><button class="btn" type="button" data-f="shuf">Mélanger</button><button class="btn" type="button" data-f="rev">À revoir</button><button class="btn primary" type="button" data-f="known">Je connais</button><button class="btn" type="button" data-f="next">Suivante →</button></div>`;
+}
+const go=k=>{pos=(pos+k+deck.length)%deck.length;flip=false;flash()};
+$("#view").addEventListener("click",e=>{
+  if(F.view==="flash"){
+    if(e.target.closest("#fc")){flip=!flip;flash();return}
+    const b=e.target.closest("[data-f]");if(!b||!deck.length)return;const f=b.dataset.f,n=deck[pos];
+    if(f==="next")go(1);else if(f==="prev")go(-1);else if(f==="shuf"){deck=shuffle(deck);pos=0;flip=false;flash()}
+    else{if(f==="known"){known.add(n);rev.delete(n)}else{rev.add(n);known.delete(n)}save();go(1)}
+    return}
+  if(F.view!=="cards")return;
+  const el=e.target.closest(".gc");if(!el)return;const n=+el.dataset.n;const a=e.target.closest("[data-a]");if(!a)return;
+  if(a.dataset.a==="open"){open.has(n)?open.delete(n):open.add(n)}else mark(a.dataset.a,n);
+  e.target.closest(".gc").outerHTML=card(C[n-1]);
+});
+document.addEventListener("keydown",e=>{if(F.view!=="flash"||/INPUT|SELECT/.test(document.activeElement.tagName))return;
+  if(e.key===" "){e.preventDefault();flip=!flip;flash()}else if(e.key==="ArrowRight")go(1);else if(e.key==="ArrowLeft")go(-1)});
+$("#q").addEventListener("input",e=>{F.q=norm(e.target.value.trim());render()});
+$("#th").addEventListener("change",e=>{F.th=e.target.value;render()});
+$("#st").addEventListener("change",e=>{F.st=e.target.value;render()});
+$$(".seg button").forEach(b=>b.addEventListener("click",()=>{F.view=b.dataset.v;$$(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));pos=0;flip=false;render()}));
+
+stats();
+const h=location.hash.match(/^#c(\d+)$/);
+if(h&&C[+h[1]-1]){open.add(+h[1]);render();const el=$("#c"+h[1]);if(el){el.classList.add("flash-target");el.scrollIntoView({block:"center"})}}
+else{open.add(1);render()}
+})();
+</script>
+</body></html>

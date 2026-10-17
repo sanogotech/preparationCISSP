@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+<title>Glossaire D2 · Sécurité des actifs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap">
+<style>/* Layout : portail de révision — barre de navigation fixe, en-tête de domaine, sections empilées avec sommaire */
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --sunk:#E9EDF2; --ink:#101B2B; --muted:#5A6879; --line:#D7DEE7;
+  --accent:#1F4E9E; --accent-soft:#E3EBF8; --on-accent:#FFFFFF;
+  --ok:#2E7D46; --ok-soft:#E3F2E8; --bad:#B3262F; --bad-soft:#FBE7E8; --warn:#B0680A;
+  --hl:#FFF4D6; --hl-ink:#6B4B00;
+  --f-disp:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-quote:"Source Serif 4",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44; --on-accent:#0C121B;
+  --ok:#6FD38C; --ok-soft:#163323; --bad:#FF7A7A; --bad-soft:#3A1A1D; --warn:#F0B955;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44; --on-accent:#0C121B;
+  --ok:#6FD38C; --ok-soft:#163323; --bad:#FF7A7A; --bad-soft:#3A1A1D; --warn:#F0B955;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-disp);text-wrap:balance;margin:0}
+
+/* Barre du portail */
+.pbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.pbar-in{display:flex;align-items:center;gap:14px;padding-block:9px;overflow-x:auto;scrollbar-width:none}
+.pbar-in::-webkit-scrollbar{display:none}
+.logo{font-family:var(--f-disp);font-weight:700;font-size:17px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.logo span{color:var(--accent)}
+.pnav{display:flex;gap:4px}
+.pnav a{font-family:var(--f-mono);font-size:12px;font-weight:600;text-decoration:none;color:var(--muted);padding:5px 9px;border-radius:6px;white-space:nowrap}
+.pnav a:hover{background:var(--sunk);color:var(--ink)}
+.pnav a[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+
+/* En-tête de page */
+.hero{background:var(--surface);border-bottom:1px solid var(--line)}
+.hero-in{padding-block:26px 18px;display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:34px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.hero h1 .code{color:var(--accent);margin-right:10px}
+.en{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.pitch{max-width:72ch;margin:0;font-size:16px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.stat{display:flex;flex-direction:column;gap:2px;padding:9px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);min-width:150px;text-decoration:none;color:var(--ink)}
+.stat b{font-family:var(--f-disp);font-size:20px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+a.stat:hover{border-color:var(--accent)}
+.toc{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-top:6px}
+.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:13px;font-weight:500;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:6px;white-space:nowrap;border:1px solid var(--line)}
+.toc a:hover{color:var(--ink);border-color:var(--accent)}
+
+main{padding-block:10px 60px}
+.sec{padding-top:34px;scroll-margin-top:60px}
+.sec-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:14px}
+.sec-h h2{font-size:24px;font-weight:700}
+.sec-h .n{font-family:var(--f-mono);font-size:13px;color:var(--accent);margin-right:8px}
+.sec-h p{margin:0;color:var(--muted);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+
+/* Objectifs */
+.obj{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:8px}
+.obj li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.obj b{font-family:var(--f-mono);color:var(--accent);font-size:13px}
+
+/* Concepts */
+.concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.concept{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.concept h3{font-size:17px;font-weight:600;margin-bottom:4px;display:flex;gap:8px;align-items:baseline}
+.concept h3 i{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.concept p{margin:0;font-size:14.5px}
+
+/* Schémas */
+.schemas{display:flex;flex-direction:column;gap:14px}
+.schema h3{font-size:18px;margin-bottom:12px}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px}
+.flow .st{flex:1 1 130px;min-width:0;background:var(--bg);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:7px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.flow .st b{font-family:var(--f-disp);font-size:15px}
+.flow .st span{font-size:12.5px;color:var(--muted)}
+.flow .ar{align-self:center;color:var(--muted);font-family:var(--f-mono)}
+.cycle-back{margin-top:8px;font-family:var(--f-mono);font-size:12px;color:var(--accent)}
+.stack{display:flex;flex-direction:column;gap:4px}
+.stack .ly{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:12px;background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:8px 12px;font-size:14px}
+.stack .ly b{font-family:var(--f-disp);font-size:15px}
+.stack .ly span{color:var(--muted)}
+.note{margin:10px 0 0;font-size:13px;color:var(--hl-ink);background:var(--hl);display:inline-block;padding:4px 10px;border-radius:6px}
+
+/* Tableaux */
+.tables{display:flex;flex-direction:column;gap:14px}
+.tables h3{font-size:18px;margin-bottom:10px}
+.tblw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+td:first-child{font-weight:600}
+
+/* Scénarios */
+.scens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.scen{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.scen .sit{margin:0;font-size:14.5px}
+.scen .q{margin:0;font-weight:600;font-family:var(--f-disp);font-size:16px;color:var(--accent)}
+.scen .ans{background:var(--ok-soft);border-radius:7px;padding:10px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.scen .ans p{margin:0}
+.scen .why{color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:7px 13px;font-size:13.5px;font-weight:500;text-decoration:none;color:var(--ink);display:inline-block}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn[disabled]{opacity:.5;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* Quiz */
+.quiz{max-width:820px}
+.qz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;font-size:14px;color:var(--muted)}
+.qz-prog{height:5px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.qz-prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.qz-q{font-family:var(--f-disp);font-size:20px;font-weight:600;margin:0 0 14px;line-height:1.3}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 14px;display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;font-size:15px}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .k{font-family:var(--f-mono);font-weight:600;color:var(--muted)}
+.opt.good{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.picked{border-color:var(--accent);background:var(--accent-soft)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:12px;padding:12px 14px;border-radius:8px;background:var(--bg);border-left:4px solid var(--muted);font-size:14.5px}
+.fb.ok{border-left-color:var(--ok)}.fb.ko{border-left-color:var(--bad)}
+.fb b{display:block;margin-bottom:2px}
+.qz-end{display:flex;flex-direction:column;gap:12px}
+.score{font-family:var(--f-disp);font-size:44px;font-weight:700;line-height:1}
+.score small{font-size:18px;color:var(--muted);font-weight:500}
+.review{display:flex;flex-direction:column;gap:8px}
+.review div{background:var(--bg);border-radius:7px;padding:10px 12px;font-size:14px}
+.review b{color:var(--bad)}
+
+/* Glossaire */
+.glo-s{max-width:320px;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--surface)}
+.glo td:first-child{font-family:var(--f-mono);font-size:13px}
+
+/* Checklist */
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-width:820px}
+.chk label{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;font-size:14.5px}
+.chk input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.chk input:checked+span{color:var(--muted);text-decoration:line-through}
+.meter{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden;max-width:820px;margin-bottom:10px}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:40px;flex-wrap:wrap}
+.pager a{flex:1 1 220px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.pager a:hover{border-color:var(--accent)}
+.pager small{display:block;font-family:var(--f-mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pager a.next{text-align:right}
+.foot{margin-top:30px;font-size:12px;color:var(--muted)}
+
+@media (max-width:760px){
+  .hero h1{font-size:26px}
+  .concepts,.scens{grid-template-columns:minmax(0,1fr)}
+  .stack .ly{grid-template-columns:minmax(0,1fr);gap:2px}
+  .flow .ar{display:none}
+  .flow .st{flex-basis:100%}
+  .stat{min-width:0;flex:1 1 40%}
+}
+/* Glossaire : barre d'outils, cartes de concepts, flashcards, liste A–Z */
+.pnav span.off{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--line);padding:5px 9px;white-space:nowrap}
+.gbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-top:18px}
+.gbar .inp,.gbar .sel{padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--bg)}
+.gbar .inp{flex:1 1 220px;min-width:0}
+.gbar .sel{flex:0 1 230px;min-width:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{border:0;background:var(--bg);padding:7px 12px;font-size:13.5px;font-weight:500;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.gcount{font-size:13.5px;color:var(--muted);margin:14px 0 4px}
+.gcount b{color:var(--ink)}
+.th-h{font-family:var(--f-disp);font-size:20px;font-weight:700;margin:24px 0 10px;display:flex;gap:10px;align-items:baseline}
+.th-h .n{font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+.th-h small{font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--muted)}
+.gcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.gc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;scroll-margin-top:70px}
+.gc.known{border-color:var(--ok)}
+.gc.rev{border-color:var(--warn)}
+.gc.flash-target{box-shadow:0 0 0 3px var(--accent-soft)}
+.gc-h{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:baseline}
+.gc-h .num{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.gc-h h3{font-size:18px;font-weight:600;line-height:1.25}
+.gc-h h3 .enx{font-family:var(--f-body);font-weight:500;font-size:14px;color:var(--accent)}
+.gc-tags{grid-column:2;display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-family:var(--f-mono);font-size:11px;padding:1px 6px;border-radius:4px;background:var(--sunk);color:var(--muted)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.wa{background:var(--hl);color:var(--hl-ink)}
+.gc .def{margin:0;font-size:14.5px}
+.gc-more{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.blk{background:var(--bg);border-radius:7px;padding:8px 11px}
+.blk h4{margin:0 0 2px;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.blk p{margin:0;font-size:14px}
+.blk.tip{background:var(--accent-soft)}.blk.tip h4{color:var(--accent)}
+.blk.nu h4{color:var(--warn)}
+.sag{margin:0;padding:2px 0 2px 12px;border-left:2px solid var(--accent);font-family:var(--f-quote);font-style:italic;font-size:16px}
+.gc-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.gc-acts .btn{padding:5px 10px;font-size:13px}
+.lnk{border:0;background:none;color:var(--accent);font-size:13px;padding:0;text-decoration:underline}
+.fc{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--accent);border-radius:12px;padding:26px;min-height:320px;display:flex;flex-direction:column;gap:12px;cursor:pointer;max-width:780px}
+.fc .t{font-family:var(--f-disp);font-size:28px;font-weight:700;line-height:1.15;text-wrap:balance}
+.fc .t .enx{display:block;font-family:var(--f-body);font-size:16px;font-weight:500;color:var(--accent);margin-top:4px}
+.fc .hint{margin-top:auto;font-size:13px;color:var(--muted)}
+.fc-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;max-width:780px;justify-content:center}
+.az-letters{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0}
+.az-letters a{font-family:var(--f-mono);font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--line);border-radius:5px;padding:3px 8px;background:var(--surface)}
+.az td:first-child{white-space:normal;min-width:200px}
+.az td:first-child small{display:block;font-family:var(--f-mono);font-weight:500;color:var(--accent);font-size:12px}
+.az tr.lt td{background:var(--bg);font-family:var(--f-disp);font-size:18px;font-weight:700;color:var(--accent)}
+.empty{padding:30px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+/* Accueil du glossaire */
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:10px}
+.dt{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-height:150px}
+a.dt:hover{border-color:var(--accent)}
+.dt .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dt .cd{font-family:var(--f-mono);font-weight:600;font-size:13px;color:var(--accent)}
+.dt h3{font-size:17px;font-weight:600}
+.dt p{margin:0;font-size:13px;color:var(--muted)}
+.dt .pg{margin-top:auto;height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.dt .pg i{display:block;height:100%;background:var(--ok)}
+.dt.soon{background:transparent;border-style:dashed}
+.dt.soon h3{color:var(--muted)}
+.st-ok{font-size:11px;font-family:var(--f-mono);color:var(--ok);background:var(--ok-soft);padding:1px 7px;border-radius:999px}
+.st-soon{font-size:11px;font-family:var(--f-mono);color:var(--muted);background:var(--sunk);padding:1px 7px;border-radius:999px}
+.grp{font-family:var(--f-disp);font-size:16px;font-weight:600;color:var(--muted);margin:20px 0 8px}
+.res{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.res a{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:14px}
+.res a:hover{border-color:var(--accent)}
+.res a b{font-family:var(--f-mono);color:var(--accent);font-size:12px}
+.res a span small{color:var(--accent);font-weight:500}
+.res a span em{display:block;font-style:normal;color:var(--muted);font-size:13px}
+@media (max-width:760px){.gcards{grid-template-columns:minmax(0,1fr)}.fc{padding:20px 18px}.fc .t{font-size:23px}}
+</style>
+</head><body>
+<header class="pbar"><div class="wrap pbar-in"><a class="logo" href="indexGlossaire.html">Glossaire <span>360</span></a><nav class="pnav" aria-label="Domaines"><a href="indexGlossaire.html">Accueil</a><a href="domaine0.html">D0</a><a href="domaine1.html">D1</a><a href="domaine2.html" aria-current="page">D2</a><a href="domaine3.html">D3</a><a href="domaine4.html">D4</a><a href="domaine5.html">D5</a><a href="domaine6.html">D6</a><a href="domaine7.html">D7</a><a href="domaine8.html">D8</a><a href="domaine9.html">D9</a><a href="domaine10.html">D10</a><a href="domaine11.html">D11</a><a href="domaine12.html">D12</a></nav></div></header>
+<div id="app"></div>
+<script>const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const norm=s=>String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const LETTERS="ABCD";
+
+/* Moteur de quiz : mode « learn » (correction immédiate) ou « exam » (correction à la fin) */
+function Quiz(el,questions,cfg){
+  cfg=cfg||{};
+  let qs,i,ans,timer,deadline;
+  function start(list){
+    qs=(list||questions).map(q=>({q:q.q,ex:q.ex,d:q.d,opts:shuffle(q.opts.map((t,k)=>({t,ok:k===q.a})))}));
+    i=0;ans=[];
+    clearInterval(timer);
+    if(cfg.minutes){deadline=Date.now()+cfg.minutes*60000;timer=setInterval(tick,1000)}
+    render();
+  }
+  function tick(){const r=deadline-Date.now();const t=el.querySelector(".qz-time");if(t)t.textContent=fmt(r);if(r<=0){clearInterval(timer);finish(true)}}
+  const fmt=ms=>{ms=Math.max(0,ms);const m=Math.floor(ms/60000),s=Math.floor(ms%60000/1000);return `${m}:${String(s).padStart(2,"0")}`};
+  function render(){
+    if(i>=qs.length)return finish(false);
+    const q=qs[i],a=ans[i],good=ans.filter(x=>x&&x.ok).length;
+    el.innerHTML=`<div class="qz-top"><span>Question <b>${i+1}</b> / ${qs.length}${q.d&&cfg.showDom?` · <span class="en">${q.d}</span>`:""}</span>
+      <span>${cfg.mode==="exam"?(cfg.minutes?`Temps restant <b class="qz-time">${fmt(deadline-Date.now())}</b>`:""):`Score <b>${good}</b> / ${ans.filter(Boolean).length}`}</span></div>
+      <div class="qz-prog"><i style="width:${i/qs.length*100}%"></i></div>
+      <p class="qz-q">${esc(q.q)}</p>
+      <div class="opts">${q.opts.map((o,k)=>{
+        let cls="opt";
+        if(a){ if(cfg.mode==="exam"){if(a.k===k)cls+=" picked"} else {if(o.ok)cls+=" good";else if(a.k===k)cls+=" wrong"} }
+        return `<button class="${cls}" type="button" data-k="${k}"${a&&cfg.mode!=="exam"?" disabled":""}><span class="k">${LETTERS[k]}</span><span>${esc(o.t)}</span></button>`}).join("")}</div>
+      ${a&&cfg.mode!=="exam"?`<div class="fb ${a.ok?"ok":"ko"}"><b>${a.ok?"Bonne réponse.":"Pas tout à fait."}</b>${esc(q.ex)}</div>`:""}
+      <div class="row" style="margin-top:14px">
+        ${cfg.mode==="exam"?`<button class="btn primary" type="button" data-nav="next"${a?"":" disabled"}>${i+1<qs.length?"Valider et continuer":"Terminer l'examen"}</button><button class="btn" type="button" data-nav="stop">Arrêter et voir le résultat</button>`
+          :`${a?`<button class="btn primary" type="button" data-nav="next">${i+1<qs.length?"Question suivante":"Voir mon score"}</button>`:""}`}
+      </div>`;
+  }
+  el.addEventListener("click",e=>{
+    const o=e.target.closest(".opt");
+    if(o&&!o.disabled&&i<qs.length){const k=+o.dataset.k;if(cfg.mode!=="exam"&&ans[i])return;ans[i]={k,ok:qs[i].opts[k].ok};render();return}
+    const n=e.target.closest("[data-nav]");if(!n||n.disabled)return;
+    if(n.dataset.nav==="next"){i++;render()}
+    else if(n.dataset.nav==="stop")finish(false);
+    else if(n.dataset.nav==="again")start();
+    else if(n.dataset.nav==="errors"){const wrong=qs.filter((q,k)=>!ans[k]||!ans[k].ok).map(q=>({q:q.q,ex:q.ex,d:q.d,opts:q.opts.map(o=>o.t),a:q.opts.findIndex(o=>o.ok)}));start(wrong)}
+  });
+  function finish(timeout){
+    clearInterval(timer);
+    const total=qs.length,good=qs.filter((q,k)=>ans[k]&&ans[k].ok).length,pct=Math.round(good/total*100);
+    const per={};qs.forEach((q,k)=>{if(!q.d)return;per[q.d]=per[q.d]||[0,0];per[q.d][1]++;if(ans[k]&&ans[k].ok)per[q.d][0]++});
+    if(cfg.onDone)cfg.onDone({pct,good,total,per});
+    const wrong=qs.map((q,k)=>({q,a:ans[k]})).filter(x=>!x.a||!x.a.ok);
+    el.innerHTML=`<div class="qz-end">
+      ${timeout?`<p class="note">Temps écoulé : les questions sans réponse comptent comme fausses.</p>`:""}
+      <div class="score">${pct} %<small> · ${good} / ${total} bonnes réponses</small></div>
+      <p style="margin:0">${pct>=80?"Excellent niveau : vous êtes prêt sur ce périmètre.":pct>=70?"Bon niveau, proche du seuil de réussite. Revoyez les erreurs ci-dessous.":"Niveau à consolider : relisez les concepts et les fiches, puis recommencez."}</p>
+      ${Object.keys(per).length>1?`<div class="tblw"><table><thead><tr><th>Domaine</th><th>Score</th></tr></thead><tbody>${Object.keys(per).sort().map(d=>`<tr><td>${d}</td><td>${per[d][0]} / ${per[d][1]} (${Math.round(per[d][0]/per[d][1]*100)} %)</td></tr>`).join("")}</tbody></table></div>`:""}
+      <div class="row"><button class="btn primary" type="button" data-nav="again">Recommencer</button>${wrong.length?`<button class="btn" type="button" data-nav="errors">Refaire seulement mes ${wrong.length} erreur${wrong.length>1?"s":""}</button>`:""}</div>
+      ${wrong.length?`<h3 style="font-size:17px;margin-top:6px">Correction des erreurs</h3><div class="review">${wrong.map(x=>`<div><p style="margin:0 0 4px;font-weight:600">${esc(x.q.q)}</p><p style="margin:0">Bonne réponse : <strong>${esc(x.q.opts.find(o=>o.ok).t)}</strong>${x.a?` · votre réponse : <b>${esc(x.q.opts[x.a.k].t)}</b>`:" · sans réponse"}</p><p style="margin:4px 0 0;color:var(--muted)">${esc(x.q.ex)}</p></div>`).join("")}</div>`:""}
+    </div>`;
+  }
+  return {start};
+}
+</script>
+<script>const GD={"code": "D2", "num": 2, "name": "Sécurité des actifs", "en": "Asset Security", "pitch": "Savoir ce que l'on possède, ce que cela vaut, qui en décide, comment le manipuler et comment s'en défaire proprement : la donnée de sa création à sa destruction.", "themes": ["Inventaire des actifs", "Classification et catégorisation", "Rôles autour des données", "Manipulation et marquage", "Cycle de vie de la donnée", "États et protection des données", "Rémanence et destruction", "Conservation et fin de vie", "Vie privée et minimisation", "Contrôles et conformité des données"], "items": [[1, "Inventaire des actifs", "Asset inventory", "Liste à jour des matériels, logiciels, données et services, avec leur propriétaire et leur valeur.", "Inventaire automatique des postes et serveurs par l'outil de gestion de parc.", "Un inventaire figé devient faux en quelques semaines.", "Le berger compte ses moutons chaque soir.", "On ne protège pas ce qu'on ne connaît pas : première étape.", "D2 · D7"], [1, "Base de gestion des configurations", "Configuration management database (CMDB)", "Référentiel des éléments de configuration et de leurs relations.", "Voir quelles applications dépendent d'un serveur avant de l'arrêter.", "Sa valeur dépend de sa fiabilité.", "La carte doit ressembler au terrain.", "Utile pour l'analyse d'impact des changements.", "D2 · D7"], [1, "Actif matériel", "Hardware asset", "Équipement physique : postes, serveurs, équipements réseau, supports, objets connectés.", "Un portable de direction avec données sensibles.", "Le matériel porte souvent des données invisibles.", "Ce qui se touche se perd aussi.", "Suivre jusqu'à la sortie du parc.", "D2"], [1, "Actif logiciel", "Software asset", "Applications, systèmes d'exploitation, bibliothèques, licences.", "Inventaire des versions pour savoir qui est vulnérable.", "Les composants embarqués comptent aussi (SBOM).", "Connais ce que tu exécutes.", "Logiciel non inventorié = logiciel non corrigé.", "D2 · D8"], [1, "Actif informationnel", "Information asset", "Données et connaissances ayant de la valeur : bases, documents, savoir-faire.", "Fichier clients, plans d'ingénierie.", "C'est souvent l'actif le plus précieux et le moins inventorié.", "Une information n'a pas de forme : elle a une valeur.", "Chaque actif informationnel a un propriétaire.", "D2"], [1, "Informatique fantôme", "Shadow IT", "Outils ou services utilisés sans validation de l'informatique ou de la sécurité.", "Équipe qui partage des fichiers clients via un service cloud personnel.", "Souvent signe d'un besoin non satisfait.", "La porte fermée invite à passer par la fenêtre.", "Détection par CASB et analyse des flux.", "D2 · D1"], [1, "Courtier de sécurité d'accès cloud", "Cloud access security broker (CASB)", "Solution placée entre utilisateurs et services cloud pour découvrir, contrôler et protéger leur usage.", "Découvrir les SaaS utilisés et bloquer le partage de documents confidentiels.", "Il ne remplace pas la classification des données.", "Voir avant de contrôler.", "Fonctions : visibilité, conformité, sécurité des données, protection contre les menaces.", "D2 · D4"], [1, "Découverte des données", "Data discovery", "Recherche automatisée des données sensibles là où elles se trouvent.", "Scanner les partages réseau à la recherche de numéros de cartes.", "On trouve toujours des données là où on ne les attendait pas.", "Ce qui est caché finit par fuir.", "Préalable au DLP et à la minimisation.", "D2"], [1, "Étiquetage physique des actifs", "Asset tagging", "Marquage d'un actif physique (code-barres, RFID) pour le suivre.", "Étiquette RFID sur chaque serveur du datacenter.", "L'étiquette suit l'objet, pas les données qu'il contient.", "Ce qui est nommé est retrouvé.", "Facilite inventaires et audits physiques.", "D2"], [1, "Gestion du cycle de vie des actifs", "IT asset management (ITAM)", "Gestion d'un actif de l'achat à la mise au rebut : acquisition, déploiement, maintenance, retrait.", "Processus de sortie qui impose l'effacement certifié.", "La fin de vie est la phase la plus risquée.", "Ce qui naît sous contrôle doit mourir sous contrôle.", "Lien direct avec la gestion de configuration.", "D2 · D7"], [2, "Classification", "Data classification", "Attribution d'un niveau de sensibilité à une information selon l'impact de sa divulgation ; elle pilote les contrôles.", "Le fichier de paie classé « Confidentiel ».", "C'est le propriétaire qui classe, pas l'informatique.", "On ne range pas l'or avec le sable.", "Trois à cinq niveaux suffisent.", "D2"], [2, "Catégorisation", "Security categorization (FIPS 199)", "Évaluation de l'impact (faible, modéré, élevé) sur la confidentialité, l'intégrité et la disponibilité d'un système.", "Système de paie : C élevé, I élevé, D modéré.", "Catégoriser sert à choisir la baseline de contrôles.", "Mesurer l'enjeu avant de choisir l'armure.", "Étape Categorize du RMF ; règle du niveau le plus haut (high water mark).", "D2 · D1"], [2, "Schéma gouvernemental", "Government classification scheme", "Niveaux militaires américains : Top Secret, Secret, Confidential, Unclassified.", "Documents de défense classés « Secret ».", "Fondé sur l'atteinte à la sécurité nationale.", "Plus le secret est grand, plus le cercle est petit.", "Ordre décroissant : TS > S > C > U.", "D2"], [2, "Schéma commercial", "Commercial classification scheme", "Niveaux d'entreprise typiques : Confidentiel (ou propriétaire), Privé, Sensible, Public.", "Plans stratégiques « Confidentiel », annuaire interne « Privé ».", "Les noms varient selon les organisations.", "Chaque maison choisit ses tiroirs.", "Confidentiel = le plus élevé côté entreprise.", "D2"], [2, "Très secret", "Top Secret", "Niveau dont la divulgation causerait un dommage exceptionnellement grave à la sécurité nationale.", "Plans d'opérations militaires.", "Accès sur habilitation ET besoin d'en connaître.", "Certains secrets ne se partagent jamais.", "Plus haut niveau du schéma américain.", "D2"], [2, "Secret", "Secret", "Niveau dont la divulgation causerait un dommage grave.", "Rapports de renseignement.", "Différent de « confidentiel » en intensité du dommage.", "Le poids du secret fait la force de la serrure.", "Dommage grave (serious damage).", "D2"], [2, "Confidentiel (gouvernement)", "Confidential", "Niveau dont la divulgation causerait un dommage (sans qualificatif) à la sécurité nationale.", "Données techniques de défense non critiques.", "Plus bas niveau classifié du schéma gouvernemental.", "Même petit, un secret reste un secret.", "Damage (C) < serious damage (S) < exceptionally grave damage (TS).", "D2"], [2, "Information sensible non classifiée", "Controlled Unclassified Information (CUI)", "Information non classifiée mais exigeant une protection (données personnelles, techniques).", "Données personnelles des agents d'un ministère.", "Non classifié ne veut pas dire public.", "Ce qui n'est pas secret n'est pas pour autant à tous.", "Remplace l'ancien « Sensitive But Unclassified ».", "D2"], [2, "Déclassification", "Declassification / Reclassification", "Abaissement du niveau de classification quand la sensibilité diminue avec le temps.", "Résultats financiers confidentiels devenus publics après publication.", "Garder un niveau trop haut coûte cher inutilement.", "Le temps change la valeur des choses.", "Seul le propriétaire décide d'un changement de niveau.", "D2"], [2, "Critères de classification", "Classification criteria", "Facteurs qui fixent le niveau : valeur, âge, durée de vie utile, impact de divulgation, exigences légales, sensibilité personnelle.", "Un plan produit perd sa sensibilité après le lancement.", "Les critères doivent être documentés dans la politique.", "On juge sur des règles, pas sur l'humeur.", "Valeur, âge, utilité, loi, impact.", "D2"], [3, "Propriétaire des données", "Data owner", "Responsable métier qui classe les données, autorise les accès et assume le risque.", "Le directeur financier pour les données comptables.", "Il délègue l'exécution, pas la responsabilité.", "Le maître décide, le gardien garde.", "Réponse à « qui classe ? » : le propriétaire.", "D2 · D1"], [3, "Propriétaire du système", "System owner", "Responsable d'un système qui traite les données, chargé que les contrôles y soient appliqués.", "Le responsable de l'application de paie.", "Il peut être différent du propriétaire des données.", "Le maître de la maison répond de ses portes.", "Il veille à la conformité du système aux exigences du propriétaire des données.", "D2"], [3, "Propriétaire de la mission", "Business / mission owner", "Responsable d'un processus métier qui s'appuie sur des systèmes et des données.", "Le directeur commercial pour le processus de vente.", "Il arbitre entre exigences métier et sécurité.", "Le but éclaire le moyen.", "Souvent la même personne que le propriétaire des données.", "D2"], [3, "Dépositaire", "Data custodian", "Personne ou équipe qui protège les données au quotidien selon les règles du propriétaire.", "L'équipe d'exploitation qui sauvegarde et restaure.", "Il exécute, il ne décide pas des accès.", "Le gardien garde, il ne dispose pas.", "Mnémo : Owner Ordonne, Custodian Conserve.", "D2"], [3, "Intendant des données", "Data steward", "Responsable de la qualité, de la cohérence et du bon usage des données.", "Un data manager qui veille aux définitions communes.", "Rôle de gouvernance, pas de sécurité technique.", "Une donnée juste est une donnée utile.", "Lié à la gouvernance des données.", "D2"], [3, "Responsable de traitement", "Data controller", "Entité qui détermine les finalités et les moyens d'un traitement de données personnelles.", "L'entreprise qui collecte les données de ses clients.", "Il reste responsable même s'il sous-traite.", "On peut sous-traiter la tâche, pas la responsabilité.", "Vocabulaire de la protection des données (RGPD, loi 2013-450).", "D2 · D1"], [3, "Sous-traitant", "Data processor", "Entité qui traite des données personnelles pour le compte du responsable de traitement.", "Le prestataire de paie, l'hébergeur cloud.", "Il a ses propres obligations de sécurité.", "Celui qui porte le colis répond de son soin.", "Encadré par un contrat qui fixe ses obligations.", "D2 · D1"], [3, "Délégué à la protection des données", "Data protection officer (DPO)", "Personne qui conseille et contrôle la conformité des traitements de données personnelles.", "Le DPO valide une analyse d'impact avant un nouveau traitement.", "Il doit être indépendant et ne pas décider des traitements.", "Le conseiller ne doit pas être juge et partie.", "Obligatoire dans certains cas (RGPD).", "D2 · D1"], [3, "Utilisateur", "User", "Personne qui accède aux données pour son travail et doit respecter les règles d'usage.", "Un employé qui consulte le CRM.", "Il est souvent la première ligne de défense.", "Chacun garde la porte qu'il ouvre.", "Il signe la politique d'usage acceptable.", "D2 · D5"], [3, "Administrateur", "Administrator", "Personne qui gère les droits techniques et la configuration des systèmes.", "Administrateur de base de données qui crée les comptes.", "Ses droits élevés exigent surveillance et séparation des tâches.", "Le pouvoir se prête, il ne se donne pas.", "Ne doit pas décider seul des droits d'accès métier.", "D2 · D5"], [4, "Marquage", "Marking", "Indication visible de la classification sur un document ou un support, lisible par l'humain.", "En-tête « CONFIDENTIEL » sur chaque page.", "Un marquage absent laisse l'utilisateur deviner.", "Ce qui n'est pas nommé n'est pas protégé.", "Marking = humain ; labeling = machine.", "D2"], [4, "Étiquetage", "Labeling", "Métadonnée de classification attachée au fichier, exploitable par les outils.", "Étiquette lue par le DLP pour bloquer l'envoi externe.", "Elle doit suivre le fichier lors des copies.", "La machine protège ce qu'elle reconnaît.", "Fondement de l'automatisation de la protection.", "D2"], [4, "Manipulation des informations", "Information handling", "Règles de traitement selon la classification : copie, impression, envoi, stockage, destruction.", "Interdiction d'imprimer les documents « Secret » hors zone protégée.", "Les règles doivent être simples pour être suivies.", "À chaque niveau, ses gestes.", "Une matrice classification × actions est un outil efficace.", "D2"], [4, "Stockage sécurisé", "Secure storage", "Conservation des supports et données dans des conditions adaptées : coffres, salles protégées, chiffrement.", "Sauvegardes chiffrées dans un coffre ignifugé hors site.", "Le stockage hors site doit avoir le même niveau de protection.", "Un trésor se protège aussi au repos.", "Penser aussi à l'environnement : chaleur, humidité, incendie.", "D2 · D7"], [4, "Transport des supports", "Media transport", "Déplacement des supports avec protection, traçabilité et personnel de confiance.", "Sauvegardes transportées chiffrées par un transporteur sous contrat.", "Le transport est un moment de grande exposition.", "Ce qui voyage nu se fait voler en chemin.", "Chiffrer et tracer chaque remise.", "D2 · D7"], [4, "Gestion des supports", "Media management", "Contrôle des supports amovibles et de stockage tout au long de leur vie.", "Clés USB professionnelles chiffrées et inventoriées.", "Le contrôle des ports USB doit prévoir des exceptions.", "Ce qui sort sans contrôle revient en scandale.", "Inclut étiquetage, stockage, transport, destruction.", "D2 · D7"], [4, "Chaîne de possession des supports", "Media chain of custody", "Traçabilité de qui détient un support à chaque instant.", "Registre signé à chaque remise de bandes de sauvegarde.", "Indispensable pour les supports sensibles et les preuves.", "Ce qui n'est pas tracé n'a pas existé.", "Même logique que pour les preuves numériques.", "D2 · D7"], [4, "Bureau propre", "Clean desk policy", "Aucun document sensible laissé sur le bureau, écran verrouillé en cas d'absence.", "Documents rangés sous clé le soir.", "Simple à dire, difficile à faire respecter sans contrôle.", "Ce qui traîne se ramasse.", "Contrôle administratif complété par des rondes.", "D2"], [4, "Habilitation", "Security clearance", "Autorisation donnée à une personne d'accéder à un niveau de classification, après enquête.", "Agent habilité « Secret ».", "L'habilitation ne suffit pas : il faut le besoin d'en connaître.", "La clé ne donne pas le droit d'ouvrir toutes les portes.", "Habilitation + need to know = accès (modèle MAC).", "D2 · D5"], [4, "Mise à disposition sécurisée", "Secure provisioning", "Fournir les actifs aux utilisateurs dans une configuration sûre et tracée.", "Ordinateur remis chiffré, durci et inscrit à l'inventaire.", "La sécurité commence au premier jour de l'actif.", "Bien commencer, c'est déjà protéger.", "Objectif 2.3 du domaine.", "D2"], [5, "Création des données", "Data creation / collection", "Phase où la donnée naît ou est collectée ; on la classe dès ce moment.", "Classification automatique d'un document selon son contenu.", "Classer tard coûte plus cher.", "La donnée bien née vit mieux.", "Collecter seulement le nécessaire (minimisation).", "D2"], [5, "Stockage des données", "Data storage", "Conservation des données sur des supports ou services adaptés à leur classification.", "Base clients chiffrée dans un datacenter certifié.", "La localisation du stockage a des conséquences juridiques.", "Où dort la donnée, là veille la loi.", "Contrôles : chiffrement, accès, sauvegardes.", "D2"], [5, "Utilisation des données", "Data use", "Phase où la donnée est traitée ; elle est alors souvent en clair.", "Calcul de la paie en mémoire.", "Phase la plus difficile à protéger.", "Ce qui est utilisé est exposé.", "Moindre privilège et journalisation des accès.", "D2"], [5, "Partage des données", "Data sharing", "Communication des données à d'autres personnes ou organisations.", "Envoi de données à un sous-traitant via un canal chiffré.", "Partager, c'est étendre sa surface de risque.", "Le secret partagé se garde à deux.", "Contrats, chiffrement et IRM encadrent le partage.", "D2"], [5, "Archivage", "Data archiving", "Conservation à long terme de données peu utilisées, pour obligations légales ou historiques.", "Archives comptables conservées 10 ans.", "Les archives restent soumises à protection et rétention.", "Ce qui dort doit aussi être gardé.", "Phase souvent oubliée des contrôles.", "D2"], [5, "Destruction", "Data destruction", "Fin de vie de la donnée, par une méthode adaptée au support et à la classification.", "Effacement cryptographique d'une base retirée.", "Supprimer un fichier ne le détruit pas.", "La donnée naît, vit et doit mourir proprement.", "Doit être vérifiable et documentée.", "D2"], [5, "Gouvernance des données", "Data governance", "Cadre de rôles, politiques et processus qui garantit la qualité, la sécurité et le bon usage des données.", "Comité data définissant propriétaires et règles.", "La sécurité des données en est une composante.", "Ce qui n'est gouverné est gaspillé.", "Elle désigne owners et stewards.", "D2"], [5, "Qualité des données", "Data quality", "Exactitude, complétude, cohérence et actualité des données.", "Doublons clients supprimés pour fiabiliser la facturation.", "Une mauvaise qualité est un risque d'intégrité.", "Une donnée fausse est plus dangereuse qu'une donnée absente.", "Liée au principe d'exactitude des données personnelles.", "D2"], [5, "Traçabilité des données", "Data lineage", "Connaissance de l'origine d'une donnée et de ses transformations successives.", "Savoir de quelle source vient un chiffre du rapport réglementaire.", "Indispensable pour l'audit et l'IA.", "Qui connaît la source comprend la rivière.", "Aide à évaluer l'impact d'une fuite.", "D2"], [5, "Localisation des données", "Data localization / sovereignty", "Obligation ou choix de conserver les données dans un pays donné.", "Données bancaires hébergées dans le pays d'origine.", "La souveraineté dépend aussi de la nationalité du fournisseur.", "Les données voyagent avec leurs lois.", "Vérifier avant toute migration cloud.", "D2 · D1"], [6, "Données au repos", "Data at rest", "Données stockées sur un support : disque, base, sauvegarde.", "Chiffrement des bases de données et des sauvegardes.", "Le chiffrement au repos ne protège pas d'un utilisateur autorisé malveillant.", "Un trésor se protège au coffre.", "Contrôles : chiffrement, accès, intégrité.", "D2"], [6, "Données en transit", "Data in transit / in motion", "Données qui circulent sur un réseau.", "TLS pour le web, IPsec entre sites.", "Le chiffrement cache aussi les attaques aux outils d'inspection.", "Ce qui voyage nu se fait voler en chemin.", "Chiffrer tout transit de données sensibles.", "D2 · D4"], [6, "Données en usage", "Data in use", "Données en cours de traitement, en mémoire ou à l'écran.", "Données déchiffrées pendant un calcul.", "État le plus difficile à protéger.", "Ce qui est utilisé est exposé.", "Contrôles : accès, informatique confidentielle, verrouillage d'écran.", "D2"], [6, "Chiffrement de disque complet", "Full disk encryption (FDE)", "Chiffrement de l'intégralité d'un disque, souvent lié au TPM.", "BitLocker sur tous les portables.", "Protège contre le vol éteint, pas contre un poste allumé compromis.", "Le vol devient une simple perte de matériel.", "Typiquement exigé pour les terminaux mobiles.", "D2 · D3"], [6, "Chiffrement de bout en bout", "End-to-end encryption (E2EE)", "Les données sont chiffrées de l'émetteur au destinataire sans être déchiffrées en chemin.", "Messagerie chiffrée de bout en bout.", "Les intermédiaires ne voient que les métadonnées.", "Seuls les deux bouts connaissent le secret.", "À distinguer du chiffrement de lien.", "D2 · D4"], [6, "Chiffrement de lien", "Link encryption", "Chiffrement sur chaque liaison, avec déchiffrement à chaque nœud intermédiaire.", "Chiffrement d'une liaison satellite entre deux sites.", "Il protège aussi les en-têtes, mais les nœuds voient le contenu en clair.", "Chaque relais devient un gardien à surveiller.", "Lien = en-têtes chiffrés ; bout en bout = en-têtes en clair.", "D2 · D4"], [6, "Informatique confidentielle", "Confidential computing / TEE", "Traitement des données dans une enclave matérielle protégée, même vis-à-vis de l'hôte.", "Analyse de données sensibles dans une enclave cloud.", "Technologie récente aux garanties dépendantes du matériel.", "Le secret travaille à l'abri des regards.", "Vise à protéger les données en usage.", "D2 · D3"], [6, "DLP réseau", "Network DLP", "Analyse du trafic sortant pour détecter et bloquer les données sensibles.", "Blocage d'un fichier de cartes bancaires envoyé par webmail.", "Aveugle au trafic chiffré sans inspection TLS.", "Le filet ne sert que s'il a la bonne maille.", "Placé en sortie de réseau.", "D2 · D4"], [6, "DLP sur terminal", "Endpoint DLP", "Agent sur le poste qui contrôle copies USB, impressions, captures et téléversements.", "Blocage de la copie de fichiers « Confidentiel » sur clé USB.", "Plus intrusif mais voit ce que le réseau ne voit pas.", "Garder la porte de chaque pièce.", "Complémentaire du DLP réseau.", "D2"], [6, "Gestion des droits numériques", "Digital / Information rights management (DRM / IRM)", "Protection attachée au fichier : lecture seule, pas d'impression, expiration, révocation.", "Rapport du conseil lisible uniquement par ses membres.", "Contournable par photo d'écran.", "La clé suit le document.", "Protège la donnée hors du périmètre.", "D2"], [7, "Rémanence des données", "Data remanence", "Données résiduelles qui subsistent après suppression ou formatage.", "Un disque revendu contenant encore des fichiers RH.", "Supprimer ou formater n'efface pas réellement.", "Ce qui est écrit peut être relu.", "Raison d'être des méthodes de destruction.", "D2"], [7, "Effacement", "Clearing", "Suppression qui résiste aux outils de récupération courants, souvent par réécriture.", "Réécriture d'un disque avant réaffectation en interne.", "Ne résiste pas à un laboratoire.", "Le premier niveau ne suffit pas toujours.", "Adapté à une réutilisation dans le même niveau de sécurité.", "D2"], [7, "Purge", "Purging", "Suppression qui résiste même aux techniques de laboratoire.", "Dégaussage d'une bande, effacement sécurisé d'un SSD.", "Permet la réutilisation dans un environnement moins sûr.", "Nettoyer en profondeur avant de céder.", "Clear < Purge < Destroy.", "D2"], [7, "Destruction physique", "Destruction", "Destruction du support rendant toute récupération impossible.", "Broyage, désintégration, incinération, pulvérisation.", "Seule garantie absolue, mais aucun réemploi possible.", "Ce qui n'existe plus ne fuit plus.", "Recommandée pour les supports les plus sensibles.", "D2"], [7, "Dégaussage", "Degaussing", "Effacement d'un support magnétique par un champ magnétique puissant.", "Dégausser des bandes de sauvegarde.", "Inefficace sur SSD, flash et supports optiques ; rend souvent le disque dur inutilisable.", "Chaque support a son poison.", "Piège classique : jamais pour un SSD.", "D2"], [7, "Réécriture", "Overwriting", "Écriture de données aléatoires ou fixes sur tout le support.", "Réécriture d'un disque dur avec des zéros.", "Peu fiable sur SSD à cause des zones inaccessibles.", "Recouvrir n'est pas toujours effacer.", "Méthode de clearing pour supports magnétiques.", "D2"], [7, "Effacement cryptographique", "Crypto-shredding / cryptographic erasure", "Destruction des clés de chiffrement rendant les données chiffrées illisibles.", "Suppression de la clé d'un volume cloud chiffré.", "Suppose que les données aient toujours été chiffrées.", "Sans la clé, le coffre devient une pierre.", "Méthode privilégiée dans le cloud et sur SSD.", "D2 · D3"], [7, "Répartition de l'usure", "Wear leveling", "Mécanisme des SSD qui répartit les écritures sur des cellules différentes, laissant des copies inaccessibles.", "Une réécriture ne touche pas les cellules réservées.", "Explique pourquoi la réécriture n'est pas fiable sur SSD.", "Ce que l'on ne voit pas reste là.", "SSD : effacement crypto, effacement sécurisé ou destruction.", "D2"], [7, "Effacement sécurisé intégré", "ATA Secure Erase", "Commande intégrée aux disques qui efface toutes les cellules, y compris réservées.", "Effacement d'un SSD avant revente.", "Son efficacité dépend de l'implémentation du fabricant.", "Faire confiance, puis vérifier.", "Méthode de purge pour SSD.", "D2"], [7, "Certificat de destruction", "Certificate of destruction", "Preuve écrite qu'un support a été détruit selon une méthode donnée.", "Certificat remis par le prestataire de broyage.", "Il doit identifier chaque support détruit.", "La preuve protège celui qui l'a.", "Exigé lors d'audits et pour la conformité.", "D2"], [8, "Politique de conservation", "Retention policy", "Règles fixant combien de temps conserver chaque type de données, selon la loi et le besoin métier.", "Pièces comptables : 10 ans ; CV non retenus : 2 ans.", "Garder trop longtemps augmente le risque et le coût.", "Ce qu'on ne garde pas ne peut pas fuir.", "Elle doit prévoir la destruction en fin de durée.", "D2"], [8, "Gel juridique", "Legal hold / litigation hold", "Suspension de la destruction des données liées à un litige ou une enquête.", "Conserver tous les mails d'un projet contesté.", "Il prime sur la politique de conservation.", "Détruire une preuve, c'est perdre le procès.", "Déclenché par le service juridique.", "D2 · D1"], [8, "Archivage légal", "Records management", "Gestion des documents à valeur probante pendant leur durée légale.", "Archives des contrats signés.", "L'intégrité des archives doit être garantie.", "Ce qui fait foi doit rester intact.", "Lien avec l'eDiscovery.", "D2"], [8, "Fin de vie", "End of life (EOL)", "Produit qui n'est plus vendu ni développé par le fabricant.", "Modèle de routeur retiré du catalogue.", "Le support peut encore durer un moment.", "Tout produit a une fin.", "EOL précède généralement l'EOS.", "D2"], [8, "Fin de support", "End of support (EOS)", "Produit qui ne reçoit plus de correctifs de sécurité.", "Système d'exploitation sans mise à jour.", "Chaque nouvelle faille reste ouverte définitivement.", "Un toit qu'on ne répare plus finit par fuir.", "Remplacer ou isoler avec contrôles compensatoires.", "D2 · D7"], [8, "Décommissionnement", "Decommissioning", "Retrait contrôlé d'un système : migration, archivage, suppression des accès, assainissement.", "Arrêt d'une ancienne application après migration.", "Les accès et règles réseau oubliés restent des portes ouvertes.", "On éteint la lumière en quittant la pièce.", "Supprimer comptes, certificats et règles de pare-feu associés.", "D2 · D7"], [8, "Mise au rebut des actifs", "Asset disposal", "Sortie définitive du matériel : revente, don, recyclage ou destruction, après assainissement.", "Ordinateurs donnés à une école après effacement certifié.", "La revente est le moment des fuites.", "Avant de donner, on vide les poches.", "Toujours assainir avant de céder.", "D2"], [8, "Obsolescence des formats", "Format obsolescence", "Risque de ne plus pouvoir lire des données archivées faute de logiciel ou de matériel.", "Bandes d'un format abandonné sans lecteur disponible.", "La conservation implique de pouvoir relire.", "Garder sans pouvoir lire, c'est perdre.", "Migrer les archives vers des formats pérennes.", "D2"], [8, "Durée de vie utile", "Useful life", "Période pendant laquelle une donnée ou un actif conserve sa valeur.", "Une offre commerciale perd sa valeur après l'appel d'offres.", "Critère pour déclasser ou détruire.", "Le temps change la valeur des choses.", "Critère de classification et de rétention.", "D2"], [8, "Retrait programmé", "Sunset plan", "Plan anticipé de fin d'un service ou produit avec échéances.", "Retrait d'une ancienne API annoncé un an à l'avance.", "Anticiper évite les retraits dans l'urgence.", "Préparer la sortie dès l'entrée.", "Lié à la fin de vie du cycle SDLC.", "D2 · D8"], [9, "Minimisation des données", "Data minimization", "Collecter et conserver uniquement les données nécessaires à la finalité.", "Ne pas demander la date de naissance si elle est inutile.", "Peut entrer en tension avec l'analyse ou la lutte antifraude.", "Moins on porte, moins on perd.", "Principe clé de la protection des données.", "D2 · D1"], [9, "Limitation des finalités", "Purpose limitation", "Les données ne sont utilisées que pour la finalité annoncée lors de la collecte.", "Ne pas utiliser les données de livraison pour du marketing sans consentement.", "Un nouvel usage peut exiger une nouvelle base légale.", "La promesse faite à la collecte engage.", "Principe de la loi 2013-450 et du RGPD.", "D2 · D1"], [9, "Pseudonymisation", "Pseudonymization", "Remplacement des identifiants directs par un alias, réversible avec une information séparée.", "Patients identifiés par un code dans une étude.", "Les données restent personnelles.", "Un masque n'est pas un nouveau visage.", "Réduit le risque, ne supprime pas les obligations.", "D2"], [9, "Anonymisation", "Anonymization", "Transformation irréversible empêchant toute réidentification.", "Statistiques agrégées par région.", "Difficile à garantir réellement : le croisement peut réidentifier.", "Ce qui est vraiment effacé ne revient pas.", "Données réellement anonymes = hors champ des lois sur les données personnelles.", "D2"], [9, "Tokenisation", "Tokenization", "Remplacement d'une donnée sensible par un jeton sans lien mathématique, la correspondance étant dans un coffre.", "Numéro de carte remplacé par un jeton dans le système de caisse.", "Le coffre à jetons devient l'actif critique.", "Le leurre circule, le trésor reste au coffre.", "Réduit fortement le périmètre PCI DSS.", "D2"], [9, "Masquage des données", "Data masking", "Remplacement partiel ou total de données par des valeurs fictives réalistes.", "Base de test avec noms et numéros fictifs.", "Le masquage statique protège les copies ; le dynamique masque à l'affichage.", "On répète la pièce avec des figurants.", "Solution pour les environnements de test.", "D2 · D8"], [9, "Consentement", "Consent", "Accord libre, spécifique, éclairé et univoque d'une personne au traitement de ses données.", "Case non précochée pour recevoir des offres.", "Ce n'est qu'une des bases légales possibles.", "Le oui obtenu par ruse ne vaut rien.", "Doit pouvoir être retiré aussi facilement qu'il est donné.", "D2 · D1"], [9, "Droits des personnes", "Data subject rights", "Droits d'accès, de rectification, d'effacement, d'opposition et de portabilité sur ses données.", "Un client demande la copie de ses données.", "Les délais de réponse sont encadrés par la loi.", "La donnée appartient d'abord à la personne.", "Il faut des processus pour y répondre.", "D2 · D1"], [9, "Analyse d'impact sur la vie privée", "Privacy impact assessment (PIA / DPIA)", "Évaluation des risques d'un traitement pour les droits des personnes, avant sa mise en œuvre.", "Analyse avant un projet de vidéosurveillance intelligente.", "Obligatoire pour les traitements à haut risque (RGPD).", "Mesurer avant de collecter.", "Associée à privacy by design.", "D2 · D1"], [9, "Réidentification", "Re-identification", "Retrouver l'identité d'une personne en croisant des données supposées anonymes.", "Âge, commune et date d'hospitalisation suffisent à identifier un patient.", "Les quasi-identifiants combinés sont le vrai risque.", "Plusieurs indices font une preuve.", "Contre-mesures : agrégation, généralisation, k-anonymat.", "D2"], [10, "Baseline de contrôles", "Security baseline", "Ensemble minimal de contrôles appliqué à une catégorie de systèmes.", "Baseline modérée de NIST SP 800-53.", "Point de départ, pas point d'arrivée.", "Le socle avant les étages.", "Choisie selon la catégorisation.", "D2 · D1"], [10, "Délimitation", "Scoping", "Sélection des contrôles de la baseline qui s'appliquent réellement au système.", "Exclure les contrôles Wi-Fi d'un site sans Wi-Fi.", "Toute exclusion doit être justifiée.", "Ne pas porter un manteau en plein soleil.", "Scoping = sélectionner.", "D2"], [10, "Adaptation", "Tailoring", "Ajustement des contrôles retenus aux spécificités de l'organisation.", "Adapter la fréquence de revue des accès à la taille de l'équipe.", "L'adaptation ne doit pas affaiblir l'objectif du contrôle.", "Le costume se coupe à la taille.", "Tailoring = ajuster.", "D2"], [10, "Choix des normes", "Standards selection", "Sélection des référentiels applicables aux données selon le secteur et la réglementation.", "PCI DSS pour les cartes, ISO 27001 pour le SMSI.", "Plusieurs normes peuvent s'appliquer en même temps.", "Choisir sa carte avant de partir.", "Objectif 2.6 du domaine.", "D2 · D1"], [10, "Données de santé protégées", "Protected health information (PHI)", "Données de santé identifiantes soumises à une protection renforcée (ex. HIPAA aux États-Unis).", "Dossier médical électronique d'un patient.", "Catégorie sensible dans presque toutes les lois.", "La santé d'autrui se garde comme la sienne.", "HIPAA = loi américaine sur les données de santé.", "D2 · D1"], [10, "Données de titulaires de cartes", "Cardholder data (CHD)", "Numéro de carte et données associées protégés par PCI DSS.", "Numéro de carte, nom, date d'expiration.", "Le cryptogramme (CVV) ne doit jamais être stocké après autorisation.", "Moins on touche aux cartes, moins on porte de risque.", "Réduire le périmètre par tokenisation.", "D2 · D1"], [10, "Protection des sauvegardes", "Backup protection", "Les sauvegardes contiennent les données sensibles : chiffrement, contrôle d'accès, stockage hors site et immuable.", "Sauvegardes chiffrées et isolées du domaine Active Directory.", "Une sauvegarde volée est une fuite complète.", "Le double du trésor vaut le trésor.", "Même classification que les données d'origine.", "D2 · D7"], [10, "Clés et données", "Key management for data", "Gestion des clés qui protègent les données : génération, stockage, rotation, révocation, destruction.", "Clés de chiffrement des bases conservées dans un KMS.", "Perdre la clé, c'est perdre les données.", "Le coffre vaut ce que vaut sa clé.", "Séparer les clés des données qu'elles protègent.", "D2 · D3"], [10, "Contrôle d'accès aux données", "Data access control", "Règles qui limitent l'accès aux données selon le rôle, la classification et le besoin d'en connaître.", "Vue de base de données limitée aux champs nécessaires.", "L'accès doit être revu régulièrement.", "Juste assez, juste à temps.", "Appliquer le moindre privilège au niveau des données.", "D2 · D5"], [10, "Audit des accès aux données", "Data access auditing", "Journalisation et revue des accès aux données sensibles.", "Alerte sur l'export massif de la base clients.", "Sans revue, les journaux ne servent qu'après coup.", "Les traces racontent l'histoire, encore faut-il les lire.", "Soutient l'imputabilité et la détection des abus internes.", "D2 · D6"]]};</script>
+<script>(function(){
+const d=GD, K=d.code, kKey="gl-known-"+K, rKey="gl-rev-"+K;
+const C=d.items.map((x,i)=>({i,n:i+1,th:x[0],fr:x[1],en:x[2],def:x[3],ex:x[4],nu:x[5],sag:x[6],tip:x[7],dom:x[8]}));
+C.forEach(c=>c.hay=norm([c.fr,c.en,c.def,c.ex,c.nu,c.tip,c.dom].join(" ")));
+const known=new Set(store.get(kKey,[])), rev=new Set(store.get(rKey,[]));
+const open=new Set();
+const F={q:"",th:"",st:"all",view:"cards"};
+const save=()=>{store.set(kKey,[...known]);store.set(rKey,[...rev]);stats()};
+const pad=n=>String(n).padStart(3,"0");
+
+document.getElementById("app").innerHTML=`
+<section class="hero"><div class="wrap hero-in">
+  <div class="eyebrow">Glossaire 360 · Domaine ${d.num}${d.num===0?" · socle transverse":d.num<=8?" · CBK CISSP":" · bonus"}</div>
+  <h1><span class="code">${K}</span>${esc(d.name)}</h1>
+  <div class="en">${esc(d.en)}</div>
+  <p class="pitch">${esc(d.pitch)}</p>
+  <div class="stats">
+    <div class="stat"><b>${C.length}</b><span>concepts détaillés</span></div>
+    <div class="stat"><b id="s-k">0</b><span>concepts connus</span></div>
+    <div class="stat"><b id="s-r">0</b><span>à revoir</span></div>
+  </div>
+  <div class="meter" style="max-width:none;margin:4px 0 0"><i id="s-m"></i></div>
+</div></section>
+<main class="wrap">
+  <div class="gbar">
+    <input class="inp" id="q" type="search" placeholder="Chercher un terme, en français ou en anglais…" aria-label="Chercher">
+    <select class="sel" id="th" aria-label="Sous-thème"><option value="">Tous les sous-thèmes</option>${d.themes.map((t,k)=>`<option value="${k+1}">${k+1}. ${esc(t)}</option>`).join("")}</select>
+    <select class="sel" id="st" aria-label="Progression"><option value="all">Tous les concepts</option><option value="todo">Pas encore connus</option><option value="rev">À revoir</option><option value="known">Connus</option></select>
+    <div class="seg" role="group" aria-label="Affichage">
+      <button type="button" data-v="cards" aria-pressed="true">Fiches</button><button type="button" data-v="flash" aria-pressed="false">Flashcards</button><button type="button" data-v="az" aria-pressed="false">Liste A–Z</button><button type="button" data-v="test" aria-pressed="false">Auto-test</button>
+    </div>
+  </div>
+  <p class="gcount" id="cnt"></p>
+  <div id="view"></div>
+  <p class="foot">Votre progression est enregistrée dans ce navigateur. Les termes anglais entre parenthèses sont ceux de l'examen.</p>
+</main>`;
+
+function stats(){$("#s-k").textContent=known.size;$("#s-r").textContent=rev.size;$("#s-m").style.width=(known.size/C.length*100)+"%"}
+function list(){return C.filter(c=>(!F.q||F.q.split(/\s+/).every(w=>c.hay.includes(w)))&&(!F.th||String(c.th)===F.th)&&
+  (F.st==="all"||(F.st==="todo"&&!known.has(c.n))||(F.st==="rev"&&rev.has(c.n))||(F.st==="known"&&known.has(c.n))))}
+function card(c){const o=open.has(c.n);
+  return `<article class="gc${known.has(c.n)?" known":rev.has(c.n)?" rev":""}" id="c${c.n}" data-n="${c.n}">
+  <div class="gc-h"><span class="num">${pad(c.n)}</span><h3>${esc(c.fr)} <span class="enx">(${esc(c.en)})</span></h3>
+  <div class="gc-tags">${c.dom.split(" · ").map(x=>`<span class="tag">${x}</span>`).join("")}${known.has(c.n)?`<span class="tag ok">✓ connu</span>`:""}${rev.has(c.n)?`<span class="tag wa">↻ à revoir</span>`:""}</div></div>
+  <p class="def">${esc(c.def)}</p>
+  ${o?`<div class="gc-more">
+    <div class="blk"><h4>Exemple</h4><p>${esc(c.ex)}</p></div>
+    <div class="blk nu"><h4>Nuance</h4><p>${esc(c.nu)}</p></div>
+    <div class="blk tip"><h4>Tip examen</h4><p>${esc(c.tip)}</p></div>
+    <p class="sag">${esc(c.sag)}</p></div>`:""}
+  <div class="gc-acts"><button class="lnk" type="button" data-a="open">${o?"Masquer le détail":"Exemple, nuance, sagesse et tip"}</button>
+    <span style="flex:1"></span>
+    <button class="btn${known.has(c.n)?" primary":""}" type="button" data-a="known">${known.has(c.n)?"✓ Connu":"Je connais"}</button>
+    <button class="btn" type="button" data-a="rev">${rev.has(c.n)?"Retirer":"À revoir"}</button></div>
+</article>`}
+function mark(kind,n){if(kind==="known"){if(known.has(n))known.delete(n);else{known.add(n);rev.delete(n)}}else{if(rev.has(n))rev.delete(n);else{rev.add(n);known.delete(n)}}save()}
+
+let deck=[],pos=0,flip=false;
+function render(){
+  const L=list();
+  $("#cnt").innerHTML=`<b>${L.length}</b> concept${L.length>1?"s":""} sur ${C.length}`;
+  const v=$("#view");
+  if(F.view==="cards"){
+    if(!L.length){v.innerHTML=`<div class="empty">Aucun concept ne correspond.</div>`;return}
+    const by=new Map();L.forEach(c=>{if(!by.has(c.th))by.set(c.th,[]);by.get(c.th).push(c)});
+    v.innerHTML=[...by].map(([t,cs])=>`<h2 class="th-h"><span class="n">${String(t).padStart(2,"0")}</span>${esc(d.themes[t-1])} <small>${cs.length}</small></h2><div class="gcards">${cs.map(card).join("")}</div>`).join("");
+  } else if(F.view==="flash"){
+    deck=L.map(c=>c.n);if(pos>=deck.length)pos=0;flash();
+  } else if(F.view==="az"){
+    const s=L.slice().sort((a,b)=>a.fr.localeCompare(b.fr,"fr"));
+    const letters=[...new Set(s.map(c=>norm(c.fr)[0].toUpperCase()))];
+    let last="";
+    v.innerHTML=`<div class="az-letters">${letters.map(l=>`<a href="#az-${l}">${l}</a>`).join("")}</div><div class="card"><div class="tblw"><table class="az"><thead><tr><th>Terme</th><th>Définition</th></tr></thead><tbody>${s.map(c=>{const l=norm(c.fr)[0].toUpperCase();const head=l!==last?`<tr class="lt" id="az-${l}"><td colspan="2">${l}</td></tr>`:"";last=l;return head+`<tr><td>${esc(c.fr)}<small>${esc(c.en)}</small></td><td>${esc(c.def)}</td></tr>`}).join("")}</tbody></table></div></div>`;
+  } else {
+    const pool=L.length>=4?L:C;
+    const qs=shuffle(pool).slice(0,Math.min(20,pool.length)).map(c=>{const others=shuffle(C.filter(x=>x.n!==c.n)).slice(0,3);
+      return {q:"Quel terme correspond à cette définition ? « "+c.def+" »",opts:[c.fr+" ("+c.en+")",...others.map(o=>o.fr+" ("+o.en+")")],a:0,ex:c.tip}});
+    v.innerHTML=`<p class="pitch" style="font-size:14px;color:var(--muted);margin:0 0 10px">20 définitions tirées des concepts affichés : retrouvez le bon terme.</p><div class="card quiz" id="qz"></div>`;
+    Quiz($("#qz"),qs,{mode:"learn"}).start();
+  }
+}
+function flash(){
+  const v=$("#view");
+  if(!deck.length){v.innerHTML=`<div class="empty">Aucun concept ne correspond.</div>`;return}
+  const c=C[deck[pos]-1];
+  v.innerHTML=`<div class="fc" id="fc" tabindex="0" role="button" aria-label="Retourner la carte">
+    <div class="eyebrow">${pad(c.n)} · ${esc(d.themes[c.th-1])} · carte ${pos+1} / ${deck.length}${known.has(c.n)?" · ✓ connu":rev.has(c.n)?" · ↻ à revoir":""}</div>
+    <div class="t">${esc(c.fr)}<span class="enx">(${esc(c.en)})</span></div>
+    ${flip?`<p style="margin:0">${esc(c.def)}</p><div class="blk tip"><h4>Tip examen</h4><p>${esc(c.tip)}</p></div><p class="sag">${esc(c.sag)}</p>`:`<p class="hint">Donnez la définition de tête, puis cliquez pour retourner la carte (ou Espace).</p>`}
+  </div>
+  <div class="fc-nav"><button class="btn" type="button" data-f="prev">← Précédente</button><button class="btn" type="button" data-f="shuf">Mélanger</button><button class="btn" type="button" data-f="rev">À revoir</button><button class="btn primary" type="button" data-f="known">Je connais</button><button class="btn" type="button" data-f="next">Suivante →</button></div>`;
+}
+const go=k=>{pos=(pos+k+deck.length)%deck.length;flip=false;flash()};
+$("#view").addEventListener("click",e=>{
+  if(F.view==="flash"){
+    if(e.target.closest("#fc")){flip=!flip;flash();return}
+    const b=e.target.closest("[data-f]");if(!b||!deck.length)return;const f=b.dataset.f,n=deck[pos];
+    if(f==="next")go(1);else if(f==="prev")go(-1);else if(f==="shuf"){deck=shuffle(deck);pos=0;flip=false;flash()}
+    else{if(f==="known"){known.add(n);rev.delete(n)}else{rev.add(n);known.delete(n)}save();go(1)}
+    return}
+  if(F.view!=="cards")return;
+  const el=e.target.closest(".gc");if(!el)return;const n=+el.dataset.n;const a=e.target.closest("[data-a]");if(!a)return;
+  if(a.dataset.a==="open"){open.has(n)?open.delete(n):open.add(n)}else mark(a.dataset.a,n);
+  e.target.closest(".gc").outerHTML=card(C[n-1]);
+});
+document.addEventListener("keydown",e=>{if(F.view!=="flash"||/INPUT|SELECT/.test(document.activeElement.tagName))return;
+  if(e.key===" "){e.preventDefault();flip=!flip;flash()}else if(e.key==="ArrowRight")go(1);else if(e.key==="ArrowLeft")go(-1)});
+$("#q").addEventListener("input",e=>{F.q=norm(e.target.value.trim());render()});
+$("#th").addEventListener("change",e=>{F.th=e.target.value;render()});
+$("#st").addEventListener("change",e=>{F.st=e.target.value;render()});
+$$(".seg button").forEach(b=>b.addEventListener("click",()=>{F.view=b.dataset.v;$$(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));pos=0;flip=false;render()}));
+
+stats();
+const h=location.hash.match(/^#c(\d+)$/);
+if(h&&C[+h[1]-1]){open.add(+h[1]);render();const el=$("#c"+h[1]);if(el){el.classList.add("flash-target");el.scrollIntoView({block:"center"})}}
+else{open.add(1);render()}
+})();
+</script>
+</body></html>
