@@ -1,0 +1,2014 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Mindset CISO 150</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap">
+<style>
+/* Layout : console de révision — barre d'onglets fixe, filtres à gauche, fiches dépliables à droite */
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --sunk:#E9EDF2; --ink:#101B2B; --muted:#5A6879; --line:#D7DEE7;
+  --accent:#1F4E9E; --accent-soft:#E3EBF8;
+  --p4:#B3262F; --p3:#5B3FA6; --p2:#11756A; --p1:#9A6A0C;
+  --gv:#5B3FA6; --id:#1F4E9E; --pr:#2E7D46; --de:#B0680A; --rs:#B3262F; --rc:#11756A;
+  --hl:#FFF4D6; --hl-ink:#6B4B00;
+  --f-disp:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-quote:"Source Serif 4",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44;
+  --p4:#FF7A7A; --p3:#B49BFF; --p2:#4FD1B8; --p1:#F0B955;
+  --gv:#B49BFF; --id:#7FA9F5; --pr:#6FD38C; --de:#F0B955; --rs:#FF7A7A; --rc:#4FD1B8;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C121B; --surface:#141D29; --sunk:#1A2533; --ink:#E6ECF3; --muted:#97A5B7; --line:#26344A;
+  --accent:#7FA9F5; --accent-soft:#1B2A44;
+  --p4:#FF7A7A; --p3:#B49BFF; --p2:#4FD1B8; --p1:#F0B955;
+  --gv:#B49BFF; --id:#7FA9F5; --pr:#6FD38C; --de:#F0B955; --rs:#FF7A7A; --rc:#4FD1B8;
+  --hl:#3A3016; --hl-ink:#F4D58A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* En-tête */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-block:14px 10px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-disp);font-weight:700;font-size:28px;line-height:1.1;margin:2px 0 0;letter-spacing:-.01em}
+h1 span{color:var(--accent)}
+.prog{min-width:220px;flex:0 1 320px}
+.prog-txt{font-size:13px;color:var(--muted);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.prog-txt b{color:var(--ink);font-size:15px}
+.bar{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:0;background:none;padding:10px 14px 11px;font-family:var(--f-disp);font-weight:600;font-size:15px;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab:hover{color:var(--ink)}
+main{padding-block:20px 60px}
+
+/* Fiches */
+.fiches{display:grid;grid-template-columns:270px minmax(0,1fr);gap:24px;align-items:start}
+.filters{position:sticky;top:calc(env(safe-area-inset-top,0px) + 132px);max-height:calc(100vh - 150px);overflow:auto}
+.filters summary{display:none}
+.fbox{display:flex;flex-direction:column;gap:16px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.inp,.sel{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:var(--bg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:3px 10px;font-size:13px;line-height:1.5}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.chip.mono{font-family:var(--f-mono);font-size:12px}
+.reset{border:0;background:none;color:var(--accent);font-size:13px;padding:0;text-align:left;text-decoration:underline}
+.list-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.count{font-size:14px;color:var(--muted)}
+.count b{color:var(--ink)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:7px;padding:6px 12px;font-size:13px;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.cat-h{font-family:var(--f-disp);font-weight:700;font-size:20px;margin:26px 0 10px;display:flex;align-items:baseline;gap:10px;text-wrap:balance}
+.cat-h:first-child{margin-top:0}
+.cat-h small{font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--muted)}
+.cat-h .cn{font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+.cards{display:flex;flex-direction:column;gap:8px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--pc);border-radius:8px}
+.card.p4{--pc:var(--p4)}.card.p3{--pc:var(--p3)}.card.p2{--pc:var(--p2)}.card.p1{--pc:var(--p1)}
+.card-h{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 12px;align-items:baseline;width:100%;border:0;background:none;text-align:left;padding:12px 14px 4px}
+.num{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.ttl{font-family:var(--f-disp);font-weight:600;font-size:17px;line-height:1.3}
+.done-mark{display:none;color:var(--pr);font-size:13px;font-weight:600;margin-left:6px;font-family:var(--f-body)}
+.card.is-done .done-mark{display:inline}
+.rev-mark{display:none;color:var(--de);font-size:13px;font-weight:600;margin-left:6px;font-family:var(--f-body)}
+.card.is-rev .rev-mark{display:inline}
+.meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.stars{color:var(--pc);font-size:12px;letter-spacing:1px}
+.tag{font-family:var(--f-mono);font-size:11px;padding:1px 6px;border-radius:4px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.ph{color:var(--phc)}
+.ph-GV{--phc:var(--gv)}.ph-ID{--phc:var(--id)}.ph-PR{--phc:var(--pr)}.ph-DE{--phc:var(--de)}.ph-RS{--phc:var(--rs)}.ph-RC{--phc:var(--rc)}
+.pr-line{margin:0;padding:0 14px 12px 14px;color:var(--ink);max-width:80ch}
+.chev{display:inline-block;transition:transform .2s;color:var(--muted);font-size:12px}
+.card.is-open .chev{transform:rotate(90deg)}
+.body{padding:0 14px 14px;display:flex;flex-direction:column;gap:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.blk{background:var(--bg);border-radius:7px;padding:10px 12px}
+.blk h4{margin:0 0 4px;font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.blk p{margin:0;font-size:14px}
+.blk.tip{background:var(--accent-soft)}
+.blk.tip h4{color:var(--accent)}
+.blk.mn{background:var(--hl)}
+.blk.mn h4,.blk.mn p{color:var(--hl-ink)}
+.blk.mn p{font-weight:600}
+.blk.nu h4{color:var(--de)}
+.blk.wide{grid-column:1/-1}
+.sag{margin:0;padding:4px 0 4px 14px;border-left:2px solid var(--pc);font-family:var(--f-quote);font-style:italic;font-size:17px;color:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.acts .where{margin-left:auto;font-size:12px;color:var(--muted)}
+.empty{padding:40px 20px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:10px}
+
+/* Flashcards */
+.fc-wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.fc-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.fc{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--pc);border-radius:12px;padding:26px 26px 22px;min-height:340px;display:flex;flex-direction:column;gap:14px;cursor:pointer}
+.fc.p4{--pc:var(--p4)}.fc.p3{--pc:var(--p3)}.fc.p2{--pc:var(--p2)}.fc.p1{--pc:var(--p1)}
+.fc .ttl{font-size:26px;line-height:1.2;text-wrap:balance}
+.fc-hint{margin-top:auto;font-size:13px;color:var(--muted)}
+.fc-back p{margin:0}
+.fc-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+@media (prefers-reduced-motion:no-preference){.fc.flip{animation:fl .25s ease}@keyframes fl{from{opacity:.3;transform:translateY(4px)}to{opacity:1;transform:none}}}
+
+/* Par cœur */
+.pc-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.pc-intro{color:var(--muted);max-width:70ch;margin:0 0 10px}
+.pc-dom{margin-top:24px}
+.pc-dom h3{font-family:var(--f-disp);font-size:19px;margin:0 0 10px;display:flex;gap:10px;align-items:baseline}
+.pc-dom h3 .tag{font-size:12px}
+.qa-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:8px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.qa .q{font-weight:600;font-size:14px}
+.qa .a{border:0;text-align:left;padding:6px 8px;border-radius:5px;background:var(--bg);font-size:14px;line-height:1.5;transition:filter .15s}
+.qa .a.hide{filter:blur(5px);user-select:none}
+.qa .a.hide:hover{filter:blur(3px)}
+
+/* Mnémos */
+.mn-list{display:flex;flex-direction:column;gap:6px}
+.mn-row{display:grid;grid-template-columns:52px minmax(0,1fr) minmax(0,1.2fr);gap:12px;align-items:baseline;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.mn-row .mt{font-family:var(--f-disp);font-weight:600}
+.mn-row .mv{font-weight:600;color:var(--hl-ink);background:var(--hl);padding:2px 8px;border-radius:5px;justify-self:start}
+
+/* Matrice */
+.mx-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+.panel h3{font-family:var(--f-disp);font-size:18px;margin:0 0 4px}
+.panel .sub{color:var(--muted);font-size:13px;margin:0 0 12px}
+.tblw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:center}
+th{font-family:var(--f-mono);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em}
+td.rl,th.rl{text-align:left}
+td.rl{font-size:13px}
+td.rl b{font-family:var(--f-mono);margin-right:6px}
+.cell{border:0;background:none;width:100%;padding:3px 0;border-radius:5px;font-weight:600}
+.cell[data-n="0"]{color:var(--line);cursor:default}
+.cell:not([data-n="0"]):hover{background:var(--accent-soft)}
+.covr{display:grid;grid-template-columns:34px minmax(0,1fr) 92px;gap:8px;align-items:center;margin-bottom:9px;font-size:13px}
+.covr b{font-family:var(--f-mono)}
+.cbar{position:relative;height:10px;background:var(--sunk);border-radius:5px}
+.cbar i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:5px}
+.cbar s{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);text-decoration:none}
+.covr span{color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.legend{font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+
+/* Pièges & outils */
+.po{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.pg{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:7px}
+.pg li::marker{color:var(--p4);font-family:var(--f-mono);font-weight:600}
+.ot{display:flex;flex-direction:column}
+.ot div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ot div b{font-weight:600}
+.maxim{margin-top:24px;padding:18px 20px;border-radius:10px;background:var(--accent-soft);font-family:var(--f-quote);font-style:italic;font-size:19px;line-height:1.45}
+
+@media (max-width:860px){
+  .fiches{grid-template-columns:minmax(0,1fr)}
+  .filters{position:static;max-height:none}
+  .filters summary{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-weight:600;list-style:none}
+  .filters summary::-webkit-details-marker{display:none}
+  .filters[open] summary{border-radius:10px 10px 0 0;border-bottom:0}
+  .filters[open] .fbox{border-radius:0 0 10px 10px}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .mx-grid,.po{grid-template-columns:minmax(0,1fr)}
+  .mn-row{grid-template-columns:44px minmax(0,1fr)}
+  .mn-row .mv{grid-column:2}
+  .card-h{grid-template-columns:auto minmax(0,1fr)}
+  .meta{grid-column:1/-1;justify-content:flex-start}
+  h1{font-size:23px}
+  .ot div{grid-template-columns:minmax(0,1fr)}
+  .fc{padding:20px 18px;min-height:300px}
+  .fc .ttl{font-size:22px}
+  .filters{top:auto}
+}
+</style>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div>
+      <a class="eyebrow" href="index.html" style="text-decoration:none;color:var(--accent)">← CISO Portail</a>
+      <h1>Mindset CISO <span>150</span></h1>
+    </div>
+    <div class="prog" aria-live="polite">
+      <div class="prog-txt"><b id="pm">0</b> / 150 maîtrisés · <span id="prv">0</span> à revoir</div>
+      <div class="bar"><i id="pb"></i></div>
+    </div>
+  </div>
+  <nav class="wrap tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" data-tab="fiches" aria-selected="true">Fiches</button>
+    <button class="tab" role="tab" data-tab="flash" aria-selected="false">Flashcards</button>
+    <button class="tab" role="tab" data-tab="coeur" aria-selected="false">À connaître par cœur</button>
+    <button class="tab" role="tab" data-tab="mnemo" aria-selected="false">Mnémotechniques</button>
+    <button class="tab" role="tab" data-tab="matrice" aria-selected="false">Matrice</button>
+    <button class="tab" role="tab" data-tab="pieges" aria-selected="false">Pièges et outils</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section id="v-fiches" class="fiches">
+    <details class="filters" id="fd" open>
+      <summary>Filtres <span class="count" id="fsum"></span></summary>
+      <div class="fbox">
+        <div class="fg"><label class="fl" for="q">Rechercher</label><input class="inp" id="q" type="search" placeholder="Kerberos, BIA, RAID…"></div>
+        <div class="fg"><label class="fl" for="sort">Classer par</label>
+          <select class="sel" id="sort"><option value="cat">Catégorie</option><option value="prio">Priorité pour l'examen</option><option value="dom">Domaine CISSP</option><option value="ph">Phase du cycle de vie</option></select></div>
+        <div class="fg"><span class="fl">Priorité</span><div class="chips" id="f-prio"></div></div>
+        <div class="fg"><span class="fl">Domaine CISSP</span><div class="chips" id="f-dom"></div></div>
+        <div class="fg"><label class="fl" for="cat">Catégorie</label><select class="sel" id="cat"></select></div>
+        <div class="fg"><span class="fl">Cycle de vie (NIST CSF 2.0)</span><div class="chips" id="f-ph"></div></div>
+        <div class="fg"><label class="fl" for="st">Ma progression</label>
+          <select class="sel" id="st"><option value="all">Toutes les fiches</option><option value="todo">Non maîtrisées</option><option value="rev">À revoir</option><option value="done">Maîtrisées</option></select></div>
+        <button class="reset" id="reset" type="button">Effacer les filtres</button>
+      </div>
+    </details>
+    <div>
+      <div class="list-head"><span class="count" id="count"></span>
+        <div style="display:flex;gap:6px"><button class="btn" id="openAll" type="button">Tout déplier</button><button class="btn" id="closeAll" type="button">Tout replier</button></div></div>
+      <div id="list"></div>
+    </div>
+  </section>
+
+  <section id="v-flash" hidden>
+    <div class="fc-wrap">
+      <div class="fc-bar"><span class="count" id="fc-pos"></span>
+        <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" id="fc-shuf" type="button">Mélanger</button><button class="btn" id="fc-order" type="button">Ordre normal</button></div></div>
+      <p class="pc-intro" style="margin:0">Les cartes suivent les filtres de l'onglet Fiches. Cliquez sur la carte ou appuyez sur Espace pour la retourner, et utilisez les flèches pour naviguer.</p>
+      <div id="fc" class="fc" tabindex="0" role="button" aria-label="Retourner la carte"></div>
+      <div class="fc-nav">
+        <button class="btn" id="fc-prev" type="button">← Précédente</button>
+        <button class="btn" id="fc-rev" type="button">À revoir</button>
+        <button class="btn primary" id="fc-done" type="button">Je maîtrise</button>
+        <button class="btn" id="fc-next" type="button">Suivante →</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-coeur" hidden>
+    <div class="pc-head"><h2 class="cat-h" style="margin:0">À connaître par cœur</h2>
+      <div style="display:flex;gap:6px"><button class="btn" id="pc-show" type="button">Tout révéler</button><button class="btn" id="pc-hide" type="button">Tout masquer</button></div></div>
+    <p class="pc-intro">Les faits à mémoriser tels quels. Essayez de répondre de tête, puis cliquez sur la zone floue pour vérifier.</p>
+    <div id="coeur"></div>
+  </section>
+
+  <section id="v-mnemo" hidden>
+    <div class="pc-head"><h2 class="cat-h" style="margin:0">Moyens mnémotechniques</h2>
+      <input class="inp" id="mq" type="search" placeholder="Filtrer…" style="max-width:260px"></div>
+    <p class="pc-intro" id="mn-intro"></p>
+    <div id="mnemo"></div>
+  </section>
+
+  <section id="v-matrice" hidden>
+    <div class="mx-grid">
+      <div class="panel">
+        <h3>Domaines × cycle de vie</h3>
+        <p class="sub">Nombre de fiches par domaine CISSP et par fonction du NIST CSF 2.0. Cliquez sur un nombre pour ouvrir les fiches correspondantes.</p>
+        <div class="tblw"><table id="mx"></table></div>
+      </div>
+      <div class="panel">
+        <h3>Couverture des domaines</h3>
+        <p class="sub">Part des fiches rattachées à chaque domaine, comparée à son poids à l'examen (trait noir).</p>
+        <div id="cov"></div>
+        <div class="legend"><span>Barre : part des fiches</span><span>Trait : poids à l'examen</span></div>
+      </div>
+      <div class="panel" style="grid-column:1/-1">
+        <h3>Catégories × priorité</h3>
+        <p class="sub">Répartition des 150 principes. Cliquez sur un nombre pour filtrer.</p>
+        <div class="tblw"><table id="mx2"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-pieges" hidden>
+    <div class="po">
+      <div class="panel"><h3>Les pièges à éviter</h3><p class="sub">À l'examen comme en poste.</p><ol class="pg" id="pg"></ol></div>
+      <div class="panel"><h3>La boîte à outils du CISO</h3><p class="sub">Référentiels et outils par famille.</p><div class="ot" id="ot"></div></div>
+    </div>
+    <p class="maxim">Le bon CISO pense comme un dirigeant, analyse comme un auditeur, anticipe comme un attaquant et agit comme un gestionnaire de crise. À l'examen : protégez d'abord les personnes, traitez le risque au niveau de la gouvernance en impliquant la direction, puis seulement agissez techniquement.</p>
+  </section>
+</main>
+
+<script>
+const P=[];
+// [prio, cat, domaines, phase, titre, principe, ex1, ex2, rex, sagesse, tip, nuance, mnemo]
+P.push(
+// ===== C1 POSTURE & MINDSET =====
+[4,1,"D1","GV","Penser comme un manager du risque, pas comme un technicien",
+"Le CISO analyse, conseille et gouverne. Il ne « répare » pas lui-même : il fait traiter le risque par le bon processus et le bon responsable.",
+"Une faille critique est découverte : on évalue le risque et on informe le propriétaire de l'actif avant toute action en production.",
+"Pendant un incident, le CISO active la cellule de réponse au lieu de se connecter lui-même au serveur compromis.",
+"Dans beaucoup d'organisations, des RSSI très techniques s'épuisent à corriger eux-mêmes ; la sécurité progresse quand ils passent du « faire » au « faire faire ».",
+"Le général ne tient pas le fusil : il choisit la bataille.",
+"Entre une réponse technique et une réponse de gouvernance, l'examen attend presque toujours la réponse de gouvernance.",
+"La compétence technique reste indispensable pour être crédible ; elle sert la décision.",
+"Penser « Manager, pas Mécanicien »."],
+[4,1,"D1 · D7","GV","La vie humaine passe avant tout",
+"La sécurité des personnes est toujours la priorité n°1, avant les données, les systèmes et l'argent.",
+"En cas d'incendie, les portes s'ouvrent pour l'évacuation (fail-safe), même si la sécurité physique en souffre.",
+"Un plan de crise commence par la mise en sécurité du personnel, pas par l'arrêt des serveurs.",
+"Lors d'inondations ou d'incendies de datacenters, les procédures qui ont bien fonctionné étaient celles qui évacuaient d'abord, puis basculaient à distance.",
+"Les serveurs se reconstruisent, pas les vies.",
+"Dès qu'une question mentionne un danger physique pour des personnes, la bonne réponse est celle qui les protège.",
+"Fail-safe (protège les personnes) n'est pas fail-secure (protège les actifs) : le choix dépend de ce qui est menacé.",
+"Personnes → Processus → Patrimoine."],
+[4,1,"D1","GV","La sécurité sert la mission et la valeur business",
+"La sécurité existe pour permettre à l'organisation d'atteindre ses objectifs. Elle doit être alignée sur la stratégie, pas imposée contre elle.",
+"Une banque protège d'abord la continuité des virements avant la refonte de l'intranet.",
+"Le CISO accompagne le lancement d'un service de mobile money en y intégrant les contrôles, au lieu de le bloquer.",
+"Les programmes de sécurité financés durablement sont ceux présentés comme des leviers de confiance client, pas comme des centres de coût.",
+"On ne protège bien que ce que l'on comprend.",
+"Si une réponse bloque le business sans alternative, elle est rarement la meilleure.",
+"Servir le business ne veut pas dire tout accepter : le CISO sait dire « oui, mais… ».",
+""],
+[4,1,"D1","GV","Le CISO conseille, la direction décide et assume",
+"La responsabilité finale de la sécurité appartient à la haute direction. Le CISO éclaire la décision, documente son avis et escalade si nécessaire.",
+"La DG signe l'acceptation du risque sur une application legacy impossible à corriger.",
+"Le CISO rédige un avis défavorable écrit sur une mise en production précipitée, puis la direction tranche.",
+"Après la fuite massive d'Equifax (2017), le PDG a dû s'expliquer devant le Congrès américain : la responsabilité remonte toujours au sommet.",
+"Qui signe, assume.",
+"« Qui est responsable en dernier ressort ? » → la haute direction (senior management).",
+"Conseiller ne veut pas dire se taire : un risque critique non traité doit être escaladé et tracé.",
+"Le CISO éclaire, la Direction déclare."],
+[4,1,"D1","GV","L'équilibre : valeur, sécurité, simplicité… et coût",
+"Une bonne mesure crée de la valeur, réduit le risque, reste simple à utiliser et coûte moins que ce qu'elle protège.",
+"On ne dépense pas 50 M FCFA par an pour protéger un actif dont la perte annuelle attendue est de 10 M FCFA.",
+"Un MFA par notification bien adopté vaut mieux qu'un dispositif complexe que tout le monde contourne.",
+"Des politiques de mots de passe trop strictes ont souvent produit des post-it collés sur les écrans : la sécurité théorique a créé un risque réel.",
+"La meilleure serrure est celle qu'on utilise.",
+"Un contrôle dont le coût dépasse la valeur de l'actif n'est jamais la bonne réponse.",
+"Le coût inclut aussi l'exploitation, la formation et la gêne pour les utilisateurs.",
+"VSSC : Valeur, Sécurité, Simplicité, Coût."],
+[4,1,"D1","GV","People, Process, Technology",
+"La sécurité repose sur trois piliers indissociables : des personnes compétentes, des processus définis et des technologies adaptées, dans cet ordre.",
+"Un SIEM sans analystes ni procédure de traitement des alertes ne détecte rien d'utile.",
+"Une procédure de revue des accès échoue si les managers ne la réalisent jamais.",
+"Chez Target (2013), l'outil de détection avait bien alerté ; c'est le processus de traitement des alertes qui a failli.",
+"Un outil sans méthode est un jouet coûteux.",
+"Quand la réponse « acheter un outil » est proposée, vérifiez si une réponse « processus » ou « personnes » est plus fondamentale.",
+"La technologie peut aussi corriger un mauvais processus, mais seulement s'il est d'abord compris.",
+"PPT : Personnes, Procédés, Technologie."],
+[4,1,"Tous","GV","Lire la question comme un examinateur",
+"Les questions CISSP demandent souvent la MEILLEURE, la PREMIÈRE ou la PLUS importante action. Plusieurs réponses sont vraies ; une seule correspond au rôle du manager.",
+"« Que faire EN PREMIER ? » : souvent évaluer, identifier ou informer, avant d'agir.",
+"« Quel est le PLUS important ? » : souvent la sécurité des personnes ou le soutien de la direction.",
+"De nombreux candidats échouent alors qu'ils connaissent le cours, faute d'avoir lu le mot-clé de la question.",
+"Lis deux fois, réponds une fois.",
+"Repérez les mots EN PREMIER, MEILLEUR, PLUS, MOINS, SAUF, et éliminez les réponses trop techniques ou trop extrêmes.",
+"Le format adaptatif (CAT) ne permet pas de revenir en arrière : chaque réponse est définitive.",
+"PMP : Premier, Meilleur, Plus."],
+[3,1,"D7","DE","Partir du principe que la compromission aura lieu",
+"Assume breach : on investit autant dans la détection, la réponse et la reprise que dans la prévention.",
+"Un SOC surveille en continu les comportements anormaux, même derrière le pare-feu.",
+"Des exercices de crise simulent régulièrement une attaque réussie.",
+"Chez SolarWinds (2020), l'attaque est passée par une mise à jour légitime : seule la détection comportementale pouvait la repérer.",
+"Ce n'est pas « si », c'est « quand ».",
+"Une réponse qui ne mise que sur la prévention est incomplète.",
+"Cela ne justifie pas de négliger la prévention : elle réduit la fréquence des incidents.",
+""],
+[3,1,"D1","GV","Le « oui, mais » plutôt que le « Docteur Non »",
+"Le CISO est un facilitateur : il propose des solutions acceptables plutôt que d'opposer des refus systématiques.",
+"Pour un projet cloud, il propose des conditions (chiffrement, journalisation) au lieu d'interdire.",
+"Pour le BYOD, il propose une conteneurisation des données professionnelles plutôt qu'une interdiction totale.",
+"Les équipes qui reçoivent trop de refus finissent par ne plus consulter la sécurité : c'est ainsi que naît le shadow IT.",
+"La porte fermée invite à passer par la fenêtre.",
+"Une réponse qui permet au business d'avancer en maîtrisant le risque est préférable à une interdiction.",
+"Certains risques imposent quand même un « non » ferme, à documenter et escalader.",
+""],
+[2,1,"D1","ID","Veille, apprentissage continu et partage",
+"Les menaces évoluent chaque jour. Le CISO maintient ses compétences, celles de son équipe et partage l'information avec ses pairs.",
+"Suivre les bulletins du CI-CERT et les alertes des éditeurs.",
+"Participer à un ISAC sectoriel ou à une communauté de RSSI de la sous-région.",
+"Lors de Log4Shell (2021), les organisations reliées à une communauté de partage ont patché en heures, les autres en semaines.",
+"Celui qui cesse d'apprendre commence à reculer.",
+"La certification exige 120 CPE sur 3 ans et une cotisation annuelle (AMF).",
+"La veille doit être filtrée par la pertinence pour l'organisation, sinon elle noie l'équipe.",
+"120 CPE / 3 ans = 40 par an."]
+);
+P.push(
+// ===== C2 GOUVERNANCE & RISQUES =====
+[4,2,"D1","ID","Pas de risque sans actif, menace et vulnérabilité",
+"Un risque n'existe que si une menace peut exploiter une vulnérabilité sur un actif qui a de la valeur. Corollaire : pas de contrôle sans risque, pas de risque sans propriétaire.",
+"Un serveur vulnérable mais isolé, sans donnée ni service, présente un risque faible.",
+"Des données très sensibles sans vulnérabilité exploitable connue : risque réduit, à réévaluer en continu.",
+"Mirai (2016) a exploité des caméras IoT jugées « sans valeur » : leur valeur pour l'attaquant était leur bande passante.",
+"Pas de feu sans combustible, sans comburant et sans étincelle.",
+"Risque = Menace × Vulnérabilité × Impact. Une menace agit via un agent (threat agent) qui exploite une vulnérabilité.",
+"La valeur d'un actif doit être vue aussi du point de vue de l'attaquant.",
+"AMV : Actif, Menace, Vulnérabilité."],
+[4,2,"D1","GV","Les quatre traitements du risque",
+"Un risque se réduit, se transfère, s'évite ou s'accepte. L'ignorer ou le nier n'est jamais une option.",
+"Une cyber-assurance transfère une partie du risque financier d'un ransomware.",
+"Renoncer à stocker les cartes bancaires en interne revient à éviter le risque.",
+"Après NotPetya (2017), certains assureurs ont invoqué l'exclusion « acte de guerre » : le transfert ne couvre jamais tout.",
+"Ce qu'on ignore finit par nous rattraper.",
+"Le rejet (ignorer le risque) est toujours une mauvaise réponse.",
+"On transfère le risque financier, jamais la responsabilité ni l'atteinte à la réputation.",
+"TARE : Transférer, Accepter, Réduire, Éviter… jamais IGNORER."],
+[4,2,"D1","GV","Le risque zéro n'existe pas : gérer le risque résiduel",
+"Risque total – effet des contrôles = risque résiduel. Ce résiduel doit être formellement accepté par la direction.",
+"Une note d'acceptation signée pour une vulnérabilité non corrigeable sur un automate industriel.",
+"Un registre des risques qui trace chaque acceptation avec une date de revue.",
+"Des audits révèlent souvent des risques « acceptés » par un technicien : sans signature d'un dirigeant, l'acceptation n'est pas valable.",
+"Le zéro risque est le risque de ne rien faire.",
+"Qui accepte le risque résiduel ? Le propriétaire de l'actif ou la direction, jamais le CISO seul.",
+"Une acceptation doit être réexaminée dès que le contexte change.",
+"Total – Contrôles = Résiduel."],
+[4,2,"D1","GV","Due diligence et due care",
+"Due diligence : connaître et évaluer ses risques. Due care : agir raisonnablement pour les traiter. Leur absence fonde la négligence.",
+"Évaluer un fournisseur avant de signer (diligence), puis l'auditer régulièrement (care).",
+"Identifier les vulnérabilités (diligence), puis les corriger dans les délais (care).",
+"Dans les rachats d'entreprises, l'absence d'audit de sécurité préalable a coûté cher : le prix de Yahoo a été réduit de 350 M$ après la révélation de ses fuites.",
+"Savoir sans agir, c'est consentir.",
+"Le critère est celui de la « personne prudente et raisonnable », pas la perfection.",
+"Les juristes discutent parfois l'ordre des deux notions ; retenez surtout la distinction connaître / agir.",
+"due Diligence = Découvrir ; due Care = Corriger."],
+[4,2,"D1","PR","La triade CIA et son contraire DAD",
+"Toute mesure protège la confidentialité, l'intégrité ou la disponibilité. Les attaques visent la divulgation, l'altération ou la destruction.",
+"Le chiffrement protège la confidentialité ; une empreinte SHA-256 protège l'intégrité.",
+"Un cluster redondant et des sauvegardes protègent la disponibilité.",
+"Un ransomware touche la disponibilité, puis la confidentialité quand il y a double extorsion.",
+"Trois pieds font tenir le tabouret.",
+"Identifiez quelle propriété est visée dans le scénario : la bonne réponse protège celle-là.",
+"Les trois sont en tension ; le contexte métier fixe la priorité (disponibilité pour un hôpital, confidentialité pour un service de renseignement).",
+"CIA ↔ DAD : Disclosure, Alteration, Destruction."],
+[3,2,"D1","ID","Analyse quantitative : SLE, ALE et valeur du contrôle",
+"On chiffre le risque en argent pour comparer le coût d'un contrôle à la perte qu'il évite.",
+"Actif 100 M FCFA, EF 40 % → SLE 40 M ; ARO 0,5 → ALE 20 M FCFA par an.",
+"Un contrôle qui coûte 8 M par an et ramène l'ALE à 4 M crée 8 M FCFA de valeur annuelle.",
+"Les comités d'investissement acceptent plus facilement un budget sécurité présenté en pertes évitées qu'en nombre de vulnérabilités.",
+"Ce qui se mesure se pilote.",
+"SLE = AV × EF ; ALE = SLE × ARO ; Valeur = ALE avant – ALE après – coût annuel.",
+"Les chiffres reposent sur des estimations : la précision est souvent illusoire.",
+"« Sans Lait, Avec Riz » : SLE → ARO → ALE."],
+[3,2,"D1","ID","Analyse qualitative et matrice de risques",
+"Quand les données manquent, on évalue vraisemblance et impact sur une échelle (faible, moyen, élevé) pour prioriser.",
+"Une matrice 5×5 utilisée en comité des risques.",
+"Un atelier avec les métiers pour noter l'impact d'une indisponibilité de 24 h.",
+"La plupart des organisations commencent par le qualitatif, puis chiffrent seulement les risques majeurs.",
+"Mieux vaut une boussole qu'une carte fausse.",
+"La méthode Delphi (avis anonymes et itératifs) est une technique qualitative classique.",
+"Le qualitatif est rapide mais subjectif ; le combiner au quantitatif (approche hybride) est souvent l'idéal.",
+""],
+[4,2,"D1","GV","Politiques, normes, baselines, procédures et guides",
+"La politique fixe l'intention (obligatoire, haut niveau). Elle se décline en normes et baselines obligatoires, en procédures détaillées et en guides facultatifs.",
+"Une PSSI signée par le DG, déclinée en norme de mots de passe et en procédure de création de comptes.",
+"Une baseline de durcissement CIS appliquée à tous les serveurs Windows.",
+"Des PSSI de 200 pages jamais lues restent courantes ; les politiques courtes, validées par la direction et contrôlées, sont celles qui s'appliquent.",
+"Une règle sans contrôle n'est qu'un souhait.",
+"Seuls les guides (guidelines) sont facultatifs.",
+"Une politique non appliquée crée une fausse assurance, pire que l'absence de politique.",
+"PNBPG : « Pour Nous, Bien Protéger Gagne »."],
+[3,2,"D1","GV","Gouvernance top-down et alignement stratégique",
+"Le programme de sécurité est porté par la direction, aligné sur la stratégie et piloté par un comité de gouvernance.",
+"Un comité sécurité trimestriel présidé par un membre de la direction générale.",
+"Une feuille de route sécurité sur 3 ans dérivée du plan stratégique.",
+"Les programmes portés seulement par la DSI s'essoufflent au premier arbitrage budgétaire.",
+"L'eau descend de la montagne, pas l'inverse.",
+"Le facteur de succès n°1 d'un programme de sécurité est le soutien de la direction.",
+"Le top-down n'exclut pas d'écouter le terrain pour ajuster les règles.",
+""],
+[3,2,"D1","GV","Chaque risque a un propriétaire",
+"Un risque sans responsable désigné n'est jamais traité. Le propriétaire est la personne métier qui en supporte l'impact.",
+"Le directeur des opérations porte le risque d'arrêt de la chaîne logistique.",
+"Le registre des risques indique pour chaque ligne un nom, pas un service.",
+"En revue d'audit, les risques « assignés à la DSI » restent souvent ouverts des années faute de vrai décideur.",
+"Ce qui appartient à tous n'appartient à personne.",
+"Le propriétaire de l'actif ou des données décide ; le dépositaire (custodian) exécute.",
+"Le CISO peut piloter le registre sans être propriétaire des risques.",
+""],
+[3,2,"D1","PR","Types et fonctions des contrôles",
+"Un contrôle est administratif, technique ou physique, et préventif, détectif, correctif, dissuasif, de récupération, directif ou compensatoire.",
+"Une caméra est un contrôle physique et détectif ; un panneau « site sous surveillance » est dissuasif.",
+"Une sauvegarde est un contrôle de récupération ; une politique est un contrôle administratif.",
+"Les organisations qui combinent prévention et détection limitent fortement la durée de présence des attaquants.",
+"Ne mets pas tous tes œufs dans le même panier.",
+"Attendez-vous à classer un contrôle à la fois par type et par fonction.",
+"Un même contrôle peut avoir plusieurs fonctions selon son usage.",
+"Types ATP : Administratif, Technique, Physique."],
+[2,2,"D1","PR","Les contrôles compensatoires",
+"Quand le contrôle idéal est impossible, on en met un autre qui réduit le risque à un niveau comparable.",
+"Une petite structure sans séparation des tâches compense par une journalisation et une revue mensuelle.",
+"Un système legacy non patchable est isolé derrière une segmentation stricte.",
+"PCI DSS formalise ce mécanisme ; les auditeurs exigent que le contrôle compensatoire soit justifié et documenté.",
+"Quand on ne peut pas fermer la porte, on surveille le couloir.",
+"Contrôle compensatoire = alternative au contrôle requis, d'efficacité équivalente.",
+"Il doit rester temporaire si possible et être réévalué.",
+""],
+[3,2,"D1","GV","S'appuyer sur des référentiels reconnus",
+"ISO 27001 (SMSI), NIST CSF 2.0, NIST RMF, COBIT ou CIS Controls donnent une structure éprouvée et un langage commun.",
+"Un SMSI ISO 27001 certifié pour rassurer des clients internationaux.",
+"Le NIST CSF 2.0 pour présenter la maturité au conseil d'administration.",
+"Les organisations qui partent d'un référentiel évitent de réinventer la roue et passent plus vite les audits.",
+"On ne construit pas sur du sable.",
+"NIST CSF 2.0 : Govern, Identify, Protect, Detect, Respond, Recover. RMF : Prepare, Categorize, Select, Implement, Assess, Authorize, Monitor.",
+"Un référentiel est un cadre à adapter, pas un dogme à appliquer mot pour mot.",
+"CSF = G-I-P-D-R-R ; RMF = « Pour Chaque Système, Installer, Auditer, Autoriser, Monitorer »."],
+[3,2,"D1","ID","Maîtriser les tiers et la chaîne d'approvisionnement",
+"On peut externaliser une activité, jamais sa responsabilité. Les fournisseurs sont évalués avant, pendant et à la fin du contrat.",
+"Clauses de sécurité, SLA et droit d'audit dans les contrats d'infogérance.",
+"Revue annuelle des rapports SOC 2 Type II du fournisseur cloud.",
+"Target (2013) a été compromis via les identifiants de son prestataire de climatisation ; Kaseya (2021) a propagé un ransomware via un éditeur de logiciels de MSP.",
+"La chaîne casse au maillon le plus faible.",
+"Le risque se propage aussi par les fournisseurs de vos fournisseurs (quatrième partie).",
+"Un questionnaire ne suffit pas : demandez des preuves.",
+""],
+[3,2,"D1","PR","Sécurité du personnel : de l'embauche au départ",
+"Vérifications avant embauche, accords de confidentialité, sensibilisation, puis retrait immédiat des accès au départ.",
+"Contrôle des références et du casier judiciaire pour les postes sensibles, dans le respect de la loi.",
+"Désactivation des comptes le jour du départ, avant l'entretien en cas de licenciement.",
+"De nombreuses fuites internes viennent de comptes d'anciens employés restés actifs plusieurs semaines.",
+"On ferme la porte quand l'invité sort, pas la semaine suivante.",
+"Lors d'un licenciement, retirer les accès pendant ou avant l'entretien et escorter la personne.",
+"Les vérifications doivent rester proportionnées au poste et conformes au droit du travail.",
+""]
+);
+
+P.push(
+// ===== C3 JURIDIQUE, CONFORMITÉ & ÉTHIQUE =====
+[4,3,"D1","GV","Le code d'éthique (ISC)²",
+"Quatre canons s'imposent à tout CISSP, dans cet ordre : protéger la société, agir honorablement, servir ses mandants avec diligence, faire progresser la profession.",
+"Refuser de minimiser un incident dans un rapport pour plaire à la direction.",
+"Signaler à l'(ISC)² un collègue certifié qui viole manifestement le code.",
+"En 2022, l'ancien responsable sécurité d'Uber a été condamné pour avoir dissimulé une fuite de 2016 : l'éthique n'est pas optionnelle.",
+"L'intégrité, c'est faire juste même quand personne ne regarde.",
+"En cas de conflit entre canons, le premier l'emporte : la société passe avant l'employeur.",
+"L'(ISC)² peut retirer la certification en cas de violation avérée.",
+"PAPA : Protéger, Agir, Prester, Avancer."],
+[3,3,"D1","GV","Conformité n'est pas sécurité",
+"Être conforme prouve qu'un minimum est respecté à un instant donné. La sécurité, elle, se mesure face aux menaces réelles, en continu.",
+"Une entreprise certifiée PCI DSS peut être compromise quelques mois après son audit.",
+"Une case cochée « antivirus installé » ne dit rien de sa mise à jour.",
+"Plusieurs grandes fuites de cartes bancaires ont touché des commerçants pourtant déclarés conformes PCI DSS.",
+"Le certificat ne fait pas le soldat.",
+"La conformité est un plancher, pas un plafond.",
+"La conformité reste obligatoire : les sanctions légales sont un risque à part entière.",
+""],
+[3,3,"D1","GV","Protéger les données personnelles",
+"Collecter peu, pour une finalité claire, informer les personnes, sécuriser et respecter les droits d'accès, de rectification et d'opposition.",
+"En Côte d'Ivoire, la loi n°2013-450 encadre les données personnelles sous le contrôle de l'ARTCI.",
+"Une entreprise qui traite des données de résidents européens respecte aussi le RGPD.",
+"British Airways a été sanctionnée de 20 M£ par l'ICO après le vol de données de cartes par un script malveillant en 2018.",
+"La donnée d'autrui est un dépôt, pas une propriété.",
+"Retenez les principes : licéité, finalité, minimisation, exactitude, limitation de conservation, sécurité, responsabilité.",
+"Les obligations varient selon les pays : vérifier la loi applicable à chaque traitement.",
+"FIMEL : Finalité, Information, Minimisation, Exactitude, Limitation."],
+[2,3,"D1","GV","Flux transfrontaliers et souveraineté des données",
+"Les données sont soumises aux lois du pays où elles sont stockées et traitées. Un transfert hors du pays peut exiger une autorisation ou des garanties.",
+"Héberger des données bancaires dans un cloud étranger peut nécessiter l'accord du régulateur.",
+"Des clauses contractuelles encadrent le transfert vers un sous-traitant situé hors de la zone.",
+"La convention de l'Union africaine de Malabo, entrée en vigueur en 2023, vise à harmoniser la cybersécurité et la protection des données sur le continent.",
+"Les données voyagent avec leurs lois.",
+"Avant une migration cloud, identifiez la localisation des données et les lois applicables.",
+"Le chiffrement avec des clés gardées localement réduit, sans supprimer, le risque juridique.",
+""],
+[2,3,"D1","PR","Propriété intellectuelle et licences",
+"Brevets, droits d'auteur, marques et secrets d'affaires se protègent différemment. Les licences logicielles doivent être respectées.",
+"Un algorithme interne non brevetable est protégé comme secret d'affaires par des NDA.",
+"Un inventaire logiciel évite l'usage de licences piratées ou dépassées.",
+"Des audits d'éditeurs ont conduit à des régularisations de licences très coûteuses dans de grandes entreprises.",
+"Ce que tu n'as pas créé, tu dois l'acheter ou le demander.",
+"Brevet ≈ 20 ans et publication ; secret d'affaires = pas de durée, mais perdu s'il est divulgué.",
+"Les licences open source ont aussi des obligations (ex. GPL).",
+"Brevet = Publié ; Secret = Silencieux."],
+[2,3,"D1","RS","Cybercriminalité et coopération internationale",
+"Connaître les lois pénales sur les intrusions et la fraude, et les mécanismes de coopération pour poursuivre les attaquants.",
+"La loi ivoirienne n°2013-451 réprime la cybercriminalité ; la PLCC traite les plaintes.",
+"La Convention de Budapest facilite la coopération judiciaire entre États signataires.",
+"Le braquage de la Banque centrale du Bangladesh (81 M$ en 2016) a mobilisé enquêteurs de plusieurs pays pour suivre l'argent.",
+"Le crime n'a pas de frontière, la justice doit en avoir moins.",
+"Distinguez droit pénal (État contre individu), civil (litige entre parties) et administratif (régulateurs).",
+"Les preuves numériques doivent respecter les règles de procédure pour être recevables.",
+""],
+[2,3,"D1 · D7","RS","Les types d'enquêtes",
+"Une enquête est administrative, pénale, civile ou réglementaire. Chacune a ses exigences de preuve et ses acteurs.",
+"Une enquête interne sur un usage abusif de messagerie est administrative.",
+"Une plainte pour vol de données déclenche une enquête pénale.",
+"Des enquêtes internes mal menées ont rendu des preuves irrecevables devant un tribunal.",
+"Commencer comme si tout finirait au tribunal.",
+"Niveau de preuve : pénal = au-delà du doute raisonnable ; civil = prépondérance de la preuve.",
+"Une enquête administrative peut devenir pénale : traitez les preuves avec rigueur dès le départ.",
+""],
+[3,3,"D1","RS","Notifier les violations dans les délais",
+"Une violation de données personnelles peut imposer une notification au régulateur et aux personnes concernées, dans des délais précis.",
+"Le RGPD impose 72 heures pour notifier l'autorité de contrôle.",
+"Un établissement financier informe aussi son régulateur sectoriel.",
+"Uber a été sanctionnée pour avoir caché une fuite plus d'un an au lieu de la notifier.",
+"La vérité tardive coûte plus cher que la vérité rapide.",
+"La décision de notifier implique le juridique et la direction, pas seulement la sécurité.",
+"Tous les incidents ne sont pas des violations notifiables : l'analyse d'impact décide.",
+"72 h = 3 jours."],
+[3,3,"D1","PR","Sensibiliser, former, éduquer",
+"La sensibilisation change les comportements, la formation donne des compétences, l'éducation construit l'expertise.",
+"Des capsules de 5 minutes chaque mois plutôt qu'une session annuelle de 3 heures.",
+"Une formation spécifique au code sécurisé pour les développeurs.",
+"Les campagnes répétées de phishing simulé réduisent nettement le taux de clic en quelques mois.",
+"Une goutte d'eau chaque jour creuse la pierre.",
+"Sensibilisation = tous ; formation = un rôle ; éducation = un métier.",
+"Punir les erreurs pousse à les cacher : valoriser le signalement.",
+"Sensibiliser (savoir), Former (faire), Éduquer (comprendre)."],
+[2,3,"D1","GV","Contrats, SLA et accords",
+"Les attentes de sécurité se formalisent : SLA, NDA, accords d'interconnexion, clauses d'audit et de réversibilité.",
+"Un SLA de disponibilité de 99,9 % avec pénalités.",
+"Une clause de réversibilité qui garantit la restitution des données en fin de contrat.",
+"Des entreprises ont perdu l'accès à leurs données lors de la faillite d'un prestataire, faute de clause de réversibilité.",
+"Le contrat se lit avant, pas pendant la crise.",
+"SLA = engagement externe mesurable ; OLA = engagement entre équipes internes.",
+"Un SLA ne transfère pas le risque d'image.",
+""]
+);
+P.push(
+// ===== C4 DONNÉES & ACTIFS =====
+[3,4,"D2 · D7","ID","Connaître ses actifs",
+"On ne protège pas ce qu'on ignore. L'inventaire des matériels, logiciels, données et flux est le préalable à toute analyse de risque.",
+"Une CMDB à jour des serveurs, applications et dépendances.",
+"La détection des applications SaaS non déclarées (shadow IT).",
+"Lors de WannaCry (2017), beaucoup d'organisations ignoraient combien de postes Windows non patchés elles possédaient.",
+"Le berger compte ses moutons chaque soir.",
+"L'inventaire est la première étape d'Identify dans le NIST CSF.",
+"Un inventaire parfait n'existe pas : viser utile, vivant et rattaché à des propriétaires.",
+""],
+[3,4,"D2","ID","Classifier selon la valeur et la sensibilité",
+"Le propriétaire classe la donnée (public, interne, confidentiel, secret), et la classification pilote les contrôles.",
+"Le directeur financier classe le budget « Confidentiel ».",
+"Les données clients sont classées « Confidentiel » et chiffrées partout.",
+"Sans classification, les organisations protègent tout pareil : trop pour l'anodin, pas assez pour le critique.",
+"On ne range pas l'or avec le sable.",
+"C'est le propriétaire (owner) qui classe, pas l'informatique ni le CISO.",
+"Trop de niveaux rendent le schéma inapplicable : 3 à 5 suffisent.",
+"Militaire : Top Secret, Secret, Confidential, Unclassified."],
+[3,4,"D2","GV","Les rôles autour de la donnée",
+"Le propriétaire décide, le dépositaire opère, l'utilisateur respecte. Côté vie privée : le responsable de traitement décide, le sous-traitant exécute.",
+"Le métier (owner) fixe qui accède ; l'équipe IT (custodian) gère les sauvegardes.",
+"Un éditeur SaaS est sous-traitant (processor) des données de l'entreprise cliente.",
+"Les audits révèlent souvent une DSI qui décide seule des accès : le propriétaire métier est court-circuité.",
+"Le gardien garde, le maître décide.",
+"Owner = responsabilité ; Custodian = garde au quotidien ; Steward = qualité de la donnée.",
+"Le sous-traitant a aussi ses propres obligations légales.",
+"Owner Ordonne, Custodian Conserve."],
+[3,4,"D2","PR","Protéger tout le cycle de vie de la donnée",
+"La protection couvre la création, le stockage, l'usage, le partage, l'archivage et la destruction.",
+"Les données sont chiffrées dès leur création et au partage.",
+"Elles sont détruites de façon vérifiable à la fin de leur durée de conservation.",
+"Des disques revendus d'occasion ont régulièrement livré des données d'entreprises et d'hôpitaux.",
+"La donnée naît, vit et doit mourir proprement.",
+"Chaque phase a ses contrôles : la question indique souvent la phase concernée.",
+"L'archivage reste une phase à risque : on l'oublie souvent.",
+"CSUPAD : « Ce Soir, Une Petite Assiette Dorée »."],
+[3,4,"D2","PR","Les trois états de la donnée",
+"La donnée est au repos, en transit ou en cours d'utilisation. Chaque état a ses contrôles.",
+"Au repos : chiffrement des disques et des bases.",
+"En transit : TLS ou IPsec ; en usage : contrôle d'accès, enclaves sécurisées.",
+"Capital One (2019) chiffrait ses données au repos, mais un rôle trop permissif permettait de les lire en clair.",
+"Un trésor se protège au coffre, en route et sur la table.",
+"Données en usage = l'état le plus difficile à protéger.",
+"Le chiffrement au repos ne protège pas contre un utilisateur autorisé malveillant.",
+"Repos, Route, Usage."],
+[3,4,"D2","PR","Rémanence et destruction des supports",
+"Supprimer ne suffit pas. On efface (clearing), on purge (purging) ou on détruit selon la sensibilité et le support.",
+"Effacement cryptographique pour les disques SSD chiffrés.",
+"Broyage physique certifié pour les supports « Secret ».",
+"Des études sur des disques d'occasion retrouvent régulièrement des données exploitables.",
+"Ce qui est écrit peut être relu.",
+"Le dégaussage ne fonctionne pas sur les SSD ni les supports optiques.",
+"La destruction physique est la seule garantie absolue, mais elle empêche la réutilisation.",
+"Clear < Purge < Destroy."],
+[2,4,"D2","GV","Ne conserver que le nécessaire",
+"Une durée de conservation est définie par type de donnée, selon la loi et le besoin métier. Au-delà, on archive ou on détruit.",
+"Les pièces comptables gardées 10 ans, puis détruites.",
+"Les CV des candidats non retenus supprimés après un délai défini.",
+"Lors de fuites, une grande partie des données exposées n'avait plus aucune utilité métier.",
+"Ce qu'on ne garde pas ne peut pas fuir.",
+"Une politique de rétention réduit à la fois le risque et le coût de stockage.",
+"Une procédure judiciaire peut imposer de geler la destruction (legal hold).",
+""],
+[2,4,"D2","PR","Minimiser la collecte",
+"On ne collecte que les données strictement nécessaires à la finalité.",
+"Un formulaire d'inscription qui ne demande pas la date de naissance si elle est inutile.",
+"Un rapport analytique qui utilise des données agrégées plutôt qu'individuelles.",
+"Les services qui collectaient « au cas où » ont subi des fuites bien plus graves.",
+"Moins on porte, moins on perd.",
+"La minimisation est un principe clé de protection des données personnelles.",
+"Il faut parfois arbitrer avec les besoins d'analyse ou de lutte contre la fraude.",
+""],
+[2,4,"D2","PR","Marquer et étiqueter",
+"Le marquage indique visiblement la classification sur les documents et supports ; l'étiquetage permet aux outils de l'appliquer.",
+"Un en-tête « Confidentiel » sur les documents Word.",
+"Une étiquette de classification lue par l'outil DLP.",
+"Sans marquage, des documents confidentiels sont régulièrement envoyés à de mauvais destinataires.",
+"Ce qui n'est pas nommé n'est pas protégé.",
+"Marking = lisible par l'humain ; labeling = lisible par la machine.",
+"Le marquage doit être simple, sinon il est ignoré.",
+""],
+[2,4,"D2","DE","Prévenir les fuites de données (DLP)",
+"Le DLP détecte et bloque l'envoi de données sensibles par mail, web, USB ou cloud.",
+"Blocage d'un fichier contenant des numéros de cartes vers une messagerie personnelle.",
+"Alerte sur la copie massive de fichiers vers une clé USB.",
+"Les projets DLP réussis commencent en mode observation, puis bloquent progressivement.",
+"Le filet ne sert que s'il a la bonne maille.",
+"Le DLP s'appuie sur la classification ; sans elle, il génère surtout du bruit.",
+"Le DLP réseau ne voit pas le trafic chiffré sans inspection TLS.",
+""],
+[2,4,"D2","PR","Baselines, scoping et tailoring",
+"On part d'une baseline de contrôles reconnue, puis on retire ce qui ne s'applique pas (scoping) et on l'adapte (tailoring).",
+"Partir des CIS Benchmarks pour les serveurs Linux.",
+"Exclure les contrôles Wi-Fi pour un site sans Wi-Fi.",
+"Les organisations qui adaptent leur baseline l'appliquent mieux que celles qui imposent tout sans discernement.",
+"Le costume se coupe à la taille.",
+"Scoping = choisir ce qui s'applique ; tailoring = ajuster à l'organisation.",
+"Toute exclusion doit être justifiée et documentée.",
+"Scoping = Sélectionner ; Tailoring = Tailler."],
+[2,4,"D2","PR","Pseudonymiser, anonymiser, tokeniser",
+"Ces techniques réduisent l'exposition des données. L'anonymisation est irréversible, la pseudonymisation et la tokenisation ne le sont pas.",
+"Tokenisation des numéros de cartes bancaires dans une base de paiement.",
+"Pseudonymisation des patients dans un jeu de données de recherche.",
+"Des jeux de données dits « anonymes » ont été réidentifiés en croisant d'autres sources.",
+"Un masque n'est pas un nouveau visage.",
+"Données pseudonymisées = toujours des données personnelles ; anonymisées = non.",
+"L'anonymisation réelle est difficile à garantir.",
+""],
+[1,4,"D2","PR","Gérer les supports et le matériel",
+"Les supports amovibles, ordinateurs et équipements sont suivis, protégés et sortis du parc de façon contrôlée.",
+"Chiffrement obligatoire des clés USB professionnelles.",
+"Registre de sortie et effacement certifié des postes en fin de vie.",
+"Des ordinateurs portables volés non chiffrés ont provoqué de nombreuses notifications de fuite.",
+"Ce qui sort sans contrôle revient en scandale.",
+"Le chiffrement de disque complet transforme le vol d'un portable en simple perte matérielle.",
+"Le contrôle des ports USB doit prévoir des exceptions métier.",
+""],
+[1,4,"D2","PR","Gestion des droits numériques (DRM / IRM)",
+"Le DRM ou l'IRM attache des droits au document lui-même : lecture seule, pas d'impression, expiration.",
+"Un rapport du conseil d'administration lisible seulement par ses membres.",
+"Un contrat partagé avec un partenaire qui expire après 30 jours.",
+"L'IRM limite les fuites par transfert de mail, mais pas la photo d'écran.",
+"La clé suit le document, pas le bureau.",
+"Le DRM protège la donnée après qu'elle a quitté le périmètre.",
+"Il ajoute de la friction et dépend de l'écosystème logiciel.",
+""]
+);
+
+P.push(
+// ===== C5 ARCHITECTURE & CRYPTOGRAPHIE =====
+[3,5,"D3","PR","Défense en profondeur",
+"Aucune barrière unique ne suffit. On superpose des contrôles de natures différentes pour qu'une défaillance n'ouvre pas tout.",
+"MFA, EDR, segmentation et sauvegardes immuables contre un même ransomware.",
+"WAF, revue de code et test d'intrusion pour une application web exposée.",
+"Equifax (2017) : un correctif non appliqué et un certificat d'inspection expiré depuis des mois ont laissé passer l'exfiltration sans alerte.",
+"Plusieurs murs valent mieux qu'un rempart.",
+"Defense in depth = layering = plusieurs couches indépendantes.",
+"Empiler des couches sans cohérence crée de la complexité, donc de nouvelles failles.",
+"Oignon : chaque couche ralentit l'attaquant."],
+[3,5,"D3 · D8","PR","Sécurité dès la conception et par défaut",
+"La sécurité s'intègre dès l'architecture. Les réglages par défaut sont sûrs, et un système en panne se met en position sécurisée.",
+"Une modélisation de menaces dès la conception d'un projet.",
+"Les nouveaux comptes sont créés désactivés et sans droits.",
+"Mirai (2016) a prospéré sur des objets livrés avec des mots de passe par défaut identiques.",
+"Mieux vaut prévoir que guérir.",
+"Corriger un défaut en conception coûte bien moins cher qu'en production.",
+"Fail secure protège les actifs ; fail safe protège les personnes.",
+"Secure by Design, by Default, in Deployment."],
+[3,5,"D3","PR","La simplicité, alliée de la sécurité",
+"Un système simple est plus facile à comprendre, tester et sécuriser (économie des mécanismes).",
+"Réduire 1 200 règles de pare-feu à 300 règles documentées.",
+"Rationaliser quatre antivirus en une seule solution EDR.",
+"Les revues de pare-feu trouvent souvent des règles « any-any » oubliées au milieu de milliers d'autres.",
+"La complexité est l'ennemie de la sécurité.",
+"Economy of mechanism fait partie des principes de conception de Saltzer et Schroeder.",
+"Simplifier demande du temps et du courage politique face à l'existant.",
+"KISS : Keep It Simple and Secure."],
+[3,5,"D3 · D4","PR","Zero Trust",
+"Aucun accès n'est accordé sur la seule base de la position réseau. Chaque requête est authentifiée, autorisée et vérifiée en continu.",
+"Une connexion VPN ne donne plus accès à tout le réseau interne.",
+"L'état du poste (correctifs, EDR actif) est vérifié avant l'accès à une application.",
+"Après des intrusions majeures, de grands groupes ont adopté des architectures de type BeyondCorp, sans réseau interne « de confiance ».",
+"Faire confiance, c'est bien ; vérifier, c'est mieux.",
+"Zero Trust = never trust, always verify, assume breach, least privilege (NIST SP 800-207).",
+"Le Zero Trust est une démarche progressive, pas un produit à acheter.",
+"NTAV : Never Trust, Always Verify."],
+[3,5,"D3","PR","Bell-LaPadula : protéger la confidentialité",
+"Modèle à états fondé sur les niveaux de classification : on ne lit pas au-dessus de son niveau et on n'écrit pas en dessous.",
+"Un agent « Secret » ne lit pas un document « Top Secret ».",
+"Il ne peut pas copier une information « Secret » dans un document « Public ».",
+"Ce modèle a été conçu pour les systèmes militaires américains, où la fuite d'information est le risque principal.",
+"Ce que tu sais ne descend pas l'escalier.",
+"No Read Up (simple security), No Write Down (star property), strong star = lire et écrire seulement à son niveau.",
+"Il ne traite pas l'intégrité ni les canaux cachés.",
+"BLP = confidentialité : « pas de lecture en haut, pas d'écriture en bas »."],
+[3,5,"D3","PR","Biba et Clark-Wilson : protéger l'intégrité",
+"Biba inverse Bell-LaPadula : on ne lit pas en dessous et on n'écrit pas au-dessus. Clark-Wilson impose des transactions bien formées et la séparation des tâches.",
+"Biba : un processus fiable ne lit pas de données non vérifiées.",
+"Clark-Wilson : un utilisateur passe par une application contrôlée (triplet sujet-programme-objet), jamais directement par la base.",
+"Les systèmes bancaires appliquent depuis longtemps la logique Clark-Wilson : pas d'écriture directe en base.",
+"L'eau propre ne se mélange pas à l'eau sale.",
+"Biba : No Read Down, No Write Up. Clark-Wilson : CDI, UDI, TP, IVP.",
+"Biba ne protège pas la confidentialité.",
+"Biba = Bonne intégrité ; Clark-Wilson = Commerce."],
+[2,5,"D3","PR","Brewer-Nash : la muraille de Chine",
+"Les droits d'accès changent dynamiquement selon ce que l'utilisateur a déjà consulté, pour éviter les conflits d'intérêts.",
+"Un consultant qui accède au dossier de la banque A ne peut plus accéder à celui de la banque B concurrente.",
+"Un cabinet d'audit cloisonne les équipes entre deux clients concurrents.",
+"Les cabinets de conseil et d'audit appliquent ce cloisonnement pour respecter leurs obligations déontologiques.",
+"On ne sert pas deux maîtres rivaux.",
+"Brewer-Nash = conflit d'intérêts, accès dynamique.",
+"Il s'applique surtout aux métiers de conseil, de finance et de droit.",
+"Brewer-Nash = Barrière entre Noms concurrents."],
+[2,5,"D3","PR","Moniteur de référence et base de confiance (TCB)",
+"Tous les accès passent par un moniteur de référence inviolable, toujours invoqué et vérifiable. La TCB regroupe tout ce qui assure la sécurité du système.",
+"Le noyau du système d'exploitation contrôle chaque accès aux fichiers.",
+"Un module TPM conserve les secrets du démarrage sécurisé.",
+"Les vulnérabilités de noyau sont critiques précisément parce qu'elles compromettent la TCB.",
+"Le gardien doit voir toutes les portes.",
+"Le noyau de sécurité (security kernel) met en œuvre le moniteur de référence.",
+"Plus la TCB est petite, plus elle est vérifiable.",
+"TIV : Toujours invoqué, Inviolable, Vérifiable."],
+[2,5,"D3","ID","Évaluer les produits : Common Criteria",
+"Les Common Criteria (ISO 15408) évaluent un produit face à un profil de protection et lui attribuent un niveau d'assurance EAL1 à EAL7.",
+"Un pare-feu certifié EAL4+ pour un ministère.",
+"Une carte à puce certifiée EAL5+ pour l'identité numérique.",
+"Un niveau EAL élevé décrit la rigueur de l'évaluation, pas l'absence de failles.",
+"Le label rassure, la configuration protège.",
+"Protection Profile = besoin ; Security Target = ce que le produit prétend ; EAL = profondeur d'évaluation.",
+"Une certification ne vaut que pour la configuration évaluée.",
+"EAL1 fonctionnel → EAL7 formellement vérifié."],
+[3,5,"D3","PR","Cryptographie : des standards éprouvés",
+"On n'invente jamais son algorithme. La sécurité repose sur le secret des clés, pas sur celui de l'algorithme (principe de Kerckhoffs).",
+"AES-256 pour les données au repos, TLS 1.3 en transit.",
+"Abandon de MD5, SHA-1, DES et RC4.",
+"Le Wi-Fi WEP, mal conçu, a permis le vol de millions de cartes chez TJX (2007).",
+"Un secret partagé avec tous n'est plus un secret.",
+"La sécurité par l'obscurité n'est jamais une bonne réponse.",
+"Anticiper la cryptographie post-quantique pour les données à longue durée de vie.",
+"Kerckhoffs : seule la Clé est secrète."],
+[3,5,"D3","PR","Symétrique, asymétrique et hybride",
+"Le symétrique est rapide mais pose le problème de distribution des clés. L'asymétrique résout cette distribution mais il est lent. Les protocoles combinent les deux.",
+"TLS échange une clé de session avec ECDHE, puis chiffre en AES.",
+"PGP chiffre le message en symétrique et la clé avec la clé publique du destinataire.",
+"Les premiers systèmes uniquement symétriques devenaient ingérables dès que le nombre d'utilisateurs augmentait.",
+"La bonne clé au bon endroit.",
+"Clés nécessaires : symétrique n(n−1)/2 ; asymétrique 2n.",
+"Diffie-Hellman échange des clés mais ne chiffre ni n'authentifie seul.",
+"100 personnes : 4 950 clés symétriques contre 200 asymétriques."],
+[3,5,"D3","PR","Signature numérique et non-répudiation",
+"La signature garantit l'intégrité, l'authenticité de l'origine et la non-répudiation. On signe avec sa clé privée ; on vérifie avec la clé publique.",
+"Un contrat électronique signé par le DG.",
+"Une mise à jour logicielle signée par l'éditeur.",
+"Chez SolarWinds, la mise à jour piégée était correctement signée : la signature prouve l'origine, pas l'innocuité.",
+"Ma signature engage ma main.",
+"Je signe avec MA privée ; je chiffre pour toi avec TA publique.",
+"Un HMAC prouve l'intégrité et l'authenticité, mais pas la non-répudiation (clé partagée).",
+"Signer = Ma privée ; Chiffrer = Ta publique."],
+[2,5,"D3","PR","Hachage et intégrité",
+"Une fonction de hachage produit une empreinte unique et irréversible. Elle détecte toute modification.",
+"Comparer le SHA-256 d'un fichier téléchargé avec celui publié par l'éditeur.",
+"Stocker les mots de passe avec un hachage lent et salé (bcrypt, Argon2).",
+"Des bases de mots de passe hachés sans sel ont été cassées massivement par tables arc-en-ciel.",
+"L'empreinte ne ment pas.",
+"Le sel contre les tables précalculées ; le hachage lent contre la force brute.",
+"Un hash seul ne prouve pas l'origine : il faut une signature ou un HMAC.",
+"Sel = Salade unique pour chaque mot de passe."],
+[2,5,"D3","PR","PKI et cycle de vie des certificats",
+"Une PKI émet, publie, renouvelle et révoque les certificats. La confiance repose sur l'autorité de certification racine.",
+"Révocation immédiate d'un certificat dont la clé privée est compromise (CRL, OCSP).",
+"Inventaire et alertes avant expiration de tous les certificats.",
+"Des certificats expirés ont provoqué de grandes pannes de services en ligne.",
+"La confiance se délègue, elle se vérifie aussi.",
+"CA = signe ; RA = vérifie l'identité ; CRL/OCSP = révocation.",
+"La racine hors ligne protège toute la chaîne.",
+""],
+[3,5,"D3","PR","Gérer les clés comme des joyaux",
+"La sécurité du chiffrement dépend de la génération, du stockage, de la rotation, de la séparation et de la destruction des clés.",
+"Clés maîtres conservées dans un HSM.",
+"Séquestre (escrow) et contrôle à deux personnes pour les clés critiques.",
+"En 2023, une clé de signature volée a permis de forger des jetons d'accès à des messageries cloud gouvernementales.",
+"Le coffre vaut ce que vaut sa clé.",
+"Split knowledge et dual control pour les clés sensibles.",
+"Une clé perdue sans séquestre rend les données irrécupérables.",
+"Générer, Stocker, Tourner, Détruire."],
+[3,5,"D3","PR","Cloud : la responsabilité partagée",
+"Le fournisseur sécurise le cloud ; le client sécurise ce qu'il met dans le cloud. La part du client dépend du modèle IaaS, PaaS ou SaaS.",
+"En IaaS, le client durcit et corrige ses machines virtuelles.",
+"En SaaS, le client reste responsable des identités, des droits et des données.",
+"Code Spaces (2014) a fermé après la suppression de toutes ses ressources cloud, sauvegardes comprises, par un attaquant ayant accès à la console.",
+"Louer la maison ne dispense pas de fermer sa porte.",
+"Le client est toujours responsable de ses données et de ses accès, quel que soit le modèle.",
+"Lisez le contrat : la répartition varie selon le fournisseur.",
+"IaaS = Infra louée ; PaaS = Plateforme ; SaaS = Service fini."],
+[2,5,"D3 · D7","PR","Sécurité physique en couches",
+"Sans sécurité physique, aucune sécurité logique ne tient. On dissuade, retarde, détecte, puis on réagit.",
+"Clôture, éclairage, badge et sas pour la salle serveurs.",
+"Aménagement de l'environnement (CPTED) : visibilité naturelle et contrôle des accès.",
+"Stuxnet a franchi un réseau isolé grâce à une clé USB : le physique reste une porte d'entrée.",
+"Le mur arrête le passant, pas le déterminé.",
+"Ordre classique : Dissuader, Retarder, Détecter, Évaluer, Réagir.",
+"Une clôture de 1 m arrête le promeneur ; 2,4 m avec barbelés freine l'intrus déterminé.",
+"DRDER : Dissuader, Retarder, Détecter, Évaluer, Réagir."],
+[1,5,"D3","PR","Environnement du datacenter",
+"Énergie, climatisation, humidité et protection incendie conditionnent la disponibilité.",
+"Onduleurs et groupe électrogène testés contre les coupures fréquentes.",
+"Système d'extinction à pré-action pour éviter les déclenchements accidentels sur les serveurs.",
+"L'incendie d'un datacenter strasbourgeois en 2021 a détruit des données de clients qui gardaient leurs sauvegardes sur le même site.",
+"La chaleur et l'eau sont des attaquants silencieux.",
+"Pré-action = la meilleure option à eau pour les datacenters ; humidité cible ≈ 40-60 %.",
+"Les conditions locales (chaleur, poussière, délestages) imposent des marges supplémentaires.",
+"Pré-action = deux conditions avant l'eau."]
+);
+P.push(
+// ===== C6 RÉSEAUX & COMMUNICATIONS =====
+[3,6,"D4","PR","Le modèle OSI comme carte des attaques et des défenses",
+"Les 7 couches OSI permettent de situer chaque protocole, attaque et contrôle.",
+"Une attaque ARP spoofing agit en couche 2 ; un WAF protège en couche 7.",
+"IPsec chiffre en couche 3 ; TLS entre les couches 4 et 7.",
+"Les équipes qui raisonnent par couche diagnostiquent plus vite incidents et pannes.",
+"Chaque étage a sa serrure.",
+"Physique, Liaison, Réseau, Transport, Session, Présentation, Application.",
+"TCP/IP n'a que 4 couches : l'examen utilise les deux modèles.",
+"« Pour Le Réseau, Tout Se Passe Automatiquement » (1 → 7)."],
+[3,6,"D4","PR","Segmenter pour contenir",
+"Diviser le réseau en zones limite la propagation d'une attaque et les mouvements latéraux.",
+"Zones séparées pour la bureautique, les serveurs, l'administration et les invités.",
+"Une DMZ pour les services exposés à Internet.",
+"NotPetya (2017) a paralysé des réseaux entiers en quelques minutes là où ils étaient plats.",
+"On cloisonne le navire pour qu'il ne coule pas.",
+"La segmentation n'a de valeur que si les flux entre zones sont filtrés et surveillés.",
+"Trop de segments mal documentés deviennent ingérables.",
+""],
+[3,6,"D4","PR","Pare-feu : tout refuser sauf l'autorisé",
+"La règle par défaut est « deny all ». Chaque flux autorisé est justifié, documenté et revu.",
+"Une règle finale « deny any any » journalisée.",
+"Une revue semestrielle qui supprime les règles inutilisées.",
+"Des règles temporaires jamais retirées sont une cause fréquente d'exposition.",
+"La porte est fermée par défaut.",
+"Générations : filtrage de paquets, stateful, proxy applicatif, NGFW.",
+"Le pare-feu ne voit rien du trafic chiffré sans inspection ou sans journaux applicatifs.",
+"Implicit deny = dernière règle."],
+[3,6,"D4","PR","Chiffrer les communications",
+"Toute donnée sensible en transit est chiffrée avec des protocoles à jour (TLS 1.2 ou 1.3, IPsec, SSH).",
+"Remplacer Telnet par SSH et FTP par SFTP.",
+"Désactiver SSL et TLS 1.0/1.1 sur tous les serveurs.",
+"Heartbleed (2014) a montré qu'une faille dans une bibliothèque TLS pouvait exposer clés et mots de passe.",
+"Ce qui voyage nu se fait voler en chemin.",
+"IPsec : AH = intégrité/authentification ; ESP = ajoute la confidentialité. Mode transport ou tunnel.",
+"Le chiffrement cache aussi les attaques : il faut journaliser aux extrémités.",
+"AH = Authentifie ; ESP = Encapsule et Sécurise."],
+[2,6,"D4","PR","Sécuriser l'accès distant",
+"VPN ou accès ZTNA avec MFA, postes contrôlés et droits limités au strict besoin.",
+"MFA obligatoire sur tous les accès VPN.",
+"Accès d'un prestataire limité à un seul serveur, pour une durée définie.",
+"Colonial Pipeline (2021) a été compromis via un ancien compte VPN sans MFA dont le mot de passe avait fuité.",
+"Une porte dérobée reste une porte.",
+"Split tunneling = risque : le poste est à la fois sur Internet et sur le réseau interne.",
+"Le VPN ne doit pas donner accès à tout le réseau.",
+""],
+[2,6,"D4","PR","Sécuriser le sans-fil",
+"Utiliser WPA3 ou WPA2-Enterprise avec 802.1X, séparer le réseau invités et détecter les points d'accès pirates.",
+"Wi-Fi d'entreprise authentifié par certificat via RADIUS.",
+"Réseau invités isolé, sans accès aux ressources internes.",
+"TJX (2007) a perdu des dizaines de millions de numéros de cartes à cause d'un Wi-Fi WEP.",
+"Les ondes traversent les murs.",
+"WEP = cassé ; WPA2 = AES-CCMP ; WPA3 = SAE (protège mieux contre les attaques par dictionnaire).",
+"Masquer le SSID n'est pas un contrôle de sécurité.",
+""],
+[2,6,"D4","PR","Contrôler l'accès au réseau (NAC)",
+"Le NAC vérifie l'identité et la conformité d'un équipement avant de le laisser se connecter.",
+"Un poste sans antivirus à jour est placé en quarantaine.",
+"Un équipement inconnu branché sur une prise est isolé dans un VLAN invité.",
+"Les prises réseau en salle de réunion restent une entrée classique lors des tests d'intrusion.",
+"On vérifie l'invité avant de lui ouvrir.",
+"802.1X : supplicant (poste), authenticator (switch), authentication server (RADIUS).",
+"Les objets connectés ne supportent pas toujours 802.1X : prévoir des exceptions encadrées.",
+"802.1X : Supplicant, Switch, Serveur."],
+[2,6,"D4","PR","Protéger le DNS",
+"Le DNS est un service critique et un vecteur d'attaque : empoisonnement, tunnels, domaines malveillants.",
+"Activer DNSSEC pour les domaines de l'organisation.",
+"Utiliser un résolveur filtrant qui bloque les domaines malveillants.",
+"L'attaque contre Dyn (2016) a rendu inaccessibles de grands sites en saturant leur fournisseur DNS.",
+"Qui contrôle l'annuaire contrôle le chemin.",
+"DNSSEC garantit l'authenticité et l'intégrité des réponses, pas leur confidentialité.",
+"Le DNS chiffré (DoH) peut aussi masquer des exfiltrations aux outils de sécurité.",
+""],
+[2,6,"D4","RS","Résister aux dénis de service",
+"On prévoit capacité, filtrage en amont et services anti-DDoS pour maintenir la disponibilité.",
+"Contrat anti-DDoS avec l'opérateur ou un CDN.",
+"Limitation du nombre de requêtes sur les API publiques.",
+"En 2018, GitHub a encaissé une attaque d'environ 1,35 Tbit/s grâce à son service de protection.",
+"On ne vide pas la mer avec une calebasse.",
+"SYN flood (TCP), amplification DNS/NTP/memcached, botnets IoT.",
+"La protection doit être en amont : votre lien Internet sature avant votre pare-feu.",
+""],
+[2,6,"D4","DE","Détecter et bloquer les intrusions",
+"L'IDS détecte et alerte ; l'IPS bloque en ligne. Détection par signatures, par anomalies ou par comportement.",
+"IPS devant les serveurs exposés.",
+"Détection comportementale d'un flux d'exfiltration nocturne.",
+"Les IDS mal réglés produisent tant de faux positifs que les vraies alertes sont ignorées.",
+"Le chien qui aboie toujours n'est plus écouté.",
+"Faux positif = alerte sans attaque ; faux négatif = attaque sans alerte (le plus grave).",
+"Un IPS mal réglé peut bloquer du trafic légitime.",
+"IDS Informe, IPS Interdit."],
+[2,6,"D4","PR","Retirer les protocoles non sécurisés",
+"Les protocoles en clair (Telnet, FTP, HTTP, SNMPv1/v2) sont remplacés par leurs versions sécurisées.",
+"SSH (22) au lieu de Telnet (23).",
+"SNMPv3 au lieu de SNMPv1 avec la chaîne « public ».",
+"Des mots de passe d'administration sont encore capturés en clair lors de nombreux audits.",
+"Ce qui s'entend se vole.",
+"Ports à connaître : 21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP.",
+"Certains équipements industriels anciens ne supportent pas les versions sécurisées : isoler.",
+""],
+[2,6,"D4","PR","Sécuriser la messagerie",
+"SPF, DKIM et DMARC limitent l'usurpation de domaine ; le filtrage protège contre le phishing et les pièces jointes malveillantes.",
+"Politique DMARC en « reject » pour le domaine de l'entreprise.",
+"Bandeau « Message externe » sur les mails venant de l'extérieur.",
+"La fraude au président (BEC) a coûté des dizaines de millions de dollars à des entreprises comme Ubiquiti (2015).",
+"Un nom connu ne garantit pas l'expéditeur.",
+"SPF = serveurs autorisés ; DKIM = signature ; DMARC = politique et rapports.",
+"Ces mécanismes ne bloquent pas les domaines ressemblants (typosquatting).",
+"SPF Serveurs, DKIM Signature, DMARC Décision."],
+[1,6,"D4","PR","Micro-segmentation et réseaux définis par logiciel",
+"La micro-segmentation applique des règles jusqu'au niveau de chaque charge de travail ; le SDN centralise le contrôle du réseau.",
+"Deux serveurs d'un même VLAN ne communiquent que sur le port nécessaire.",
+"Des politiques réseau appliquées automatiquement aux conteneurs.",
+"Les ransomwares se propagent beaucoup moins dans les environnements micro-segmentés.",
+"Chaque chambre a sa clé.",
+"SDN : séparation du plan de contrôle et du plan de données.",
+"Le contrôleur SDN devient un point critique à protéger.",
+""],
+[2,6,"D4","PR","Protéger l'OT, l'ICS et l'IoT",
+"Les systèmes industriels privilégient la disponibilité et la sûreté. On les isole, on surveille et on corrige avec prudence.",
+"Séparation du réseau SCADA d'une usine et du réseau bureautique.",
+"Inventaire et isolement des caméras IP et capteurs.",
+"Stuxnet a montré qu'une attaque informatique peut détruire des équipements physiques.",
+"Ce qui fait tourner l'usine ne se redémarre pas à la légère.",
+"Pour l'OT, l'ordre des priorités est souvent Disponibilité, Intégrité, Confidentialité.",
+"Un correctif non testé peut arrêter une production : tester avant.",
+"OT = AIC (disponibilité d'abord)."],
+[1,6,"D4","PR","Voix, vidéo et outils collaboratifs",
+"La VoIP et les outils de visioconférence sont des applications réseau à sécuriser : chiffrement, authentification, contrôle des invités.",
+"Chiffrement SRTP pour la téléphonie IP.",
+"Salle d'attente et mot de passe pour les réunions sensibles.",
+"Des réunions en ligne non protégées ont été perturbées par des intrus pendant la pandémie.",
+"La parole aussi se protège.",
+"Fraude téléphonique (toll fraud) via des IPBX mal configurés : un risque financier réel.",
+"Le confort d'usage reste décisif pour l'adoption.",
+""],
+[2,6,"D4","PR","Administrer par un chemin dédié",
+"L'administration passe par un réseau séparé et des bastions journalisés, jamais depuis le poste bureautique.",
+"Interfaces d'administration accessibles seulement depuis un VLAN dédié.",
+"Bastion qui enregistre les sessions des administrateurs.",
+"Des interfaces d'administration exposées sur Internet restent une cause majeure d'intrusion.",
+"La salle des machines n'est pas un couloir.",
+"Out-of-band management = canal d'administration séparé du trafic de production.",
+"Le bastion devient une cible critique : MFA et durcissement obligatoires.",
+""],
+[1,6,"D4","DE","Connaître les attaques réseau classiques",
+"Usurpation, interception (MITM), empoisonnement ARP ou DNS et détournement de session exploitent les faiblesses des protocoles.",
+"Un ARP spoofing pour intercepter le trafic d'un réseau local.",
+"Un faux point d'accès Wi-Fi dans un aéroport (evil twin).",
+"En 2021, une erreur de configuration BGP a coupé Facebook plusieurs heures : le routage est aussi une surface de risque.",
+"Le messager peut être un imposteur.",
+"Défenses : chiffrement de bout en bout, authentification mutuelle, inspection ARP dynamique.",
+"Beaucoup d'attaques réseau sont neutralisées par un chiffrement bien configuré.",
+""]
+);
+
+P.push(
+// ===== C7 IDENTITÉS & ACCÈS =====
+[4,7,"D5","PR","Moindre privilège et besoin d'en connaître",
+"Chacun reçoit uniquement les droits nécessaires à sa fonction, pour la durée nécessaire, et n'accède qu'aux informations utiles à sa mission.",
+"Un comptable n'est pas administrateur de son poste.",
+"Un administrateur système n'a pas accès au contenu des dossiers RH.",
+"Snowden (2013), administrateur système, disposait d'accès bien plus larges que ses besoins.",
+"On ne donne pas toutes les clés au gardien du portail.",
+"Least privilege = droits ; need to know = informations, même avec la bonne habilitation.",
+"Trop restreindre pousse au contournement : prévoir un processus d'exception rapide.",
+"Juste assez, juste à temps."],
+[3,7,"D5","PR","Identifier, authentifier, autoriser, tracer",
+"Le contrôle d'accès suit une séquence : déclarer son identité, la prouver, recevoir des droits, puis rendre compte de ses actions.",
+"Saisie de l'identifiant (identification) puis du mot de passe et du code MFA (authentification).",
+"Journaux qui relient chaque action à une personne (imputabilité).",
+"Sans identités individuelles, des enquêtes internes n'ont jamais pu établir qui avait fait quoi.",
+"Pas de responsabilité sans identité.",
+"IAAA : Identification, Authentication, Authorization, Accountability (avec l'audit).",
+"L'identification seule ne prouve rien : un nom d'utilisateur n'est pas un secret.",
+"IAAA : « Je suis, je le prouve, j'ai le droit, je l'assume »."],
+[3,7,"D5","PR","Authentification multifacteur",
+"Combiner au moins deux types de facteurs différents : ce que l'on sait, ce que l'on possède, ce que l'on est.",
+"Mot de passe et application d'authentification sur smartphone.",
+"Carte à puce et code PIN pour les administrateurs.",
+"Microsoft estime que le MFA bloque l'immense majorité des attaques automatisées sur les comptes.",
+"Deux verrous différents valent mieux que deux verrous identiques.",
+"Mot de passe + code PIN = un seul facteur (deux fois « ce que l'on sait »).",
+"Le SMS est le facteur le plus faible ; privilégier FIDO2 ou les clés matérielles pour les comptes sensibles.",
+"Savoir, Avoir, Être (+ Lieu, Comportement)."],
+[2,7,"D5","PR","Biométrie : FAR, FRR et CER",
+"La biométrie se règle entre rejets de légitimes (FRR, type I) et acceptations d'imposteurs (FAR, type II). Le CER mesure la précision globale.",
+"Un lecteur d'empreintes réglé strictement pour la salle des coffres.",
+"La reconnaissance faciale comparée sur la base de son CER.",
+"Des systèmes biométriques mal calibrés ont été abandonnés à cause d'un taux de rejet trop gênant.",
+"Trop sévère, on bloque les siens ; trop souple, on laisse entrer les autres.",
+"Plus le CER est bas, plus le système est précis. Le FAR (type II) est le plus dangereux pour la sécurité.",
+"Une biométrie compromise ne se change pas comme un mot de passe.",
+"Type I = Ignoré (légitime rejeté) ; Type II = Intrus admis."],
+[3,7,"D5","PR","Choisir le bon modèle de contrôle d'accès",
+"DAC : le propriétaire décide. MAC : les étiquettes du système décident. RBAC : le rôle décide. ABAC : les attributs et le contexte décident.",
+"RBAC : le rôle « comptable » donne accès au logiciel de comptabilité.",
+"ABAC : accès autorisé seulement depuis un poste géré, aux heures de bureau.",
+"Les entreprises qui passent du DAC au RBAC réduisent fortement les droits excessifs.",
+"La règle claire évite les faveurs.",
+"MAC = le plus strict, typique des environnements militaires ; DAC = le plus souple.",
+"Trop de rôles (role explosion) rendent le RBAC ingérable.",
+"DAC Discrétion, MAC Militaire, RBAC Rôle, ABAC Attributs."],
+[3,7,"D5","PR","Cycle de vie des identités : arrivée, mobilité, départ",
+"Les droits sont créés à l'arrivée, ajustés à chaque mutation et retirés au départ, automatiquement si possible.",
+"Création des comptes déclenchée par le SIRH.",
+"Retrait des anciens droits lors d'un changement de service.",
+"Dans de nombreux audits, plus de 10 % des comptes actifs appartiennent à des personnes parties.",
+"Les droits suivent la personne, pas l'habitude.",
+"Joiner-Mover-Leaver (JML) : le point faible est souvent le Mover.",
+"Les comptes de prestataires sont les plus souvent oubliés.",
+"JML : Joiner, Mover, Leaver."],
+[3,7,"D5","DE","Revoir régulièrement les accès",
+"Les droits s'accumulent avec le temps (privilege creep). Les managers les revoient et les certifient périodiquement.",
+"Revue trimestrielle des accès aux applications financières.",
+"Revue mensuelle des comptes à privilèges.",
+"Les revues révèlent régulièrement des droits hérités de postes occupés des années plus tôt.",
+"Le jardin non désherbé se couvre de ronces.",
+"C'est le manager ou le propriétaire qui certifie, pas l'IT.",
+"Une revue « tout valider » sans analyse ne sert à rien.",
+""],
+[3,7,"D5","PR","Gérer les accès à privilèges",
+"Les comptes d'administration sont peu nombreux, séparés, coffrés, accordés à la demande et entièrement tracés.",
+"Coffre-fort de mots de passe avec rotation automatique.",
+"Droits d'administration accordés « juste à temps » pour une intervention.",
+"La plupart des ransomwares majeurs passent par la prise de contrôle d'un compte administrateur de domaine.",
+"Le pouvoir se prête, il ne se donne pas.",
+"Un administrateur a deux comptes : un pour le quotidien, un pour l'administration.",
+"Le PAM devient lui-même une cible critique.",
+"JIT + JEA : Just In Time, Just Enough Administration."],
+[2,7,"D5","PR","Pas de comptes partagés",
+"Chaque utilisateur a son identité unique. Les comptes génériques empêchent l'imputabilité.",
+"Suppression du compte « admin » partagé par toute l'équipe.",
+"Compte d'urgence (break-glass) scellé, utilisé seulement en crise et revu après usage.",
+"Lors d'enquêtes internes, les comptes partagés ont souvent rendu impossible l'identification du fautif.",
+"Une signature collective n'engage personne.",
+"L'imputabilité exige identification unique + journalisation.",
+"Certains systèmes anciens n'ont qu'un compte : passer par un bastion qui identifie l'utilisateur.",
+""],
+[2,7,"D5","PR","Fédération d'identités et SSO",
+"Le SSO réduit le nombre de mots de passe ; la fédération (SAML, OpenID Connect) permet de faire confiance à un fournisseur d'identité externe.",
+"Connexion unique à toutes les applications SaaS via le fournisseur d'identité de l'entreprise.",
+"Accès des partenaires avec leur propre identité, sans compte local.",
+"Une seule désactivation suffit à couper tous les accès d'un employé qui part, au lieu de vingt.",
+"Une seule clé bien gardée vaut mieux que vingt clés égarées.",
+"SAML = assertions XML (IdP → SP) ; OAuth = autorisation ; OIDC = authentification sur OAuth.",
+"Le SSO devient un point unique de défaillance : MFA obligatoire.",
+"OAuth = Autorisation ; OIDC = Identité."],
+[2,7,"D5","PR","Comprendre Kerberos",
+"Kerberos authentifie par tickets délivrés par un centre de distribution de clés (KDC), sans faire circuler le mot de passe.",
+"Ouverture de session Windows dans un domaine Active Directory.",
+"Accès à un partage de fichiers avec un ticket de service.",
+"Les attaques Golden Ticket permettent de forger des tickets si le compte krbtgt est compromis.",
+"Le ticket ouvre la porte, pas le nom.",
+"KDC = AS (authentification, délivre le TGT) + TGS (délivre les tickets de service). Exige une horloge synchronisée.",
+"Le KDC est un point unique de défaillance et une cible majeure.",
+"Kerberos : AS → TGT → TGS → ticket de service."],
+[2,7,"D5","PR","Mots de passe : longueur plutôt que complexité",
+"Les recommandations actuelles (NIST SP 800-63B) privilégient la longueur, l'interdiction des mots de passe compromis et le gestionnaire de mots de passe.",
+"Une phrase de passe de 15 caractères ou plus.",
+"Vérification des mots de passe contre les listes de fuites connues.",
+"Les règles de rotation tous les 30 jours ont surtout produit des « Motdepasse1, Motdepasse2… ».",
+"Une longue phrase vaut mieux qu'un mot compliqué.",
+"On ne change un mot de passe que s'il y a suspicion de compromission.",
+"Certains régulateurs imposent encore des règles anciennes : la conformité peut primer.",
+""],
+[1,7,"D5","PR","Faire converger accès physiques et logiques",
+"Un même référentiel d'identités gère badges et comptes, pour que le départ d'une personne coupe tout.",
+"Une seule carte à puce pour entrer dans le bâtiment et ouvrir sa session.",
+"Alerte si un badge n'est pas entré mais que la session VPN est active depuis l'intérieur.",
+"Des badges d'anciens employés restés actifs ont permis des intrusions physiques.",
+"Une identité, un cycle de vie.",
+"Le tailgating (talonnage) contourne le badge : sas ou surveillance nécessaires.",
+"La convergence crée un point unique de défaillance à protéger.",
+""],
+[3,7,"D5 · D7","PR","Séparation des tâches",
+"Aucune personne seule ne doit pouvoir réaliser une opération sensible de bout en bout et la dissimuler.",
+"Celui qui crée un fournisseur ne valide pas son paiement.",
+"Un développeur ne déploie pas seul en production.",
+"Nick Leeson contrôlait à la fois les opérations et leur règlement : la banque Barings a fait faillite en 1995.",
+"Celui qui compte l'argent ne tient pas la caisse.",
+"La collusion (deux personnes complices) est le risque résiduel de la séparation des tâches.",
+"Dans une petite structure, des contrôles compensatoires remplacent une séparation stricte.",
+"SoD : un fait, l'autre valide."],
+[2,7,"D5","PR","Comptes de service et secrets",
+"Les comptes techniques ont des droits minimaux, des secrets stockés dans un coffre, une rotation régulière et un propriétaire.",
+"Un compte de service de sauvegarde sans droit d'ouverture de session interactive.",
+"Secrets d'API stockés dans un coffre plutôt que dans des fichiers de configuration.",
+"Des comptes de service administrateurs, au mot de passe inchangé depuis des années, sont une découverte fréquente en test d'intrusion.",
+"La machine aussi doit montrer patte blanche.",
+"Chaque compte de service doit avoir un propriétaire humain identifié.",
+"Les identités gérées par le cloud évitent de manipuler les secrets.",
+""],
+[2,7,"D5","DE","Contrer les attaques sur l'authentification",
+"Bourrage d'identifiants, pulvérisation de mots de passe, phishing et fatigue MFA ciblent les identités.",
+"Verrouillage progressif et détection des connexions impossibles (deux pays en une heure).",
+"MFA avec saisie d'un code affiché (number matching) contre la fatigue MFA.",
+"En 2022, un attaquant a obtenu l'accès à Uber en bombardant un prestataire de demandes MFA puis en se faisant passer pour le support.",
+"L'insistance n'est pas une preuve.",
+"Credential stuffing = réutilisation d'identifiants volés ailleurs ; password spraying = un mot de passe courant sur beaucoup de comptes.",
+"Un verrouillage trop strict peut servir à bloquer volontairement des comptes (déni de service).",
+""],
+[2,7,"D5","PR","Encadrer les accès des tiers",
+"Les prestataires reçoivent des accès nominatifs, limités, temporaires, tracés et retirés en fin de mission.",
+"Accès de maintenance ouvert à la demande et fermé après intervention.",
+"Session prestataire enregistrée via un bastion.",
+"Target (2013) et plusieurs attaques via des MSP montrent que l'accès des tiers est une porte majeure.",
+"L'hôte garde les clés de sa maison.",
+"Le contrat doit préciser les obligations de sécurité du prestataire.",
+"La facilité d'intervention ne doit pas justifier des accès permanents.",
+""]
+);
+P.push(
+// ===== C8 ÉVALUATION, TESTS & AUDIT =====
+[3,8,"D6","GV","L'indépendance de l'audit",
+"Le contrôle doit être indépendant de ceux qui opèrent la sécurité. L'auditeur ne vérifie pas son propre travail.",
+"Un audit ISO 27001 mené par un organisme externe accrédité.",
+"L'audit interne rattaché au comité d'audit, pas à la DSI.",
+"Plusieurs scandales financiers, comme Enron, ont montré les dérives d'auditeurs trop proches de l'audité.",
+"On ne se juge pas soi-même.",
+"L'audit rapporte au comité d'audit ou au conseil, pas à l'équipe auditée.",
+"L'auto-évaluation reste utile pour progresser, mais elle ne remplace pas l'audit.",
+""],
+[2,8,"D6","GV","Stratégie d'évaluation : interne, externe, tierce partie",
+"Audit interne (par l'organisation), externe (par un auditeur pour l'organisation) ou tierce partie (pour le compte d'un client ou d'un régulateur).",
+"Audit interne annuel des processus d'accès.",
+"Audit tierce partie exigé par un client avant de signer un contrat.",
+"Les organisations matures combinent les trois pour croiser les regards.",
+"Plusieurs yeux voient mieux qu'un.",
+"La question précise souvent qui commande l'audit : c'est ce qui détermine son type.",
+"Un audit coûte cher : cibler les risques majeurs.",
+""],
+[3,8,"D6","ID","Scan de vulnérabilités et test d'intrusion",
+"Le scan recense les vulnérabilités connues de façon automatisée ; le test d'intrusion les exploite pour prouver le risque réel.",
+"Scan authentifié mensuel de tous les serveurs.",
+"Test d'intrusion annuel sur l'application de banque en ligne.",
+"Equifax avait été alerté de la faille Apache Struts : la détection existait, la correction n'a pas suivi.",
+"Trouver la fissure, puis montrer qu'elle fait tomber le mur.",
+"Scan = large et fréquent ; pentest = profond et ponctuel.",
+"Prioriser par risque réel (exposition, exploitation active), pas seulement par score CVSS.",
+""],
+[3,8,"D6","ID","Pas de test d'intrusion sans autorisation écrite",
+"Un test d'intrusion exige une autorisation écrite de la direction, un périmètre défini et des règles d'engagement.",
+"Lettre signée précisant les cibles, les dates et les techniques autorisées.",
+"Contacts d'urgence et procédure d'arrêt en cas d'incident.",
+"Des testeurs ont été arrêtés lors de tests physiques mal autorisés, faute d'accord écrit couvrant tout le périmètre.",
+"La permission écrite sépare l'auditeur du cambrioleur.",
+"La première étape d'un pentest est TOUJOURS l'autorisation écrite de la direction.",
+"Un hébergeur ou un fournisseur cloud peut imposer ses propres règles de test.",
+"Pas de papier, pas de pentest."],
+[2,8,"D6","ID","Boîte noire, grise ou blanche",
+"Le testeur reçoit aucune, une partie ou toute l'information sur la cible. Plus il en sait, plus le test est profond.",
+"Boîte noire : simuler un attaquant externe sans information.",
+"Boîte blanche : audit avec code source et architecture.",
+"Les tests en boîte blanche trouvent généralement plus de failles en moins de temps.",
+"Qui connaît la maison trouve vite la fenêtre ouverte.",
+"Zero / partial / full knowledge = black / grey / white box.",
+"La boîte noire mesure surtout l'exposition, la blanche l'exhaustivité.",
+"Noire = rien ; Grise = un peu ; Blanche = tout."],
+[2,8,"D6 · D8","ID","Tester le code : SAST, DAST, IAST et fuzzing",
+"SAST analyse le code au repos, DAST teste l'application en fonctionnement, IAST combine les deux, le fuzzing envoie des entrées aléatoires.",
+"SAST intégré à chaque commit.",
+"Fuzzing d'un parseur de fichiers pour trouver des plantages.",
+"Heartbleed aurait pu être trouvé par un fuzzing ciblé : depuis, les grands projets open source sont fuzzés en continu.",
+"On éprouve le pont avant d'y faire passer les camions.",
+"SAST = statique, boîte blanche ; DAST = dynamique, boîte noire.",
+"Les outils produisent des faux positifs : un humain doit trier.",
+"SAST = Source ; DAST = Dynamique."],
+[1,8,"D6","ID","Tester les cas d'abus et les cas négatifs",
+"On teste ce que l'application doit refuser, pas seulement ce qu'elle doit faire.",
+"Saisir un montant négatif dans un virement.",
+"Accéder à la facture d'un autre client en changeant l'identifiant dans l'URL.",
+"Le contrôle d'accès défaillant est en tête du Top 10 OWASP 2021 : c'est souvent un cas d'abus non testé.",
+"Pense comme le voleur pour protéger comme le gardien.",
+"Misuse case = scénario de l'attaquant ; test case = scénario normal.",
+"Les cas d'abus doivent venir de la modélisation des menaces.",
+""],
+[3,8,"D6","DE","Journaliser et analyser les traces",
+"Les journaux pertinents sont collectés, protégés, conservés et analysés. Sans traces, ni détection ni enquête.",
+"Centralisation des journaux dans un SIEM en lecture seule.",
+"Conservation d'au moins un an des journaux d'authentification.",
+"Dans de nombreuses intrusions, les attaquants sont restés des mois sans être vus faute de revue des journaux.",
+"Les traces racontent l'histoire, encore faut-il les lire.",
+"Protéger l'intégrité des journaux : un attaquant cherche toujours à les effacer.",
+"Tout journaliser noie l'analyse : choisir les événements utiles.",
+""],
+[1,8,"D6","DE","Synchroniser les horloges",
+"Tous les systèmes partagent une même source de temps fiable, sinon les journaux ne peuvent pas être corrélés.",
+"NTP interne synchronisé sur une source de référence.",
+"Journaux horodatés en UTC.",
+"Des enquêtes ont échoué parce que les horloges des serveurs différaient de plusieurs minutes.",
+"Sans heure commune, pas d'histoire commune.",
+"Kerberos refuse aussi l'authentification si l'écart d'horloge est trop grand.",
+"Le serveur NTP doit lui-même être protégé.",
+""],
+[1,8,"D6","DE","Transactions synthétiques et surveillance réelle",
+"Les transactions synthétiques simulent un utilisateur pour tester la disponibilité ; le RUM mesure l'expérience des vrais utilisateurs.",
+"Un script qui simule une connexion à la banque en ligne toutes les 5 minutes.",
+"Mesure du temps de chargement réel vu par les clients.",
+"Les équipes qui surveillent par transactions synthétiques détectent souvent les pannes avant les clients.",
+"Goûte la sauce avant de servir.",
+"Synthetic = actif et scripté ; RUM = passif et réel.",
+"Les transactions synthétiques ne couvrent que les parcours scriptés.",
+""],
+[3,8,"D6","GV","Mesurer pour piloter : KPI et KRI",
+"Les KPI mesurent la performance des contrôles, les KRI signalent l'évolution du risque. Ils sont compréhensibles par la direction.",
+"Délai moyen de correction des vulnérabilités critiques.",
+"Taux de clic aux campagnes de phishing simulé.",
+"Les conseils d'administration réagissent mieux à 5 indicateurs de tendance qu'à 40 pages de vulnérabilités.",
+"Ce qui ne se mesure pas ne s'améliore pas.",
+"KPI = la performance passée ; KRI = l'alerte sur le risque à venir.",
+"Un indicateur mal choisi pousse à optimiser le chiffre au lieu du risque.",
+"KPI = Performance ; KRI = Risque."],
+[2,8,"D6","ID","Rapports SOC 1, 2 et 3",
+"Les rapports SOC attestent des contrôles d'un prestataire. Type I : conception à une date donnée. Type II : efficacité sur une période.",
+"SOC 1 pour les contrôles touchant les états financiers du client.",
+"SOC 2 Type II pour évaluer un fournisseur cloud.",
+"Des clients ont découvert trop tard que le rapport fourni n'était qu'un Type I sur un périmètre restreint.",
+"Une photo n'est pas un film.",
+"SOC 1 = financier ; SOC 2 = sécurité, disponibilité, intégrité, confidentialité, vie privée (détaillé) ; SOC 3 = public, résumé.",
+"Vérifiez le périmètre et les exceptions du rapport.",
+"Type I = Instantané ; Type II = Durée."],
+[3,8,"D6 · D7","RC","Tester les plans de continuité",
+"Un plan non testé est une hypothèse. Les tests vont de la simple relecture à l'interruption complète.",
+"Exercice sur table avec la direction.",
+"Test parallèle : le site de secours traite les opérations sans arrêter le site principal.",
+"Chez Maersk (2017), la reconstruction a dépendu d'un contrôleur de domaine resté hors ligne au Ghana à cause d'une coupure de courant : un heureux hasard, pas un plan.",
+"La sueur à l'entraînement épargne le sang au combat.",
+"Ordre : checklist, walkthrough (sur table), simulation, parallèle, interruption complète (la plus risquée).",
+"Le test d'interruption complète exige l'accord de la direction.",
+"« Lire, Marcher, Simuler, Doubler, Couper »."],
+[2,8,"D6","GV","Adapter le rapport à son lecteur",
+"Le même audit produit une synthèse pour la direction et un détail technique pour les équipes.",
+"Une page de synthèse avec les 5 risques majeurs et les décisions attendues.",
+"Une annexe technique avec les preuves et les correctifs.",
+"Des rapports de 300 pages restent souvent sans suite faute de synthèse exploitable.",
+"On ne parle pas au chef comme au mécanicien.",
+"Le rapport contient constats, risques, recommandations et réponse de la direction.",
+"Simplifier ne doit jamais signifier déformer.",
+""],
+[1,8,"D6","ID","Tester le facteur humain",
+"Le phishing simulé et les tests d'ingénierie sociale mesurent la vigilance réelle, dans un cadre éthique et autorisé.",
+"Campagne trimestrielle de phishing simulé avec formation immédiate.",
+"Test d'appel au support pour vérifier la procédure de réinitialisation.",
+"En 2020, des employés de Twitter ont été manipulés par téléphone, ce qui a permis de pirater des comptes célèbres.",
+"La serrure ne protège pas de celui qui ouvre la porte.",
+"Mesurez aussi le taux de signalement, pas seulement le taux de clic.",
+"Humilier les « cliqueurs » détruit la culture de signalement.",
+""]
+);
+
+P.push(
+// ===== C9 OPÉRATIONS, INCIDENTS & CONTINUITÉ =====
+[4,9,"D7","RS","Préparer la réponse aux incidents avant l'incident",
+"Une équipe, des rôles, des playbooks et des contacts sont prêts avant la crise. Le processus va de la détection au retour d'expérience.",
+"Playbooks pour ransomware, fuite de données et compromission de messagerie.",
+"Annuaire de crise à jour : juridique, communication, CERT national, assureur.",
+"Les organisations dotées d'un plan testé contiennent les incidents bien plus vite et à moindre coût.",
+"On creuse le puits avant d'avoir soif.",
+"Ordre CISSP : Détection, Réponse, Atténuation, Rapport, Reprise, Remédiation, Leçons apprises.",
+"Un plan non testé est une hypothèse, pas un plan.",
+"DRARRRL : « Des Rats Attaquent, Rapidement Rattrapés, Repoussés, Leçon »."],
+[3,9,"D7","RS","Préserver les preuves : la chaîne de possession",
+"Une preuve doit être pertinente, fiable et recevable. Chaque manipulation est tracée, de la collecte au tribunal.",
+"Copie bit à bit d'un disque avec empreinte de hachage avant analyse.",
+"Registre signé de chaque personne ayant manipulé la preuve.",
+"Des affaires ont été perdues parce que l'analyse avait été faite directement sur le disque original.",
+"Ce qui n'est pas tracé n'a pas existé.",
+"On analyse toujours une copie, jamais l'original.",
+"Isoler une machine compromise du réseau vaut mieux que l'éteindre.",
+"Qui, Quoi, Quand, Où, Comment pour chaque manipulation."],
+[2,9,"D7","RS","Respecter l'ordre de volatilité",
+"On collecte d'abord les preuves qui disparaissent le plus vite.",
+"Capture de la mémoire vive avant l'extinction de la machine.",
+"Relevé des connexions réseau actives avant la copie du disque.",
+"Des malwares résidant uniquement en mémoire n'ont laissé aucune trace pour les équipes qui avaient éteint les postes.",
+"On ramasse le lait avant qu'il ne tourne.",
+"Ordre (RFC 3227) : registres et cache, mémoire, état réseau et processus, disque, journaux distants, archives.",
+"La collecte doit rester proportionnée et légale.",
+"Du plus volatil au plus durable : CPU → RAM → Réseau → Disque → Archives."],
+[3,9,"D7 · D8","PR","Gérer les changements",
+"Tout changement est demandé, évalué, approuvé, testé, planifié, documenté et réversible.",
+"Un CAB valide les mises en production à risque.",
+"Un plan de retour arrière accompagne chaque changement majeur.",
+"Knight Capital a perdu 440 M$ en 45 minutes en 2012 après un déploiement incomplet ; en 2024, une mise à jour défectueuse de CrowdStrike a bloqué des millions de postes Windows.",
+"Mesure deux fois, coupe une fois.",
+"Le but premier de la gestion des changements est d'éviter les interruptions non prévues.",
+"Un processus trop lourd pousse aux changements « sauvages » : adapter la rigueur au risque.",
+"Demander, Évaluer, Approuver, Tester, Déployer, Documenter."],
+[2,9,"D7","PR","Gérer la configuration",
+"Chaque système suit une configuration de référence documentée. Toute dérive est détectée et corrigée.",
+"Baseline de durcissement appliquée automatiquement par un outil de gestion de configuration.",
+"Alerte en cas de modification non autorisée d'un fichier système.",
+"Des serveurs « oubliés » non conformes à la baseline sont souvent la porte d'entrée des attaquants.",
+"Ce qui n'est pas maîtrisé dérive.",
+"Configuration management = maintenir l'état connu ; change management = encadrer les évolutions.",
+"L'infrastructure as code facilite la conformité, si le code est lui-même protégé.",
+""],
+[3,9,"D7","PR","Corriger les vulnérabilités à temps",
+"Les correctifs sont évalués, testés et déployés selon un délai fixé par la criticité.",
+"Correctifs critiques déployés sous 15 jours, urgents sous 72 heures.",
+"Test en préproduction avant le déploiement général.",
+"WannaCry (2017) a exploité une faille corrigée deux mois plus tôt : les organisations à jour ont été épargnées.",
+"Le toit se répare quand il fait beau.",
+"Tester avant de déployer, sauf urgence absolue où le risque d'exploitation l'emporte.",
+"Quand un correctif est impossible, appliquer un contrôle compensatoire (isolement, virtual patching).",
+""],
+[3,9,"D7","DE","Surveiller en continu : SIEM et SOC",
+"La surveillance continue corrèle les événements, détecte les anomalies et déclenche la réponse.",
+"SOC 24/7, interne ou externalisé.",
+"Règles de corrélation sur les connexions administratives inhabituelles.",
+"Chez Target, les alertes existaient : c'est leur traitement qui a manqué.",
+"La sentinelle qui dort ne protège pas le camp.",
+"SIEM = collecte et corrélation ; SOAR = automatisation de la réponse.",
+"Trop d'alertes tuent l'alerte : régler et prioriser.",
+""],
+[2,9,"D7","DE","Renseignement sur les menaces et MITRE ATT&CK",
+"Connaître les tactiques des attaquants permet d'orienter la détection et les priorités.",
+"Cartographier ses détections sur la matrice MITRE ATT&CK.",
+"Suivre les campagnes qui ciblent les banques de la sous-région.",
+"Les équipes qui chassent les menaces (threat hunting) trouvent des intrusions que les alertes ne montrent pas.",
+"Connais ton ennemi et connais-toi toi-même.",
+"Cyber Kill Chain : reconnaissance, armement, livraison, exploitation, installation, commande et contrôle, actions sur objectifs.",
+"Le renseignement doit être actionnable, sinon il reste de la lecture.",
+"Kill Chain : « Rien, Ah, Le Exploit Installe Ce Truc »."],
+[2,9,"D7","DE","Rotation des postes et congés obligatoires",
+"Faire tourner les personnes et imposer des congés révèle les fraudes et réduit la dépendance à une seule personne.",
+"Congés obligatoires de deux semaines consécutives pour les opérateurs de trésorerie.",
+"Rotation annuelle des administrateurs sur les systèmes critiques.",
+"Jérôme Kerviel prenait très peu de congés : son absence aurait pu révéler plus tôt ses positions cachées.",
+"Le masque tombe quand le porteur s'absente.",
+"Ce sont des contrôles détectifs (ils révèlent) et dissuasifs.",
+"La rotation exige une documentation et une formation suffisantes.",
+""],
+[4,9,"D1 · D7","ID","Analyse d'impact (BIA) : RTO, RPO et MTD",
+"Le BIA identifie les activités critiques et fixe les délais : interruption maximale tolérable, délai de reprise, perte de données acceptable.",
+"Paiements : MTD 4 h, RTO 2 h, RPO 15 min.",
+"Paie : MTD 3 jours, RTO 24 h, RPO 24 h.",
+"Les plans de reprise construits sans BIA protègent souvent les mauvaises applications en priorité.",
+"On sauve d'abord ce qui fait vivre la maison.",
+"MTD ≥ RTO + WRT. RPO = âge maximal des données perdues. Le BIA précède toujours le plan.",
+"Les durées sont fixées par les métiers, pas par l'informatique.",
+"RPO = Perte (données) ; RTO = Temps (reprise)."],
+[3,9,"D1 · D7","RC","Continuité et reprise : un sujet métier",
+"Le PCA maintient les activités critiques ; le PRA restaure les systèmes. Les deux sont portés par la direction et testés.",
+"Procédure manuelle de secours pour encaisser sans système.",
+"Bascule sur le site de secours pour les applications critiques.",
+"Des entreprises ayant un PRA informatique, mais pas de PCA métier, sont restées paralysées faute de procédures de fonctionnement dégradé.",
+"La pirogue a besoin de rameurs, pas seulement d'une coque.",
+"Le PCA vise les activités, le PRA vise l'informatique. Le plan doit être revu au moins une fois par an.",
+"Un plan trop épais n'est pas lu en crise : prévoir des fiches réflexes.",
+"BIA → Stratégie → Plan → Test → Maintien."],
+[3,9,"D7","RC","Des sauvegardes qui se restaurent vraiment",
+"Les sauvegardes sont multiples, hors ligne ou immuables, et testées par des restaurations régulières.",
+"Règle 3-2-1 : 3 copies, 2 supports différents, 1 hors site.",
+"Restauration trimestrielle mesurant le RTO réellement atteint.",
+"De nombreuses victimes de ransomware ont découvert leurs sauvegardes chiffrées ou effacées en même temps que la production.",
+"La sauvegarde est un espoir ; la restauration est une preuve.",
+"Complète ; incrémentielle (depuis la dernière sauvegarde, restauration plus longue) ; différentielle (depuis la dernière complète).",
+"Les sauvegardes contiennent les données sensibles : les chiffrer et les protéger.",
+"Différentielle = Depuis la Dernière complète."],
+[2,9,"D7","RC","Choisir le bon site de secours",
+"Site chaud, tiède ou froid : plus il est prêt, plus il est cher et plus la reprise est rapide.",
+"Site chaud répliqué en temps réel pour la plateforme de paiement.",
+"Site froid (salle équipée, sans données) pour les applications non critiques.",
+"Des sites de secours trop proches du site principal ont été touchés par les mêmes inondations.",
+"Le grenier de secours ne doit pas être dans la même case.",
+"Chaud = minutes à heures ; tiède = jours ; froid = semaines. Accord de réciprocité = peu fiable.",
+"Le cloud offre un site de secours souple, avec ses propres risques.",
+"Chaud, Tiède, Froid = Heures, Jours, Semaines."],
+[2,9,"D7","RC","Haute disponibilité et tolérance aux pannes",
+"Redondance des composants (RAID, clusters, alimentations, liens) pour éliminer les points uniques de défaillance.",
+"RAID 1 ou 5 pour les disques des serveurs.",
+"Double lien Internet avec deux opérateurs différents.",
+"Des pannes majeures viennent d'un composant unique oublié : un switch, une alimentation, un câble.",
+"Ne mets pas toute ta récolte dans un seul grenier.",
+"RAID 0 = performance, aucune tolérance ; 1 = miroir ; 5 = parité (3 disques min.) ; 6 = double parité ; 10 = miroir + agrégation.",
+"Le RAID n'est pas une sauvegarde : une suppression est répliquée immédiatement.",
+"RAID 0 = Zéro protection."],
+[2,9,"D7","RS","Communiquer en crise",
+"Un porte-parole unique, des messages validés et des canaux de secours si la messagerie est compromise.",
+"Messages préparés à l'avance pour clients, régulateur et presse.",
+"Canal de communication hors bande pour la cellule de crise.",
+"Des entreprises ont aggravé une crise par des déclarations contradictoires de plusieurs dirigeants.",
+"Une seule voix rassure ; dix voix inquiètent.",
+"Seules les personnes autorisées parlent aux médias.",
+"Ne pas promettre trop tôt ce que l'enquête n'a pas confirmé.",
+""],
+[3,9,"D7","RS","Se préparer au ransomware",
+"Sauvegardes immuables, segmentation, MFA, EDR et plan de crise. La décision de payer relève de la direction, éclairée par le juridique.",
+"Exercice de crise ransomware avec la direction générale.",
+"Sauvegardes hors ligne testées pour les systèmes critiques.",
+"Colonial Pipeline a payé environ 4,4 M$ de rançon en 2021, et l'outil de déchiffrement fourni était si lent que les sauvegardes ont surtout servi.",
+"Celui qui paie la rançon finance la prochaine attaque.",
+"Payer ne garantit ni la récupération ni l'effacement des données volées.",
+"Certains paiements peuvent être illégaux si l'attaquant est sous sanctions.",
+""],
+[1,9,"D7","PR","Sécurité physique au quotidien",
+"Gestion des visiteurs, badges visibles, bureaux rangés et escorte dans les zones sensibles.",
+"Registre et badge visiteur avec escorte obligatoire.",
+"Politique du bureau propre et écran verrouillé.",
+"Des testeurs entrent régulièrement dans des locaux en portant simplement un gilet et une échelle.",
+"L'uniforme n'est pas une autorisation.",
+"Tailgating (talonnage) et piggybacking : contrés par sas et sensibilisation.",
+"La convivialité ne doit pas l'emporter sur le contrôle d'accès.",
+""],
+[3,9,"D7","RC","Tirer les leçons de chaque incident",
+"Le retour d'expérience identifie les causes profondes et améliore les contrôles, sans chercher de coupable.",
+"Réunion post-incident dans les deux semaines.",
+"Plan d'action suivi jusqu'à sa clôture.",
+"Les organisations qui pratiquent le « post-mortem sans blâme » apprennent plus vite de leurs erreurs.",
+"L'erreur est un professeur, à condition de l'écouter.",
+"Lessons learned = dernière étape de la réponse aux incidents.",
+"Un retour d'expérience sans plan d'action n'est qu'une réunion.",
+""],
+[2,9,"D7","DE","Anti-malware, EDR et sandboxing",
+"L'EDR détecte les comportements malveillants sur les postes ; le sandboxing fait exploser les fichiers suspects dans un environnement isolé.",
+"EDR sur tous les postes et serveurs, supervisé par le SOC.",
+"Pièces jointes analysées en bac à sable avant livraison.",
+"Les antivirus à signatures seuls ne voient pas les attaques sans fichier ni les outils légitimes détournés.",
+"On goûte l'eau du puits avant de la servir.",
+"Signatures = connu ; heuristique et comportement = inconnu.",
+"Certains malwares détectent le bac à sable et restent dormants.",
+""],
+[1,9,"D7","DE","Pots de miel : attirer sans piéger",
+"Un honeypot attire l'attaquant pour l'observer et le détecter. L'incitation (enticement) est légale ; la provocation (entrapment) ne l'est pas.",
+"Un faux serveur de fichiers « Paie » qui alerte à la moindre connexion.",
+"Des identifiants factices (honeytokens) placés dans un document.",
+"Les leurres internes détectent tôt les mouvements latéraux, avec très peu de faux positifs.",
+"Le miel attire la mouche, il ne la pousse pas.",
+"Enticement = laisser une opportunité ; entrapment = inciter à commettre un délit (illégal).",
+"Un honeypot mal isolé peut servir de rebond à l'attaquant.",
+"Enticement = Envie ; Entrapment = Embuscade."]
+);
+P.push(
+// ===== C10 DÉVELOPPEMENT SÉCURISÉ =====
+[3,10,"D8","GV","La sécurité dans tout le cycle de développement",
+"La sécurité est présente de l'expression du besoin jusqu'au retrait : exigences, conception, code, tests, déploiement, exploitation.",
+"Des exigences de sécurité écrites dans les user stories.",
+"Une revue de sécurité avant chaque mise en production majeure.",
+"Corriger une faille découverte en production coûte bien plus cher que la prévenir dès la conception.",
+"On ne pose pas les fondations après le toit.",
+"La sécurité doit être intégrée dès la phase d'initiation du SDLC.",
+"En agile, la sécurité s'intègre à chaque sprint plutôt qu'en fin de projet.",
+"Shift left : décaler la sécurité vers le début."],
+[3,10,"D8 · D3","ID","Modéliser les menaces",
+"Avant de coder, on identifie ce qui peut mal tourner, avec une méthode structurée.",
+"Atelier STRIDE sur l'architecture d'une API de paiement.",
+"Diagramme de flux de données avec frontières de confiance.",
+"Les équipes qui modélisent les menaces corrigent des défauts d'architecture introuvables par les scanners.",
+"Celui qui prévoit l'orage ne se fait pas surprendre.",
+"STRIDE ↔ propriétés : Spoofing → authentification, Tampering → intégrité, Repudiation → non-répudiation, Info disclosure → confidentialité, DoS → disponibilité, Elevation → autorisation.",
+"D'autres méthodes existent : PASTA (orientée risque), DREAD (notation), VAST.",
+"STRIDE : Spoofing, Tampering, Repudiation, Info, DoS, Elevation."],
+[3,10,"D8","PR","Ne jamais faire confiance aux entrées",
+"Toute entrée est validée côté serveur (type, longueur, format, liste autorisée), et toute sortie est encodée.",
+"Requêtes paramétrées contre l'injection SQL.",
+"Encodage HTML des sorties contre le XSS.",
+"MOVEit (2023) : une injection SQL dans un outil de transfert de fichiers a touché des centaines d'organisations.",
+"Ce qui entre doit montrer patte blanche.",
+"Valider côté serveur : la validation côté client se contourne toujours.",
+"Les listes autorisées (allowlist) sont plus sûres que les listes interdites.",
+"Valider en entrée, Encoder en sortie."],
+[2,10,"D8","PR","Connaître l'OWASP Top 10",
+"L'OWASP Top 10 recense les risques applicatifs web les plus critiques. Il sert de base aux formations et aux tests.",
+"Formation des développeurs sur le contrôle d'accès défaillant (A01:2021).",
+"Tests systématiques des injections et des erreurs de configuration.",
+"Log4Shell (2021) illustre la catégorie « composants vulnérables et obsolètes ».",
+"Les erreurs connues sont les moins pardonnables.",
+"OWASP 2021 : A01 contrôle d'accès, A02 défaillances cryptographiques, A03 injection.",
+"C'est une liste de sensibilisation, pas une norme complète (voir OWASP ASVS).",
+""],
+[2,10,"D8","PR","DevSecOps : automatiser la sécurité dans le pipeline",
+"Les contrôles de sécurité s'exécutent automatiquement à chaque modification : analyse de code, dépendances, secrets, conteneurs.",
+"Blocage du pipeline si une dépendance a une vulnérabilité critique.",
+"Analyse des images de conteneurs avant leur publication.",
+"Les équipes DevSecOps corrigent plus vite, car le retour arrive au développeur pendant qu'il code.",
+"Le tamis à chaque étape garde la farine propre.",
+"Le pipeline CI/CD lui-même est une cible à protéger (accès, secrets, signature).",
+"Trop de blocages font désactiver les contrôles : régler les seuils.",
+""],
+[3,10,"D8","ID","Maîtriser les composants tiers : SBOM",
+"Le logiciel moderne est fait surtout de bibliothèques externes. On les inventorie (SBOM), on les surveille et on les met à jour.",
+"SBOM généré à chaque version de l'application.",
+"Alerte automatique quand une dépendance devient vulnérable.",
+"Lors de Log4Shell, les organisations disposant d'un SBOM ont su en heures où se trouvait Log4j.",
+"Connais ce que tu manges.",
+"SCA (Software Composition Analysis) = analyse des composants tiers.",
+"L'open source n'est pas moins sûr par nature, mais il doit être suivi.",
+"SBOM = liste des ingrédients."],
+[2,10,"D8","PR","Séparer développement, test et production",
+"Les environnements sont isolés, et les données de production ne sont pas copiées en clair dans les tests.",
+"Données de test anonymisées ou synthétiques.",
+"Aucun accès des développeurs en écriture à la production.",
+"Des fuites sont venues de bases de test contenant de vraies données clients, moins protégées que la production.",
+"On ne répète pas la pièce sur la vraie scène.",
+"La séparation des environnements soutient la séparation des tâches.",
+"Certains tests de performance exigent des volumes réalistes : préférer des données synthétiques.",
+""],
+[2,10,"D8","PR","Pas de secrets dans le code",
+"Mots de passe, clés et jetons ne sont jamais écrits dans le code ni dans les dépôts.",
+"Analyse automatique des dépôts à la recherche de secrets.",
+"Secrets injectés à l'exécution depuis un coffre.",
+"Des clés d'accès cloud publiées par erreur sur GitHub sont exploitées en quelques minutes par des robots.",
+"Le secret écrit sur le mur n'est plus un secret.",
+"Un secret publié doit être révoqué, pas seulement supprimé du dépôt : l'historique le conserve.",
+"Les variables d'environnement sont un progrès, pas une solution parfaite.",
+""],
+[1,10,"D8","GV","Mesurer la maturité du développement",
+"Les modèles de maturité (CMM, OWASP SAMM, BSIMM) évaluent et font progresser les pratiques de développement sécurisé.",
+"Évaluation SAMM annuelle des équipes de développement.",
+"Feuille de route pour passer du niveau « Défini » au niveau « Géré ».",
+"Les organisations qui mesurent leur maturité progressent de façon plus régulière.",
+"On ne gravit pas la montagne d'un seul bond.",
+"CMM : Initial, Reproductible, Défini, Géré, Optimisé.",
+"Le niveau de maturité n'est pas une fin : il sert la réduction du risque.",
+"CMM : « Il Répète, Définit, Gère, Optimise »."],
+[2,10,"D8","ID","Évaluer les logiciels acquis",
+"Logiciels du commerce, SaaS et sous-traitance de développement sont évalués avant achat et contractuellement encadrés.",
+"Questionnaire de sécurité et rapport de pentest exigés de l'éditeur.",
+"Clause de correction des vulnérabilités dans le contrat de développement.",
+"SolarWinds a montré que même un éditeur réputé peut livrer un logiciel compromis.",
+"Acheter n'est pas déléguer sa vigilance.",
+"Séquestre du code source (escrow) en cas de défaillance de l'éditeur.",
+"On ne peut pas tout auditer : proportionner l'effort au risque.",
+""],
+[2,10,"D8","PR","Sécuriser les API",
+"Les API exposent directement la logique et les données : authentification forte, contrôle d'accès par objet, limitation de débit et inventaire.",
+"OAuth 2.0 et contrôle de l'appartenance de chaque objet demandé.",
+"Passerelle API qui limite le nombre de requêtes.",
+"De nombreuses fuites récentes viennent d'API qui renvoyaient les données d'autres clients en changeant un identifiant.",
+"Chaque porte de service est une porte d'entrée.",
+"Le contrôle d'accès au niveau de l'objet (BOLA) est le premier risque de l'OWASP API Top 10.",
+"Les API oubliées (shadow API) échappent aux contrôles : les inventorier.",
+""],
+[1,10,"D8","PR","Gérer les erreurs sans rien révéler",
+"Les messages d'erreur restent génériques pour l'utilisateur ; les détails vont dans des journaux protégés, sans données sensibles.",
+"Message « Une erreur est survenue » au lieu d'une trace technique.",
+"Masquage des numéros de cartes dans les journaux applicatifs.",
+"Des messages d'erreur détaillés ont souvent aidé les attaquants à réussir une injection SQL.",
+"On ne montre pas la charpente aux voleurs.",
+"Une erreur doit faire échouer l'opération de façon sécurisée (fail secure).",
+"Les développeurs ont besoin de détails : les placer dans les journaux, pas à l'écran.",
+""],
+[1,10,"D8","PR","Sécuriser les applications d'IA",
+"Les systèmes d'IA et les LLM ajoutent des risques : injection de prompt, fuite de données d'entraînement, empoisonnement, décisions non expliquées.",
+"Filtrage des entrées et sorties d'un assistant conversationnel client.",
+"Interdiction d'envoyer des données confidentielles à un service d'IA public non approuvé.",
+"Des assistants intégrés à des outils métier ont été détournés par des instructions cachées dans des documents.",
+"Un assistant crédule est un complice involontaire.",
+"Appliquer les mêmes principes : moindre privilège, validation des entrées, journalisation, supervision humaine.",
+"Le domaine évolue vite : référentiels comme l'OWASP Top 10 pour les LLM ou le NIST AI RMF.",
+""],
+[1,10,"D8 · D2","RC","Retirer proprement un logiciel",
+"La fin de vie d'une application inclut l'archivage, la migration ou la destruction des données et la suppression des accès.",
+"Décommissionnement d'une ancienne application après migration des données.",
+"Suppression des comptes, certificats et règles de pare-feu associés.",
+"Des applications « éteintes » mais encore accessibles ont servi de porte d'entrée lors d'intrusions.",
+"On éteint la lumière en quittant la pièce.",
+"Un logiciel hors support (end of life) ne reçoit plus de correctifs : le remplacer ou l'isoler.",
+"Les obligations de conservation peuvent imposer de garder les données plus longtemps que l'application.",
+"EOL = End Of Life = End Of Lumière."]
+);
+
+const CATS = [null,
+ "Posture et mindset","Gouvernance et risques","Juridique, conformité et éthique","Données et actifs",
+ "Architecture et cryptographie","Réseaux et communications","Identités et accès","Évaluation, tests et audit",
+ "Opérations, incidents et continuité","Développement sécurisé"];
+const DOMS = {
+ D1:["Sécurité et gestion des risques",16], D2:["Sécurité des actifs",10], D3:["Architecture et ingénierie de sécurité",13],
+ D4:["Sécurité des réseaux et communications",13], D5:["Gestion des identités et des accès",13], D6:["Évaluation et tests de sécurité",12],
+ D7:["Opérations de sécurité",13], D8:["Sécurité du développement logiciel",10]};
+const PHASES = {GV:"Gouverner",ID:"Identifier",PR:"Protéger",DE:"Détecter",RS:"Répondre",RC:"Récupérer"};
+const PRIO = {4:"Incontournable",3:"Essentiel",2:"Important",1:"Complémentaire"};
+
+// À connaître par cœur : [domaine, question, réponse]
+const COEUR = [
+["Examen","Format de l'examen CISSP en anglais","Adaptatif (CAT), 100 à 150 questions, 3 heures, score de réussite 700/1000."],
+["Examen","Expérience exigée","5 ans rémunérés dans au moins 2 des 8 domaines ; 1 an de dispense possible avec un diplôme ou une certification reconnue."],
+["Examen","Après la réussite","Validation (endorsement) par un membre certifié dans les 9 mois ; ensuite 120 CPE sur 3 ans et une cotisation annuelle."],
+["Examen","Poids des domaines (2024)","D1 16 %, D2 10 %, D3 13 %, D4 13 %, D5 13 %, D6 12 %, D7 13 %, D8 10 %."],
+["D1","Formules du risque quantitatif","SLE = AV × EF ; ALE = SLE × ARO ; valeur du contrôle = ALE avant – ALE après – coût annuel."],
+["D1","Quatre traitements du risque","Réduire (atténuer), transférer, éviter, accepter. Jamais ignorer."],
+["D1","Hiérarchie documentaire","Politique → normes → baselines → procédures → guides (seuls les guides sont facultatifs)."],
+["D1","Canons du code d'éthique (ISC)²","1. Protéger la société ; 2. Agir honorablement ; 3. Servir les mandants avec diligence ; 4. Faire progresser la profession."],
+["D1","Fonctions du NIST CSF 2.0","Govern, Identify, Protect, Detect, Respond, Recover."],
+["D1","Étapes du NIST RMF (SP 800-37)","Prepare, Categorize, Select, Implement, Assess, Authorize, Monitor."],
+["D1","Types de contrôles","Administratif, technique (logique), physique."],
+["D1","Fonctions des contrôles","Préventif, détectif, correctif, dissuasif, de récupération, directif, compensatoire."],
+["D1","Niveaux de preuve","Pénal : au-delà du doute raisonnable. Civil : prépondérance de la preuve."],
+["D1","Propriété intellectuelle","Brevet ≈ 20 ans, publié ; droit d'auteur = œuvre ; marque = signe distinctif ; secret d'affaires = protégé tant qu'il reste secret."],
+["D1","Lois de référence en Côte d'Ivoire","Loi n°2013-450 (données personnelles, ARTCI) ; loi n°2013-451 (cybercriminalité)."],
+["D2","Cycle de vie de la donnée","Créer, stocker, utiliser, partager, archiver, détruire."],
+["D2","Rôles autour de la donnée","Owner (décide), custodian (opère), steward (qualité), controller (responsable de traitement), processor (sous-traitant)."],
+["D2","Destruction des supports","Clearing (effacement) < purging (purge) < destruction. Pas de dégaussage sur SSD."],
+["D2","États de la donnée","Au repos, en transit, en cours d'utilisation."],
+["D2","Classification militaire américaine","Top Secret, Secret, Confidential, Unclassified."],
+["D3","Bell-LaPadula","Confidentialité : No Read Up, No Write Down (propriété étoile)."],
+["D3","Biba","Intégrité : No Read Down, No Write Up."],
+["D3","Clark-Wilson","Intégrité commerciale : transactions bien formées, séparation des tâches, triplet sujet-programme-objet."],
+["D3","Brewer-Nash","Muraille de Chine : accès dynamique pour éviter les conflits d'intérêts."],
+["D3","Moniteur de référence","Toujours invoqué, inviolable, vérifiable."],
+["D3","Nombre de clés","Symétrique : n(n−1)/2. Asymétrique : 2n (une paire par personne)."],
+["D3","Algorithmes à connaître","Symétriques : AES, 3DES, Blowfish. Asymétriques : RSA, ECC, Diffie-Hellman, ElGamal. Hachage : SHA-2, SHA-3 (MD5 et SHA-1 obsolètes)."],
+["D3","Signature et chiffrement","Signer avec sa clé privée ; vérifier avec la clé publique de l'émetteur ; chiffrer avec la clé publique du destinataire."],
+["D3","Common Criteria","EAL1 (testé fonctionnellement) à EAL7 (conception formellement vérifiée et testée)."],
+["D3","Extinction incendie en datacenter","Pré-action recommandé ; gaz inertes ou FM-200 ; éviter le déluge et le sprinkler sous eau permanente (wet pipe)."],
+["D3","Classes de feu (USA)","A : combustibles ordinaires ; B : liquides ; C : électrique ; D : métaux ; K : cuisine."],
+["D4","Couches OSI (1 → 7)","Physique, Liaison, Réseau, Transport, Session, Présentation, Application."],
+["D4","Ports essentiels","20/21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 88 Kerberos, 110 POP3, 143 IMAP, 389 LDAP, 443 HTTPS, 445 SMB, 636 LDAPS, 3389 RDP."],
+["D4","Poignée de main TCP","SYN → SYN-ACK → ACK."],
+["D4","IPsec","AH : intégrité et authentification. ESP : ajoute la confidentialité. Modes transport et tunnel. IKE pour l'échange de clés."],
+["D4","Wi-Fi","WEP cassé (RC4) ; WPA2 = AES-CCMP ; WPA3 = SAE. Entreprise = 802.1X + RADIUS."],
+["D4","Messagerie","SPF : serveurs autorisés ; DKIM : signature ; DMARC : politique et rapports."],
+["D5","Facteurs d'authentification","Ce que l'on sait, ce que l'on possède, ce que l'on est (+ où l'on est, ce que l'on fait)."],
+["D5","Erreurs biométriques","Type I = FRR (faux rejet) ; Type II = FAR (fausse acceptation) ; CER = point d'égalité, plus il est bas, mieux c'est."],
+["D5","Modèles d'accès","DAC (propriétaire), MAC (étiquettes), RBAC (rôles), ABAC (attributs), rule-based (règles)."],
+["D5","Kerberos","KDC = AS + TGS ; l'AS délivre le TGT ; le TGS délivre les tickets de service ; horloges synchronisées."],
+["D5","Protocoles d'identité","SAML (assertions XML), OAuth 2.0 (autorisation), OpenID Connect (authentification), RADIUS/TACACS+ (AAA réseau)."],
+["D6","Types de tests d'intrusion","Boîte noire (aucune info), grise (partielle), blanche (complète)."],
+["D6","Rapports SOC","SOC 1 : contrôles financiers ; SOC 2 : sécurité détaillée (diffusion restreinte) ; SOC 3 : public. Type I : conception à une date ; Type II : efficacité sur une période."],
+["D6","Tests de code","SAST (statique), DAST (dynamique), IAST (instrumenté), fuzzing (entrées aléatoires)."],
+["D6","Tests de plans de reprise","Checklist, walkthrough sur table, simulation, parallèle, interruption complète."],
+["D7","Étapes de la réponse aux incidents","Détection, réponse, atténuation, rapport, reprise, remédiation, leçons apprises."],
+["D7","Indicateurs de continuité","MTD ≥ RTO + WRT ; RPO = perte de données maximale acceptable."],
+["D7","Types de sauvegarde","Complète ; incrémentielle (depuis la dernière sauvegarde, efface le bit d'archive) ; différentielle (depuis la dernière complète)."],
+["D7","Sites de secours","Chaud (heures), tiède (jours), froid (semaines), mobile, cloud, accord réciproque."],
+["D7","Niveaux RAID","0 agrégation sans tolérance ; 1 miroir ; 5 parité répartie (3 disques min.) ; 6 double parité ; 10 miroir + agrégation."],
+["D7","Ordre de volatilité","Registres et cache, mémoire, état réseau et processus, disque, journaux distants, archives."],
+["D7","Preuve recevable","Pertinente, fiable (compétente), matérielle, avec une chaîne de possession intacte."],
+["D8","Étapes du SDLC (NIST)","Initiation, développement/acquisition, mise en œuvre, exploitation et maintenance, retrait."],
+["D8","STRIDE","Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege."],
+["D8","Niveaux CMM","Initial, Reproductible, Défini, Géré, Optimisé."],
+["D8","OWASP Top 10 2021 (tête)","A01 Broken Access Control, A02 Cryptographic Failures, A03 Injection, A04 Insecure Design, A05 Security Misconfiguration."]
+];
+
+const PIEGES = [
+"Choisir la réponse la plus technique au lieu de celle du manager du risque.",
+"Oublier la sécurité des personnes dans un scénario de crise.",
+"Se positionner comme le « Docteur Non » qui bloque tous les projets.",
+"Dépenser plus pour un contrôle que la valeur de l'actif protégé.",
+"Acheter des outils sans processus ni compétences pour les exploiter.",
+"Confondre conformité et sécurité.",
+"Accepter soi-même un risque au lieu de le faire accepter par la direction.",
+"Lancer un test d'intrusion sans autorisation écrite.",
+"Analyser l'original d'une preuve au lieu d'une copie.",
+"Éteindre une machine compromise et perdre la mémoire vive.",
+"Rédiger un plan de reprise avant d'avoir fait le BIA.",
+"Ne jamais tester les plans de crise et de restauration.",
+"Ignorer les risques liés aux tiers et au shadow IT.",
+"Confondre RAID et sauvegarde.",
+"Rattacher la sécurité à la DSI sans indépendance."
+];
+
+const OUTILS = [
+["Référentiels","ISO 27001/27002/27005/22301, NIST CSF 2.0, NIST SP 800-53, CIS Controls, COBIT, EBIOS RM"],
+["Gestion des risques / GRC","Registre des risques, ServiceNow GRC, Archer, Eramba"],
+["Détection et surveillance","SIEM (Splunk, Microsoft Sentinel, Wazuh), SOC, SOAR, EDR/XDR"],
+["Vulnérabilités","Nessus, Qualys, OpenVAS, tests d'intrusion, bug bounty"],
+["Identités et accès","IAM, PAM (CyberArk), MFA/FIDO2, Microsoft Entra ID"],
+["Protection des données","DLP, chiffrement, HSM/KMS, classification, IRM"],
+["Menaces","MITRE ATT&CK, Cyber Kill Chain, renseignement sur les menaces"],
+["Développement","OWASP Top 10 et ASVS, SAST/DAST, SCA et SBOM, détection de secrets"],
+["Sensibilisation","Plateformes de phishing simulé (KnowBe4, GoPhish)"],
+["Pilotage","Tableaux de bord KPI/KRI, rapports au comité d'audit"]
+];
+
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const norm=s=>String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const pad=n=>String(n).padStart(3,"0");
+const STARS={4:"★★★★",3:"★★★",2:"★★",1:"★"};
+const PH_ORDER=["GV","ID","PR","DE","RS","RC"];
+const DOM_KEYS=Object.keys(DOMS);
+
+// Données normalisées (numérotation dans l'ordre des catégories)
+const F_=P.map((p,i)=>({i,n:i+1,prio:p[0],cat:p[1],dom:p[2],doms:p[2]==="Tous"?DOM_KEYS.slice():p[2].split(" · "),ph:p[3],t:p[4],pr:p[5],e1:p[6],e2:p[7],rex:p[8],sag:p[9],tip:p[10],nu:p[11],mn:p[12]}));
+F_.forEach(x=>x.hay=norm([x.t,x.pr,x.e1,x.e2,x.rex,x.sag,x.tip,x.nu,x.mn,x.dom,CATS[x.cat]].join(" ")));
+
+// Stockage local (progression personnelle)
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const done=new Set(store.get("m150-done",[])), rev=new Set(store.get("m150-rev",[]));
+const save=()=>{store.set("m150-done",[...done]);store.set("m150-rev",[...rev]);progress()};
+function progress(){$("#pm").textContent=done.size;$("#prv").textContent=rev.size;$("#pb").style.width=(done.size/150*100)+"%"}
+
+// Filtres
+const F={q:"",sort:"cat",prio:new Set(),dom:new Set(),cat:"",ph:new Set(),st:"all"};
+const open=new Set();
+function chipGroup(el,items,set,mono){
+  el.innerHTML=items.map(([v,l,title])=>`<button type="button" class="chip${mono?" mono":""}" data-v="${v}" aria-pressed="false"${title?` title="${esc(title)}"`:""}>${esc(l)}</button>`).join("");
+  el.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;const v=b.dataset.v;set.has(v)?set.delete(v):set.add(v);b.setAttribute("aria-pressed",set.has(v));render()});
+}
+chipGroup($("#f-prio"),[4,3,2,1].map(k=>[String(k),STARS[k],PRIO[k]]),F.prio);
+chipGroup($("#f-dom"),DOM_KEYS.map(k=>[k,k,DOMS[k][0]]),F.dom,true);
+chipGroup($("#f-ph"),PH_ORDER.map(k=>[k,PHASES[k]]),F.ph);
+$("#cat").innerHTML=`<option value="">Toutes les catégories</option>`+CATS.slice(1).map((c,i)=>`<option value="${i+1}">${i+1}. ${esc(c)}</option>`).join("");
+$("#q").addEventListener("input",e=>{F.q=norm(e.target.value.trim());render()});
+$("#sort").addEventListener("change",e=>{F.sort=e.target.value;render()});
+$("#cat").addEventListener("change",e=>{F.cat=e.target.value;render()});
+$("#st").addEventListener("change",e=>{F.st=e.target.value;render()});
+$("#reset").addEventListener("click",resetFilters);
+function resetFilters(){F.q="";F.cat="";F.st="all";F.prio.clear();F.dom.clear();F.ph.clear();$("#q").value="";$("#cat").value="";$("#st").value="all";$$(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));render()}
+function syncChips(){[["#f-prio",F.prio],["#f-dom",F.dom],["#f-ph",F.ph]].forEach(([s,set])=>$$(s+" .chip").forEach(c=>c.setAttribute("aria-pressed",set.has(c.dataset.v))))}
+
+function filtered(){
+  return F_.filter(x=>{
+    if(F.q&&!F.q.split(/\s+/).every(w=>x.hay.includes(w)))return false;
+    if(F.prio.size&&!F.prio.has(String(x.prio)))return false;
+    if(F.dom.size&&!x.doms.some(d=>F.dom.has(d)))return false;
+    if(F.cat&&String(x.cat)!==F.cat)return false;
+    if(F.ph.size&&!F.ph.has(x.ph))return false;
+    if(F.st==="todo"&&done.has(x.n))return false;
+    if(F.st==="rev"&&!rev.has(x.n))return false;
+    if(F.st==="done"&&!done.has(x.n))return false;
+    return true});
+}
+function groups(list){
+  const g=new Map();const add=(k,label,x)=>{if(!g.has(k))g.set(k,{label,items:[]});g.get(k).items.push(x)};
+  if(F.sort==="cat")list.forEach(x=>add(x.cat,`<span class="cn">${String(x.cat).padStart(2,"0")}</span> ${esc(CATS[x.cat])}`,x));
+  else if(F.sort==="prio")[4,3,2,1].forEach(p=>list.filter(x=>x.prio===p).forEach(x=>add(p,`<span class="cn">${STARS[p]}</span> ${PRIO[p]}`,x)));
+  else if(F.sort==="dom")DOM_KEYS.forEach(d=>list.filter(x=>x.doms[0]===d||(x.dom==="Tous"&&d==="D1")).forEach(x=>add(d,`<span class="cn">${d}</span> ${esc(DOMS[d][0])}`,x)));
+  else PH_ORDER.forEach(ph=>list.filter(x=>x.ph===ph).forEach(x=>add(ph,`<span class="cn">${ph}</span> ${PHASES[ph]}`,x)));
+  return [...g.values()];
+}
+function cardHTML(x){
+  const isO=open.has(x.n);
+  return `<article class="card p${x.prio}${isO?" is-open":""}${done.has(x.n)?" is-done":""}${rev.has(x.n)?" is-rev":""}" data-n="${x.n}">
+  <button class="card-h" type="button" aria-expanded="${isO}">
+    <span class="num">${pad(x.n)}</span>
+    <span class="ttl">${esc(x.t)}<span class="done-mark">✓ maîtrisée</span><span class="rev-mark">↻ à revoir</span></span>
+    <span class="meta"><span class="stars" title="${PRIO[x.prio]}">${STARS[x.prio]}</span><span class="tag">${esc(x.dom)}</span><span class="tag ph ph-${x.ph}">${PHASES[x.ph]}</span><span class="chev" aria-hidden="true">▶</span></span>
+  </button>
+  <p class="pr-line">${esc(x.pr)}</p>
+  ${isO?bodyHTML(x):""}
+</article>`}
+function bodyHTML(x){
+  return `<div class="body">
+    <div class="grid">
+      <div class="blk"><h4>Exemple 1</h4><p>${esc(x.e1)}</p></div>
+      <div class="blk"><h4>Exemple 2</h4><p>${esc(x.e2)}</p></div>
+      <div class="blk wide"><h4>Retour d'expérience</h4><p>${esc(x.rex)}</p></div>
+      <div class="blk tip"><h4>Tip examen</h4><p>${esc(x.tip)}</p></div>
+      <div class="blk nu"><h4>Nuance</h4><p>${esc(x.nu)}</p></div>
+      ${x.mn?`<div class="blk mn wide"><h4>Mnémotechnique</h4><p>${esc(x.mn)}</p></div>`:""}
+    </div>
+    <blockquote class="sag">${esc(x.sag)}</blockquote>
+    <div class="acts">
+      <button class="btn${done.has(x.n)?" primary":""}" type="button" data-act="done">${done.has(x.n)?"✓ Maîtrisée":"Marquer maîtrisée"}</button>
+      <button class="btn" type="button" data-act="rev">${rev.has(x.n)?"Retirer de « à revoir »":"À revoir"}</button>
+      <span class="where">${esc(CATS[x.cat])} · ${PRIO[x.prio]}</span>
+    </div></div>`}
+let current=[];
+function render(){
+  current=filtered();
+  const n=current.length;
+  $("#count").innerHTML=`<b>${n}</b> fiche${n>1?"s":""} sur 150`;
+  $("#fsum").textContent=n<150?`${n} / 150`:"";
+  $("#list").innerHTML=n?groups(current).map(g=>`<h2 class="cat-h">${g.label} <small>${g.items.length}</small></h2><div class="cards">${g.items.map(cardHTML).join("")}</div>`).join("")
+    :`<div class="empty">Aucune fiche ne correspond à ces filtres. <button class="reset" type="button" onclick="document.getElementById('reset').click()">Effacer les filtres</button></div>`;
+  fcSync();
+}
+$("#list").addEventListener("click",e=>{
+  const card=e.target.closest(".card");if(!card)return;const n=+card.dataset.n;
+  const act=e.target.closest("[data-act]");
+  if(act){toggleMark(act.dataset.act,n);return}
+  if(e.target.closest(".card-h")||e.target.closest(".pr-line")){open.has(n)?open.delete(n):open.add(n);rerenderCard(n)}
+});
+function rerenderCard(n){const el=$(`.card[data-n="${n}"]`);if(el)el.outerHTML=cardHTML(F_[n-1])}
+function toggleMark(kind,n){
+  if(kind==="done"){if(done.has(n))done.delete(n);else{done.add(n);rev.delete(n)}}
+  else{if(rev.has(n))rev.delete(n);else{rev.add(n);done.delete(n)}}
+  save();rerenderCard(n);
+}
+$("#openAll").addEventListener("click",()=>{current.forEach(x=>open.add(x.n));render()});
+$("#closeAll").addEventListener("click",()=>{open.clear();render()});
+
+// Flashcards
+let deck=[],pos=0,flipped=false,shuffled=false;
+function fcSync(){
+  const ids=current.map(x=>x.n);
+  if(shuffled){const keep=deck.filter(n=>ids.includes(n));deck=keep.length===ids.length?keep:shuffle(ids)}else deck=ids;
+  if(pos>=deck.length)pos=0;flipped=false;fcRender();
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function fcRender(){
+  const el=$("#fc");
+  if(!deck.length){el.className="fc";el.innerHTML=`<p class="fc-hint" style="margin:auto">Aucune carte avec les filtres actuels.</p>`;$("#fc-pos").textContent="";return}
+  const x=F_[deck[pos]-1];
+  el.className=`fc p${x.prio} flip`;
+  $("#fc-pos").innerHTML=`Carte <b>${pos+1}</b> / ${deck.length}${done.has(x.n)?" · ✓ maîtrisée":rev.has(x.n)?" · ↻ à revoir":""}`;
+  const head=`<div class="eyebrow">${pad(x.n)} · ${esc(CATS[x.cat])} · ${esc(x.dom)} · ${PHASES[x.ph]} · <span style="color:var(--pc)">${STARS[x.prio]}</span></div><div class="ttl">${esc(x.t)}</div>`;
+  el.innerHTML=flipped?`${head}<div class="fc-back" style="display:flex;flex-direction:column;gap:12px">
+      <p>${esc(x.pr)}</p>
+      <div class="blk tip"><h4>Tip examen</h4><p>${esc(x.tip)}</p></div>
+      ${x.mn?`<div class="blk mn"><h4>Mnémotechnique</h4><p>${esc(x.mn)}</p></div>`:""}
+      <blockquote class="sag">${esc(x.sag)}</blockquote></div>`
+    :`${head}<p class="fc-hint">Formulez le principe de tête, puis retournez la carte.</p>`;
+  void el.offsetWidth;
+}
+const fcFlip=()=>{flipped=!flipped;fcRender()};
+const fcGo=d=>{if(!deck.length)return;pos=(pos+d+deck.length)%deck.length;flipped=false;fcRender()};
+$("#fc").addEventListener("click",fcFlip);
+$("#fc-prev").addEventListener("click",()=>fcGo(-1));
+$("#fc-next").addEventListener("click",()=>fcGo(1));
+$("#fc-done").addEventListener("click",()=>{if(!deck.length)return;const n=deck[pos];done.add(n);rev.delete(n);save();rerenderCard(n);fcGo(1)});
+$("#fc-rev").addEventListener("click",()=>{if(!deck.length)return;const n=deck[pos];rev.add(n);done.delete(n);save();rerenderCard(n);fcGo(1)});
+$("#fc-shuf").addEventListener("click",()=>{shuffled=true;deck=shuffle(current.map(x=>x.n));pos=0;flipped=false;fcRender()});
+$("#fc-order").addEventListener("click",()=>{shuffled=false;pos=0;fcSync()});
+document.addEventListener("keydown",e=>{
+  if($("#v-flash").hidden||/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;
+  if(e.key===" "||e.key==="Enter"){e.preventDefault();fcFlip()}
+  else if(e.key==="ArrowRight")fcGo(1);else if(e.key==="ArrowLeft")fcGo(-1);
+});
+
+// Par cœur
+(function(){
+  const order=["Examen",...DOM_KEYS];
+  $("#coeur").innerHTML=order.map(d=>{const items=COEUR.filter(c=>c[0]===d);if(!items.length)return"";
+    const name=d==="Examen"?"L'examen et la certification":DOMS[d][0];
+    return `<div class="pc-dom"><h3><span class="tag">${d}</span>${esc(name)}</h3><div class="qa-list">${items.map(c=>`<div class="qa"><div class="q">${esc(c[1])}</div><button class="a hide" type="button" aria-pressed="false">${esc(c[2])}</button></div>`).join("")}</div></div>`}).join("");
+  $("#coeur").addEventListener("click",e=>{const a=e.target.closest(".a");if(!a)return;a.classList.toggle("hide");a.setAttribute("aria-pressed",!a.classList.contains("hide"))});
+  $("#pc-show").addEventListener("click",()=>$$("#coeur .a").forEach(a=>{a.classList.remove("hide");a.setAttribute("aria-pressed","true")}));
+  $("#pc-hide").addEventListener("click",()=>$$("#coeur .a").forEach(a=>{a.classList.add("hide");a.setAttribute("aria-pressed","false")}));
+})();
+
+// Mnémotechniques
+function renderMn(){
+  const q=norm($("#mq").value.trim());
+  const items=F_.filter(x=>x.mn&&(!q||norm(x.t+" "+x.mn).includes(q)));
+  $("#mn-intro").textContent=`${F_.filter(x=>x.mn).length} moyens mnémotechniques tirés des fiches, regroupés par catégorie.`;
+  const by=new Map();items.forEach(x=>{if(!by.has(x.cat))by.set(x.cat,[]);by.get(x.cat).push(x)});
+  $("#mnemo").innerHTML=items.length?[...by].map(([c,xs])=>`<h2 class="cat-h"><span class="cn">${String(c).padStart(2,"0")}</span> ${esc(CATS[c])} <small>${xs.length}</small></h2><div class="mn-list">${xs.map(x=>`<div class="mn-row"><span class="num">${pad(x.n)}</span><span class="mt">${esc(x.t)}</span><span class="mv">${esc(x.mn)}</span></div>`).join("")}</div>`).join(""):`<div class="empty">Aucun résultat.</div>`;
+}
+$("#mq").addEventListener("input",renderMn);renderMn();
+
+// Matrice
+(function(){
+  const cnt=(d,ph)=>F_.filter(x=>x.doms.includes(d)&&x.ph===ph).length;
+  $("#mx").innerHTML=`<thead><tr><th class="rl">Domaine</th>${PH_ORDER.map(p=>`<th title="${PHASES[p]}"><span class="ph ph-${p}">${p}</span></th>`).join("")}<th>Total</th></tr></thead><tbody>`+
+    DOM_KEYS.map(d=>{const tot=F_.filter(x=>x.doms.includes(d)).length;return `<tr><td class="rl"><b>${d}</b>${esc(DOMS[d][0])}</td>${PH_ORDER.map(p=>{const n=cnt(d,p);return `<td><button class="cell" type="button" data-n="${n}" data-d="${d}" data-p="${p}"${n?"":" disabled"}>${n||"·"}</button></td>`}).join("")}<td><button class="cell" type="button" data-n="${tot}" data-d="${d}">${tot}</button></td></tr>`}).join("")+`</tbody>`;
+  const tot=DOM_KEYS.reduce((s,d)=>s+F_.filter(x=>x.doms.includes(d)).length,0);
+  const shares=DOM_KEYS.map(d=>F_.filter(x=>x.doms.includes(d)).length/tot*100);
+  const MAX=Math.max(...shares,...DOM_KEYS.map(d=>DOMS[d][1]))*1.1;
+  $("#cov").innerHTML=DOM_KEYS.map((d,i)=>{const share=shares[i],w=DOMS[d][1];
+    return `<div class="covr" title="${esc(DOMS[d][0])}"><b>${d}</b><div class="cbar"><i style="width:${share/MAX*100}%"></i><s style="left:${w/MAX*100}%"></s></div><span>${share.toFixed(0)} % / ${w} %</span></div>`}).join("");
+  $("#mx2").innerHTML=`<thead><tr><th class="rl">Catégorie</th>${[4,3,2,1].map(p=>`<th title="${PRIO[p]}">${STARS[p]}</th>`).join("")}<th>Total</th></tr></thead><tbody>`+
+    CATS.slice(1).map((c,i)=>{const k=i+1;const xs=F_.filter(x=>x.cat===k);return `<tr><td class="rl"><b>${String(k).padStart(2,"0")}</b>${esc(c)}</td>${[4,3,2,1].map(p=>{const n=xs.filter(x=>x.prio===p).length;return `<td><button class="cell" type="button" data-n="${n}" data-c="${k}" data-pr="${p}"${n?"":" disabled"}>${n||"·"}</button></td>`}).join("")}<td><button class="cell" type="button" data-n="${xs.length}" data-c="${k}">${xs.length}</button></td></tr>`}).join("")+
+    `<tr><td class="rl"><b>Σ</b>Total</td>${[4,3,2,1].map(p=>`<td><b>${F_.filter(x=>x.prio===p).length}</b></td>`).join("")}<td><b>150</b></td></tr></tbody>`;
+  document.querySelector("#v-matrice").addEventListener("click",e=>{
+    const b=e.target.closest(".cell");if(!b||b.disabled)return;
+    resetFilters();
+    if(b.dataset.d)F.dom.add(b.dataset.d);if(b.dataset.p)F.ph.add(b.dataset.p);
+    if(b.dataset.c){F.cat=b.dataset.c;$("#cat").value=b.dataset.c}if(b.dataset.pr)F.prio.add(b.dataset.pr);
+    syncChips();render();show("fiches");window.scrollTo(0,0);
+  });
+})();
+
+// Pièges et outils
+$("#pg").innerHTML=PIEGES.map(p=>`<li>${esc(p)}</li>`).join("");
+$("#ot").innerHTML=OUTILS.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join("");
+
+// Onglets
+const TABS=["fiches","flash","coeur","mnemo","matrice","pieges"];
+function show(t){
+  if(!TABS.includes(t))t="fiches";
+  TABS.forEach(k=>{$("#v-"+k).hidden=k!==t});
+  $$(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));
+  store.set("m150-tab",t);
+  if(t==="flash")fcRender();
+}
+$$(".tab").forEach(b=>b.addEventListener("click",()=>{show(b.dataset.tab);window.scrollTo(0,0)}));
+
+// Démarrage : la première fiche est ouverte pour montrer le contenu complet
+if(window.matchMedia("(max-width:860px)").matches)$("#fd").open=false;
+open.add(1);
+progress();render();
+const h=location.hash.slice(1);if(/^D[1-8]$/.test(h)){F.dom.add(h);syncChips();render();show("fiches")}else show(TABS.includes(h)?h:store.get("m150-tab","fiches"));
+})();
+
+</script>
+
+</body></html>
