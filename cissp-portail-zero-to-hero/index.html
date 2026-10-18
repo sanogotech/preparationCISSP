@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="claude:viewport-fit-sides" content="cover">
+<title>Portail CISSP Zéro to Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg class="shield" viewBox="0 0 22 26" aria-hidden="true"><path d="M11 1 2 4.5v7.2C2 18 6 22.7 11 25c5-2.3 9-7 9-13.3V4.5Z" fill="var(--accent)"/><path d="m6.5 13 3.2 3.2 6-6.4" fill="none" stroke="var(--accent-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <b>CISSP Zéro to Hero</b><span>8 domaines · 72 points</span>
+  </div>
+  <div id="countdown" aria-live="polite"></div>
+  <div class="seg-ctl mini" role="group" aria-label="Langue des questions">
+    <button type="button" data-lang="fr" data-act="lang" data-arg="fr">FR</button>
+    <button type="button" data-lang="en" data-act="lang" data-arg="en">EN</button>
+    <button type="button" data-lang="bi" data-act="lang" data-arg="bi">FR/EN</button>
+  </div>
+  <button type="button" class="icon-btn" data-act="theme" aria-label="Changer de thème (système, clair, sombre)" title="Thème">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18Z" fill="currentColor"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+  </button>
+</header>
+<div class="shell">
+  <nav id="nav" aria-label="Sections du portail"></nav>
+  <main id="view" tabindex="-1"><p class="muted">Chargement du portail…</p></main>
+</div>
+<footer class="foot">
+  <span id="save-state" aria-live="polite"></span>
+  <span>Données stockées uniquement dans ce navigateur. Questions originales d’entraînement, sans lien avec les questions confidentielles de l’examen ISC2.</span>
+</footer>
+<div id="toast" role="status" hidden></div>
+<script type="application/json" id="qbank"></script>
+<script src="app.js"></script>
+</body>
+</html>
