@@ -146,6 +146,103 @@ ul.clean li::marker{color:var(--accent)}
 .gitem .fr{font-size:13px;color:var(--accent)}
 .gitem p{margin:0;font-size:13.5px;color:var(--muted)}
 .empty{color:var(--muted);padding:20px;text-align:center}
+/* --- Innovations --- */
+nav.tabs{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:thin}
+nav.tabs button{flex:none}
+.top .wrap{flex-wrap:wrap}
+.top nav.tabs{margin-left:0;width:100%}
+.hint{color:var(--muted);font-size:13px}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.icard{display:flex;flex-direction:column;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;cursor:pointer;color:var(--ink);font:inherit}
+.icard:hover{border-color:var(--accent)}
+.icard b{font-family:var(--f-display);font-stretch:88%;font-size:16.5px}
+.icard span:last-child{font-size:13px;color:var(--muted);line-height:1.45}
+.inum{font:600 11.5px var(--f-mono);color:var(--accent);letter-spacing:.06em}
+.ctx{background:var(--sunk);border-radius:8px;padding:10px 14px;font-size:14px;margin-bottom:12px;border-left:3px solid var(--accent)}
+.cert{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.cchip:disabled[aria-pressed="true"]{opacity:1}
+.cchip .mono{font-size:11px;color:var(--muted);margin-right:2px}
+.cchip.c-sure[aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok)}
+.cchip.c-hesit[aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn)}
+.cchip.c-guess[aria-pressed="true"]{background:var(--bad-soft);border-color:var(--bad)}
+.ctag{font:600 11px var(--f-body);padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.ctag.c-sure{color:var(--ok);border-color:var(--ok)} .ctag.c-guess{color:var(--bad);border-color:var(--bad)} .ctag.c-hesit{color:var(--warn);border-color:var(--warn)}
+.simbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:4;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;background:var(--ink);color:var(--bg);border-radius:8px;padding:8px 14px;margin-bottom:12px;font-size:13px}
+.simbar .mono{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.simbar .late{color:var(--kw)}
+.gridwrap{margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px}
+.gridwrap summary{cursor:pointer;font-weight:600;font-size:13.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:5px;margin-top:10px}
+.gcell{font:500 12px var(--f-mono);height:32px;border-radius:5px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;position:relative}
+.gcell.done{background:var(--accent-soft);border-color:var(--accent)}
+.gcell.flag::after{content:"";position:absolute;top:2px;right:2px;width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.gcell.cur{outline:2px solid var(--ink);outline-offset:1px}
+.gcell:disabled{cursor:default;opacity:.55}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px;align-items:center}
+.legend span{display:flex;gap:5px;align-items:center}
+.lg{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid var(--line);background:var(--surface)}
+.lg.done{background:var(--accent-soft);border-color:var(--accent)} .lg.flag{background:var(--warn)} .lg.cur{outline:2px solid var(--ink)}
+.btn.flagged{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.big{font-size:17px;padding:14px 34px;min-width:140px}
+.btn.back{margin-bottom:14px;padding:6px 12px;font-size:13px}
+.confirm{margin-top:14px;border:1px solid var(--warn);background:var(--warn-soft);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.ctable{width:100%;border-collapse:collapse;font-size:13.5px}
+.ctable th,.ctable td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.ctable th{font:600 11.5px var(--f-body);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.ctable .warnrow td{background:var(--bad-soft)}
+.boxes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;border-top:4px solid var(--line)}
+.box b{display:block;font:800 30px var(--f-display);font-stretch:80%;font-variant-numeric:tabular-nums}
+.box span{font-size:12.5px;color:var(--muted)}
+.box.b1{border-top-color:var(--bad)} .box.b2{border-top-color:var(--warn)} .box.b3{border-top-color:var(--accent)} .box.bm{border-top-color:var(--ok)}
+.predict{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.ring.big{width:150px;height:150px}
+.ring.big b{width:118px;height:118px;font-size:38px;display:flex;align-items:baseline;justify-content:center;padding-top:36px}
+.ring.big small{font-size:14px;color:var(--muted);font-weight:500}
+.mbar{display:flex;align-items:center;gap:8px;min-width:140px}
+.mbar i{display:block;height:8px;border-radius:4px;background:var(--bad)}
+.mbar i.m{background:var(--warn)} .mbar i.g{background:var(--ok)}
+.mbar span{font-size:12.5px}
+.heat{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:14px;max-width:240px}
+.heat i{aspect-ratio:1;border-radius:4px;background:var(--sunk);border:1px solid var(--line);max-width:100%}
+.heat i.l1,.lg.l1{background:color-mix(in srgb,var(--accent) 25%,var(--surface))}
+.heat i.l2,.lg.l2{background:color-mix(in srgb,var(--accent) 55%,var(--surface))}
+.heat i.l3,.lg.l3{background:var(--accent)}
+.heat i.now{outline:2px solid var(--ink);outline-offset:1px}
+.lg.l0{background:var(--sunk)}
+textarea{width:100%;margin-top:10px;font:12.5px var(--f-mono);padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);resize:vertical}
+select{font:14px var(--f-body);padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);max-width:100%}
+.tbar{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden;margin:8px 0 16px}
+.tbar i{display:block;height:100%;width:100%;background:var(--accent);transition:width .1s linear}
+.tbar i.late{background:var(--bad)}
+.myth .qtext{font-size:20px;max-width:none;margin:12px auto 22px}
+.tf:disabled{opacity:1}
+.tf.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.tf.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.stepool{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.stepol{margin:10px 0 0;padding-left:24px;display:flex;flex-direction:column;gap:6px}
+.step{font:14px var(--f-body);text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;width:auto}
+.step:hover:not(:disabled){border-color:var(--accent)}
+.step.placed{width:100%;background:var(--accent-soft);border-color:var(--accent)}
+.step.right{background:var(--ok-soft);border-color:var(--ok)} .step.wrong{background:var(--bad-soft);border-color:var(--bad)}
+input.num{font:600 18px var(--f-mono);padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:220px;max-width:100%}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mcol{display:flex;flex-direction:column;gap:8px;min-width:0}
+.mitem{font:14px var(--f-body);text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;min-height:48px}
+.mitem.sel{border-color:var(--accent);background:var(--accent-soft)}
+.mitem.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.mitem.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.simopts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.simopts .panel{display:flex;flex-direction:column;gap:8px}
+.simopts p{margin:0;color:var(--muted);font-size:14px;flex:1}
+.simopts .btn{align-self:flex-start}
+.toggle{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:14px;cursor:pointer}
+.dist{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.dist div{display:grid;grid-template-columns:30px 1fr 28px;gap:8px;align-items:center;font-size:13px}
+.dist i{display:block;height:10px;background:var(--accent);border-radius:3px}
+.dist .dn{grid-column:2/4;color:var(--muted);font-size:12px;margin-top:-4px}
+.resume{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px;border-color:var(--accent)}
 .foot{color:var(--muted);font-size:12.5px;margin-top:40px;border-top:1px solid var(--line);padding-top:14px}
 @media (max-width:760px){
   .hero{grid-template-columns:1fr}
@@ -154,6 +251,10 @@ ul.clean li::marker{color:var(--accent)}
   .label{min-width:100%}
   .qtext{font-size:16.5px}
   header.top{position:static}
+  .boxes{grid-template-columns:1fr 1fr}
+  .simopts{grid-template-columns:1fr}
+  .match{gap:8px}
+  .mitem{font-size:13px;padding:8px}
   nav.tabs{margin-left:0;flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px}
   nav.tabs button{flex:none}
 }
@@ -170,6 +271,10 @@ ul.clean li::marker{color:var(--accent)}
     <button data-v="accueil">Accueil</button>
     <button data-v="quiz">Quiz FR</button>
     <button data-v="english">Quiz EN</button>
+    <button data-v="simulateur">Simulateur</button>
+    <button data-v="carnet">Carnet d'erreurs</button>
+    <button data-v="ateliers">Ateliers</button>
+    <button data-v="progression">Progression</button>
     <button data-v="fiches">Fiches REX</button>
     <button data-v="cheatsheet">Cheat sheet</button>
     <button data-v="glossaire">Glossaire</button>
@@ -2498,32 +2603,171 @@ const CHEAT=`
 </div>
 <p class="foot">Synthèse issue des fiches BONUS 1 à 10 et des sections « Ce qui va tomber à l'examen », enrichie pour 2026.</p>`;
 
+/* N°5 Mindset ou mythe ? [affirmation, vrai(true)/faux(false), explication, domaine] */
+const MYTHS=[
+["Le RSSI porte la responsabilité ultime ([[Accountability]]) de la sécurité.",false,"L'accountability reste au Board / à la haute direction ; le RSSI est responsable de l'exécution.",1],
+["La confidentialité est toujours le pilier prioritaire de la triade CIA.",false,"Pour un hôpital ou une banque, intégrité et disponibilité priment souvent.",1],
+["Être conforme à PCI DSS signifie que le système est sécurisé.",false,"Compliance ≠ Security : la conformité est une base minimale.",1],
+["Seule la direction peut accepter formellement un risque résiduel.",true,"L'IT ne peut pas accepter un risque à la place du métier ; l'acceptation est documentée.",1],
+["Souscrire une cyber-assurance transfère toute la responsabilité de l'entreprise.",false,"Le transfert couvre l'impact financier, pas l'accountability ni la réputation.",1],
+["La première étape du BCP est le BIA.",false,"Avant le BIA : approbation de la direction et lancement du projet (politique, périmètre).",1],
+["Une ligne directrice ([[Guideline]]) est un document non obligatoire.",true,"C'est le seul niveau facultatif de la pyramide documentaire.",1],
+["Un brevet protège un algorithme sans jamais en révéler le fonctionnement.",false,"Le brevet impose la publication ; il faut un Trade Secret pour garder le secret.",1],
+["C'est l'administrateur système qui décide de la classification d'une donnée.",false,"C'est le Data Owner (métier) ; l'administrateur est Custodian.",2],
+["La démagnétisation ([[Degaussing]]) efface efficacement un SSD.",false,"Le degaussing agit sur les supports magnétiques, pas sur la mémoire flash.",2],
+["Des données pseudonymisées restent des données personnelles au sens du RGPD.",true,"La ré-identification reste possible avec des informations additionnelles.",2],
+["Garder les données le plus longtemps possible est une mesure de sécurité.",false,"La sur-rétention augmente l'exposition (fuite, e-discovery, amendes).",2],
+["Un DLP fonctionne correctement sans classification préalable des données.",false,"Le DLP ne protège que ce qu'il sait reconnaître.",2],
+["Bell-LaPadula protège l'intégrité des données.",false,"Bell-LaPadula protège la confidentialité ; Biba protège l'intégrité.",3],
+["Pour signer un message, on utilise sa propre clé privée.",true,"La vérification se fait avec la clé publique de l'émetteur.",3],
+["Une signature numérique garantit la confidentialité du message.",false,"Elle apporte intégrité, authenticité et non-répudiation, pas la confidentialité.",3],
+["L'informatique quantique rend AES-256 inutilisable.",false,"Grover réduit de moitié la sécurité symétrique ; ce sont RSA et ECC qui sont menacés (Shor).",3],
+["En cas d'incendie, les portes des issues de secours doivent rester verrouillées pour protéger les actifs.",false,"Life Safety : les issues sont Fail Safe (ouvertes).",3],
+["Le système Pre-Action est recommandé pour un data center.",true,"Il limite les dégâts des eaux en cas de fausse alarme.",3],
+["Un switch segmente les domaines de diffusion ([[Broadcast]]).",false,"Le switch segmente les domaines de collision ; le routeur (ou le VLAN) segmente le broadcast.",4],
+["IPsec AH assure la confidentialité des données.",false,"AH assure intégrité et authentification ; ESP chiffre.",4],
+["DNSSEC chiffre les requêtes DNS.",false,"DNSSEC signe (intégrité) ; DoH/DoT chiffrent.",4],
+["Un réseau MPLS d'opérateur chiffre le trafic par défaut.",false,"MPLS isole logiquement, sans chiffrement : à chiffrer soi-même.",4],
+["Changer le port SSH par défaut suffit à sécuriser l'administration à distance.",false,"C'est de l'obscurité ; il faut VPN/bastion/ZTNA et MFA.",4],
+["Un mot de passe et un code PIN constituent une authentification MFA.",false,"Deux éléments du même facteur « ce que l'on sait ».",5],
+["Le meilleur système biométrique est celui qui a le CER le plus bas.",true,"Le CER équilibre faux rejets et fausses acceptations.",5],
+["OAuth 2.0 est un protocole d'authentification.",false,"OAuth délègue l'autorisation ; OpenID Connect ajoute l'authentification.",5],
+["Imposer un changement de mot de passe tous les 30 jours est la meilleure pratique actuelle.",false,"NIST SP 800-63B : pas de rotation arbitraire, changer en cas de compromission.",5],
+["Kerberos dépend de la synchronisation des horloges.",true,"Les horodatages protègent contre le rejeu (tolérance ~5 min).",5],
+["Un pentest peut démarrer sur simple accord oral de l'administrateur réseau.",false,"Il faut une autorisation écrite de la direction et des règles d'engagement.",6],
+["Un faux négatif est plus dangereux qu'un faux positif.",true,"Il laisse une vulnérabilité réelle non détectée.",6],
+["Un rapport SOC 2 Type I prouve l'efficacité des contrôles sur 12 mois.",false,"Type I = conception à une date ; Type II = efficacité sur une période.",6],
+["Une exception de sécurité peut rester valable indéfiniment.",false,"Sans date d'expiration, elle devient un risque caché.",6],
+["Il faut éteindre immédiatement un poste infecté.",false,"Cela détruit la RAM ; on isole le poste du réseau.",7],
+["Le RAID 1 est une sauvegarde.",false,"Le RAID assure la disponibilité ; une suppression est répliquée.",7],
+["Un honeypot sert à attirer un pirate pour le poursuivre en justice.",false,"Il sert au renseignement ; l'Entrapment est illégal.",7],
+["Un changement d'urgence peut contourner tout processus s'il sauve la production.",false,"Il passe par l'Emergency Change / ECAB, puis il est documenté.",7],
+["Le test d'interruption complète ([[Full Interruption]]) est le plus risqué des tests DRP.",true,"Il arrête la production ; à faire en dernier, avec l'aval du Board.",7],
+["La validation des entrées côté client (JavaScript) suffit.",false,"Elle se contourne avec un proxy ; la validation serveur est obligatoire.",8],
+["Le SAST teste l'application pendant son exécution.",false,"Le SAST analyse le code source ; le DAST teste l'application en exécution.",8],
+["Si un logiciel COTS est vulnérable, l'éditeur est seul responsable devant la loi.",false,"L'entreprise cliente reste responsable vis-à-vis des personnes et régulateurs.",8],
+["Corriger une faille en production coûte beaucoup plus cher qu'en phase de conception.",true,"Jusqu'à 100 fois plus : d'où le Shift Left.",8]
+];
+
+/* N°6 Le bon ordre : [titre, domaine, étapes dans l'ordre, explication] */
+const SEQS=[
+["Plan de continuité d'activité (BCP, NIST SP 800-34)",1,["Déclaration de politique / approbation de la direction","Analyse d'impact sur l'activité (BIA)","Identification des contrôles préventifs","Stratégies de reprise","Rédaction du plan","Tests, formation et exercices","Maintenance du plan"],"Le BIA vient après l'accord de la direction, et toujours avant la conception des solutions."],
+["Réponse aux incidents (NIST SP 800-61)",7,["Préparation","Détection et analyse","Confinement","Éradication","Récupération","Leçons apprises"],"Le processus n'est terminé qu'après le retour d'expérience."],
+["Cycle de vie du renseignement sur les menaces",7,["Planification et direction","Collecte","Traitement","Analyse et production","Diffusion","Feedback"],"Ordre testé dans le BONUS 10 des fiches."],
+["NIST Risk Management Framework (SP 800-37)",1,["Prepare","Categorize","Select","Implement","Assess","Authorize","Monitor"],"L'autorisation (ATO) suit l'évaluation des contrôles ; la surveillance est continue."],
+["Ordre de volatilité des preuves (RFC 3227)",7,["Registres et cache CPU","Mémoire vive (RAM)","État réseau et processus","Disque dur","Journaux distants","Archives et sauvegardes"],"On collecte d'abord ce qui disparaît le plus vite."],
+["Gestion des changements",7,["Demande de changement (RFC)","Analyse d'impact et plan de retour arrière","Approbation par le CAB","Test en environnement hors production","Mise en œuvre planifiée","Vérification et documentation"],"Sans plan de retour arrière, le CAB rejette la demande."],
+["Gestion des correctifs",7,["Inventaire et veille des correctifs","Évaluation et priorisation par le risque","Test hors production","Approbation (gestion des changements)","Déploiement","Vérification par scan"],"Même un patch critique est testé avant la production."],
+["Tests du DRP, du moins au plus perturbant",7,["Checklist / revue documentaire","Walkthrough / tabletop","Simulation","Test parallèle","Interruption complète"],"Le Full Interruption n'intervient qu'après la réussite des autres tests."],
+["Phases d'un test d'intrusion",6,["Autorisation écrite et règles d'engagement","Planification et reconnaissance","Découverte et scan","Exploitation","Post-exploitation et nettoyage","Rapport et restitution"],"Rien ne démarre sans autorisation écrite."],
+["Cycle de vie des données",2,["Création / collecte","Stockage","Utilisation","Partage","Archivage","Destruction"],"La classification intervient dès la création."],
+["Cycle de vie de l'identité",5,["Preuve d'identité (Identity Proofing)","Provisionnement","Revue périodique des accès","Modification lors d'une mobilité","Déprovisionnement"],"Le piège classique est d'oublier de retirer les droits lors des mobilités."],
+["Phases d'un SDLC sécurisé",8,["Exigences (dont exigences de sécurité)","Conception et modélisation des menaces","Développement (SAST, SCA)","Tests (DAST, revue)","Déploiement sécurisé","Exploitation et maintenance","Retrait / mise au rebut"],"La sécurité commence dès les exigences."]
+];
+
+/* N°9 Études de cas : [titre, domaine, contexte, [[question, [bonne, f1, f2, f3], explication, rex], x3]] */
+const CASES=[
+["Banque régionale et fournisseur cloud",1,"Une banque d'Abidjan migre son CRM vers un SaaS américain. Le DSI veut signer vite, le fournisseur refuse tout audit sur site, et les données clients relèvent de la loi ivoirienne 2013-450 (ARTCI).",[
+["Quelle est la PREMIÈRE action du RSSI ?",["Réaliser une évaluation des risques et la due diligence du fournisseur","Signer le contrat pour respecter le planning","Chiffrer toutes les données avant la migration","Acheter un CASB"],"On analyse avant d'agir : risques, exigences légales, posture du fournisseur.","Analyse bat action dans 90 % des questions « FIRST »."],
+["Le fournisseur refuse l'audit sur site. Que demander ?",["Un rapport SOC 2 Type II et une certification ISO 27001 à jour","Une attestation sur l'honneur","Un pentest non autorisé de son infrastructure","Rien, le contrat suffit"],"Les attestations indépendantes fournissent une assurance fondée sur des preuves.","REX fiches : fournisseur cloud non auditable → SOC 2 Type II."],
+["Une fuite survient chez le fournisseur. Qui répond devant l'ARTCI et les clients ?",["La banque, responsable de traitement","Uniquement le fournisseur","Le DSI à titre personnel","Personne si une clause d'exclusion existe"],"On externalise le travail, jamais l'accountability.","Le contrat permet un recours, pas un transfert de responsabilité légale."]]],
+["Archives d'un ministère",2,"Un ministère remplace 300 postes et 40 serveurs. Une partie des disques sont des SSD, d'autres des disques magnétiques. Certaines baies contiennent des données classées.",[
+["Qui fixe le niveau de protection des données à effacer ?",["Le propriétaire des données (Data Owner)","Le prestataire de recyclage","L'administrateur système","Le service achats"],"La classification est décidée par le métier.","Owner décide, Custodian exécute."],
+["Comment assainir les SSD destinés à être réutilisés ?",["Effacement cryptographique ou commande Secure Erase du fabricant (Purge)","Démagnétisation","Formatage rapide","Suppression des partitions"],"NIST SP 800-88 : le degaussing est inefficace sur la flash.","Purge permet la réutilisation, Destroy non."],
+["Pour les disques des données classées les plus sensibles ?",["Destruction physique avec certificat de destruction","Écrasement en un passage","Formatage bas niveau","Stockage en entrepôt"],"Le coût du support est négligeable face au risque.","Documenter la chaîne de traçabilité jusqu'à la destruction."]]],
+["Usine de traitement d'eau",3,"Une usine utilise un automate SCADA sous Windows XP, non patchable, indispensable à la production. Un audit révèle qu'il est joignable depuis le réseau bureautique.",[
+["Quelle mesure prioritaire ?",["Segmenter et isoler l'automate (zones et conduits, liste blanche des flux)","Installer un antivirus complet","Le mettre à jour vers Windows 11 immédiatement","Le débrancher sans plan"],"Architecture avant outil ; l'antivirus peut faire planter le process.","REX fiches : SCADA obsolète → segmentation / air-gap."],
+["La réglementation exige le chiffrement, que l'automate ne supporte pas. Que faire ?",["Mettre en place un contrôle compensatoire documenté et faire accepter le risque résiduel","Ignorer l'exigence","Désactiver la journalisation","Remplacer l'automate dans la nuit"],"Contrôle compensatoire + acceptation formelle par la direction.","Concept très testé."],
+["Où installer la future salle de contrôle ?",["Au centre du bâtiment, loin des murs extérieurs, du sous-sol et du toit","Au rez-de-chaussée près de l'entrée","Au sous-sol","Sous le toit"],"Design core : réduire inondations, fuites et menaces externes.","Wiring closets réservés à l'IT."]]],
+["Télétravail d'un opérateur télécom",4,"Les administrateurs accèdent aux routeurs en Telnet via un VPN qui ouvre tout le réseau interne. RDP est exposé sur Internet pour un prestataire.",[
+["Quelle correction immédiate pour l'administration des routeurs ?",["Remplacer Telnet par SSH avec AAA centralisé (TACACS+) et MFA","Changer le port Telnet","Allonger les mots de passe","Limiter Telnet aux heures ouvrées"],"Protocole clair → équivalent chiffré.","REX fiches : Telnet/FTP → SSH/SFTP, toujours."],
+["Que faire du RDP exposé ?",["Le retirer d'Internet et passer par un bastion ou un ZTNA avec MFA","Le déplacer sur le port 3390","Le laisser avec un mot de passe complexe","Bloquer uniquement les IP étrangères"],"Les ports d'administration exposés sont une cible majeure.","Jamais 3389 ou 22 exposés directement."],
+["Évolution cible de l'accès distant ?",["Accès par application fondé sur l'identité et la posture (Zero Trust / ZTNA)","VPN plein tunnel pour tous","Réseau à plat","Confiance par adresse IP interne"],"Pas de confiance implicite liée au réseau.","NIST SP 800-207."]]],
+["Croissance rapide d'une fintech",5,"Une fintech passe de 40 à 400 employés en un an. Les droits sont gérés au cas par cas, plusieurs ex-salariés ont encore des comptes actifs et les administrateurs ont des droits permanents.",[
+["Quel modèle d'autorisation adopter ?",["RBAC aligné sur les profils de poste","DAC géré par chaque propriétaire","MAC avec étiquettes","ACL individuelles"],"RBAC simplifie onboarding, mobilité et départ.","Réponse managériale par défaut pour l'entreprise."],
+["Comment traiter les comptes d'anciens salariés ?",["Automatiser le déprovisionnement (IAM/SCIM) et lancer une revue d'accès","Changer leurs mots de passe","Attendre l'audit annuel","Les renommer"],"Comptes orphelins = risque majeur ; revue et automatisation.","Départ : révocation immédiate."],
+["Et les droits d'administration permanents ?",["PAM avec élévation Just-in-Time et enregistrement des sessions","Un compte admin partagé","Des droits admin pour tous les développeurs","Une rotation du mot de passe admin tous les ans"],"Zéro privilège permanent.","REX fiches : PAM + JIT."]]],
+["Audit avant certification",6,"Un opérateur de paiement prépare sa certification. Le DSI propose que son équipe audite elle-même ses contrôles et lance un pentest sans prévenir la direction.",[
+["Que pensez-vous de l'audit réalisé par l'équipe du DSI ?",["Il manque d'indépendance : confier l'audit à l'audit interne ou à un tiers","C'est la meilleure option car elle connaît le système","C'est acceptable si le DSI signe","Aucun audit n'est nécessaire"],"Un audit n'a de valeur que s'il est indépendant.","Layered assurance : interne, externe, tiers."],
+["Avant le pentest, que faut-il ?",["Une autorisation écrite de la direction et des règles d'engagement","L'accord oral du DSI","Les mots de passe administrateurs","Rien si le test est interne"],"Sans autorisation, le test devient un délit.","Le client signe aussi l'acceptation des risques."],
+["Le scan remonte 900 vulnérabilités. Comment prioriser ?",["Par le risque : exploitation active (KEV), probabilité (EPSS), criticité des actifs et CVSS","Par ordre alphabétique","Uniquement par score CVSS","Par date de publication"],"Le CVSS mesure la gravité, pas la probabilité.","Rapport clair, actionnable, auditable."]]],
+["Ransomware un vendredi soir",7,"Vendredi 19 h, un poste comptable affiche une demande de rançon. Les partages réseau commencent à être chiffrés. Les sauvegardes sont sur un NAS joignable depuis le réseau.",[
+["Première action technique sur le poste ?",["L'isoler du réseau sans l'éteindre","L'éteindre immédiatement","Payer la rançon","Lancer un antivirus et attendre"],"Isoler préserve les preuves en RAM et stoppe la propagation.","REX fiches : ne pas détruire les preuves."],
+["Qui décide de basculer sur le site de secours ?",["Le cadre désigné dans le plan de reprise","Le technicien d'astreinte","Le prestataire de sauvegarde","Le premier employé disponible"],"La déclaration formelle de sinistre revient à une autorité désignée.","Les techniciens exécutent, la direction déclare."],
+["Quelle leçon pour les sauvegardes ?",["Ajouter des copies immuables ou hors ligne (3-2-1-1-0) et tester les restaurations","Passer en RAID 1","Synchroniser en temps réel vers le cloud","Garder une seule copie sur le NAS"],"Les attaquants ciblent d'abord les sauvegardes en ligne.","Une sauvegarde non testée n'est pas une sauvegarde."]]],
+["Application mobile de paiement",8,"Une start-up livre toutes les deux semaines. Un développeur a poussé une clé API dans un dépôt public ; l'application utilise une bibliothèque open source vulnérable découverte hier.",[
+["Première action sur la clé exposée ?",["Révoquer et régénérer la clé immédiatement","Supprimer le commit","Rendre le dépôt privé","Prévenir les clients"],"Une clé publiée est compromise ; la révoquer d'abord.","Puis : secret scanning en pre-commit et coffre à secrets."],
+["Quel outil aurait signalé la bibliothèque vulnérable ?",["La SCA appuyée par un SBOM","Le SAST seul","Le WAF","Le test de charge"],"La SCA inventorie les dépendances et leurs CVE.","Scénario Log4j des fiches."],
+["Comment éviter que cela se reproduise ?",["Intégrer la sécurité dans le pipeline dès les exigences (Shift Left, DevSecOps)","Ajouter un audit annuel","Interdire l'open source","Tester uniquement avant chaque mise en production"],"Plus tôt la faille est trouvée, moins elle coûte.","Sécurité dans la Definition of Done."]]]
+];
+
 </script>
 <script>
 (function(){
 const $=s=>document.querySelector(s);
 const app=$('#app');
 const DOMS=[1,2,3,4,5,6,7,8];
-const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const kw=s=>esc(s).replace(/\[\[(.+?)\]\]/g,'<span class="kw">$1</span>');
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=(a,n)=>shuffle(a).slice(0,n);
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const fmtN=n=>Number(n).toLocaleString('fr-FR',{maximumFractionDigits:2});
 const T={
- fr:{lang:'fr',title:'Quiz en français',sub:'40 questions par domaine, mots-clés anglais surlignés, explication et REX après chaque réponse.',counts:[5,10,20,30,40],right:'Bonne réponse.',wrong:'Réponse incorrecte.',expl:'Explication',rex:'REX / piège d\'examen',next:'Question suivante',finish:'Voir le résultat',prev:'Précédente',validate:'Valider',score:'Score',restart:'Recommencer',review:'Correction détaillée',newq:'Nouveau quiz',start:'Lancer le quiz',domain:'Domaines',count:'Nombre',mode:'Mode',order:'Ordre',learn:'Apprentissage',exam:'Examen',rand:'Aléatoire',seq:'Ordre de la fiche',all:'Tous',your:'Votre réponse',good:'Bonne réponse',q:'Question',of:'sur',avail:'questions disponibles',learnHelp:'Correction immédiate après chaque réponse.',examHelp:'Aucune correction avant la fin, comme le jour J.'},
- en:{lang:'en',title:'English quiz',sub:'20 English-only questions per domain with detailed answers, field lessons and exam tips.',counts:[5,10,20,40,80,160],right:'Correct.',wrong:'Incorrect.',expl:'Detailed answer',rex:'Field lesson & exam tip',next:'Next question',finish:'See results',prev:'Previous',validate:'Submit',score:'Score',restart:'Retry',review:'Detailed review',newq:'New quiz',start:'Start quiz',domain:'Domains',count:'Questions',mode:'Mode',order:'Order',learn:'Learning',exam:'Exam',rand:'Random',seq:'Sheet order',all:'All',your:'Your answer',good:'Correct answer',q:'Question',of:'of',avail:'questions available',learnHelp:'Immediate feedback after each answer.',examHelp:'No feedback until the end, like exam day.'}
+ fr:{lang:'fr',title:'Quiz en français',sub:'40 questions par domaine, mots-clés anglais surlignés, explication et REX après chaque réponse.',counts:[5,10,20,30,40],right:'Bonne réponse.',wrong:'Réponse incorrecte.',expl:'Explication',rex:'REX / piège d\'examen',next:'Question suivante',finish:'Voir le résultat',prev:'Précédente',score:'Score',restart:'Recommencer',review:'Correction détaillée',newq:'Nouveau quiz',start:'Lancer le quiz',domain:'Domaines',count:'Nombre',mode:'Mode',order:'Ordre',learn:'Apprentissage',exam:'Examen',rand:'Aléatoire',seq:'Ordre de la fiche',all:'Tous',your:'Votre réponse',good:'Bonne réponse',q:'Question',of:'sur',avail:'questions disponibles',learnHelp:'Correction immédiate après chaque réponse.',examHelp:'Aucune correction avant la fin, comme le jour J.',cert:'Certitude',sure:'Sûr',hesit:'Hésitant',guess:'Au hasard',certHint:'Choisissez une réponse et votre niveau de certitude.',quit:'Quitter',none:'Sans réponse'},
+ en:{lang:'en',title:'English quiz',sub:'20 English-only questions per domain with detailed answers, field lessons and exam tips.',counts:[5,10,20,40,80,160],right:'Correct.',wrong:'Incorrect.',expl:'Detailed answer',rex:'Field lesson & exam tip',next:'Next question',finish:'See results',prev:'Previous',score:'Score',restart:'Retry',review:'Detailed review',newq:'New quiz',start:'Start quiz',domain:'Domains',count:'Questions',mode:'Mode',order:'Order',learn:'Learning',exam:'Exam',rand:'Random',seq:'Sheet order',all:'All',your:'Your answer',good:'Correct answer',q:'Question',of:'of',avail:'questions available',learnHelp:'Immediate feedback after each answer.',examHelp:'No feedback until the end, like exam day.',cert:'Confidence',sure:'Sure',hesit:'Unsure',guess:'Guess',certHint:'Pick an answer and your confidence level.',quit:'Quit',none:'Not answered'}
 };
+const CERTS=['sure','hesit','guess'];
+const CW={sure:1,hesit:.75,guess:.25};
 const cfg={fr:store.get('cissp:cfg:fr',{doms:[1],count:10,mode:'learn',order:'rand'}),en:store.get('cissp:cfg:en',{doms:[1],count:10,mode:'learn',order:'rand'})};
-let session=null;
+let session=null, timer=null, keyH=null;
+const stopTimer=()=>{if(timer){clearInterval(timer);timer=null}};
+
+/* ---------- items ---------- */
+function item(id){const [src,a,b]=id.split(':');const x=+a,y=+b;
+ if(src==='cas'){const c=CASES[x],q=c[3][y];return{id,d:c[1],q:q[0],o:q[1],e:q[2],r:q[3],ctx:c[0]+' · '+c[2]}}
+ const q=DATA[x][src][y];return{id,d:x,q:q[0],o:q[1],e:q[2],r:q[3]}}
+function idDom(id){const [s,a]=id.split(':');return s==='cas'?CASES[+a][1]:+a}
+function prep(id){const it=item(id);return{...it,opts:shuffle(it.o.map((t,k)=>({t,ok:k===0})))}}
+
+/* ---------- progression store ---------- */
+function record(id,ok,c,kind){
+ const h=store.get('cissp:hist',{});h[id]={ok,c:c||'hesit',t:Date.now()};store.set('cissp:hist',h);
+ const act=store.get('cissp:act',{});act[today()]=(act[today()]||0)+1;store.set('cissp:act',act);
+ const L=store.get('cissp:leit',{lc:0,cards:{},mastered:0});
+ if(kind==='leitner'&&L.cards[id]){const cd=L.cards[id];
+  if(ok){if(cd.box>=3){delete L.cards[id];L.mastered++}else{cd.box++;cd.due=L.lc+(cd.box===2?2:4)}}else{cd.box=1;cd.due=L.lc+1}}
+ else if(!ok){L.cards[id]={box:1,due:L.lc}}
+ store.set('cissp:leit',L);
+}
+function logSession(kind,n,good){const s=store.get('cissp:sessions',[]);s.unshift({t:Date.now(),kind,n,good});store.set('cissp:sessions',s.slice(0,60))}
 
 /* ---------- navigation ---------- */
-const views={accueil:viewHome,quiz:()=>viewQuiz('fr'),english:()=>viewQuiz('en'),fiches:viewFiches,cheatsheet:viewCheat,glossaire:viewGloss};
-function go(v,push){if(!views[v])v='accueil';document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===v?'page':'false'));views[v]();if(push!==false){try{history.replaceState(null,'','#'+v)}catch(e){}}window.scrollTo(0,0)}
-document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{session=null;go(b.dataset.v)});
+const views={accueil:viewHome,quiz:()=>viewQuiz('fr'),english:()=>viewQuiz('en'),simulateur:viewSim,carnet:viewLeitner,ateliers:viewAteliers,progression:viewProgress,fiches:viewFiches,cheatsheet:viewCheat,glossaire:viewGloss};
+const KIND_VIEW={quiz:null,sim:'simulateur',leitner:'carnet',case:'ateliers',blind:'progression'};
+function go(v,push){if(!views[v])v='accueil';stopTimer();keyH=null;document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===v?'page':'false'));const cur=document.querySelector('#tabs button[aria-current="page"]');if(cur&&cur.scrollIntoView)try{cur.scrollIntoView({block:'nearest',inline:'nearest'})}catch(e){}
+ views[v]();if(push!==false){try{history.replaceState(null,'','#'+v)}catch(e){}}window.scrollTo(0,0)}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{if(!(session&&session.kind==='sim'&&!session.done))session=null;go(b.dataset.v)});
+function viewOf(s){return s.kind==='quiz'?(s.ui==='fr'?'quiz':'english'):KIND_VIEW[s.kind]}
 
 /* ---------- home ---------- */
 function bestOf(lang,d){return store.get(`cissp:best:${lang}:${d}`,null)}
+const INNOV=[
+ [1,'Simulateur réel','100 questions en anglais, chrono 3 h, marquage et grille de navigation, répartition pondérée des 8 domaines.','simulateur'],
+ [2,'Carnet d\'erreurs','Répétition espacée en 3 boîtes de Leitner : chaque erreur revient jusqu\'à être maîtrisée.','carnet'],
+ [3,'Indice de certitude','Déclarez Sûr, Hésitant ou Au hasard : le bilan isole les erreurs commises avec assurance.','progression'],
+ [4,'Score prédit','Maîtrise par domaine pondérée par le poids officiel, comparée au seuil indicatif de 70/100.','progression'],
+ [5,'Mindset ou mythe ?','Vrai/Faux éclair en 8 secondes pour chasser les idées reçues sur le CISSP.','ateliers:myth'],
+ [6,'Le bon ordre','Remettez dans l\'ordre 12 processus chronologiques : BCP, IR, RMF, forensic, CAB, SDLC…','ateliers:order'],
+ [7,'Atelier formules','Exercices chiffrés générés à l\'infini : SLE, ALE, coût-bénéfice, clés, RTO + WRT ≤ MTD.','ateliers:calc'],
+ [8,'Associations éclair','Reliez 6 termes anglais à leur traduction le plus vite possible, sans erreur.','ateliers:match'],
+ [9,'Études de cas','8 scénarios terrain en 3 décisions, un par domaine, avec un contexte ouest-africain.','ateliers:cases'],
+ [10,'Progression et objectifs','Objectif quotidien, série de jours, carte d\'activité 5 semaines, historique, sauvegarde par code.','progression']];
+function goInnov(dst){const [v,sub]=dst.split(':');if(sub)atelier=sub;session=null;go(v)}
 function viewHome(){
  const tot=DOMS.reduce((a,d)=>a+DATA[d].fr.length+DATA[d].en.length,0);
+ const P=predict();
  app.innerHTML=`
  <section class="hero">
   <div><div class="eyebrow">ISC2 · CBK 2024 · examen CAT 100–150 questions · 3 h · seuil 700/1000</div>
@@ -2531,33 +2775,36 @@ function viewHome(){
   <p class="lede">Questions construites à partir des fiches de révision 2026 (pièges « Ce qui va tomber à l'examen »), complétées par des retours d'expérience terrain, l'état de l'art 2026 et les bonnes pratiques. Les termes anglais de l'examen sont <span class="kw">surlignés</span>.</p></div>
   <div class="stats">
    <div class="stat"><b>${tot}</b><span>questions au total</span></div>
-   <div class="stat"><b>${DOMS.length*40}</b><span>en français</span></div>
-   <div class="stat"><b>${DOMS.length*20}</b><span>in English</span></div>
+   <div class="stat"><b>${P.answered?P.score:'—'}</b><span>score prédit /100</span></div>
+   <div class="stat"><b>${leitDue()}</b><span>erreurs à revoir</span></div>
   </div>
  </section>
- <div class="row" style="justify-content:space-between;margin-bottom:12px"><h2>Domaines</h2>
+ <div class="row" style="justify-content:space-between;margin-bottom:12px"><h2>10 innovations</h2><span class="eyebrow">Nouveau</span></div>
+ <div class="igrid">${INNOV.map(([n,t,d,dst])=>`<button class="icard" data-go="${dst}"><span class="inum">N°${n}</span><b>${esc(t)}</b><span>${esc(d)}</span></button>`).join('')}</div>
+ <div class="row" style="justify-content:space-between;margin:28px 0 12px"><h2>Domaines</h2>
   <div class="row"><button class="btn primary" id="mock">Examen blanc FR · 40 q. pondérées</button><button class="btn" id="mocken">Mock exam EN · 40 q.</button></div></div>
  <div class="dgrid">${DOMS.map(d=>{const m=META[d],bf=bestOf('fr',d),be=bestOf('en',d);return `
   <article class="dcard">
    <div class="num"><span>DOMAINE ${d}</span><span>${m.w} % de l'examen</span></div>
    <h3>${esc(m.fr)}</h3>
    <div class="wbar" aria-hidden="true"><i style="width:${m.w*5}%"></i></div>
-   <div class="scores"><span>Meilleur FR <b>${bf==null?'—':bf+' %'}</b></span><span>EN <b>${be==null?'—':be+' %'}</b></span></div>
+   <div class="scores"><span>Meilleur FR <b>${bf==null?'—':bf+' %'}</b></span><span>EN <b>${be==null?'—':be+' %'}</b></span><span>Maîtrise <b>${P.dom[d].n?Math.round(P.dom[d].m*100)+' %':'—'}</b></span></div>
    <div class="row"><button class="btn primary" data-q="fr" data-d="${d}">Quiz FR</button><button class="btn" data-q="en" data-d="${d}">Quiz EN</button><button class="btn" data-f="${d}">Fiche</button></div>
   </article>`}).join('')}</div>
  <div class="panel" style="margin-top:20px"><h3>Comment utiliser le portail</h3>
- <ul class="clean" style="margin-top:8px"><li>Choisissez un domaine et un nombre de questions (5, 10, 20, 30 ou 40) dans l'onglet Quiz FR.</li><li>Le mode <b>Apprentissage</b> affiche la correction, l'explication et le REX après chaque réponse ; le mode <b>Examen</b> ne corrige qu'à la fin, sans retour arrière comme le jour J.</li><li>L'onglet Quiz EN propose 20 questions par domaine, uniquement en anglais, pour s'habituer à la formulation officielle.</li><li>Vos meilleurs scores sont enregistrés dans ce navigateur.</li></ul></div>
+ <ul class="clean" style="margin-top:8px"><li>Choisissez un domaine et un nombre de questions (5, 10, 20, 30 ou 40) dans l'onglet Quiz FR.</li><li>Le mode <b>Apprentissage</b> affiche la correction, l'explication et le REX après chaque réponse ; le mode <b>Examen</b> ne corrige qu'à la fin, sans retour arrière comme le jour J.</li><li>Pour chaque question, indiquez votre <b>certitude</b> (Sûr, Hésitant, Au hasard) : vos erreurs commises avec assurance sont isolées dans le bilan.</li><li>Chaque erreur rejoint automatiquement le <b>Carnet d'erreurs</b> et revient jusqu'à être maîtrisée.</li><li>L'onglet Quiz EN propose 20 questions par domaine, uniquement en anglais ; le <b>Simulateur</b> reproduit les conditions de l'examen.</li><li>Votre progression est enregistrée dans ce navigateur ; l'onglet Progression permet de la sauvegarder sous forme de code.</li></ul></div>
  <p class="foot">Source principale : « CISSP — Fiches de révision » (C. Wencker, 2026), enrichies. Pondérations : plan d'examen ISC2 en vigueur depuis le 15 avril 2024. Vérifiez les conditions d'examen à jour sur isc2.org.</p>`;
- app.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{const l=b.dataset.q;cfg[l].doms=[+b.dataset.d];cfg[l].count=Math.min(cfg[l].count,l==='fr'?40:20);startSession(l);});
+ app.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>goInnov(b.dataset.go));
+ app.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{const l=b.dataset.q;cfg[l].doms=[+b.dataset.d];cfg[l].count=Math.min(cfg[l].count,l==='fr'?40:20);startQuiz(l);});
  app.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{ficheDom=+b.dataset.f;go('fiches')});
- $('#mock').onclick=()=>{cfg.fr.doms=DOMS.slice();cfg.fr.count=40;cfg.fr.mode='exam';startSession('fr')};
- $('#mocken').onclick=()=>{cfg.en.doms=DOMS.slice();cfg.en.count=40;cfg.en.mode='exam';startSession('en')};
+ $('#mock').onclick=()=>{cfg.fr.doms=DOMS.slice();cfg.fr.count=40;cfg.fr.mode='exam';startQuiz('fr')};
+ $('#mocken').onclick=()=>{cfg.en.doms=DOMS.slice();cfg.en.count=40;cfg.en.mode='exam';startQuiz('en')};
 }
 
 /* ---------- quiz setup ---------- */
 function pool(lang,doms){return doms.reduce((a,d)=>a+DATA[d][lang].length,0)}
 function viewQuiz(lang){
- if(session&&session.lang===lang){renderQ();return}
+ if(session&&session.kind==='quiz'&&session.ui===lang){renderQ();return}
  const t=T[lang],c=cfg[lang],av=pool(lang,c.doms);
  app.innerHTML=`
  <div class="eyebrow">${lang==='fr'?'Banque française · 320 questions':'English bank · 160 questions'}</div>
@@ -2584,76 +2831,336 @@ function viewQuiz(lang){
  app.querySelectorAll('#cc [data-n]').forEach(b=>b.onclick=()=>{c.count=+b.dataset.n;save()});
  app.querySelectorAll('#cm [data-m]').forEach(b=>b.onclick=()=>{c.mode=b.dataset.m;save()});
  app.querySelectorAll('#co [data-o]').forEach(b=>b.onclick=()=>{c.order=b.dataset.o;save()});
- $('#go').onclick=()=>startSession(lang);
+ $('#go').onclick=()=>startQuiz(lang);
 }
 function fixCount(lang){const c=cfg[lang],av=pool(lang,c.doms);if(c.count>av){const ok=T[lang].counts.filter(n=>n<=av);c.count=ok.length?ok[ok.length-1]:av}}
 
-/* ---------- session ---------- */
-function startSession(lang){
- const c=cfg[lang];store.set('cissp:cfg:'+lang,c);
- const doms=c.doms.length?c.doms:[1];
- const total=Math.min(c.count,pool(lang,doms));
- // répartition pondérée par le poids officiel des domaines
- let alloc={};
+/* ---------- sessions ---------- */
+function weighted(lang,doms,total,order){
+ total=Math.min(total,pool(lang,doms));let alloc={};
  if(doms.length===1){alloc[doms[0]]=total}else{
   const wsum=doms.reduce((a,d)=>a+META[d].w,0);let used=0;
   const raw=doms.map(d=>({d,x:total*META[d].w/wsum}));
   raw.forEach(r=>{alloc[r.d]=Math.min(Math.floor(r.x),DATA[r.d][lang].length);used+=alloc[r.d]});
   raw.sort((a,b)=>(b.x-Math.floor(b.x))-(a.x-Math.floor(a.x)));
-  let i=0;while(used<total&&i<200){const r=raw[i%raw.length];if(alloc[r.d]<DATA[r.d][lang].length){alloc[r.d]++;used++}i++}
- }
- let qs=[];
- doms.forEach(d=>{let idx=DATA[d][lang].map((_,i)=>i);idx=c.order==='rand'?shuffle(idx):idx;idx.slice(0,alloc[d]).forEach(i=>{const [q,o,e,r]=DATA[d][lang][i];const opts=shuffle(o.map((t,k)=>({t,ok:k===0})));qs.push({d,i,q,opts,e,r})})});
- if(c.order==='rand'&&doms.length>1)qs=shuffle(qs);
- session={lang,mode:c.mode,qs,cur:0,ans:qs.map(()=>null),done:false,doms};
- go(lang==='fr'?'quiz':'english');
+  let i=0;while(used<total&&i<400){const r=raw[i%raw.length];if(alloc[r.d]<DATA[r.d][lang].length){alloc[r.d]++;used++}i++}}
+ let ids=[];doms.forEach(d=>{let idx=DATA[d][lang].map((_,i)=>i);idx=order==='seq'?idx:shuffle(idx);idx.slice(0,alloc[d]).forEach(i=>ids.push(`${lang}:${d}:${i}`))});
+ return order==='seq'||doms.length===1?ids:shuffle(ids);
 }
+function newSession(o){return Object.assign({kind:'quiz',ui:'fr',mode:'learn',cur:0,done:false,flags:[],lock:[],title:''},o,{ans:o.qs.map(()=>({k:null,c:null}))})}
+function startQuiz(lang){const c=cfg[lang];store.set('cissp:cfg:'+lang,c);const doms=c.doms.length?c.doms:[1];
+ session=newSession({kind:'quiz',ui:lang,mode:c.mode,qs:weighted(lang,doms,c.count,c.order).map(prep)});go(lang==='fr'?'quiz':'english')}
+function persistSim(){if(session&&session.kind==='sim')store.set('cissp:sim',session)}
+
+/* ---------- question screen ---------- */
 function renderQ(){
- const s=session,t=T[s.lang];
+ const s=session,t=T[s.ui];
  if(s.done)return renderResult();
- const q=s.qs[s.cur],a=s.ans[s.cur],answered=a!=null,show=answered&&s.mode==='learn';
+ const q=s.qs[s.cur],a=s.ans[s.cur],learn=s.mode==='learn',locked=learn&&s.lock[s.cur],sim=s.kind==='sim';
  const L='ABCD';
+ const canNext=sim?true:learn?locked:(a.k!=null&&a.c!=null);
  app.innerHTML=`
- <div class="qhead"><span>D${q.d} · ${esc(s.lang==='fr'?META[q.d].fr:META[q.d].en)}</span><span>${t.q} ${s.cur+1} ${t.of} ${s.qs.length} · ${s.mode==='learn'?t.learn:t.exam}</span></div>
- <div class="progress"><i style="width:${(s.cur+(answered?1:0))/s.qs.length*100}%"></i></div>
+ ${sim?simBar():''}
+ <div class="qhead"><span>D${q.d} · ${esc(s.ui==='fr'?META[q.d].fr:META[q.d].en)}</span><span>${s.title?esc(s.title)+' · ':''}${t.q} ${s.cur+1} ${t.of} ${s.qs.length} · ${sim?'Simulation':learn?t.learn:t.exam}</span></div>
+ <div class="progress"><i style="width:${(s.ans.filter(x=>x.k!=null).length)/s.qs.length*100}%"></i></div>
+ ${sim?simGrid():''}
  <div class="panel">
+  ${q.ctx?`<div class="ctx">${kw(q.ctx)}</div>`:''}
   <p class="qtext">${kw(q.q)}</p>
-  <div class="opts" role="group" aria-label="Réponses">${q.opts.map((o,k)=>{let cls='';if(show){if(o.ok)cls='right';else if(a===k)cls='wrong'}else if(answered&&a===k)cls='sel';return `<button class="opt ${cls}" data-k="${k}" ${answered?'disabled':''}><span class="k">${L[k]}</span><span>${kw(o.t)}</span></button>`}).join('')}</div>
-  ${show?`<div class="feedback"><div class="verdict ${q.opts[a].ok?'ok':'ko'}">${q.opts[a].ok?t.right:t.wrong}</div><div><b>${t.expl} :</b> ${kw(q.e)}</div><div class="rex"><b>${t.rex}</b>${kw(q.r)}</div></div>`:''}
+  <div class="opts" role="group" aria-label="Réponses">${q.opts.map((o,k)=>{let cls='';if(locked){if(o.ok)cls='right';else if(a.k===k)cls='wrong'}else if(a.k===k)cls='sel';return `<button class="opt ${cls}" data-k="${k}" ${locked?'disabled':''}><span class="k">${L[k]}</span><span>${kw(o.t)}</span></button>`}).join('')}</div>
+  <div class="cert" role="group" aria-label="${t.cert}"><span class="label" style="min-width:0">${t.cert}</span>${CERTS.map((c,i)=>`<button class="chip cchip c-${c}" data-c="${c}" aria-pressed="${a.c===c}" ${locked?'disabled':''}><span class="mono">${i+1}</span> ${t[c]}</button>`).join('')}${!locked&&(a.k==null||a.c==null)?`<span class="hint">${t.certHint}</span>`:''}</div>
+  ${locked?`<div class="feedback"><div class="verdict ${q.opts[a.k].ok?'ok':'ko'}">${q.opts[a.k].ok?t.right:t.wrong}${!q.opts[a.k].ok&&a.c==='sure'?` <span class="pill ko">${s.ui==='fr'?'Erreur commise avec assurance':'Confident mistake'}</span>`:''}</div><div><b>${t.expl} :</b> ${kw(q.e)}</div><div class="rex"><b>${t.rex}</b>${kw(q.r)}</div></div>`:''}
   <div class="qnav">
-   <button class="btn" id="quit">${s.lang==='fr'?'Quitter':'Quit'}</button>
-   <div class="row">${s.mode==='learn'&&s.cur>0?`<button class="btn" id="prev">${t.prev}</button>`:''}
-   <button class="btn primary" id="next" ${answered?'':'disabled'}>${s.cur===s.qs.length-1?t.finish:t.next}</button></div>
+   <div class="row"><button class="btn" id="quit">${sim?'Pause':t.quit}</button>${sim?`<button class="btn ${s.flags[s.cur]?'flagged':''}" id="flag" aria-pressed="${!!s.flags[s.cur]}">⚑ ${s.flags[s.cur]?'Marked':'Mark for review'}</button>`:''}</div>
+   <div class="row">${(learn||(sim&&!s.cat))&&s.cur>0?`<button class="btn" id="prev">${t.prev}</button>`:''}
+   ${sim?`<button class="btn" id="submit">Submit exam</button>`:''}
+   <button class="btn primary" id="next" ${canNext?'':'disabled'}>${s.cur===s.qs.length-1?(sim?'Review & submit':t.finish):t.next}</button></div>
   </div>
+  <div id="confirm"></div>
  </div>
- <p class="foot">${s.lang==='fr'?'Raccourcis clavier : A, B, C, D pour répondre · Entrée pour continuer.':'Keyboard: A, B, C, D to answer · Enter to continue.'}</p>`;
- app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(s.ans[s.cur]!=null)return;s.ans[s.cur]=+b.dataset.k;renderQ();if(s.mode==='learn'){const f=app.querySelector('.feedback');if(f)f.scrollIntoView({block:'nearest',behavior:'smooth'})}});
- $('#next').onclick=()=>{if(s.cur<s.qs.length-1){s.cur++;renderQ();window.scrollTo(0,0)}else{s.done=true;renderResult()}};
- const p=$('#prev');if(p)p.onclick=()=>{s.cur--;renderQ()};
- $('#quit').onclick=()=>{session=null;go(s.lang==='fr'?'quiz':'english')};
+ <p class="foot">${s.ui==='fr'?'Raccourcis : A, B, C, D pour répondre · 1, 2, 3 pour la certitude · Entrée pour continuer.':'Keyboard: A–D to answer · 1–3 for confidence · Enter to continue.'}</p>`;
+ const settle=()=>{if(learn&&a.k!=null&&a.c!=null&&!s.lock[s.cur]){s.lock[s.cur]=true;const ok=q.opts[a.k].ok;record(q.id,ok,a.c,s.kind);}};
+ app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(locked)return;a.k=+b.dataset.k;settle();persistSim();renderQ();if(s.lock[s.cur]){const f=app.querySelector('.feedback');if(f)f.scrollIntoView({block:'nearest',behavior:'smooth'})}});
+ app.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{if(locked)return;a.c=b.dataset.c;settle();persistSim();renderQ();if(s.lock[s.cur]){const f=app.querySelector('.feedback');if(f)f.scrollIntoView({block:'nearest',behavior:'smooth'})}});
+ $('#next').onclick=()=>{if(s.cur<s.qs.length-1){s.cur++;persistSim();renderQ();window.scrollTo(0,0)}else if(sim){askSubmit()}else{s.done=true;renderResult()}};
+ const p=$('#prev');if(p)p.onclick=()=>{s.cur--;persistSim();renderQ()};
+ $('#quit').onclick=()=>{if(sim){stopTimer();persistSim();session=null;go('simulateur');return}const v=viewOf(s);session=null;go(v)};
+ if(sim){$('#flag').onclick=()=>{s.flags[s.cur]=!s.flags[s.cur];persistSim();renderQ()};$('#submit').onclick=askSubmit;
+  app.querySelectorAll('.gcell').forEach(b=>b.onclick=()=>{s.cur=+b.dataset.i;persistSim();renderQ()});startSimClock()}
+ keyH=e=>{const k=e.key.toUpperCase();const i='ABCD'.indexOf(k);if(k.length===1&&i>=0){const b=app.querySelector(`.opt[data-k="${i}"]`);if(b&&!b.disabled)b.click()}else if(['1','2','3'].includes(e.key)){const b=app.querySelector(`[data-c="${CERTS[+e.key-1]}"]`);if(b&&!b.disabled)b.click()}else if(e.key==='Enter'){const n=$('#next');if(n&&!n.disabled){e.preventDefault();n.click()}}};
 }
-document.addEventListener('keydown',e=>{if(!session||session.done)return;if(e.target.tagName==='INPUT')return;const k=e.key.toUpperCase();const i='ABCD'.indexOf(k);if(i>=0&&k.length===1){const b=app.querySelector(`.opt[data-k="${i}"]`);if(b&&!b.disabled)b.click()}else if(e.key==='Enter'){const n=$('#next');if(n&&!n.disabled){e.preventDefault();n.click()}}});
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT')return;if(keyH)keyH(e)});
+
+/* ---------- results ---------- */
+function certTable(s){const t=T[s.ui];const m={};CERTS.forEach(c=>m[c]={g:0,b:0});
+ s.qs.forEach((q,i)=>{const a=s.ans[i];if(a.k==null)return;const c=a.c||'hesit';q.opts[a.k].ok?m[c].g++:m[c].b++});
+ return `<table class="ctable"><tr><th>${t.cert}</th><th>✓</th><th>✗</th><th>${s.ui==='fr'?'Taux de réussite':'Accuracy'}</th></tr>${CERTS.map(c=>{const n=m[c].g+m[c].b;return `<tr class="${c==='sure'&&m[c].b?'warnrow':''}"><td>${t[c]}</td><td class="mono">${m[c].g}</td><td class="mono">${m[c].b}</td><td class="mono">${n?Math.round(m[c].g/n*100)+' %':'—'}</td></tr>`}).join('')}</table>`}
 function renderResult(){
- const s=session,t=T[s.lang];
- const good=s.qs.filter((q,i)=>s.ans[i]!=null&&q.opts[s.ans[i]].ok).length,pct=Math.round(good/s.qs.length*100);
- const byD={};s.qs.forEach((q,i)=>{byD[q.d]=byD[q.d]||{g:0,n:0};byD[q.d].n++;if(q.opts[s.ans[i]].ok)byD[q.d].g++});
- if(!s.saved){s.saved=true;Object.keys(byD).forEach(d=>{if(byD[d].n>=5){const p=Math.round(byD[d].g/byD[d].n*100),k=`cissp:best:${s.lang}:${d}`;const b=store.get(k,null);if(b==null||p>b)store.set(k,p)}})}
- const lvl=pct>=80?['ok',s.lang==='fr'?'Prêt pour ce périmètre':'Ready on this scope']:pct>=70?['mid',s.lang==='fr'?'Proche du seuil, à consolider':'Close to the bar, consolidate']:['ko',s.lang==='fr'?'À retravailler avec la fiche':'Review the sheet and retry'];
+ stopTimer();keyH=null;
+ const s=session,t=T[s.ui],sim=s.kind==='sim';
+ const isOk=i=>s.ans[i].k!=null&&s.qs[i].opts[s.ans[i].k].ok;
+ const good=s.qs.filter((q,i)=>isOk(i)).length,pct=Math.round(good/s.qs.length*100);
+ const byD={};s.qs.forEach((q,i)=>{byD[q.d]=byD[q.d]||{g:0,n:0};byD[q.d].n++;if(isOk(i))byD[q.d].g++});
+ if(!s.saved){s.saved=true;
+  if(s.mode!=='learn')s.qs.forEach((q,i)=>{if(s.ans[i].k!=null)record(q.id,isOk(i),s.ans[i].c,s.kind)});
+  if(s.kind==='quiz'||sim)Object.keys(byD).forEach(d=>{if(byD[d].n>=5){const p=Math.round(byD[d].g/byD[d].n*100),k=`cissp:best:${sim?'en':s.ui}:${d}`;const b=store.get(k,null);if(b==null||p>b)store.set(k,p)}});
+  logSession(s.kind==='quiz'?(s.ui==='fr'?'Quiz FR':'Quiz EN'):sim?'Simulateur':s.kind==='leitner'?'Carnet d\'erreurs':s.kind==='case'?'Étude de cas':'Angles morts',s.qs.length,good);
+  if(sim){store.del('cissp:sim');const h=store.get('cissp:simhist',[]);h.unshift({t:Date.now(),n:s.qs.length,good,used:Math.round((Math.min(Date.now(),s.endAt)-s.startAt)/60000)});store.set('cissp:simhist',h.slice(0,20))}
+ }
+ const fr=s.ui==='fr';
+ const lvl=sim?(pct>=70?['ok','Above the indicative 70 % bar']:['ko','Below the indicative 70 % bar']):pct>=80?['ok',fr?'Prêt pour ce périmètre':'Ready on this scope']:pct>=70?['mid',fr?'Proche du seuil, à consolider':'Close to the bar, consolidate']:['ko',fr?'À retravailler avec la fiche':'Review the sheet and retry'];
+ const blind=s.qs.map((q,i)=>i).filter(i=>s.ans[i].k!=null&&!isOk(i)&&s.ans[i].c==='sure');
  app.innerHTML=`
  <div class="panel"><div class="result-hero">
   <div class="ring" style="--p:${pct}"><b>${pct}%</b></div>
-  <div class="stack" style="gap:8px;min-width:0"><div class="eyebrow">${t.score}</div><h2>${good} / ${s.qs.length}</h2><span class="pill ${lvl[0]}">${lvl[1]}</span>
-  <div class="row" style="font-size:13px;color:var(--muted)">${Object.keys(byD).map(d=>`<span class="mono">D${d} ${byD[d].g}/${byD[d].n}</span>`).join(' · ')}</div></div>
+  <div class="stack" style="gap:8px;min-width:0"><div class="eyebrow">${s.title?esc(s.title)+' · ':''}${t.score}</div><h2>${good} / ${s.qs.length}</h2><span class="pill ${lvl[0]}">${lvl[1]}</span>
+  <div class="row" style="font-size:13px;color:var(--muted)">${Object.keys(byD).map(d=>`<span class="mono">D${d} ${byD[d].g}/${byD[d].n}</span>`).join(' · ')}</div>
+  ${sim?`<div style="font-size:13px;color:var(--muted)">Time used: ${Math.round((Math.min(Date.now(),s.endAt)-s.startAt)/60000)} min of ${Math.round((s.endAt-s.startAt)/60000)} · unanswered: ${s.ans.filter(a=>a.k==null).length}</div>`:''}</div>
  </div>
  <div class="row" style="margin-top:16px"><button class="btn primary" id="again">${t.restart}</button><button class="btn" id="new">${t.newq}</button>
- ${s.qs.some((q,i)=>!q.opts[s.ans[i]].ok)?`<button class="btn" id="errs">${s.lang==='fr'?'Rejouer mes erreurs':'Replay my mistakes'}</button>`:''}</div></div>
+ ${s.qs.some((q,i)=>!isOk(i))?`<button class="btn" id="errs">${fr?'Rejouer mes erreurs':'Replay my mistakes'}</button>`:''}</div></div>
+ <div class="fgrid" style="margin-top:16px">
+  <section class="panel"><h3>N°3 · ${fr?'Indice de certitude':'Confidence index'}</h3><div style="margin-top:10px;overflow-x:auto">${certTable(s)}</div>
+  <p style="font-size:13px;color:var(--muted);margin:10px 0 0">${fr?'Une erreur commise en étant « Sûr » est un angle mort : une idée fausse ancrée, plus dangereuse qu\'une lacune.':'A mistake made while “Sure” is a blind spot: a wrong belief, more dangerous than a gap.'}</p></section>
+  <section class="panel"><h3>${fr?'Erreurs commises avec assurance':'Confident mistakes'} <span class="pill ${blind.length?'ko':'ok'}">${blind.length}</span></h3>
+  ${blind.length?`<ul class="clean" style="margin-top:10px">${blind.map(i=>`<li>${kw(s.qs[i].q)}</li>`).join('')}</ul>`:`<p style="color:var(--muted);margin:10px 0 0">${fr?'Aucune : vos certitudes sont fiables sur cette série.':'None: your confidence was well calibrated.'}</p>`}
+  <p style="font-size:13px;color:var(--muted);margin:10px 0 0">${fr?'Toutes les erreurs ont rejoint le Carnet d\'erreurs (boîte 1).':'All mistakes were added to the mistake notebook (box 1).'}</p></section>
+ </div>
  <h2 style="margin:24px 0 12px">${t.review}</h2>
- <div class="stack" style="gap:8px">${s.qs.map((q,i)=>{const a=s.ans[i],ok=q.opts[a].ok,c=q.opts.find(o=>o.ok);return `
-  <details class="rev" ${!ok?'open':''}><summary><span class="mark ${ok?'ok':'ko'}">${ok?'✓':'✗'}</span><span>${i+1}. ${kw(q.q)}</span></summary>
-  <div class="body">${!ok?`<div><b>${t.your} :</b> ${kw(q.opts[a].t)}</div>`:''}<div><b>${t.good} :</b> ${kw(c.t)}</div><div>${kw(q.e)}</div><div class="rex"><b>${t.rex}</b>${kw(q.r)}</div></div></details>`}).join('')}</div>`;
- $('#again').onclick=()=>startSession(s.lang);
- $('#new').onclick=()=>{session=null;go(s.lang==='fr'?'quiz':'english')};
- const er=$('#errs');if(er)er.onclick=()=>{const qs=s.qs.filter((q,i)=>!q.opts[s.ans[i]].ok).map(q=>({...q,opts:shuffle(q.opts)}));session={lang:s.lang,mode:'learn',qs,cur:0,ans:qs.map(()=>null),done:false};renderQ();window.scrollTo(0,0)};
+ <div class="stack" style="gap:8px">${s.qs.map((q,i)=>{const a=s.ans[i],ok=isOk(i),c=q.opts.find(o=>o.ok);return `
+  <details class="rev" ${!ok?'open':''}><summary><span class="mark ${ok?'ok':'ko'}">${ok?'✓':'✗'}</span><span>${i+1}. ${kw(q.q)}${a.c?` <span class="ctag c-${a.c}">${t[a.c]}</span>`:''}</span></summary>
+  <div class="body">${q.ctx?`<div class="ctx" style="margin:0">${kw(q.ctx)}</div>`:''}${!ok?`<div><b>${t.your} :</b> ${a.k==null?t.none:kw(q.opts[a.k].t)}</div>`:''}<div><b>${t.good} :</b> ${kw(c.t)}</div><div>${kw(q.e)}</div><div class="rex"><b>${t.rex}</b>${kw(q.r)}</div></div></details>`}).join('')}</div>`;
+ $('#again').onclick=()=>{if(s.kind==='quiz')startQuiz(s.ui);else if(sim)startSim(s.qs.length,s.cat);else if(s.kind==='leitner')startLeitner(false);else if(s.kind==='case')startCase(s.caseIdx);else startBlind()};
+ $('#new').onclick=()=>{const v=viewOf(s);session=null;go(v)};
+ const er=$('#errs');if(er)er.onclick=()=>{const qs=s.qs.filter((q,i)=>!isOk(i)).map(q=>({...q,opts:shuffle(q.opts)}));session=newSession({kind:s.kind==='sim'?'quiz':s.kind,ui:s.ui,mode:'learn',qs,title:fr?'Mes erreurs':'My mistakes'});renderQ();window.scrollTo(0,0)};
+}
+
+/* ---------- N°1 simulateur ---------- */
+function startSim(n,cat){const ids=weighted('en',DOMS,n,'rand');const min=n>=100?180:90;
+ session=newSession({kind:'sim',ui:'en',mode:'exam',qs:ids.map(prep),cat:!!cat,startAt:Date.now(),endAt:Date.now()+min*60000,title:'Simulator'});persistSim();go('simulateur')}
+function simBar(){return `<div class="simbar"><span class="mono" id="clock">--:--:--</span><span>${session.ans.filter(a=>a.k!=null).length}/${session.qs.length} answered · ${session.flags.filter(Boolean).length} marked${session.cat?' · CAT rule: no going back':''}</span></div>`}
+function simGrid(){const s=session;return `<details class="gridwrap" ${s.cat?'':'open'}><summary>Navigation grid</summary><div class="grid">${s.qs.map((q,i)=>`<button class="gcell ${i===s.cur?'cur':''} ${s.ans[i].k!=null?'done':''} ${s.flags[i]?'flag':''}" data-i="${i}" ${s.cat&&i!==s.cur?'disabled':''} aria-label="Question ${i+1}">${i+1}</button>`).join('')}</div><div class="legend"><span><i class="lg done"></i>answered</span><span><i class="lg flag"></i>marked</span><span><i class="lg cur"></i>current</span></div></details>`}
+function startSimClock(){stopTimer();const upd=()=>{const s=session;if(!s||s.kind!=='sim'||s.done){stopTimer();return}const left=Math.max(0,s.endAt-Date.now());const el=$('#clock');if(el){const h=Math.floor(left/3600000),m=Math.floor(left/60000)%60,se=Math.floor(left/1000)%60;el.textContent=`${h}:${String(m).padStart(2,'0')}:${String(se).padStart(2,'0')}`;el.classList.toggle('late',left<10*60000)}if(left<=0){s.done=true;persistSim();renderResult()}};upd();timer=setInterval(upd,1000)}
+function askSubmit(){const s=session,un=s.ans.filter(a=>a.k==null).length,fl=s.flags.filter(Boolean).length;
+ $('#confirm').innerHTML=`<div class="confirm"><b>Submit the exam?</b><span>${un} unanswered · ${fl} marked for review. Unanswered questions count as wrong.</span><div class="row"><button class="btn" id="cno">Keep working</button><button class="btn primary" id="cyes">Submit</button></div></div>`;
+ $('#cno').onclick=()=>{$('#confirm').innerHTML=''};$('#cyes').onclick=()=>{s.done=true;renderResult()};$('#confirm').scrollIntoView({block:'nearest'})}
+function viewSim(){
+ if(session&&session.kind==='sim'){if(session.done)return renderResult();return renderQ()}
+ const saved=store.get('cissp:sim',null);const hist=store.get('cissp:simhist',[]);
+ const canResume=saved&&!saved.done;
+ app.innerHTML=`
+ <div class="eyebrow">N°1 · Simulateur réel · English only</div>
+ <h1>Exam simulator</h1>
+ <p class="lede">Conditions proches du jour J : questions uniquement en anglais, chronomètre, marquage des questions à revoir et grille de navigation. La répartition suit le poids officiel des 8 domaines (16/10/13/13/13/12/13/10).</p>
+ ${canResume?`<div class="panel resume"><div><b>Simulation en cours</b><div style="color:var(--muted);font-size:13.5px">${saved.ans.filter(a=>a.k!=null).length}/${saved.qs.length} réponses · temps restant ${Math.max(0,Math.round((saved.endAt-Date.now())/60000))} min</div></div><div class="row"><button class="btn primary" id="resume">Reprendre</button><button class="btn" id="drop">Abandonner</button></div></div>`:''}
+ <div class="simopts">
+  <article class="panel"><div class="eyebrow">Format CAT minimum</div><h3>100 questions · 3 h</h3><p>Le CAT s'arrête entre 100 et 150 questions selon votre niveau. 100 questions pondérées exactement comme l'examen.</p><button class="btn primary" data-sim="100">Start · 100 Q</button></article>
+  <article class="panel"><div class="eyebrow">Format court</div><h3>50 questions · 1 h 30</h3><p>Même cadence (1,8 min par question) pour un entraînement en milieu de semaine.</p><button class="btn" data-sim="50">Start · 50 Q</button></article>
+ </div>
+ <label class="toggle"><input type="checkbox" id="cat"> Règle CAT stricte : aucun retour arrière, ni grille de navigation (comme le vrai examen)</label>
+ <div class="panel" style="margin-top:16px"><h3>Répartition des 100 questions</h3><div class="dist">${DOMS.map(d=>`<div><span class="mono">D${d}</span><i style="width:${META[d].w*5}%"></i><b class="mono">${META[d].w}</b><span class="dn">${esc(META[d].en)}</span></div>`).join('')}</div></div>
+ ${hist.length?`<div class="panel" style="margin-top:16px"><h3>Dernières simulations</h3><table class="ctable" style="margin-top:8px"><tr><th>Date</th><th>Score</th><th>%</th><th>Durée</th></tr>${hist.map(h=>`<tr><td>${new Date(h.t).toLocaleDateString('fr-FR')}</td><td class="mono">${h.good}/${h.n}</td><td class="mono">${Math.round(h.good/h.n*100)} %</td><td class="mono">${h.used} min</td></tr>`).join('')}</table></div>`:''}
+ <p class="foot">Le seuil officiel est un score pondéré de 700/1000 ; le seuil de 70 % utilisé ici est indicatif. La banque anglaise compte 160 questions : refaire une simulation mélange différemment les questions.</p>`;
+ app.querySelectorAll('[data-sim]').forEach(b=>b.onclick=()=>startSim(+b.dataset.sim,$('#cat').checked));
+ if(canResume){$('#resume').onclick=()=>{session=saved;if(Date.now()>=saved.endAt){saved.done=true}viewSim()};
+  $('#drop').onclick=()=>{store.del('cissp:sim');viewSim()}}
+}
+
+/* ---------- N°2 Leitner ---------- */
+function leit(){return store.get('cissp:leit',{lc:0,cards:{},mastered:0})}
+function leitDue(){const L=leit();return Object.values(L.cards).filter(c=>c.due<=L.lc+1).length}
+function startLeitner(all){const L=leit();L.lc++;store.set('cissp:leit',L);
+ let ids=Object.keys(L.cards).filter(id=>all||L.cards[id].due<=L.lc);ids.sort((a,b)=>L.cards[a].box-L.cards[b].box);ids=ids.slice(0,20);
+ if(!ids.length)return viewLeitner();
+ session=newSession({kind:'leitner',ui:'fr',mode:'learn',qs:shuffle(ids).map(prep),title:'Carnet d\'erreurs'});go('carnet')}
+function viewLeitner(){
+ if(session&&session.kind==='leitner')return renderQ();
+ const L=leit(),ids=Object.keys(L.cards),box=[1,2,3].map(b=>ids.filter(id=>L.cards[id].box===b));
+ const due=ids.filter(id=>L.cards[id].due<=L.lc+1).length;
+ app.innerHTML=`
+ <div class="eyebrow">N°2 · Répétition espacée</div>
+ <h1>Carnet d'erreurs</h1>
+ <p class="lede">Chaque erreur, dans n'importe quel quiz, entre en boîte 1. Une bonne réponse la fait monter d'une boîte et espace son retour ; une erreur la renvoie en boîte 1. Réussie en boîte 3, elle est maîtrisée et sort du carnet.</p>
+ <div class="boxes">${[1,2,3].map(b=>`<div class="box b${b}"><div class="eyebrow">Boîte ${b}</div><b>${box[b-1].length}</b><span>${b===1?'revient à chaque séance':b===2?'revient toutes les 2 séances':'revient toutes les 4 séances'}</span></div>`).join('')}<div class="box bm"><div class="eyebrow">Maîtrisées</div><b>${L.mastered}</b><span>sorties du carnet</span></div></div>
+ <div class="row" style="margin:16px 0"><button class="btn primary" id="lgo" ${due?'':'disabled'}>Réviser les cartes dues · ${Math.min(due,20)}</button><button class="btn" id="lall" ${ids.length?'':'disabled'}>Réviser tout le carnet (20 max.)</button><span class="hint">Séance n°${L.lc+1}</span></div>
+ ${ids.length?`<div class="panel"><h3>Cartes en cours</h3><div style="overflow-x:auto;margin-top:8px"><table class="ctable"><tr><th>Boîte</th><th>Domaine</th><th>Question</th></tr>${ids.sort((a,b)=>L.cards[a].box-L.cards[b].box).slice(0,60).map(id=>{const it=item(id);return `<tr><td class="mono">${L.cards[id].box}</td><td class="mono">D${it.d}</td><td>${kw(it.q.length>140?it.q.slice(0,140)+'…':it.q)}</td></tr>`}).join('')}</table></div>${ids.length>60?`<p class="hint">… et ${ids.length-60} autres.</p>`:''}</div>`:`<div class="panel empty">Le carnet est vide. Faites un quiz : vos erreurs y apparaîtront automatiquement.</div>`}`;
+ $('#lgo').onclick=()=>startLeitner(false);$('#lall').onclick=()=>startLeitner(true);
+}
+
+/* ---------- N°3/4/10 progression ---------- */
+function predict(){const h=store.get('cissp:hist',{});const dom={};DOMS.forEach(d=>dom[d]={n:0,s:0,ok:0,m:0});
+ Object.keys(h).forEach(id=>{const d=idDom(id),r=h[id];dom[d].n++;if(r.ok){dom[d].ok++;dom[d].s+=CW[r.c]||.75}});
+ let sc=0,answered=0;DOMS.forEach(d=>{const x=dom[d];x.m=x.n?x.s/x.n:0;sc+=META[d].w*x.m;answered+=x.n});
+ return{dom,score:Math.round(sc),answered,covered:DOMS.filter(d=>dom[d].n>=10).length}}
+function streak(){const act=store.get('cissp:act',{});let n=0;const d=new Date();if(!act[today()])d.setDate(d.getDate()-1);
+ for(;;){const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');if(act[k]){n++;d.setDate(d.getDate()-1)}else break}return n}
+function startBlind(){const h=store.get('cissp:hist',{});const ids=Object.keys(h).filter(id=>!h[id].ok&&h[id].c==='sure');if(!ids.length)return;
+ session=newSession({kind:'blind',ui:'fr',mode:'learn',qs:pick(ids,20).map(prep),title:'Angles morts'});renderQ()}
+function viewProgress(){
+ if(session&&session.kind==='blind')return renderQ();
+ const P=predict(),h=store.get('cissp:hist',{}),act=store.get('cissp:act',{}),goal=store.get('cissp:goal',30),ses=store.get('cissp:sessions',[]);
+ const cs={};CERTS.forEach(c=>cs[c]={g:0,n:0});Object.values(h).forEach(r=>{const c=r.c||'hesit';cs[c].n++;if(r.ok)cs[c].g++});
+ const blind=Object.keys(h).filter(id=>!h[id].ok&&h[id].c==='sure').length;
+ const days=[];const d0=new Date();d0.setDate(d0.getDate()-34);for(let i=0;i<35;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');days.push([k,act[k]||0,d])}
+ const todayN=act[today()]||0;
+ const gap=70-P.score;
+ app.innerHTML=`
+ <div class="eyebrow">N°3 · N°4 · N°10</div>
+ <h1>Progression et score prédit</h1>
+ <p class="lede">Calculé à partir de la dernière réponse donnée à chaque question, tous quiz confondus. Une bonne réponse vaut 1 si vous étiez « Sûr », 0,75 si « Hésitant » et 0,25 « Au hasard ».</p>
+ <div class="fgrid" style="margin-top:20px">
+  <section class="panel full"><div class="predict">
+   <div class="ring big" style="--p:${P.score}"><b>${P.answered?P.score:'—'}<small>/100</small></b></div>
+   <div class="stack" style="gap:8px;min-width:0">
+    <div class="eyebrow">N°4 · Score prédit sur 100 questions pondérées</div>
+    <h2>${!P.answered?'Pas encore de données':P.score>=70?'Au-dessus du seuil indicatif de 70/100':`À ${gap} point${gap>1?'s':''} du seuil indicatif de 70/100`}</h2>
+    <span class="pill ${P.covered===8?'ok':'mid'}">Fiabilité : ${P.covered}/8 domaines avec au moins 10 réponses</span>
+    <p style="font-size:13px;color:var(--muted);margin:0">Un domaine non travaillé compte pour 0 : la prédiction reste prudente tant que la couverture est incomplète. Le seuil officiel est de 700/1000 en score pondéré.</p>
+   </div></div>
+   <div style="overflow-x:auto;margin-top:16px"><table class="ctable ptable"><tr><th>Domaine</th><th>Poids</th><th>Réponses</th><th>Justes</th><th>Maîtrise</th><th>Points /100</th></tr>
+   ${DOMS.map(d=>{const x=P.dom[d];return `<tr><td>D${d} · ${esc(META[d].fr)}</td><td class="mono">${META[d].w}</td><td class="mono">${x.n}</td><td class="mono">${x.ok}</td><td><div class="mbar"><i style="width:${Math.round(x.m*100)}%" class="${x.m>=.8?'g':x.m>=.7?'m':'b'}"></i><span class="mono">${x.n?Math.round(x.m*100)+' %':'—'}</span></div></td><td class="mono">${(META[d].w*x.m).toFixed(1)} / ${META[d].w}</td></tr>`}).join('')}</table></div></section>
+  <section class="panel"><h3>N°3 · Calibration de la certitude</h3><div style="overflow-x:auto;margin-top:10px"><table class="ctable"><tr><th>Déclaré</th><th>Réponses</th><th>Taux de réussite</th></tr>${CERTS.map(c=>`<tr><td>${T.fr[c]}</td><td class="mono">${cs[c].n}</td><td class="mono">${cs[c].n?Math.round(cs[c].g/cs[c].n*100)+' %':'—'}</td></tr>`).join('')}</table></div>
+   <p style="font-size:13px;color:var(--muted);margin:10px 0">Bien calibré : « Sûr » proche de 100 %, « Au hasard » proche de 25 %.</p>
+   <div class="row"><span class="pill ${blind?'ko':'ok'}">${blind} angle${blind>1?'s':''} mort${blind>1?'s':''}</span><button class="btn" id="blind" ${blind?'':'disabled'}>Réviser mes erreurs « Sûr »</button></div></section>
+  <section class="panel"><h3>N°10 · Objectif et régularité</h3>
+   <div class="row" style="margin-top:10px"><div class="stat"><b>${todayN}/${goal}</b><span>aujourd'hui</span></div><div class="stat"><b>${streak()}</b><span>jour${streak()>1?'s':''} de série</span></div><div class="stat"><b>${Object.keys(h).length}</b><span>questions vues /504</span></div></div>
+   <div class="row" style="margin-top:12px"><label for="goal" class="hint">Objectif quotidien</label><select id="goal">${[10,20,30,50,80,100].map(n=>`<option ${n===goal?'selected':''}>${n}</option>`).join('')}</select></div>
+   <div class="heat" aria-label="Activité des 35 derniers jours">${days.map(([k,n,d])=>`<i title="${d.toLocaleDateString('fr-FR')} : ${n} réponse${n>1?'s':''}" class="l${n===0?0:n<goal/2?1:n<goal?2:3} ${k===today()?'now':''}"></i>`).join('')}</div>
+   <div class="legend"><span><i class="lg l0"></i>0</span><span><i class="lg l1"></i>&lt; ½ objectif</span><span><i class="lg l2"></i>&lt; objectif</span><span><i class="lg l3"></i>objectif atteint</span></div></section>
+  <section class="panel full"><h3>Historique des séances</h3>${ses.length?`<div style="overflow-x:auto;margin-top:8px"><table class="ctable"><tr><th>Date</th><th>Activité</th><th>Score</th></tr>${ses.slice(0,15).map(x=>`<tr><td>${new Date(x.t).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'})}</td><td>${esc(x.kind)}</td><td class="mono">${x.good}/${x.n} · ${Math.round(x.good/x.n*100)} %</td></tr>`).join('')}</table></div>`:'<p class="hint" style="margin-top:8px">Aucune séance terminée pour l\'instant.</p>'}</section>
+  <section class="panel full"><h3>Sauvegarder ou transférer ma progression</h3>
+   <p style="font-size:13.5px;color:var(--muted);margin:6px 0 10px">La progression est stockée dans ce navigateur. Copiez le code pour la conserver ou la transférer sur un autre appareil, puis collez-le ici pour la restaurer.</p>
+   <div class="row"><button class="btn" id="exp">Générer et copier mon code</button><button class="btn" id="imp">Restaurer depuis un code</button><button class="btn" id="rst">Tout remettre à zéro</button></div>
+   <textarea id="code" rows="3" placeholder="Votre code de sauvegarde apparaît ici, ou collez un code pour le restaurer." aria-label="Code de sauvegarde"></textarea><div id="pmsg" class="hint"></div></section>
+ </div>`;
+ $('#goal').onchange=e=>{store.set('cissp:goal',+e.target.value);viewProgress()};
+ $('#blind').onclick=startBlind;
+ $('#exp').onclick=()=>{const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith('cissp:')&&k!=='cissp:sim')o[k]=localStorage.getItem(k)}}catch(e){}
+  const code=btoa(unescape(encodeURIComponent(JSON.stringify(o))));const ta=$('#code');ta.value=code;
+  const done=m=>{$('#pmsg').textContent=m};try{navigator.clipboard.writeText(code).then(()=>done('Code copié dans le presse-papiers.'),()=>{ta.select();done('Sélectionnez et copiez le code ci-dessus.')})}catch(e){ta.select();done('Sélectionnez et copiez le code ci-dessus.')}};
+ $('#imp').onclick=()=>{try{const o=JSON.parse(decodeURIComponent(escape(atob($('#code').value.trim()))));let n=0;Object.keys(o).forEach(k=>{if(k.startsWith('cissp:')){localStorage.setItem(k,o[k]);n++}});$('#pmsg').textContent=n+' éléments restaurés.';setTimeout(viewProgress,700)}catch(e){$('#pmsg').textContent='Code invalide : vérifiez qu\'il a été copié en entier.'}};
+ $('#rst').onclick=()=>{$('#pmsg').innerHTML='Effacer toute la progression (scores, carnet, historique) ? <button class="btn" id="rno">Annuler</button> <button class="btn danger" id="ryes">Effacer</button>';
+  $('#rno').onclick=()=>{$('#pmsg').textContent=''};$('#ryes').onclick=()=>{try{const ks=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith('cissp:'))ks.push(k)}ks.forEach(k=>localStorage.removeItem(k))}catch(e){}viewProgress()}};
+}
+
+/* ---------- ateliers (N°5–9) ---------- */
+let atelier=null;
+function viewAteliers(){
+ if(session&&session.kind==='case')return renderQ();
+ if(atelier==='myth')return mythSetup();if(atelier==='order')return orderGame();if(atelier==='calc')return calcGame();if(atelier==='match')return matchGame();if(atelier==='cases')return casesList();
+ const tiles=INNOV.filter(x=>x[3].startsWith('ateliers'));
+ app.innerHTML=`<div class="eyebrow">N°5 à N°9 · Entraînements courts</div><h1>Ateliers</h1><p class="lede">Des formats rapides pour varier les révisions entre deux quiz.</p>
+ <div class="igrid" style="margin-top:20px">${tiles.map(([n,t,d,dst])=>`<button class="icard" data-a="${dst.split(':')[1]}"><span class="inum">N°${n}</span><b>${esc(t)}</b><span>${esc(d)}</span></button>`).join('')}</div>`;
+ app.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{atelier=b.dataset.a;viewAteliers();window.scrollTo(0,0)});
+}
+const back=()=>`<button class="btn back" id="back">← Ateliers</button>`;
+function bindBack(){const b=$('#back');if(b)b.onclick=()=>{stopTimer();keyH=null;atelier=null;viewAteliers()}}
+
+/* N°5 */
+let myth=null;
+function mythSetup(){const best=store.get('cissp:myth:best',null);
+ app.innerHTML=`${back()}<div class="eyebrow">N°5 · Vrai ou faux en 8 secondes</div><h1>Mindset ou mythe ?</h1><p class="lede">Une affirmation, 8 secondes pour trancher. Le temps écoulé compte comme une erreur. ${MYTHS.length} affirmations issues des pièges des fiches.</p>
+ <div class="panel" style="margin-top:16px"><div class="row"><button class="btn primary" data-n="10">Série de 10</button><button class="btn" data-n="20">Série de 20</button><button class="btn" data-n="${MYTHS.length}">Toutes (${MYTHS.length})</button>${best!=null?`<span class="hint">Meilleur : ${best} %</span>`:''}</div>
+ <p class="hint" style="margin-top:10px">Clavier : V = Vrai · F = Faux · Entrée = suivante.</p></div>`;
+ bindBack();app.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{myth={items:pick(MYTHS,+b.dataset.n),i:0,res:[]};mythQ()});
+}
+function mythQ(){const m=myth,it=m.items[m.i],dur=8000;let t0=Date.now(),answered=false;
+ app.innerHTML=`${back()}<div class="qhead"><span>D${it[3]} · Mindset ou mythe ?</span><span>${m.i+1} / ${m.items.length}</span></div>
+ <div class="tbar"><i id="tb"></i></div>
+ <div class="panel myth"><p class="qtext" style="text-align:center">${kw(it[0])}</p>
+ <div class="row" style="justify-content:center"><button class="btn big tf" data-v="1">Vrai</button><button class="btn big tf" data-v="0">Faux</button></div><div id="mf"></div></div>`;
+ bindBack();
+ const answer=v=>{if(answered)return;answered=true;stopTimer();const ok=v===null?false:(v===it[1]);m.res.push({it,ok,v});
+  app.querySelectorAll('.tf').forEach(b=>{b.disabled=true;if((b.dataset.v==='1')===it[1])b.classList.add('right');else if(v!==null&&(b.dataset.v==='1')===v)b.classList.add('wrong')});
+  $('#mf').innerHTML=`<div class="feedback" style="margin-top:16px"><div class="verdict ${ok?'ok':'ko'}">${v===null?'Temps écoulé. ':''}${ok?'Exact.':'Raté.'} C'est ${it[1]?'VRAI':'FAUX'}.</div><div>${kw(it[2])}</div></div><div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn primary" id="mn">${m.i<m.items.length-1?'Suivante':'Résultat'}</button></div>`;
+  $('#mn').onclick=()=>{m.i++;m.i<m.items.length?mythQ():mythEnd()};$('#mn').focus()};
+ app.querySelectorAll('.tf').forEach(b=>b.onclick=()=>answer(b.dataset.v==='1'));
+ keyH=e=>{const k=e.key.toUpperCase();if(k==='V')answer(true);else if(k==='F')answer(false);else if(e.key==='Enter'){const n=$('#mn');if(n){e.preventDefault();n.click()}}};
+ stopTimer();timer=setInterval(()=>{const p=Math.min(1,(Date.now()-t0)/dur);const b=$('#tb');if(b){b.style.width=(100-p*100)+'%';b.classList.toggle('late',p>.7)}if(p>=1)answer(null)},100);
+}
+function mythEnd(){keyH=null;const m=myth,g=m.res.filter(r=>r.ok).length,p=Math.round(g/m.res.length*100);const b=store.get('cissp:myth:best',null);if(b==null||p>b)store.set('cissp:myth:best',p);
+ const act=store.get('cissp:act',{});act[today()]=(act[today()]||0)+m.res.length;store.set('cissp:act',act);logSession('Mindset ou mythe',m.res.length,g);
+ app.innerHTML=`${back()}<div class="panel"><div class="result-hero"><div class="ring" style="--p:${p}"><b>${p}%</b></div><div class="stack" style="gap:8px"><div class="eyebrow">Mindset ou mythe ?</div><h2>${g} / ${m.res.length}</h2><div class="row"><button class="btn primary" id="ma">Nouvelle série</button></div></div></div></div>
+ <div class="stack" style="gap:8px;margin-top:16px">${m.res.map(r=>`<details class="rev" ${r.ok?'':'open'}><summary><span class="mark ${r.ok?'ok':'ko'}">${r.ok?'✓':'✗'}</span><span>${kw(r.it[0])} <b>${r.it[1]?'VRAI':'FAUX'}</b></span></summary><div class="body">${kw(r.it[2])}</div></details>`).join('')}</div>`;
+ bindBack();$('#ma').onclick=mythSetup}
+
+/* N°6 */
+let ord=null;
+function orderGame(idx){if(idx==null)idx=ord&&ord.done?(ord.idx+1)%SEQS.length:ord?ord.idx:Math.floor(Math.random()*SEQS.length);
+ if(!ord||ord.idx!==idx)ord={idx,pool:shuffle(SEQS[idx][2].map((s,i)=>i)),pick:[],done:false};
+ const S=SEQS[idx],o=ord;
+ app.innerHTML=`${back()}<div class="eyebrow">N°6 · Le bon ordre · D${S[1]}</div><h1>${esc(S[0])}</h1><p class="lede">Touchez les étapes dans l'ordre chronologique. Touchez une étape placée pour la retirer.</p>
+ <div class="row" style="margin:14px 0"><label class="hint" for="seqsel">Processus</label><select id="seqsel">${SEQS.map((x,i)=>`<option value="${i}" ${i===idx?'selected':''}>${esc(x[0])}</option>`).join('')}</select></div>
+ <div class="fgrid">
+  <section class="panel"><h3>Étapes disponibles</h3><div class="stepool">${o.pool.filter(i=>!o.pick.includes(i)).map(i=>`<button class="step" data-p="${i}" ${o.done?'disabled':''}>${esc(S[2][i])}</button>`).join('')||'<span class="hint">Toutes les étapes sont placées.</span>'}</div></section>
+  <section class="panel"><h3>Votre ordre</h3><ol class="stepol">${o.pick.map((i,pos)=>`<li><button class="step placed ${o.done?(i===pos?'right':'wrong'):''}" data-r="${pos}" ${o.done?'disabled':''}>${esc(S[2][i])}</button></li>`).join('')}</ol></section>
+ </div>
+ ${o.done?`<div class="feedback" style="margin-top:16px"><div class="verdict ${o.pick.every((i,p)=>i===p)?'ok':'ko'}">${o.pick.filter((i,p)=>i===p).length} / ${S[2].length} étapes bien placées.</div><div><b>Ordre correct :</b><ol style="margin:6px 0 0;padding-left:20px">${S[2].map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div><div class="rex"><b>À retenir</b>${esc(S[3])}</div></div>`:''}
+ <div class="row" style="margin-top:16px;justify-content:flex-end">${o.done?`<button class="btn" id="oretry">Recommencer</button><button class="btn primary" id="onext">Processus suivant</button>`:`<button class="btn" id="oreset" ${o.pick.length?'':'disabled'}>Effacer</button><button class="btn primary" id="ocheck" ${o.pick.length===S[2].length?'':'disabled'}>Vérifier</button>`}</div>`;
+ bindBack();
+ $('#seqsel').onchange=e=>{ord=null;orderGame(+e.target.value)};
+ app.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{o.pick.push(+b.dataset.p);orderGame(idx)});
+ app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{o.pick.splice(+b.dataset.r,1);orderGame(idx)});
+ const c=$('#ocheck');if(c)c.onclick=()=>{o.done=true;const g=o.pick.filter((i,p)=>i===p).length;const act=store.get('cissp:act',{});act[today()]=(act[today()]||0)+1;store.set('cissp:act',act);logSession('Le bon ordre',S[2].length,g);orderGame(idx)};
+ const r=$('#oreset');if(r)r.onclick=()=>{o.pick=[];orderGame(idx)};
+ const rt=$('#oretry');if(rt)rt.onclick=()=>{ord=null;orderGame(idx)};
+ const n=$('#onext');if(n)n.onclick=()=>{ord=null;orderGame((idx+1)%SEQS.length)};
+}
+
+/* N°7 */
+const R=(a,b,s=1)=>a+s*Math.floor(Math.random()*((b-a)/s+1));
+const $$=n=>fmtN(n)+' $';
+const GEN=[
+ ()=>{const av=R(50,900,10)*1000,ef=R(10,80,5);return{t:'SLE',q:`Un serveur vaut ${$$(av)}. Un incendie détruirait ${ef} % de sa valeur. Quelle est la SLE ?`,a:av*ef/100,u:'$',s:`SLE = AV × EF = ${$$(av)} × ${ef} % = ${$$(av*ef/100)}`}},
+ ()=>{const sle=R(5,200,5)*1000,n=R(2,20);return{t:'ALE',q:`Une perte unitaire (SLE) de ${$$(sle)} survient une fois tous les ${n} ans. Quelle est l'ALE ?`,a:sle/n,u:'$',s:`ARO = 1/${n} = ${fmtN(1/n)} ; ALE = SLE × ARO = ${$$(sle)} / ${n} = ${$$(sle/n)}`}},
+ ()=>{const av=R(100,1000,50)*1000,ef=R(10,60,5),aro=[0.5,1,2,3,4][R(0,4)];const a=av*ef/100*aro;return{t:'ALE',q:`Actif : ${$$(av)} · EF : ${ef} % · ARO : ${fmtN(aro)}. Quelle est l'ALE ?`,a,u:'$',s:`SLE = ${$$(av)} × ${ef} % = ${$$(av*ef/100)} ; ALE = SLE × ${fmtN(aro)} = ${$$(a)}`}},
+ ()=>{const b=R(20,200,5)*1000,af=R(1,Math.floor(b/1000/2))*1000,c=R(5,120,5)*1000,v=b-af-c;return{t:'CBA',q:`ALE avant contrôle : ${$$(b)} · ALE après : ${$$(af)} · coût annuel du contrôle : ${$$(c)}. Quelle est la valeur du contrôle (négative si non rentable) ?`,a:v,u:'$',s:`Valeur = ${$$(b)} − ${$$(af)} − ${$$(c)} = ${$$(v)} → ${v>0?'achat justifié':'rejeter : accepter le risque ou chercher moins cher'}`}},
+ ()=>{const b=R(30,300,10)*1000,af=R(1,Math.floor(b/2000))*1000;return{t:'CBA',q:`Un contrôle ferait passer l'ALE de ${$$(b)} à ${$$(af)}. Quel est le coût annuel maximal justifiable ?`,a:b-af,u:'$',s:`Coût max = ALE avant − ALE après = ${$$(b-af)}`}},
+ ()=>{const n=R(10,500);return{t:'Clés',q:`Combien de clés faut-il pour ${n} utilisateurs en chiffrement symétrique (une clé par paire) ?`,a:n*(n-1)/2,u:'clés',s:`N(N−1)/2 = ${n} × ${n-1} / 2 = ${fmtN(n*(n-1)/2)}`}},
+ ()=>{const n=R(10,5000);return{t:'Clés',q:`Combien de clés faut-il pour ${n} utilisateurs en chiffrement asymétrique ?`,a:2*n,u:'clés',s:`2N = 2 × ${n} = ${fmtN(2*n)} (une paire par utilisateur)`}},
+ ()=>{const mtd=R(8,96,4),rto=R(2,mtd,2),wrt=R(1,24);const v=mtd-rto-wrt;return{t:'BCP',q:`MTD : ${mtd} h · RTO : ${rto} h · WRT : ${wrt} h. Quelle est la marge en heures (négative en cas de dépassement) ?`,a:v,u:'h',s:`Marge = MTD − (RTO + WRT) = ${mtd} − ${rto+wrt} = ${v} h → ${v>=0?'plan conforme':'plan non conforme : réduire RTO ou WRT'}`}}
+];
+let calc=null;
+function calcGame(){if(!calc||calc.i>=calc.items.length&&calc.ended){calc={items:shuffle(GEN).concat(shuffle(GEN)).slice(0,8).map(g=>g()),i:0,res:[],ans:null}}
+ const c=calc;if(c.i>=c.items.length)return calcEnd();
+ const p=c.items[c.i],shown=c.ans!=null;
+ app.innerHTML=`${back()}<div class="eyebrow">N°7 · Atelier formules · données aléatoires</div><h1>Exercice ${c.i+1} / ${c.items.length}</h1>
+ <div class="panel" style="margin-top:16px"><span class="pill mid">${p.t}</span><p class="qtext">${esc(p.q)}</p>
+ <div class="row"><input id="cin" class="num" inputmode="decimal" autocomplete="off" placeholder="Votre réponse" aria-label="Votre réponse" ${shown?'disabled':''} value="${shown?esc(c.ans):''}"><span class="hint">${p.u}</span><button class="btn primary" id="cgo" ${shown?'hidden':''}>Vérifier</button></div>
+ ${shown?`<div class="feedback" style="margin-top:14px"><div class="verdict ${c.res[c.i]?'ok':'ko'}">${c.res[c.i]?'Juste.':'Faux. Réponse attendue : '+fmtN(p.a)+' '+p.u}</div><div class="formula">${esc(p.s)}</div></div><div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn primary" id="cnext">${c.i<c.items.length-1?'Exercice suivant':'Résultat'}</button></div>`:''}
+ <p class="hint" style="margin-top:10px">Saisissez un nombre sans unité ; espaces et virgules acceptés. Tolérance de 1 %.</p></div>`;
+ bindBack();
+ const check=()=>{const raw=$('#cin').value;const v=parseFloat(raw.replace(/\s| |\$/g,'').replace(',','.'));if(isNaN(v))return;const ok=Math.abs(v-p.a)<=Math.max(1,Math.abs(p.a)*.01);c.ans=raw;c.res[c.i]=ok;calcGame()};
+ if(!shown){$('#cgo').onclick=check;$('#cin').onkeydown=e=>{if(e.key==='Enter')check()};$('#cin').focus()}
+ else{$('#cnext').onclick=()=>{c.i++;c.ans=null;calcGame()};$('#cnext').focus()}
+}
+function calcEnd(){const c=calc,g=c.res.filter(Boolean).length;c.ended=true;const act=store.get('cissp:act',{});act[today()]=(act[today()]||0)+c.items.length;store.set('cissp:act',act);logSession('Atelier formules',c.items.length,g);
+ app.innerHTML=`${back()}<div class="panel"><div class="result-hero"><div class="ring" style="--p:${Math.round(g/c.items.length*100)}"><b>${g}/${c.items.length}</b></div><div class="stack" style="gap:8px"><div class="eyebrow">Atelier formules</div><h2>${g===c.items.length?'Sans faute':'Revoyez les formules ratées'}</h2><div class="formula">SLE = AV × EF · ALE = SLE × ARO · Valeur = ALE avant − ALE après − coût</div><div class="row"><button class="btn primary" id="cagain">Nouvelle série (nouveaux chiffres)</button></div></div></div></div>`;
+ bindBack();$('#cagain').onclick=()=>{calc=null;calcGame()}}
+
+/* N°8 */
+let mt=null;
+function matchGame(){if(!mt){const pool=GLOSS.filter(g=>{const a=g[0].toLowerCase(),b=g[1].toLowerCase();return a!==b&&!a.startsWith(b)&&!b.startsWith(a.split(' ')[0])});const items=pick(pool,6);mt={items,right:shuffle(items.map((x,i)=>i)),sel:null,ok:[],err:0,t0:Date.now(),end:null}}
+ const m=mt,best=store.get('cissp:match:best',null);
+ app.innerHTML=`${back()}<div class="eyebrow">N°8 · Associations éclair</div><h1>Reliez chaque terme à sa traduction</h1><p class="lede">Touchez un terme anglais puis sa traduction. Chronomètre et erreurs comptent.</p>
+ <div class="row" style="margin:12px 0"><span class="pill mid mono" id="mtime">0 s</span><span class="pill ${m.err?'ko':'ok'}">${m.err} erreur${m.err>1?'s':''}</span>${best!=null?`<span class="hint">Record : ${best} s sans erreur</span>`:''}</div>
+ <div class="match"><div class="mcol">${m.items.map((g,i)=>`<button class="mitem ${m.ok.includes(i)?'right':''} ${m.sel===i?'sel':''}" data-l="${i}" ${m.ok.includes(i)?'disabled':''}><b>${esc(g[0])}</b></button>`).join('')}</div>
+ <div class="mcol">${m.right.map(i=>`<button class="mitem ${m.ok.includes(i)?'right':''}" data-r="${i}" ${m.ok.includes(i)?'disabled':''}>${esc(m.items[i][1])}</button>`).join('')}</div></div>
+ ${m.end?`<div class="feedback" style="margin-top:16px"><div class="verdict ok">Terminé en ${m.end} s avec ${m.err} erreur${m.err>1?'s':''}.</div><ul class="clean">${m.items.map(g=>`<li><b>${esc(g[0])}</b> : ${esc(g[2])}</li>`).join('')}</ul></div>`:''}
+ <div class="row" style="justify-content:flex-end;margin-top:16px"><button class="btn primary" id="mnew">${m.end?'Nouvelle grille':'Changer de grille'}</button></div>`;
+ bindBack();
+ app.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{m.sel=+b.dataset.l;matchGame()});
+ app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{if(m.sel==null)return;const r=+b.dataset.r;const hit=r===m.sel;if(hit){m.ok.push(r);m.sel=null;if(m.ok.length===m.items.length){m.end=Math.round((Date.now()-m.t0)/1000);stopTimer();if(!m.err){const bb=store.get('cissp:match:best',null);if(bb==null||m.end<bb)store.set('cissp:match:best',m.end)}const act=store.get('cissp:act',{});act[today()]=(act[today()]||0)+6;store.set('cissp:act',act);logSession('Associations éclair',6,Math.max(0,6-m.err))}}else{m.err++;b.classList.add('wrong')}setTimeout(matchGame,hit?0:250)});
+ $('#mnew').onclick=()=>{mt=null;matchGame()};
+ stopTimer();if(!m.end)timer=setInterval(()=>{const e=$('#mtime');if(e)e.textContent=Math.round((Date.now()-m.t0)/1000)+' s'},500);else{const e=$('#mtime');if(e)e.textContent=m.end+' s'}
+}
+
+/* N°9 */
+function startCase(i){const c=CASES[i];session=newSession({kind:'case',ui:'fr',mode:'learn',qs:c[3].map((x,j)=>prep(`cas:${i}:${j}`)),title:c[0],caseIdx:i});go('ateliers')}
+function casesList(){const done=store.get('cissp:hist',{});
+ app.innerHTML=`${back()}<div class="eyebrow">N°9 · Études de cas en 3 décisions</div><h1>Études de cas</h1><p class="lede">Un scénario par domaine. Chaque décision s'enchaîne sur la précédente, comme dans les questions longues de l'examen.</p>
+ <div class="dgrid" style="margin-top:16px">${CASES.map((c,i)=>{const n=c[3].filter((x,j)=>done[`cas:${i}:${j}`]&&done[`cas:${i}:${j}`].ok).length;return `<article class="dcard"><div class="num"><span>DOMAINE ${c[1]}</span><span>${n}/3 réussies</span></div><h3>${esc(c[0])}</h3><p style="font-size:13.5px;color:var(--muted);margin:0">${esc(c[2])}</p><div class="row"><button class="btn primary" data-c="${i}">Commencer</button></div></article>`}).join('')}</div>`;
+ bindBack();app.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>startCase(+b.dataset.c));
 }
 
 /* ---------- fiches ---------- */
@@ -2672,10 +3179,11 @@ function viewFiches(){
   <section class="panel"><h3>Bonnes pratiques terrain</h3><ul class="clean" style="margin-top:10px">${m.bp.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
   <section class="panel full" lang="en"><h3>Exam tips (English)</h3><ul class="clean" style="margin-top:10px">${m.tips.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>
  </div>
- <div class="row" style="margin-top:16px"><button class="btn primary" id="fq">Quiz FR sur ce domaine</button><button class="btn" id="eq">English quiz</button></div>`;
+ <div class="row" style="margin-top:16px"><button class="btn primary" id="fq">Quiz FR sur ce domaine</button><button class="btn" id="eq">English quiz</button><button class="btn" id="cq">Étude de cas du domaine</button></div>`;
  app.querySelectorAll('.ftabs [data-d]').forEach(b=>b.onclick=()=>{ficheDom=+b.dataset.d;viewFiches()});
- $('#fq').onclick=()=>{cfg.fr.doms=[ficheDom];startSession('fr')};
- $('#eq').onclick=()=>{cfg.en.doms=[ficheDom];cfg.en.count=Math.min(cfg.en.count,20);startSession('en')};
+ $('#fq').onclick=()=>{cfg.fr.doms=[ficheDom];startQuiz('fr')};
+ $('#eq').onclick=()=>{cfg.en.doms=[ficheDom];cfg.en.count=Math.min(cfg.en.count,20);startQuiz('en')};
+ $('#cq').onclick=()=>startCase(CASES.findIndex(c=>c[1]===ficheDom));
 }
 
 /* ---------- cheat sheet ---------- */
@@ -2687,7 +3195,7 @@ function viewGloss(){
  app.innerHTML=`
  <div class="eyebrow">${GLOSS.length} termes · anglais → français</div>
  <h1>Glossaire CISSP</h1>
- <p class="lede">Les termes tels qu'ils apparaissent dans l'examen en anglais, avec leur traduction et une définition courte.</p>
+ <p class="lede">Les termes tels qu'ils apparaissent dans l'examen en anglais, avec leur traduction et une définition courte. Entraînez-vous avec l'atelier N°8 Associations éclair.</p>
  <div class="gtools"><input id="gs" type="search" placeholder="Rechercher un terme, un acronyme, une définition…" value="${esc(gq)}" aria-label="Rechercher">
  <select id="gd" aria-label="Filtrer par domaine"><option value="0">Tous les domaines</option>${DOMS.map(d=>`<option value="${d}" ${gd===d?'selected':''}>D${d} · ${esc(META[d].fr)}</option>`).join('')}</select></div>
  <div class="glist" id="gl"></div>`;
@@ -2698,6 +3206,7 @@ function viewGloss(){
  draw();
 }
 
+window.addEventListener('hashchange',()=>{const v=(location.hash||'').replace('#','');const cur=document.querySelector('#tabs button[aria-current="page"]');if(views[v]&&(!cur||cur.dataset.v!==v)){if(!(session&&session.kind==='sim'&&!session.done))session=null;go(v,false)}});
 const start=(location.hash||'').replace('#','');
 go(views[start]?start:'accueil',false);
 })();
